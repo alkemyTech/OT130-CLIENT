@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {Formik} from 'formik';
 import '../FormStyles.css';
 
 const RegisterForm = () => {
 
     /* Comienzo 11:03 */
+
 /*     const [initialValues, setInitialValues] = useState({
         name: '',
         lastName: ''
@@ -32,11 +34,20 @@ const RegisterForm = () => {
     ); */
     return(
         <>
-            <form className="form-container" /*  onSubmit={handleSubmit} */>
-                <input className="input-field" type="text" name="name"/*  value={initialValues.name}  onChange={handleChange}*/ placeholder="Enter name"></input>
-                <input className="input-field" type="text" name="lastName" /* value={initialValues.lastName} onChange={handleChange} */ placeholder="Enter last name"></input>
-                <button className="submit-btn" type="submit">Register</button>
-            </form>
+            <Formik
+                onSubmit={()=>{
+                    console.log('Formulario enviado')
+                }}
+            >
+                {()=>(
+                    <form className="form-container" /*  onSubmit={handleSubmit} */>
+                        <input className="input-field" type="text" name="name"/*  value={initialValues.name}  onChange={handleChange}*/ placeholder="Enter name"></input>
+                        <input className="input-field" type="text" name="lastName" /* value={initialValues.lastName} onChange={handleChange} */ placeholder="Enter last name"></input>
+                        <button className="submit-btn" type="submit">Register</button>
+                    </form>
+                )}
+
+            </Formik>
         </>
     )
 
