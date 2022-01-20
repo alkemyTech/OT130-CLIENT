@@ -4,52 +4,58 @@ import '../FormStyles.css';
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
-    
+    const initialValues = {
+        name: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    }
+    const timerMessage = (time)=>{
+        setTimeout(()=>{
+            setSubmitForm(false);
+        },time);
+    }
+    const validateInputs = (values) => {
+        let error = {};
+
+        if(!values.name){
+            error.name = 'Name is required';
+        }
+        if(!values.lastName){
+            error.lastName = 'Last name is required';
+        }
+        if(!values.email){
+            error.email = 'Email is required';
+        }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
+            error.email = 'Invalid email address';
+        }
+        if(!values.password){
+            error.password = 'Password is required';
+        }
+        else if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(values.password)){
+            error.password= 'Password must contain at least 6 characters, one letter, one number and one special character';
+        }
+        if(!values.confirmPassword){
+            error.confirmPassword ='Confirm password is required';
+        }
+        else if(values.confirmPassword !== values.password){
+            error.confirmPassword = 'Passwords do not match';
+        }
+        return error;
+    }
+
     return(
         <>
             <Formik
-                initialValues={{
-                    name: '',
-                    lastName: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                }}
-                //Validation 
-                validate={(values) => {
-                    let error = {};
-                    if(!values.name){
-                        error.name = 'Name is required';
-                    }
-                    if(!values.lastName){
-                        error.lastName = 'Last name is required';
-                    }
-                    if(!values.email){
-                        error.email = 'Email is required';
-                    }
-                    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
-                        error.email = 'Invalid email address';
-                    }
-                    if(!values.password){
-                        error.password = 'Password is required';
-                    }
-                    else if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(values.password)){
-                        error.password= 'Password must contain at least 6 characters, one letter, one number and one special character';
-                    }
-                    if(!values.confirmPassword){
-                        error.confirmPassword ='Confirm password is required';
-                    }
-                    else if(values.confirmPassword !== values.password){
-                        error.confirmPassword = 'Passwords do not match';
-                    }
-                    return error;
-                }}
+                initialValues={initialValues}
+
+                validate={validateInputs}
                 onSubmit={(values,{resetForm})=>{
                     resetForm();
                     setSubmitForm(true);
-                    setTimeout(()=>{
-                        setSubmitForm(false);
-                    },4000);
+                    timerMessage(3000);
                     console.log(values);
                     console.log('Form submit');
                 }}
