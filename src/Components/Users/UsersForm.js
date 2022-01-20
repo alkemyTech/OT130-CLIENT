@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../FormStyles.css";
-import { Formik } from "formik";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const validation = Yup.object().shape({
@@ -15,76 +13,69 @@ const validation = Yup.object().shape({
     .min(10, "Mínimo 10 caracteres")
     .max(1000, "Descripción demasiado larga")
     .required("Campo obligatorio"),
-  Role: Yup.string()
-    .required('Campo obligatorio')
+  Role: Yup.string().required("Campo obligatorio"),
 });
 
 const UserForm = ({ user }) => {
   return (
-    <Container>
-      <Formik
-        validationSchema={validation}
-        initialValues={{ Name: "", Email: "", Description: "",Role:"usuario" }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {({
-          handleSubmit, isSubmitting, handleChange, values, errors, isValid, touched
-        }) => {
-          return (
-            <Form onSubmit={handleSubmit} noValidate>
-              <Form.Group className="mb-3">
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control
-                  name="Name"
-                  onChange={handleChange}
-                  placeholder="Escriba el nombre"
-                />
-                <Form.Text className="text-muted">{touched.Name ? errors.Name : null}</Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  name="Email"
-                  onChange={handleChange}
-                  placeholder="Escriba el email"
-                />
-                <Form.Text className="text-muted">{touched.Email ? errors.Email : null}</Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control
-                  name="Description"
-                  onChange={handleChange}
-                  placeholder="Escriba la descripción"
-                />
-                <Form.Text className="text-muted">
-                  {touched.Description ? errors.Description:null}
-                </Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-4">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Select
-                  name="Role"
-                  onChange={handleChange}
-                >
-                  <option value='usuario'>Usuario</option>
-                  <option value='administrador'>Administrador</option>
+    <Formik
+      validationSchema={validation}
+      initialValues={
+        user || { Name: "", Email: "", Description: "", Role: "usuario" }
+      }
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({
+        handleSubmit,
+        isSubmitting,
+        handleChange,
+        values,
+        errors,
+        isValid,
+        touched,
+      }) => {
+        return (
+          <Form onSubmit={handleSubmit} className="form-container">
+            <Field 
+              className="input-field"
+              type="text"
+              name="Name"
+              placeholder="Nombre"
+            ></Field>
+            {touched.Name ? <ErrorMessage name="Name" /> : null}
 
-                </Form.Select>
-                <Form.Text className="text-muted">
-                  {touched.Role ? errors.Role:null}
-                </Form.Text>
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Enviar
-              </Button>
-            </Form>
-          );
-        }}
-      </Formik>
-    </Container>
+            <Field
+              className="input-field"
+              type="text"
+              name="Email"
+              placeholder="Email"
+            ></Field>
+            {touched.Email ? <ErrorMessage name="Email" /> : null}
+
+            <Field
+              className="input-field"
+              type="text"
+              name="Description"
+              placeholder="Descripción"
+            ></Field>
+
+            {touched.Description ? <ErrorMessage name="Description" /> : null}
+
+            <Field className="select-field" as='select' name="Role">
+              <option value='usuario'>Usuario</option>
+              <option value='administrador'>Administrador</option>
+
+            </Field>
+
+            <button type="submit" className="submit-btn">
+              Enviar
+            </button>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 
