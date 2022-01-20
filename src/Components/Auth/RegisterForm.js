@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../FormStyles.css';
 
 const RegisterForm = () => {
-    const [initialValues, setInitialValues] = useState({
+
+    /* Comienzo 11:03 */
+/*     const [initialValues, setInitialValues] = useState({
         name: '',
         lastName: ''
     })
@@ -27,7 +29,17 @@ const RegisterForm = () => {
             <input className="input-field" type="text" name="lastName" value={initialValues.lastName} onChange={handleChange} placeholder="Enter last name"></input>
             <button className="submit-btn" type="submit">Register</button>
         </form>
-    );
+    ); */
+    return(
+        <>
+            <form className="form-container" /*  onSubmit={handleSubmit} */>
+                <input className="input-field" type="text" name="name"/*  value={initialValues.name}  onChange={handleChange}*/ placeholder="Enter name"></input>
+                <input className="input-field" type="text" name="lastName" /* value={initialValues.lastName} onChange={handleChange} */ placeholder="Enter last name"></input>
+                <button className="submit-btn" type="submit">Register</button>
+            </form>
+        </>
+    )
+
 }
  
 export default RegisterForm;
