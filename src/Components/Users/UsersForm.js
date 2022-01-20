@@ -14,6 +14,15 @@ const validation = Yup.object().shape({
     .max(1000, "Descripción demasiado larga")
     .required("Campo obligatorio"),
   Role: Yup.string().required("Campo obligatorio"),
+  Image: Yup.mixed().test(
+    "fileType",
+    "Suba una imagen con extensión .jpg o .png",
+    (value) => {
+      if (value) return ["image/jpeg", "image/png"].includes(value.type); 
+      //Assuming image is not required 
+      else return true
+    }
+  ),
 });
 
 const UserForm = ({ user }) => {
@@ -21,29 +30,41 @@ const UserForm = ({ user }) => {
     <Formik
       validationSchema={validation}
       initialValues={
-        user || { Name: "", Email: "", Description: "", Role: "usuario" }
+        user || {
+          Name: "",
+          Email: "",
+          Description: "",
+          Role: "usuario",
+          Image: null,
+        }
       }
-      onSubmit={(values) => {
+      onSubmit={(values, { setSubmitting }) => {
         console.log(values);
+        if (user) {
+          // post and handle
+        } else {
+          // update and handle 
+        }
       }}
     >
       {({
         handleSubmit,
         isSubmitting,
-        handleChange,
-        values,
+        validateField,
         errors,
         isValid,
+        setFieldValue,
         touched,
       }) => {
         return (
           <Form onSubmit={handleSubmit} className="form-container">
-            <Field 
+            <Field
               className="input-field"
               type="text"
               name="Name"
               placeholder="Nombre"
             ></Field>
+
             {touched.Name ? <ErrorMessage name="Name" /> : null}
 
             <Field
@@ -52,6 +73,7 @@ const UserForm = ({ user }) => {
               name="Email"
               placeholder="Email"
             ></Field>
+
             {touched.Email ? <ErrorMessage name="Email" /> : null}
 
             <Field
@@ -63,12 +85,27 @@ const UserForm = ({ user }) => {
 
             {touched.Description ? <ErrorMessage name="Description" /> : null}
 
-            <Field className="select-field" as='select' name="Role">
-              <option value='usuario'>Usuario</option>
-              <option value='administrador'>Administrador</option>
-
+            <Field className="select-field" as="select" name="Role">
+              <option value="usuario">Usuario</option>
+              <option value="administrador">Administrador</option>
             </Field>
-
+            <div>
+              <label style={{ paddingRight: "10px" }}>
+                Subir imagen de usuario
+              </label>
+              <input
+                type="file"
+                max={1}
+                name="Image"
+                accept="image/png, image/jpeg"
+                onChange={(e) => {
+                  setFieldValue("Image", e.currentTarget.files[0]);
+                }}
+              />
+              <div>
+                <ErrorMessage name="Image" />
+              </div>
+            </div>
             <button type="submit" className="submit-btn">
               Enviar
             </button>
