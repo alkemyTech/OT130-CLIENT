@@ -67,6 +67,9 @@ const NewsForm = ({news}) => {
 
     if ([name, content, category_id].includes("")) {
       setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
       return;
     } else if (name.length < 4) {
       alert("El titulo debe tener minimo 4 caracteres");
