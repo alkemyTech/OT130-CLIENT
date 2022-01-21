@@ -29,19 +29,21 @@ const RegisterForm = () => {
             email: Yup.string()
                 .email('Invalid email address')
                 .required('Email required'),
-            password: Yup.string()
+            password: Yup.string('Please enter a password')
+                .min(6, 'Password must be at least 6 characters')
                 .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,'Password must contain at least 6 characters, one letter, one number and one special character')
                 .required('Password is required'),
             confirmPassword: Yup.string()
                 .oneOf([Yup.ref('password'), null], 'Passwords must match')
                 .required('Confirm password isequired')
           }),
-          onSubmit: values => {
+        onSubmit: values => {
             setSubmitForm(true);
             timerMessage(3000);
+            formik.resetForm();
             console.log(values);
-          },
-      });
+        },
+    });
 
 
     return(
