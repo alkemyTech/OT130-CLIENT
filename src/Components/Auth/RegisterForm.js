@@ -1,85 +1,112 @@
 import React , {useState} from 'react';
-import {Formik, Form, Field, ErrorMessage } from 'formik';
+import { useFormik } from 'formik';
+
+import * as Yup from 'yup';
 import '../FormStyles.css';
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
-    const initialValues = {
-        name: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    }
+
     const timerMessage = (time)=>{
         setTimeout(()=>{
             setSubmitForm(false);
         },time);
-    }
-    const validateInputs = (values) => {
-        let error = {};
+    };
 
-        if(!values.name){
-            error.name = 'Name is required';
-        }
-        if(!values.lastName){
-            error.lastName = 'Last name is required';
-        }
-        if(!values.email){
-            error.email = 'Email is required';
-        }
-        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
-            error.email = 'Invalid email address';
-        }
-        if(!values.password){
-            error.password = 'Password is required';
-        }
-        else if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(values.password)){
-            error.password= 'Password must contain at least 6 characters, one letter, one number and one special character';
-        }
-        if(!values.confirmPassword){
-            error.confirmPassword ='Confirm password is required';
-        }
-        else if(values.confirmPassword !== values.password){
-            error.confirmPassword = 'Passwords do not match';
-        }
-        return error;
-    }
+    const formik = useFormik({
+        initialValues:{
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        },
+        validationSchema: Yup.object({
+            firstName: Yup.string()
+                .required('First name is required'),
+            lastName: Yup.string()
+              .max(20, 'Must be 20 characters or less')
+              .required('Last name is Required'),
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Email required'),
+            password: Yup.string()
+                .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,'Password must contain at least 6 characters, one letter, one number and one special character')
+                .required('Password is required'),
+            confirmPassword: Yup.string()
+                .oneOf([Yup.ref('password'), null], 'Passwords must match')
+                .required('Confirm password isequired')
+          }),
+          onSubmit: values => {
+            setSubmitForm(true);
+            timerMessage(3000);
+            console.log(values);
+          },
+      });
+
 
     return(
-        <>
-            <Formik
-                initialValues={initialValues}
+        <form className="form-container" onSubmit={formik.handleSubmit}>
+            <label htmlFor="firstName">First Name</label>
+            <input
+                id="firstName"
+                type="text"
+                className="input-field"
+                {...formik.getFieldProps('firstName')}
+            />
+            {formik.touched.firstName && formik.errors.firstName ? (
+                <div className="error message">{formik.errors.firstName}</div>
+            ) : null}
+        
+            <label htmlFor="lastName">Last Name</label>
+            <input
+                id="lastName"
+                type="text"
+                className="input-field"
+                {...formik.getFieldProps('lastName')}
+            />
+            {formik.touched.lastName && formik.errors.lastName ? (
+                <div className="error message">{formik.errors.lastName}</div>
+            ) : null}
 
-                validate={validateInputs}
-                onSubmit={(values,{resetForm})=>{
-                    resetForm();
-                    setSubmitForm(true);
-                    timerMessage(3000);
-                    console.log(values);
-                    console.log('Form submit');
-                }}
-            >
-                {({errors})=>(
-                    <Form className="form-container">
-                        <Field className="input-field" type="text" name="name"  placeholder="Enter name"></Field>
-                        <ErrorMessage name="name" component={()=>(<div className='error-message'>{errors.name}</div>)}/>   
-                        <Field className="input-field" type="text" name="lastName" placeholder="Enter last name"></Field>
-                        <ErrorMessage name="lastName" component={()=>(<div className='error-message'>{errors.lastName}</div>)}/> 
-                        <Field className="input-field" type="text" name="email" placeholder="Email"></Field>
-                        <ErrorMessage name="email" component={()=>(<div className='error-message'>{errors.email}</div>)}/> 
-                        <Field className="input-field" type="password" name="password" placeholder="Password"></Field>
-                        <ErrorMessage name="password" component={()=>(<div className='error-message'>{errors.password}</div>)}/> 
-                        <Field className="input-field" type="password" name="confirmPassword" placeholder="Confirm password"></Field>
-                        <ErrorMessage name="confirmPassword" component={()=>(<div className='error-message'>{errors.confirmPassword}</div>)}/> 
-                        <button className="submit-btn" type="submit">Register</button>
-                        {submitForm && <div className="success-message">Form submitted successfully</div>}
-                    </Form>
-                )}
-            </Formik>
-        </>
-    )
+            <label htmlFor="email">Email Address</label>
+            <input
+                id="email"
+                type="email"
+                className="input-field"
+                {...formik.getFieldProps('email')}
+            />
+            {formik.touched.email && formik.errors.email ? (
+                <div className="error message" >{formik.errors.email}</div>
+            ) : null}
 
-}
- 
+            <label htmlFor="pass">Password</label>
+            <input
+                id="pass"
+                type="password"
+                className="input-field"
+                {...formik.getFieldProps('password')}
+            />
+            {formik.touched.password && formik.errors.password ? (
+                <div className="error message">{formik.errors.password}</div>
+            ) : null}
+
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+                id="confirmPassword"
+                type="password"
+                className="input-field"
+                {...formik.getFieldProps('confirmPassword')}
+            />
+            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                <div className="error message">{formik.errors.confirmPassword}</div>
+            ) : null}
+
+            <button className="submit-btn"  type="submit" >Submit</button>
+            {submitForm && <div className="success message">Form submitted successfully</div>}
+        </form>
+    );
+
+};
+
 export default RegisterForm;
