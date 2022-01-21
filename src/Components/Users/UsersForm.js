@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../FormStyles.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
@@ -27,6 +27,15 @@ const validation = Yup.object().shape({
     }
   ),
 });
+//La tarea no especifica si el campo de profile_picture es una url o un input file. Supongo que es input file
+//No se puede enviar archivos en un json. Lo convierto en string base64, aunque las instrucciones no lo especifican y no hay información de los docs de la api
+const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 const initialValues = {
   name: "",
@@ -45,8 +54,16 @@ const submit = async (
   resetForm
 ) => {
   //ideally, import an axios instance.
-  setRequestError('')
-  values.role_id = Number(values.role_id)
+  setRequestError("");
+
+  values.role_id = Number(values.role_id);
+
+  try {
+    values.profile_image = await toBase64(values.profile_image);
+  } catch (error) {
+    setSubmitting(false);
+    setRequestError('Error al procesar foto de perfil');
+  }
 
   try {
     const response = await axios.request({
@@ -63,12 +80,15 @@ const submit = async (
     } else setRequestError("Ha ocurrido un error");
 
     setSubmitting(false);
+
   } catch (error) {
+
     if (error.message === "Network Error") {
       setRequestError("Error de red. Asegurate de estar conectado a internet.");
     } else {
       setRequestError("Ha ocurrido un error");
     }
+
     setSubmitting(false);
   }
 };
@@ -133,9 +153,11 @@ const FormComponent = ({
         Enviar
       </button>
       <Row className="justify-content-center">
-        {isSubmitting === true ? <Spinner animation="border"/> : null}
+        {isSubmitting === true ? <Spinner animation="border" /> : null}
         {success ? (
-          <p className="message-success text-center">Se ha actualizado el usuario</p>
+          <p className="message-success text-center">
+            Se ha actualizado el usuario
+          </p>
         ) : (
           <p className="message-error text-center">{requestError}</p>
         )}
