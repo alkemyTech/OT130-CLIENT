@@ -155,11 +155,11 @@ const FormComponent = ({
       <Row className="justify-content-center">
         {isSubmitting === true ? <Spinner animation="border" /> : null}
         {success ? (
-          <p className="message-success text-center">
+          <p className="message success text-center">
             Se ha actualizado el usuario
           </p>
         ) : (
-          <p className="message-error text-center">{requestError}</p>
+          <p className="message error text-center">{requestError}</p>
         )}
       </Row>
     </Form>
