@@ -27,3 +27,7 @@
     cursor: pointer;
     background-color: #3498DB;
 }
+
+.imputImage{
+    display: none;
+}
