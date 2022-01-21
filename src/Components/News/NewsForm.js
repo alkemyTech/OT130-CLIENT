@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "../../Components/FormStyles.css";
@@ -15,6 +15,23 @@ const NewsForm = ({news}) => {
 
   const [initialValues, setInitialValues] = useState(iVal);
   const [error, setError] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    await axios
+      .get("http://ongapi.alkemy.org/api/categories")
+      .then((res) => {
+        const {data} = res.data;
+        setCategories(data);
+      })
+      .catch((err) => alert(err));
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const findCategoryId = () => {};
 
   const handleChange = (e) => {
     if (e.target.name === "title") {
@@ -50,6 +67,8 @@ const NewsForm = ({news}) => {
     }
 
     setError(false);
+
+    //findCategoryId
 
     if (initialValues.id) {
       axios.patch(
@@ -105,9 +124,11 @@ const NewsForm = ({news}) => {
         <option value="" disabled>
           Select category
         </option>
-        <option value="1">Demo option 1</option>
-        <option value="2">Demo option 2</option>
-        <option value="3">Demo option 3</option>
+        {categories.map(({id, name}) => (
+          <option value={id} key={id}>
+            {name}
+          </option>
+        ))}
       </select>
       <button className="submit-btn" type="submit">
         {initialValues.id ? "Edit" : "Send"}
