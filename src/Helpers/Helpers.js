@@ -1,6 +1,6 @@
 import { categoriesPost, categoriesPut } from "../Services/categoriesApiServices"
 
-export const validation01 = (data, newCategorie)=> {
+export const  validation01 = (data, newCategorie)=> {
 
    
 
