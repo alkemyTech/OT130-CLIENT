@@ -7,10 +7,10 @@ import axios from "axios";
 const NewsForm = ({news}) => {
   const iVal = news || {
     id: "",
-    title: "",
+    name: "",
     content: "",
     image: "",
-    category: "",
+    category_id: "",
   };
 
   const [initialValues, setInitialValues] = useState(iVal);
@@ -31,14 +31,21 @@ const NewsForm = ({news}) => {
     getCategories();
   }, []);
 
-  const findCategoryId = () => {};
+  const findCategoryId = async (id) => {
+    await axios
+      .get(`http://ongapi.alkemy.org/api/categories/${id}`)
+      .then((res) => {
+        const {data} = res;
+        console.log(data);
+      });
+  };
 
   const handleChange = (e) => {
     if (e.target.name === "title") {
-      setInitialValues({...initialValues, title: e.target.value});
+      setInitialValues({...initialValues, name: e.target.value});
     }
     if (e.target.name === "category") {
-      setInitialValues({...initialValues, category: e.target.value});
+      setInitialValues({...initialValues, category_id: e.target.value});
     }
     if (e.target.name === "img") {
       console.log(e.target.files[0].name);
@@ -56,19 +63,17 @@ const NewsForm = ({news}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const {title, content, category} = initialValues;
+    const {name, content, category_id} = initialValues;
 
-    if ([title, content, category].includes("")) {
+    if ([name, content, category_id].includes("")) {
       setError(true);
       return;
-    } else if (title.length < 4) {
+    } else if (name.length < 4) {
       alert("El titulo debe tener minimo 4 caracteres");
       return;
     }
 
     setError(false);
-
-    //findCategoryId
 
     if (initialValues.id) {
       axios.patch(
@@ -81,7 +86,13 @@ const NewsForm = ({news}) => {
       console.log("post");
     }
 
-    setInitialValues({id: "", title: "", content: "", image: "", category: ""});
+    setInitialValues({
+      id: "",
+      name: "",
+      content: "",
+      image: "",
+      category_id: "",
+    });
 
     console.log(initialValues);
   };
@@ -97,7 +108,7 @@ const NewsForm = ({news}) => {
         className="input-field"
         type="text"
         name="title"
-        value={initialValues.title || ""}
+        value={initialValues.name || ""}
         onChange={handleChange}
         placeholder="Enter News"
       ></input>
@@ -118,7 +129,7 @@ const NewsForm = ({news}) => {
       <select
         className="select-field"
         name="category"
-        value={initialValues.category || ""}
+        value={initialValues.category_id || ""}
         onChange={handleChange}
       >
         <option value="" disabled>
