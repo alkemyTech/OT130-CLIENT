@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { HOST } from './config';
 
 const config = {
     headers: {
@@ -14,7 +15,7 @@ const Get = () => {
 
 export const getOrganization = async () => {
     try {
-        const response = await axios.get('http://ongapi.alkemy.org/api/organization')
+        const response = await axios.get(`${HOST}/organization`)
         return response.data
     } catch (error) {
         return error
@@ -24,7 +25,7 @@ export const getOrganization = async () => {
 
 export const putOrganization = async (body,id) => {
     try {
-        const response = await axios.put(`http://ongapi.alkemy.org/api/organization/${id}`, body)
+        const response = await axios.put(`${HOST}/organization/${id}`, body)
         return response.data
     } catch (error) {
         return error
