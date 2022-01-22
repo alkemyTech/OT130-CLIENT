@@ -1,21 +1,9 @@
 import axios from 'axios';
-import { validation01 } from '../Helpers/Helpers';
 
 
 const url = 'http://ongapi.alkemy.org/api/categories'
 
-export const categoriesGet = (categorieValues) => {
-    axios.get(url)
-    .then(res => {
 
-        const {data} = res.data
-        console.log(data);
-        validation01(data,categorieValues)   
-    })
-
-    .catch(err => console.log(err))
-   
-}
 
 export const categoriesPost = (id, name, description, image )=>{
 

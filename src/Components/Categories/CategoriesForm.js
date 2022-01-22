@@ -1,26 +1,93 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
+import axios from 'axios';
 
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-import { categorySchema } from '../../Validations/CategoriesValidation';
-import { categoriesGet } from '../../Services/categoriesApiServices';
+import { categoryDescriptionSchema, categoryFileSchema, categoryNameSchema } from '../../Validations/CategoriesValidation';
+
+
+
+
+
+ 
+
+
 
 const CategoriesForm = () => {
 
-    const initialStateErros = { errorForm: true }
 
-    const [errors, setErrors] = useState(initialStateErros);
+    
 
-    const [categorieValues, setCategorieValues] = useState({
+    const initialStateValuesInput = {
         name: '',
         description: '',
-        file: {}
-    })
+        file: ''
+    }
+    
+    const [errorName, setErrorName] = useState('');
+    const [errorDescription, setErrorDescription] = useState('');
+    const [errorFile, setErrorFile] = useState('');
+
+    const [categorieValues, setCategorieValues] = useState(initialStateValuesInput)
 
 
+
+
+
+
+    const  validationEdicion = (data, newCategorie)=> {
+
+        console.log(data);
+        console.log(newCategorie);
+         
+        const {id, name, description, file } = newCategorie
+        const categoryUpdate = data?.find( categorie => categorie?.name === newCategorie.name)
+      
+         console.log(categoryUpdate);
+     
+         if (!categoryUpdate === true) {
+          
+             console.log('POST', {id, name, description, file});
+             
+             //categoriesPost(id, name, description, image)
+             setCategorieValues({...categorieValues, description: ''})
+             setCategorieValues(initialStateValuesInput)
+                
+              
+            
+
+         } else {
+                console.log('PUT', {id, name, description, file});
+                setCategorieValues({...categorieValues, description: categoryUpdate.description, })
+              
+                console.log(categorieValues);
+                console.log(categoryUpdate.description);
+            // categoriesPut(id, name, description, image)
+         }
+         console.log(categorieValues);
+     
+     }
+    
+
+    const url = 'http://ongapi.alkemy.org/api/categories'
+
+     const categoriesGet = (categorieValues) => {
+        axios.get(url)
+        .then(res => {
+    
+            const {data} = res.data
+           
+            validationEdicion(data, categorieValues)   
+        })
+    
+        .catch(err => console.log(err))
+       
+    }
+    
+   
 
 
     const handleChange = (e) => {
@@ -29,42 +96,78 @@ const CategoriesForm = () => {
             setCategorieValues({ ...categorieValues, name: e.target.value })
         } if (e.target.name === 'file') {
             const file = e.target.files[0]
-
+           
             if (file) {
                 setCategorieValues({ ...categorieValues, file })
             }
         }
     }
 
-    const handleSubmit =  (e) => {
-
-        
-       
-        
-
+    const handleSubmit =  async (e) => { 
+          
 
         e.preventDefault();         
-        setErrors(initialStateErros)    
-        categorySchema.validate(categorieValues).catch(err => {
+        setErrorName('')
+        setErrorDescription('')
+        setErrorFile('')
+
+      categoryNameSchema.validate(categorieValues).catch(err => {
 
             const errorActive = err.errors[0];
-            
-            if (errorActive === 'name must be at least 4 characters') {
-                setErrors({ errorName: errorActive })
-            } else if (errorActive === 'You need to provide a name/ min 4 caracter') {
-                setErrors({ errorName: errorActive })
-            } else if (errorActive === 'You need to provide a description') {
-                setErrors({ errorDescription: errorActive })
-            } else if (errorActive === 'You need to provide a file') {
-                setErrors({ errorFile: errorActive })
-            } else { setErrors({ errorForm: false }) }           
+
+          
+            if (errorActive === 'Minimo 4 caracteres') {
+                setErrorName(errorActive )
+
+            } else if (errorActive === "Campo obligatorio") {
+                setErrorName(errorActive )   
+                
+            }  
+
         })
+       categoryDescriptionSchema.validate(categorieValues).catch(err => {
 
-       if (errors === false) {
+            const errorActive = err.errors[0];
+          
 
-        categoriesGet(categorieValues)
+            if (errorActive === 'Campo obligatorio') {
+                setErrorDescription(errorActive )
+             
+            } 
+
+        })
+    categoryFileSchema.validate(categorieValues).catch(err => {
+
+            const errorActive = err.errors[0];
            
-       }
+            if (errorActive === 'Campo obligatorio') {
+                setErrorFile( errorActive )
+            } else if (errorActive === 'El formato debe ser .png/.jpg') {
+                setErrorFile( errorActive )              
+            }
+        })
+  
+        const respN = await categoryNameSchema.isValid(categorieValues)
+        const respD = await categoryDescriptionSchema.isValid(categorieValues)
+        const respF = await categoryFileSchema.isValid(categorieValues)
+
+
+        if (respN === true && respD === true && respF === true ) {
+        
+           
+            categoriesGet(categorieValues)
+               
+        } else {
+            console.log('fracaso');
+     }
+
+   
+      
+       
+    
+       
+      
+      
     }
 
     const handleCkeditorChange = (event, editor) => {
@@ -81,17 +184,19 @@ const CategoriesForm = () => {
     return (
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={categorieValues.name} onChange={handleChange} placeholder="Title" ></input>
-            <div>{errors?.errorName}</div>
+            <div>{errorName}</div>
 
             <CKEditor
                 editor={ClassicEditor}
                 onChange={handleCkeditorChange}
+                data={categorieValues.description}
+                
             />        
-            <div>{errors?.errorDescription}</div>
+         <div>{errorDescription}</div>
 
             <input type="file" name="file" onChange={handleChange} className="imputImage" id="fileSelector" accept='image/png,image/jpeg'></input>   
             <button className="submit-btn" type='button' onClick={handlePictureClick}>Select image</button>
-            <div>{errors?.errorFile}</div>
+            <div>{errorFile}</div>
 
             <button className="submit-btn" type="submit">Send</button>
         </form>
