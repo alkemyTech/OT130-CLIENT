@@ -1,14 +1,10 @@
 import React from "react";
-import "../FormStyles.css";
-// Import Formik
-import { useFormik } from "formik";
-// Import Yup
 import * as yup from "yup";
-// Import material UI.
+import { Container } from "react-bootstrap";
+import { useFormik } from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Container } from "react-bootstrap";
-// import css
+import "../FormStyles.css";
 import "./loginForm.css";
 
 const LoginForm = () => {
@@ -36,7 +32,6 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        // console.log(values);
     },
   });
 
@@ -52,7 +47,6 @@ const LoginForm = () => {
                             id="email"
                             name="email"
                             label="Email"
-                            maxLength="35"
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.touched.email && Boolean(formik.errors.email)}
@@ -65,7 +59,6 @@ const LoginForm = () => {
                             name="password"
                             label="Password"
                             type="password"
-                            maxLength="15"
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.touched.password && Boolean(formik.errors.password)}
