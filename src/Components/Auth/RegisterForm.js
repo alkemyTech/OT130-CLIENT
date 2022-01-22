@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../FormStyles.css';
@@ -6,10 +6,10 @@ import '../FormStyles.css';
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
 
-    const timerMessage = (time)=>{
-        setTimeout(()=>{
+    const timerMessage = (time) => {
+        setTimeout( () => {
             setSubmitForm(false);
-        },time);
+        }, time);
     };
 
     const formik = useFormik({
@@ -22,26 +22,25 @@ const RegisterForm = () => {
         },
         validationSchema: Yup.object({
             firstName: Yup.string()
-                .required('First name is required'),
+                .required('Nombre requerido'),
             lastName: Yup.string()
-              .max(20, 'Must be 20 characters or less')
-              .required('Last name is Required'),
+              .max(20, 'Nombre muy largo')
+              .required('Apellido requerido'),
             email: Yup.string()
-                .email('Invalid email address')
-                .required('Email required'),
-            password: Yup.string('Please enter a password')
-                .min(6, 'Password must be at least 6 characters')
-                .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,'Password must contain at least 6 characters, one letter, one number and one special character')
-                .required('Password is required'),
+                .email('Email no válido')
+                .required('Email requerido'),
+            password: Yup.string()
+                .min(6, 'La contraseña debe tener como minimo 6 caracteres')
+                .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/, 'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).')
+                .required('Contraseña requerida'),
             confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                .required('Confirm password isequired')
-          }),
+                .oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden')
+                .required('Confirmar contraseña requerida')
+        }),
         onSubmit: values => {
             setSubmitForm(true);
             timerMessage(3000);
             formik.resetForm();
-            console.log(values);
         },
     });
 
