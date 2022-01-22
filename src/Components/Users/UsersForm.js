@@ -34,11 +34,13 @@ const submit = async (
   setRequestError,
   resetForm
 ) => {
-  //ideally, import an axios instance.
-  setRequestError("");
 
+  setRequestError("");
   values.role_id = Number(values.role_id);
   
+  if (values.profile_image) {
+    values.profile_image = values.profile_image.name
+  }
 
   try {
     const response = user ? await Patch(`users/${user.id}`, values) : await Post(`users`, values);
