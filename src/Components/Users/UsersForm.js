@@ -1,41 +1,22 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { Col, Row, Spinner} from "react-bootstrap";
+import { ErrorMessage, Field, Form, Formik,   } from "formik";
+import * as Yup from "yup";
+
+import { Patch, Post } from "../../Services/privateApiService";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import axios from "axios";
-import * as Yup from "yup";
-import { Spinner, Row, Col } from "react-bootstrap";
+import { NETWORK_ERROR, UNKNOWN_ERROR } from "../../Helpers/messagesText";
+import { yupTitles ,yupEmail, yupShortDesc, yupImages, yupUserRoles } from "../../Helpers/yupValidations";
 
 const validation = Yup.object().shape({
-  name: Yup.string()
-    .min(4, "Mínimo 4 caracteres")
-    .max(200, "Nombre muy largo")
-    .required("Campo obligatorio"),
-  email: Yup.string().email("Mail inválido").required("Campo obligatorio"),
-  description: Yup.string()
-    .min(10, "Mínimo 10 caracteres")
-    .max(1000, "Descripción demasiado larga")
-    .required("Campo obligatorio"),
-  role_id: Yup.number().required("Campo obligatorio"),
-  profile_image: Yup.mixed().test(
-    "fileType",
-    "Extensión inválida. Solo archivos jpg o png",
-    (value) => {
-      if (value) return ["image/jpeg", "image/png"].includes(value.type);
-      //Assuming image is not required
-      else return true;
-    }
-  ),
+  name: yupTitles(),
+  email: yupEmail(),
+  description: yupShortDesc(),
+  profile_image: yupImages(),
+  role_id: yupUserRoles()
 });
-//La tarea no especifica si el campo de profile_picture es una url o un input file. Supongo que es input file
-//No se puede enviar archivos en un json. Lo convierto en string base64, aunque las instrucciones no lo especifican y no hay información de los docs de la api
-const toBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
 
 const initialValues = {
   name: "",
@@ -57,36 +38,26 @@ const submit = async (
   setRequestError("");
 
   values.role_id = Number(values.role_id);
+  
 
   try {
-    values.profile_image = await toBase64(values.profile_image);
-  } catch (error) {
-    setSubmitting(false);
-    setRequestError('Error al procesar foto de perfil');
-  }
+    const response = user ? await Patch(`users/${user.id}`, values) : await Post(`users`, values);
 
-  try {
-    const response = await axios.request({
-      method: user ? "PATCH" : "POST",
-      headers: { "content-type": "application/json" },
-      //La tarea espeficica la ruta '/users/create' para crear usuario, pero no existe en la api. En la documentación aparece la petición POST a '/users/'
-      url: `http://ongapi.alkemy.org/api/users/${user ? user.id : ""}`,
-      data: values,
-    });
-
-    if (response.success === true) {
+    if (response.success) {
       setSuccess(true);
       resetForm();
-    } else setRequestError("Ha ocurrido un error");
+    } else {
+      setRequestError(UNKNOWN_ERROR);
+    }
 
     setSubmitting(false);
 
   } catch (error) {
 
     if (error.message === "Network Error") {
-      setRequestError("Error de red. Asegurate de estar conectado a internet.");
+      setRequestError(NETWORK_ERROR);
     } else {
-      setRequestError("Ha ocurrido un error");
+      setRequestError(UNKNOWN_ERROR);
     }
 
     setSubmitting(false);
@@ -110,7 +81,7 @@ const FormComponent = ({
         placeholder="Nombre"
       ></Field>
 
-      {touched.name ? <ErrorMessage name="name" /> : null}
+      {touched.name && <ErrorMessage name="name" />}
 
       <Field
         className="input-field"
@@ -119,7 +90,7 @@ const FormComponent = ({
         placeholder="Email"
       ></Field>
 
-      {touched.email ? <ErrorMessage name="email" /> : null}
+      {touched.email && <ErrorMessage name="email" />}
 
       <Field
         className="input-field"
@@ -128,11 +99,11 @@ const FormComponent = ({
         placeholder="Descripción"
       ></Field>
 
-      {touched.description ? <ErrorMessage name="description" /> : null}
+      {touched.description && <ErrorMessage name="description" />}
 
       <Field className="select-field" as="select" name="role_id">
-        <option value={2}>Usuario Standard</option>
-        <option value={1}>Administrador</option>
+        <option value='2'>Usuario Standard</option>
+        <option value='1'>Administrador</option>
       </Field>
       <div>
         <label style={{ paddingRight: "10px" }}>Subir imagen de usuario</label>
@@ -153,7 +124,7 @@ const FormComponent = ({
         Enviar
       </button>
       <Row className="justify-content-center">
-        {isSubmitting === true ? <Spinner animation="border" /> : null}
+        {isSubmitting && <Spinner animation="border" />}
         {success ? (
           <p className="message success text-center">
             Se ha actualizado el usuario
