@@ -30,8 +30,5 @@ export const yupImages = () =>
     .test(
       "fileFormat",
       "Extensión inválida. Solo archivos jpg o png",
-      (value) => {
-        console.log(value, "0dasdasd");
-        return ["image/jpeg", "image/png"].includes(value?.type);
-      }
+      (value) => ["image/jpeg", "image/png"].includes(value?.type)
     );
