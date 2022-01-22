@@ -13,6 +13,7 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
+import OrganizationForm from './Components/Organization/OrganizationForm';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
+          <Route path="/backoffice/organization/edit" component={OrganizationForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
