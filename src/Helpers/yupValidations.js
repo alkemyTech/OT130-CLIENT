@@ -1,31 +1,31 @@
 import * as Yup from "yup";
-import {TITLE_LONG, TITLE_SHORT, INPUT_REQUIRED, DESCRIPTION_LONG, DESCRIPTION_SHORT, INVALID_IMAGE_EXT, INVALID_EMAIL} from './messagesText'
+import {TITLE_LONG, TITLE_SHORT, INPUT_REQUIRED, DESCRIPTION_LONG, DESCRIPTION_SHORT, INVALID_IMAGE_EXT, INVALID_EMAIL, PASSWORD_SHORT} from './messagesText'
 
-export const yupTitles = () =>
+const yupTitles = () =>
   Yup.string()
     .min(4, TITLE_SHORT)
     .max(200, TITLE_LONG)
     .required(INPUT_REQUIRED);
 
-export const yupShortDesc = () =>
+const yupShortDesc = () =>
   Yup.string()
     .min(10, DESCRIPTION_SHORT)
     .max(250, DESCRIPTION_LONG)
     .required(INPUT_REQUIRED);
 
-export const yupLongDesc = () =>
+const yupLongDesc = () =>
   Yup.string()
     .min(10, DESCRIPTION_SHORT)
     .max(250, DESCRIPTION_LONG)
     .required(INPUT_REQUIRED);
 
-export const yupCustomString = (min, max, minMsg, maxMsg) =>
+const yupCustomString = (min, max, minMsg, maxMsg) =>
   Yup.string(min, max, minMsg, maxMsg)
     .min(min, minMsg)
     .max(max, maxMsg)
     .required(INPUT_REQUIRED);
 
-export const yupImages = () =>
+const yupImages = () =>
   Yup.mixed()
     .required(INPUT_REQUIRED)
     .test(
@@ -34,11 +34,19 @@ export const yupImages = () =>
       (value) => ["image/jpeg", "image/png"].includes(value?.type)
     );
 
-export const yupEmail = () =>   
+const yupEmail = () =>   
   Yup.string()
     .email(INVALID_EMAIL)
     .required(INPUT_REQUIRED)
 
-export const yupUserRoles = () => 
+const yupUserRoles = () => 
   Yup.string()
     .required(INPUT_REQUIRED)
+
+const yupPassword = () =>
+  Yup.string()
+    .required(INPUT_REQUIRED)
+    .min(8, PASSWORD_SHORT)
+
+
+export {yupCustomString, yupEmail, yupImages, yupLongDesc, yupPassword, yupShortDesc, yupTitles, yupUserRoles}

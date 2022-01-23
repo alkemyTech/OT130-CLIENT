@@ -1,21 +1,22 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Col, Row, Spinner} from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik,   } from "formik";
 import * as Yup from "yup";
-
+import { toBase64 } from "../../Helpers/base64";
 import { Patch, Post } from "../../Services/privateApiService";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NETWORK_ERROR, UNKNOWN_ERROR } from "../../Helpers/messagesText";
-import { yupTitles ,yupEmail, yupShortDesc, yupImages, yupUserRoles } from "../../Helpers/yupValidations";
+import { yupTitles ,yupEmail, yupShortDesc, yupImages, yupUserRoles, yupPassword } from "../../Helpers/yupValidations";
 
 const validation = Yup.object().shape({
   name: yupTitles(),
   email: yupEmail(),
   description: yupShortDesc(),
-  profile_image: yupImages(),
-  role_id: yupUserRoles()
+  image_file: yupImages(),
+  role_id: yupUserRoles(),
+  password: yupPassword()
 });
 
 const initialValues = {
@@ -23,7 +24,9 @@ const initialValues = {
   email: "",
   description: "",
   role_id: 2,
-  profile_image: null,
+  image_file: null,
+  profile_image:'',
+  password: ""
 };
 
 const submit = async (
@@ -32,22 +35,22 @@ const submit = async (
   user,
   setSuccess,
   setRequestError,
-  resetForm
+  resetForm,
+  fileInputRef
 ) => {
-
+  console.log(values)
   setRequestError("");
   values.role_id = Number(values.role_id);
   
-  if (values.profile_image) {
-    values.profile_image = values.profile_image.name
-  }
+  values.profile_image = await toBase64(values.image_file)
 
   try {
     const response = user ? await Patch(`users/${user.id}`, values) : await Post(`users`, values);
-
-    if (response.success) {
+    
+    if (response.data.success) {
       setSuccess(true);
       resetForm();
+      fileInputRef.current.value = null
     } else {
       setRequestError(UNKNOWN_ERROR);
     }
@@ -55,7 +58,6 @@ const submit = async (
     setSubmitting(false);
 
   } catch (error) {
-
     if (error.message === "Network Error") {
       setRequestError(NETWORK_ERROR);
     } else {
@@ -73,6 +75,7 @@ const FormComponent = ({
   success,
   requestError,
   isSubmitting,
+  fileInputRef
 }) => {
   return (
     <Form onSubmit={handleSubmit} className="form-container">
@@ -103,6 +106,15 @@ const FormComponent = ({
 
       {touched.description && <ErrorMessage name="description" />}
 
+      <Field
+        className="input-field"
+        type="password"
+        name="password"
+        placeholder="Password"
+      ></Field>
+
+      {touched.password && <ErrorMessage name="password" />}
+
       <Field className="select-field" as="select" name="role_id">
         <option value='2'>Usuario Standard</option>
         <option value='1'>Administrador</option>
@@ -110,16 +122,17 @@ const FormComponent = ({
       <div>
         <label style={{ paddingRight: "10px" }}>Subir imagen de usuario</label>
         <input
+          ref={fileInputRef}
           type="file"
           max={1}
-          name="profile_image"
+          name="image_file"
           accept="image/png, image/jpeg"
           onChange={(e) => {
-            setFieldValue("profile_image", e.currentTarget.files[0]);
+            setFieldValue("image_file", e.currentTarget.files[0]);
           }}
         />
         <div>
-          <ErrorMessage name="profile_image" />
+          <ErrorMessage name="image_file" />
         </div>
       </div>
       <button type="submit" className="submit-btn">
@@ -143,6 +156,8 @@ const UserForm = ({ user }) => {
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
 
+  const fileInputRef = useRef()
+
   return (
     <Formik
       validationSchema={validation}
@@ -154,7 +169,8 @@ const UserForm = ({ user }) => {
           user,
           setSuccess,
           setRequestError,
-          resetForm
+          resetForm,
+          fileInputRef
         )
       }
     >
@@ -167,6 +183,7 @@ const UserForm = ({ user }) => {
             success={success}
             requestError={requestError}
             isSubmitting={isSubmitting}
+            fileInputRef={fileInputRef}
           />
         );
       }}
