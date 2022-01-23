@@ -37,7 +37,7 @@ const submit = async (
   resetForm,
   fileInputRef
 ) => {
-  console.log(values)
+  
   setRequestError("");
   values.role_id = Number(values.role_id);
   
@@ -57,7 +57,6 @@ const submit = async (
     setSubmitting(false);
 
   } catch (error) {
-    console.log(error.response.data)
     if (error.message === "Network Error") {
       setRequestError(NETWORK_ERROR);
     } else if (error.response.data.errors.email) {
