@@ -28,12 +28,10 @@ const Organization = () => {
         {organization ? (
           <>
             <p className="org-field">
-              Organization logo: <img src={organization?.logo} />
+              Organization logo: <img src={organization?.logo} alt="logo" />
             </p>
             <p className="org-field">Organization name: {organization?.name}</p>
-            <p className="org-field">
-              Organization description: {organization?.short_description}
-            </p>
+            <p className="org-field">Organization description: {organization?.short_description}</p>
             <button className="submit-btn" type="submit" onClick={goToEdit}>
               Editar
             </button>

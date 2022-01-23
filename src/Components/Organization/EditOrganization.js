@@ -1,65 +1,58 @@
-import React from "react";
-import {
-  Redirect,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState } from "react";
+import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { putOrganization } from "../../Services/publicApiService";
 import "./style.css";
 import * as Yup from "yup";
 import { Formik, ErrorMessage } from "formik";
-import { toBase64 } from "../../Helpers/base64";
-import {
-  yupImages,
-  yupShortDesc,
-  yupTitles,
-} from "../../Helpers/yupValidations";
+import { yupShortDesc, yupTitles } from "../../Helpers/yupValidations";
+import { LOGOS } from "../../assets/logos";
+
+const initialValues = {
+  name: "",
+  description: "",
+  logo: LOGOS[0].logo,
+};
 
 const Organization = () => {
-  const initialValues = {
-    name: "",
-    description: "",
-    logo: "",
-  };
   const {
     push,
     location: { state },
   } = useHistory();
   const id = state ? state.id : null;
+  const [selectedImage, setSelectedImage] = useState({ image: LOGOS[0].logo });
 
   const handleSubmit = async ({ logo, name, description }) => {
-    const base64Img = await toBase64(logo);
-    await putOrganization(
-      { name, short_description: description, logo: base64Img },
-      id
-    );
+    await putOrganization({ name, short_description: description, logo: logo }, id);
     push("/backoffice/organization");
   };
 
   const validation = Yup.object().shape({
     name: yupTitles(),
     description: yupShortDesc(),
-    logo: yupImages(),
   });
 
-  const FormComponent = ({
-    handleSubmit,
-    setFieldValue,
-    values,
-    touched,
-    handleChange,
-  }) => (
+  const handleSelectImage = ({ target: { value } }, handleChange) => {
+    handleChange("logo", value);
+    setSelectedImage({ image: value });
+  };
+
+  const FormComponent = ({ handleSubmit, setFieldValue, values, touched, handleChange }) => (
     <form className="form-container" onSubmit={handleSubmit}>
-      <div className="input-field">
+      <div className="organization">
         Logo:{" "}
-        <input
-          type="file"
-          max={1}
+        <select
+          onChange={(e) => handleSelectImage(e, setFieldValue)}
           name="logo"
-          accept="image/png, image/jpeg"
-          onChange={(e) => setFieldValue("logo", e.currentTarget.files[0])}
-        />
+          defaultValue={selectedImage.image}
+        >
+          {LOGOS.map(({ logo }, i) => (
+            <option key={i} value={logo}>
+              Opción {i + 1}
+            </option>
+          ))}
+        </select>
+        <img src={selectedImage?.image} alt="logo"/>
       </div>
-      {touched.logo ? <ErrorMessage name="logo" /> : null}
       <input
         className="input-field"
         type="text"
@@ -87,9 +80,7 @@ const Organization = () => {
   return id ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        handleSubmit(values);
-      }}
+      onSubmit={(values) => handleSubmit(values)}
       validationSchema={validation}
     >
       {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
