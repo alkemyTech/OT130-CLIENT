@@ -17,7 +17,7 @@ const WelcomeTextForm = ({ welcomeText }) => (
     initialValues={{ welcomeText }}
     validationSchema={validationSchema}
     onSubmit={(values) =>
-      postOrganizationData({ welcome_text: values.welcomeText, name: "name" })
+      postOrganizationData({ welcome_text: values.welcomeText, name: "string" })
     }
   >
     {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
