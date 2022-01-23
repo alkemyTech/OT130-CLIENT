@@ -1,10 +1,14 @@
-//Errores generales de request
+//General request errors
 
 const NETWORK_ERROR = "Error de red. Asegurate de estar conectado a internet";
 
 const UNKNOWN_ERROR = "Ha ocurrido un error";
 
-//Mensajes de validación de formularios
+//Specific request errors
+
+const EMAIL_TAKEN = "El email ya ha sido registrado"
+
+//Form validation errors
 
 const DESCRIPTION_LONG = "Descripción demasiado larga";
 
@@ -33,4 +37,5 @@ export {
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
   PASSWORD_SHORT,
+  EMAIL_TAKEN
 };

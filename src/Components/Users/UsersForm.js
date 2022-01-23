@@ -1,14 +1,13 @@
-import axios from "axios";
 import React, { useState, useRef } from "react";
-import { Col, Row, Spinner} from "react-bootstrap";
+import { Row, Spinner} from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik,   } from "formik";
 import * as Yup from "yup";
 import { toBase64 } from "../../Helpers/base64";
 import { Patch, Post } from "../../Services/privateApiService";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NETWORK_ERROR, UNKNOWN_ERROR } from "../../Helpers/messagesText";
-import { yupTitles ,yupEmail, yupShortDesc, yupImages, yupUserRoles, yupPassword } from "../../Helpers/yupValidations";
+import { NETWORK_ERROR, UNKNOWN_ERROR, EMAIL_TAKEN } from "../../Helpers/messagesText";
+import { yupTitles ,yupEmail, yupShortDesc, yupImages, yupUserRoles, yupPassword,  } from "../../Helpers/yupValidations";
 
 const validation = Yup.object().shape({
   name: yupTitles(),
@@ -58,8 +57,11 @@ const submit = async (
     setSubmitting(false);
 
   } catch (error) {
+    console.log(error.response.data)
     if (error.message === "Network Error") {
       setRequestError(NETWORK_ERROR);
+    } else if (error.response.data.errors.email) {
+      setRequestError(EMAIL_TAKEN)
     } else {
       setRequestError(UNKNOWN_ERROR);
     }
