@@ -1,7 +1,9 @@
 import React , { useState } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import '../FormStyles.css';
+import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT } from "../../Helpers/messagesText";
+import { yupFirstName, yupLastName, yupPassRegister, yupConfirmPass, yupEmail } from "../../Helpers/yupValidations";
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
@@ -21,26 +23,17 @@ const RegisterForm = () => {
             confirmPassword: ''
         },
         validationSchema: Yup.object({
-            firstName: Yup.string()
-                .required('Nombre requerido'),
-            lastName: Yup.string()
-              .max(20, 'Nombre muy largo')
-              .required('Apellido requerido'),
-            email: Yup.string()
-                .email('Email no válido')
-                .required('Email requerido'),
-            password: Yup.string()
-                .min(6, 'La contraseña debe tener como minimo 6 caracteres')
-                .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/, 'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).')
-                .required('Contraseña requerida'),
-            confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden')
-                .required('Confirmar contraseña requerida')
+            firstName: yupFirstName(),
+            lastName: yupLastName(),
+            email: yupEmail(),
+            password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
+            confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
         }),
         onSubmit: values => {
             setSubmitForm(true);
             timerMessage(3000);
             formik.resetForm();
+            console.log(values)
         },
     });
 
