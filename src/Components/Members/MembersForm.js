@@ -23,7 +23,8 @@ const MembersForm = () => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-      <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
+      <textarea className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></textarea>
+      <input className="input-field w-50" type="url" name="social-media-link" value={initialValues.name} onChange={handleChange} placeholder="Social Media Link"></input>
       <button className="submit-btn" type="submit">Send</button>
     </form>
   );
