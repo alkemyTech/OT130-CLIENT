@@ -13,7 +13,7 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import FormHome from './Components/FormHome/FormHome';
+import HomeForm from './Components/HomeForm/HomeForm';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -26,7 +26,7 @@ function App() {
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
-          <Route path="/backoffice/home" component={FormHome} />
+          <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
