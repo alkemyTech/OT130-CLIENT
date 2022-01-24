@@ -6,17 +6,18 @@
   height: 100vh;
 }
 
-.organization {
-  border: 1px solid #c1c1c1;
-}
-
-.org-field {
-  padding: 15px 30px;
+.organization-fields-container {
+  width: 80%;
   display: flex;
-  align-items: center;
-  padding: 0 100px 0 100px;
+  flex-direction: column;
+  border: 1px solid #c1c1c1;
+  padding: 30px;
 }
 
 .submit-btn {
   width: 100%;
+}
+
+img {
+  width: 30%;
 }

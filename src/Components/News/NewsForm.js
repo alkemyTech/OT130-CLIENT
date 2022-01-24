@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../Components/FormStyles.css';
+import '../FormStyles.css';
 
 const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({

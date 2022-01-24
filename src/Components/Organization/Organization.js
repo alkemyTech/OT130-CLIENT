@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { getOrganization } from "../../Services/publicApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Spinner } from "react-bootstrap";
+import { getOrganizationData } from "../../Services/publicApiService";
 import "./style.css";
+import { EDIT_ORGANIZATION } from "../../rutas/config";
 
-const Organization = () => {
+const OrganizationEdit = () => {
   const { push } = useHistory();
   const [organization, setOrganization] = useState();
 
@@ -14,24 +15,24 @@ const Organization = () => {
   }, []);
 
   const handleGetOrganization = async () => {
-    const { data } = await getOrganization();
+    const { data } = await getOrganizationData();
     setOrganization(data);
   };
 
   const goToEdit = (e) => {
-    push("/backoffice/organization/edit", { id: organization.id });
+    push(EDIT_ORGANIZATION, { id: organization?.id });
   };
 
   return (
     <div className="container">
-      <div className="organization">
+      <div className="organization-fields-container">
         {organization ? (
           <>
-            <p className="org-field">
+            <p>
               Organization logo: <img src={organization?.logo} alt="logo" />
             </p>
-            <p className="org-field">Organization name: {organization?.name}</p>
-            <p className="org-field">Organization description: {organization?.short_description}</p>
+            <p>Organization name: {organization?.name}</p>
+            <p>Organization description: {organization?.short_description}</p>
             <button className="submit-btn" type="submit" onClick={goToEdit}>
               Editar
             </button>
@@ -44,4 +45,4 @@ const Organization = () => {
   );
 };
 
-export default Organization;
+export default OrganizationEdit;
