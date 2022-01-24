@@ -1,0 +1,15 @@
+.title-container{
+    height: 300px;
+    background-position: center;
+    background-size:cover;
+}
+
+.title-text{
+    font-size: 35px;
+}
+
+.vertical-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
