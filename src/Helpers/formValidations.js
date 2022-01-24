@@ -1,5 +1,6 @@
 import * as Yup from "yup";
-import {TITLE_LONG, TITLE_SHORT, INPUT_REQUIRED, DESCRIPTION_LONG, DESCRIPTION_SHORT, INVALID_IMAGE_EXT, INVALID_EMAIL, PASSWORD_SHORT} from './messagesText'
+
+import { DESCRIPTION_LONG, DESCRIPTION_SHORT, INPUT_REQUIRED, INVALID_IMAGE_EXT, INVALID_EMAIL, PASSWORD_SHORT, TITLE_LONG, TITLE_SHORT } from './messagesText'
 
 const yupTitles = () =>
   Yup.string()
@@ -68,4 +69,17 @@ const yupConfirmPass = (passRef,passMsg) =>
   .oneOf([Yup.ref(passRef), null], passMsg)
   .required(INPUT_REQUIRED)
 
-export {yupCustomString, yupEmail, yupImages, yupLongDesc, yupPassword, yupShortDesc, yupTitles, yupUserRoles,yupFirstName,yupLastName,yupPassRegister,yupConfirmPass}
+export {
+  yupCustomString,
+  yupConfirmPass,
+  yupEmail, 
+  yupFirstName,
+  yupImages, 
+  yupLongDesc, 
+  yupLastName,
+  yupPassword, 
+  yupPassRegister,
+  yupShortDesc, 
+  yupTitles, 
+  yupUserRoles,
+}

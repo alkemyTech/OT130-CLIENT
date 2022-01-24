@@ -31,7 +31,7 @@
     font-size: 12px;
     margin-top: 5px;
 }
-.error {
+.error-message {
     color: red;
 }
 .success {

@@ -1,15 +1,16 @@
 import React , { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+
 import '../FormStyles.css';
 import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT } from "../../Helpers/messagesText";
-import { yupFirstName, yupLastName, yupPassRegister, yupConfirmPass, yupEmail } from "../../Helpers/yupValidations";
+import { yupConfirmPass, yupEmail, yupFirstName, yupLastName, yupPassRegister } from "../../Helpers/formValidations";
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
 
     const timerMessage = (time) => {
-        setTimeout( () => {
+        setTimeout(() => {
             setSubmitForm(false);
         }, time);
     };
@@ -47,10 +48,10 @@ const RegisterForm = () => {
                 className="input-field"
                 {...formik.getFieldProps('firstName')}
             />
-            {formik.touched.firstName && formik.errors.firstName ? (
+            {formik.touched.firstName && formik.errors.firstName &&
                 <div className="error message">{formik.errors.firstName}</div>
-            ) : null}
-        
+            }
+            
             <label htmlFor="lastName">Last Name</label>
             <input
                 id="lastName"
@@ -58,9 +59,9 @@ const RegisterForm = () => {
                 className="input-field"
                 {...formik.getFieldProps('lastName')}
             />
-            {formik.touched.lastName && formik.errors.lastName ? (
+            {formik.touched.lastName && formik.errors.lastName &&
                 <div className="error message">{formik.errors.lastName}</div>
-            ) : null}
+            }
 
             <label htmlFor="email">Email Address</label>
             <input
@@ -69,9 +70,9 @@ const RegisterForm = () => {
                 className="input-field"
                 {...formik.getFieldProps('email')}
             />
-            {formik.touched.email && formik.errors.email ? (
+            {formik.touched.email && formik.errors.email &&
                 <div className="error message" >{formik.errors.email}</div>
-            ) : null}
+            }
 
             <label htmlFor="pass">Password</label>
             <input
@@ -80,9 +81,9 @@ const RegisterForm = () => {
                 className="input-field"
                 {...formik.getFieldProps('password')}
             />
-            {formik.touched.password && formik.errors.password ? (
+            {formik.touched.password && formik.errors.password &&
                 <div className="error message">{formik.errors.password}</div>
-            ) : null}
+            }
 
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
@@ -91,9 +92,9 @@ const RegisterForm = () => {
                 className="input-field"
                 {...formik.getFieldProps('confirmPassword')}
             />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+            {formik.touched.confirmPassword && formik.errors.confirmPassword &&
                 <div className="error message">{formik.errors.confirmPassword}</div>
-            ) : null}
+            }
 
             <button className="submit-btn"  type="submit" >Submit</button>
             {submitForm && <div className="success message">Form submitted successfully</div>}
