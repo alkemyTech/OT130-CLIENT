@@ -1,19 +1,24 @@
-import React, {useEffect, useState} from "react";
+import axios from "axios";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import "../../Components/FormStyles.css";
-import axios from "axios";
+
+import React, {useEffect, useState} from "react";
+
+import "../FormStyles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import {Patch, Post} from "../../Services/privateApiService";
+
+const emptyObject = {
+  id: "",
+  name: "",
+  content: "",
+  image: "",
+  category_id: "",
+};
 
 const NewsForm = ({news}) => {
-  const iVal = news || {
-    id: "",
-    name: "",
-    content: "",
-    image: "",
-    category_id: "",
-  };
-
-  const [initialValues, setInitialValues] = useState(iVal);
+  const [initialValues, setInitialValues] = useState(news || emptyObject);
   const [error, setError] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -31,15 +36,6 @@ const NewsForm = ({news}) => {
     getCategories();
   }, []);
 
-  const findCategoryId = async (id) => {
-    await axios
-      .get(`http://ongapi.alkemy.org/api/categories/${id}`)
-      .then((res) => {
-        const {data} = res;
-        console.log(data);
-      });
-  };
-
   const handleChange = (e) => {
     if (e.target.name === "title") {
       setInitialValues({...initialValues, name: e.target.value});
@@ -48,10 +44,8 @@ const NewsForm = ({news}) => {
       setInitialValues({...initialValues, category_id: e.target.value});
     }
     if (e.target.name === "img") {
-      console.log(e.target.files[0].name);
       setInitialValues({...initialValues, image: e.target.files[0].name});
     }
-    console.log(initialValues);
   };
 
   const handleChangeCKE = (event, editor) => {
@@ -79,25 +73,12 @@ const NewsForm = ({news}) => {
     setError(false);
 
     if (initialValues.id) {
-      axios.patch(
-        `http://ongapi.alkemy.org/api/news/${initialValues.id}`,
-        initialValues
-      );
-      console.log("patch");
+      Patch(`news/${initialValues.id}`, initialValues);
     } else {
-      axios.post("http://ongapi.alkemy.org/api/news", initialValues);
-      console.log("post");
+      Post(`news`, initialValues);
     }
 
-    setInitialValues({
-      id: "",
-      name: "",
-      content: "",
-      image: "",
-      category_id: "",
-    });
-
-    console.log(initialValues);
+    setInitialValues(emptyObject);
   };
 
   return (
@@ -121,14 +102,16 @@ const NewsForm = ({news}) => {
         data={initialValues.content || ""}
         onChange={handleChangeCKE}
       />
-
-      <input
-        className="select-field"
-        type="file"
-        name="img"
-        accept="image/*"
-        onChange={handleChange}
-      />
+      <div className="input-field">
+        <label>Imagen: </label>
+        <input
+          className=" px-2"
+          type="file"
+          name="img"
+          accept="image/*"
+          onChange={handleChange}
+        />
+      </div>
       <select
         className="select-field"
         name="category"
