@@ -1,10 +1,9 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
 import postOrganizationData from "../../Services/postOrganizationData";
-
-import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()
@@ -29,7 +28,7 @@ const WelcomeTextForm = ({ welcomeText }) => (
           <BootstrapForm.Control
             as="textarea"
             className={
-              errors.welcomeText && touched.welcomeText ? "is-invalid" : ""
+              (errors.welcomeText && touched.welcomeText) ? "is-invalid" : ""
             }
             style={{ height: "150px" }}
             onChange={handleChange}
