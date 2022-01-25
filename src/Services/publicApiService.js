@@ -23,7 +23,7 @@ export const getOrganizationData = async () => {
     
 }
 
-export const updateputOrganizationData = async (body,id) => {
+export const updateOrganizationData = async (body,id) => {
     try {
         const response = await axios.put(`${HOST}/organization/${id}`, body)
         return response.data

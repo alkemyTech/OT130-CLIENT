@@ -2,7 +2,7 @@ import { Formik, ErrorMessage } from "formik";
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as Yup from "yup";
-import { updateputOrganizationData } from "../../Services/publicApiService";
+import { updateOrganizationData } from "../../Services/publicApiService";
 import { yupShortDesc, yupTitles } from "../../Helpers/formValidations";
 import "./style.css";
 import { LOGO } from "../../assets";
@@ -23,7 +23,7 @@ const Organization = () => {
   const [selectedImage, setSelectedImage] = useState({ image: LOGO });
 
   const handleSubmit = async ({ logo, name, description }) => {
-    await updateputOrganizationData({ name, short_description: description, logo: logo }, id);
+    await updateOrganizationData({ name, short_description: description, logo: logo }, id);
     push(ORGANIZATION);
   };
 
