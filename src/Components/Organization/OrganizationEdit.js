@@ -4,6 +4,8 @@ import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import * as Yup from "yup";
 import { updateOrganizationData , getByIdOrganizationData } from "../../Services/organiationService";
 import { yupShortDesc, yupTitles , yupImages , yupLongDesc , yupUrlWebSite} from "../../Helpers/formValidations";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./style.css";
 import { LOGO } from "../../assets";
 import { ORGANIZATION } from "../../rutas/config";
@@ -25,6 +27,10 @@ const OrganizationEdit = () => {
   useEffect(() => {
     handleGetByIdOrganization();
   },[]);
+
+  const handleCKEditorChange = (editor, setFieldValue) => {
+    formik.setFieldValue("short_description", editor.getData());
+  };
   const handleGetByIdOrganization = async () => {
     const { data } = await getByIdOrganizationData(id);
     setOrganization(data);
@@ -84,7 +90,9 @@ const OrganizationEdit = () => {
  
    (
     <div className="container">
+
       <div className="organization-fields-container">
+        <h1>Editar Organización</h1>
         <form  onSubmit={formik.handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Nombre</label>
@@ -104,22 +112,6 @@ const OrganizationEdit = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="short_description">Descripción Corta</label>
-            <input
-              type="text"
-              className="form-control"
-              id="short_description"
-              name="short_description"
-              placeholder="Descripción Corta"
-              value={formik.values.short_description}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.short_description && formik.errors.short_description ? (
-              <div className="alert alert-danger">{formik.errors.short_description}</div>
-            ) : null}
-          </div>
-          <div className="form-group">
             <label htmlFor="long_description">Descripción Larga</label>
             <input
               type="text"
@@ -135,6 +127,16 @@ const OrganizationEdit = () => {
               <div className="alert alert-danger">{formik.errors.long_description}</div>
             ) : null}
           </div>
+          <CKEditor
+        editor={ClassicEditor}
+        data={initialValues?.short_description}
+        onChange={(e, editor) => handleCKEditorChange(editor, formik.setFieldValue)}
+    />
+        
+        {formik.touched.long_description && formik.errors.short_description &&
+              <div className="alert alert-danger">{formik.errors.short_description}</div>}
+
+        
           <div className="form-group">
             <label htmlFor="linkedin_url">Linkedin</label>
             <input
