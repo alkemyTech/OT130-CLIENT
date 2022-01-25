@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 
-import getOrganizationData from "../../Services/getOrganizationData";
-import getSlides from "../../Services/getSlides";
+import { getOrganizationData } from "../../Services/organizationService";
+import { getSlides } from "../../Services/slideService";
 
 import WelcomeTextForm from "../WelcomeTextForm/WelcomeTextForm";
 import SlidesForm from "../Slides/SlidesForm";
