@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
-import postOrganizationData from "../../Services/postOrganizationData";
+import { postOrganizationData } from "../../Services/organizationService";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()
