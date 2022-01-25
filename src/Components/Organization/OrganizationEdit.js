@@ -2,7 +2,7 @@ import { Formik, ErrorMessage } from "formik";
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as Yup from "yup";
-import { updateOrganizationData } from "../../Services/publicApiService";
+import { updateOrganizationData } from "../../Services/organiationService";
 import { yupShortDesc, yupTitles } from "../../Helpers/formValidations";
 import "./style.css";
 import { LOGO } from "../../assets";
@@ -14,7 +14,7 @@ const initialValues = {
   logo: LOGO,
 };
 
-const Organization = () => {
+const OrganizationEdit = () => {
   const {
     push,
     location: { state },
@@ -100,4 +100,4 @@ const Organization = () => {
   );
 };
 
-export default Organization;
+export default OrganizationEdit;
