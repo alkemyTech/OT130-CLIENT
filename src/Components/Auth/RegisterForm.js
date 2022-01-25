@@ -34,7 +34,6 @@ const RegisterForm = () => {
             setSubmitForm(true);
             timerMessage(3000);
             formik.resetForm();
-            console.log(values)
         },
     });
 
@@ -49,7 +48,7 @@ const RegisterForm = () => {
                 {...formik.getFieldProps('firstName')}
             />
             {formik.touched.firstName && formik.errors.firstName &&
-                <div className="error message">{formik.errors.firstName}</div>
+                <div className="error-message message">{formik.errors.firstName}</div>
             }
             
             <label htmlFor="lastName">Last Name</label>
@@ -60,7 +59,7 @@ const RegisterForm = () => {
                 {...formik.getFieldProps('lastName')}
             />
             {formik.touched.lastName && formik.errors.lastName &&
-                <div className="error message">{formik.errors.lastName}</div>
+                <div className="error-message message">{formik.errors.lastName}</div>
             }
 
             <label htmlFor="email">Email Address</label>
@@ -71,7 +70,7 @@ const RegisterForm = () => {
                 {...formik.getFieldProps('email')}
             />
             {formik.touched.email && formik.errors.email &&
-                <div className="error message" >{formik.errors.email}</div>
+                <div className="error-message message" >{formik.errors.email}</div>
             }
 
             <label htmlFor="pass">Password</label>
@@ -82,7 +81,7 @@ const RegisterForm = () => {
                 {...formik.getFieldProps('password')}
             />
             {formik.touched.password && formik.errors.password &&
-                <div className="error message">{formik.errors.password}</div>
+                <div className="error-message message">{formik.errors.password}</div>
             }
 
             <label htmlFor="confirmPassword">Confirm Password</label>
@@ -93,11 +92,11 @@ const RegisterForm = () => {
                 {...formik.getFieldProps('confirmPassword')}
             />
             {formik.touched.confirmPassword && formik.errors.confirmPassword &&
-                <div className="error message">{formik.errors.confirmPassword}</div>
+                <div className="error-message message">{formik.errors.confirmPassword}</div>
             }
 
             <button className="submit-btn"  type="submit" >Submit</button>
-            {submitForm && <div className="success message">Form submitted successfully</div>}
+            {submitForm && <div className="success-message message">Form submitted successfully</div>}
         </form>
     );
 

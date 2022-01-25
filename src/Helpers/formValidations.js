@@ -1,6 +1,15 @@
 import * as Yup from "yup";
 
-import { DESCRIPTION_LONG, DESCRIPTION_SHORT, INPUT_REQUIRED, INVALID_IMAGE_EXT, INVALID_EMAIL, PASSWORD_SHORT, TITLE_LONG, TITLE_SHORT } from './messagesText'
+import { 
+  DESCRIPTION_LONG,
+  DESCRIPTION_SHORT,
+  INPUT_REQUIRED,
+  INVALID_IMAGE_EXT,
+  INVALID_EMAIL,
+  PASSWORD_SHORT,
+  TITLE_LONG,
+  TITLE_SHORT 
+} from './messagesText'
 
 const yupTitles = () =>
   Yup.string()
