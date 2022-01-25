@@ -24,4 +24,11 @@ export const yupCustomString = (min, max, minMsg, maxMsg) =>
     .max(max, maxMsg)
     .required("Campo obligatorio");
 
-export const yupImages = () => Yup.string().ensure().required("Topic is required!");
+export const yupImages = () =>
+    Yup.mixed()
+      .required('Campo obligatorio')
+      .test("fileFormat", 'Archivo invalido', (value) =>
+        ["image/jpeg", "image/png"].includes(value?.type)
+      );
+
+export const yupUrlWebSite = () => Yup.string().url("Invalid url");

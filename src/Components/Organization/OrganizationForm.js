@@ -6,15 +6,7 @@ import * as Yup from 'yup';
 
 const OrganizationForm = ({organization}) => {
 
-/*     const validateImageType = (file) => {
-        const fileType = file.type;
-        const validImageTypes = ['image/gif', 'image/png'];
-        if ( !validImageTypes.includes(fileType)) {
-            return false;
-        }
-       
-        return true;
-    } */
+
 
     const formik = useFormik({
         validationSchema: Yup.object().shape({

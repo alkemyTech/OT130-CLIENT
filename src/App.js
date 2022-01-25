@@ -13,8 +13,8 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Organization from './Components/Organization/OrganizationEdit';
-import OrganizationEdit from './Components/Organization/Organization';
+import OrganizationEdit from './Components/Organization/OrganizationEdit';
+import Organization from './Components/Organization/Organization';
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
-          <Route path="/backoffice/organization" component={Organization} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
+          <Route path="/backoffice/organization" component={Organization} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
