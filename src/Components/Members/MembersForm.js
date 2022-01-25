@@ -1,38 +1,72 @@
-import React, { useState } from 'react';
+import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
+import * as Yup from "yup";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import React, { useState } from "react";
 
-import '../FormStyles.css';
+import "../FormStyles.css";
 
 const MembersForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    description: ''
-  })
+  const validationSchema = Yup.object({
+    name: Yup
+      .string("Enter your name")
+      .min(4, "Minimo 4 caracteres")
+      .required("Name is required"),
+    description_text: Yup
+      .string("Write some description")
+      .required("Description is required"),
+  });
 
-  const handleChange = (e) => {
-    if(e.target.name === 'name'){
-      setInitialValues({...initialValues, name: e.target.value})
-    } if(e.target.name === 'description'){
-      setInitialValues({...initialValues, description: e.target.value})
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  }
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      description_text: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-      {/* <input className="input-field" type="image" name="image" value={initialValues.name} onChange={handleChange} placeholder="Name"></input> */}
-      <textarea className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></textarea>
-      <div className="d-flex  justify-content-between mx-0 p-0">
+    <form className="form-container" onSubmit={formik.handleSubmit}>
+      <input
+        className="input-field"
+        id="name"
+        name="name"
+        type="text"
+        {...formik.getFieldProps("name")}
+        placeholder="Enter name"
+      />
+      {formik.touched.name && formik.errors.name ? (
+        <div>{formik.errors.name}</div>
+      ) : null}
+      <CKEditor
+        editor={ClassicEditor}
+        id="description_text"
+        data={formik.values.description_text}
+        onReady={(editor) => {
+          console.log("Editor is ready to use!", editor);
+        }}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          console.log({ event, editor, data });
+          formik.setFieldValue("description_text", data)
+        }}
+         value={formik.values.description_text} 
+      />
+      {formik.touched.description_text && formik.errors.description_text ? (
+        <div>{formik.errors.description_text}</div>
+      ) : null}
+      {/* <div className="d-flex  justify-content-between mx-0 p-0">
       <input className="input-field w-50 me-1 " type="url" name="social-media-link" value={initialValues.name} onChange={handleChange} placeholder="Linkedin"></input>
       <input className="input-field w-50 " type="url" name="social-media-link" value={initialValues.name} onChange={handleChange} placeholder="Facebook"></input>
-      </div>
-      <button className="submit-btn" type="submit">Send</button>
+      </div> */}
+      <button className="submit-btn" type="submit">
+        Send
+      </button>
     </form>
   );
-}
- 
+};
+
 export default MembersForm;

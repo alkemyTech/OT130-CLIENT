@@ -10,6 +10,9 @@
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
 }
+.input-field:active{
+    border: 1px solid #c1c1c1;
+}
 
 .select-field{
     padding: 10px;
