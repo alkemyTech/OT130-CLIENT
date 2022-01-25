@@ -13,6 +13,10 @@
 .input-field:active{
     border: 1px solid #c1c1c1;
 }
+.input-field:focus{
+    border: 1px solid #c1c1c1 !important;
+}
+
 
 .select-field{
     padding: 10px;
@@ -29,4 +33,8 @@
 .submit-btn:hover{
     cursor: pointer;
     background-color: #3498DB;
+}
+
+.img-member {
+    width: 150px;
 }
