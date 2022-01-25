@@ -1,4 +1,3 @@
-import axios from "axios";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -7,7 +6,7 @@ import React, {useEffect, useState} from "react";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {Patch, Post} from "../../Services/privateApiService";
+import {Get, Patch, Post} from "../../Services/privateApiService";
 
 const emptyObject = {
   id: "",
@@ -23,35 +22,21 @@ const NewsForm = ({news}) => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
-    await axios
-      .get("http://ongapi.alkemy.org/api/categories")
-      .then((res) => {
-        const {data} = res.data;
-        setCategories(data);
-      })
-      .catch((err) => alert(err));
+    const res = await Get("categories");
+
+    if (res.data.success) {
+      setCategories(res.data.data);
+    } else {
+      alert(res.data.message);
+    }
   };
 
   useEffect(() => {
     getCategories();
   }, []);
 
-  const handleChange = (e) => {
-    if (e.target.name === "title") {
-      setInitialValues({...initialValues, name: e.target.value});
-    }
-    if (e.target.name === "category") {
-      setInitialValues({...initialValues, category_id: e.target.value});
-    }
-    if (e.target.name === "img") {
-      setInitialValues({...initialValues, image: e.target.files[0].name});
-    }
-  };
-
-  const handleChangeCKE = (event, editor) => {
-    const data = editor.getData();
-
-    setInitialValues({...initialValues, content: data});
+  const handleChange = (val, field) => {
+    setInitialValues({...initialValues, [field]: val});
   };
 
   const handleSubmit = (e) => {
@@ -78,8 +63,19 @@ const NewsForm = ({news}) => {
       Post(`news`, initialValues);
     }
 
-    setInitialValues(emptyObject);
+    setInitialValues({
+      id: "",
+      name: "",
+      content: "",
+      image: "",
+      category_id: "",
+    });
+    console.log(initialValues);
   };
+
+  useEffect(() => {
+    console.log(initialValues);
+  }, [initialValues]);
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
@@ -93,14 +89,13 @@ const NewsForm = ({news}) => {
         type="text"
         name="title"
         value={initialValues.name || ""}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value, "name")}
         placeholder="Enter News"
-      ></input>
-
+      />
       <CKEditor
         editor={ClassicEditor}
         data={initialValues.content || ""}
-        onChange={handleChangeCKE}
+        onChange={(event, editor) => handleChange(editor.getData(), "content")}
       />
       <div className="input-field">
         <label>Imagen: </label>
@@ -109,14 +104,14 @@ const NewsForm = ({news}) => {
           type="file"
           name="img"
           accept="image/*"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e.target.value, "image")}
         />
       </div>
       <select
         className="select-field"
         name="category"
         value={initialValues.category_id || ""}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value, "category_id")}
       >
         <option value="" disabled>
           Select category
