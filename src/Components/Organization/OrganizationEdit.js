@@ -38,15 +38,6 @@ const OrganizationEdit = () => {
     instagram_url: yupUrlWebSite(),
     facebook_url: yupUrlWebSite(),
     twitter_url: yupUrlWebSite() 
-/*    ,
-    long_description: yupLongDesc(),
-    logo: yupImages(),
-    linkedin_url: yupUrlWebSite(),
-    instagram_url: yupUrlWebSite(),
-    facebook_url: yupUrlWebSite(),
-    twitter_url: yupUrlWebSite() */
-
-
   });
   const initialValues = {
     name: '',
@@ -56,20 +47,26 @@ const OrganizationEdit = () => {
     instagram_url : '',
     facebook_url : '',
     twitter_url : '',
-  /*   logo:'', */
-/*     logo:null, */
-/*     logo: '',
-    long_description: '',
-    short_description: '',
-    linkedin_url : '',
-    instagram_url : '',
-    facebook_url : '',
-    twitter_url : '', */
+    logo: ''
   };
+  const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
   const onSubmit = async (values) => {
+    try{
+      values.logo = await toBase64(values.logo);
+    }catch(error){
+      console.log(error);
+    }
+
     await updateOrganizationData(values, id);
     console.log('Form data' , values)
-    console.log(values.logo)
+    console.log(values.logo, 'logo')
     formik.resetForm();
     push(ORGANIZATION);
   };
@@ -202,7 +199,7 @@ const OrganizationEdit = () => {
               <div className="alert alert-danger">{formik.errors.twitter_url}</div>
             ) : null}
           </div>
-        {/*   <div className="form-group">
+          <div className="form-group">
             <label htmlFor="logo">Logo</label>
             <input
               ref={formik.fileInput}
@@ -211,14 +208,14 @@ const OrganizationEdit = () => {
               id="logo"
               name="logo"
               placeholder="Logo"
-              onChange={(e)=>{ 
-                formik.setFieldValue('logo', e.target.files[0])
+              onChange={(e) => {
+                formik.setFieldValue('logo', e.currentTarget.files[0]);
               }}
             />
             {formik.touched.logo && formik.errors.logo ? (
               <div className="alert alert-danger">{formik.errors.logo}</div>
             ) : null}
-          </div> */}
+          </div>
 {/*          
           <div className="form-group">
             <label htmlFor="long_description">Descripción Larga</label>
