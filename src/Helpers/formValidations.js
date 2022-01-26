@@ -1,14 +1,17 @@
 import * as Yup from "yup";
-import {
-  TITLE_LONG,
-  TITLE_SHORT,
-  INPUT_REQUIRED,
+
+import { 
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
+  INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
   PASSWORD_SHORT,
-} from "./messagesText";
+  TITLE_LONG,
+  TITLE_SHORT 
+} from './messagesText'
+
+const IMAGE_MAX = 1
 
 const yupTitles = () =>
   Yup.string()
@@ -37,25 +40,58 @@ const yupCustomString = (min, max, minMsg, maxMsg) =>
 const yupImages = () =>
   Yup.mixed()
     .required(INPUT_REQUIRED)
-    .test("fileFormat", INVALID_IMAGE_EXT, (value) =>
-      ["image/jpeg", "image/png"].includes(value?.type)
+    .test(
+      "fileFormat",
+      INVALID_IMAGE_EXT,
+      (value) => ["image/jpeg", "image/png"].includes(value?.type)
     );
 
-const yupEmail = () =>
-  Yup.string().email(INVALID_EMAIL).required(INPUT_REQUIRED);
+const yupEmail = () =>   
+  Yup.string()
+    .email(INVALID_EMAIL)
+    .required(INPUT_REQUIRED)
 
-const yupUserRoles = () => Yup.string().required(INPUT_REQUIRED);
+const yupUserRoles = () => 
+  Yup.string()
+    .required(INPUT_REQUIRED)
 
 const yupPassword = () =>
-  Yup.string().required(INPUT_REQUIRED).min(8, PASSWORD_SHORT);
+  Yup.string()
+    .required(INPUT_REQUIRED)
+    .min(8, PASSWORD_SHORT)
+
+// RegisterForm validations 
+const yupFirstName = () =>
+  Yup.string()
+    .required(INPUT_REQUIRED)
+  
+const yupLastName = () =>
+  Yup.string()
+  .required(INPUT_REQUIRED)
+
+const yupPassRegister = (minMsg,passMsg) =>
+  Yup.string()
+    .min(6,minMsg )
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,passMsg)
+    .required(INPUT_REQUIRED)
+
+const yupConfirmPass = (passRef,passMsg) =>
+  Yup.string()
+  .oneOf([Yup.ref(passRef), null], passMsg)
+  .required(INPUT_REQUIRED)
 
 export {
+  IMAGE_MAX,
   yupCustomString,
-  yupEmail,
-  yupImages,
-  yupLongDesc,
-  yupPassword,
-  yupShortDesc,
-  yupTitles,
+  yupConfirmPass,
+  yupEmail, 
+  yupFirstName,
+  yupImages, 
+  yupLongDesc, 
+  yupLastName,
+  yupPassword, 
+  yupPassRegister,
+  yupShortDesc, 
+  yupTitles, 
   yupUserRoles,
-};
+}

@@ -16,6 +16,7 @@ import {
     yupImages,
     yupUserRoles,
     yupPassword,
+    IMAGE_MAX
   } from "../../Helpers/formValidations";
 
 const validation = Yup.object().shape({
@@ -110,6 +111,7 @@ const CreateEditUser = ({ user }) => {
               requestError={requestError}
               isSubmitting={isSubmitting}
               fileInputRef={fileInputRef}
+              imageMax={IMAGE_MAX}
             />
           );
         }}

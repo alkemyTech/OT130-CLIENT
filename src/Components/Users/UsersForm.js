@@ -15,6 +15,7 @@ const FormComponent = ({
   requestError,
   isSubmitting,
   fileInputRef,
+  imageMax
 }) => {
   return (
     <Form onSubmit={handleSubmit} className="form-container">
@@ -64,7 +65,7 @@ const FormComponent = ({
         <input
           ref={fileInputRef}
           type="file"
-          max={1}
+          max={imageMax}
           name="image_file"
           accept="image/png, image/jpeg"
           onChange={(e) => {
