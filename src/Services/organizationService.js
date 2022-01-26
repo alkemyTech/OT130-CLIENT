@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from "./baseAxios";
 
 const getOrganizationData = async () => {
-  const response = await axios.get("http://ongapi.alkemy.org/api/organization");
+  const response = await axios.get("organization");
   return response.data;
 };
 
-const postOrganizationData = async (data) => {
-  await axios.post("http://ongapi.alkemy.org/api/organization", data);
+const updateOrganizationData = async (data) => {
+  await axios.post("organization", data);
 };
 
-export { getOrganizationData, postOrganizationData };
+export { getOrganizationData, updateOrganizationData };
