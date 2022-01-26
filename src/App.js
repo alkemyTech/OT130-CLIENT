@@ -34,7 +34,6 @@ function App() {
         </Switch>
       </BrowserRouter>
     <div className="App">
-      <MembersForm />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
