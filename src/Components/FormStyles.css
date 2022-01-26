@@ -27,3 +27,16 @@
     cursor: pointer;
     background-color: #3498DB;
 }
+
+.message {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
