@@ -54,24 +54,28 @@ const MembersForm = () => {
   return (
     <FormikProvider value={formik}>
       <Form className="form-container">
-        <Field
-          className="input-field"
-          id="name_member"
-          name="name_member"
-          type="text"
-          {...formik.getFieldProps("name_member")}
-          placeholder="Nombre"
-        />
-        <div className="error-message message">
-          <ErrorMessage className="me-auto" name="name_member" />
+        <div className="row-cols-1">
+          <Field
+            className="input-field"
+            id="name_member"
+            name="name_member"
+            type="text"
+            {...formik.getFieldProps("name_member")}
+            placeholder="Nombre"
+          />
+          <div className="error-message message">
+            <ErrorMessage className="me-auto" name="name_member" />
+          </div>
         </div>
-        <CKEditor
-          editor={ClassicEditor}
-          id="description_text"
-          onChange={inputHandler}
-        />
-        <div className="error-message message">
-          <ErrorMessage className="me-auto" name="description_text" />
+        <div>
+          <CKEditor
+            editor={ClassicEditor}
+            id="description_text"
+            onChange={inputHandler}
+          />
+          <div className="error-message message">
+            <ErrorMessage className="me-auto" name="description_text" />
+          </div>
         </div>
         <div className="row row-cols-1 row-cols-md-2">
           <div className="d-flex flex-column ">
@@ -101,17 +105,17 @@ const MembersForm = () => {
             </div>
           </div>
         </div>
-        <div className="row row-cols-2 align-items-center justify-content-between">
+        <div className="row row-cols-1 row-cols-md-2 align-items-center justify-content-between">
           <input name="image_member" type="file" onChange={handleFileChange} />
           <img
-            className="img-member img-fluid"
+            className=" mx-auto my-2 img-member img-fluid"
             src={imgState?.path}
             id="image_member"
             alt="image_member"
           />
-        </div>
         <div className="error-message message">
           <ErrorMessage className="me-auto" name="image_member" />
+        </div>
         </div>
         <button className="submit-btn" type="submit">
           Send
