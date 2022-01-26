@@ -2,7 +2,7 @@ import { Formik, ErrorMessage } from "formik";
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as Yup from "yup";
-import { updateOrganizationData } from "../../Services/organiationService";
+import { updateOrganizationData } from "../../Services/organizationService";
 import { yupShortDesc, yupTitles } from "../../Helpers/formValidations";
 import "./style.css";
 import { LOGO } from "../../assets";
@@ -47,8 +47,7 @@ const OrganizationEdit = () => {
             name="logo"
             defaultValue={selectedImage.image}
           >
-            <option value={LOGO}>Opción 1</option>
-            <option value={LOGO}>Opción 3</option>
+            <option value={LOGO}>Logo 1</option>
           </select>
         </div>
         <img src={selectedImage?.image} alt="logo" />

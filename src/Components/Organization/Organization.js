@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Spinner } from "react-bootstrap";
-import { getOrganizationData } from "../../Services/organiationService";
+import { getOrganizationData } from "../../Services/organizationService";
 import "./style.css";
 import { EDIT_ORGANIZATION } from "../../rutas/config";
 
