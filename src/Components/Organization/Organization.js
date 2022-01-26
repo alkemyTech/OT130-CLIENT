@@ -15,8 +15,8 @@ const Organization = () => {
   }, []);
 
   const handleGetOrganization = async () => {
-    const { data } = await getOrganizationData();
-    setOrganizationData(data);
+    const { data, error } = await getOrganizationData();
+    data && setOrganizationData(data)
   };
 
   const goToEdit = (e) => {
