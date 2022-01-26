@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "./baseAxios";
 
 const getSlides = async () => {
-  const response = await axios.get("http://ongapi.alkemy.org/api/slides");
+  const response = await axios.get("slides");
   return response.data;
 };
 
-export { getSlides }
+export { getSlides };
