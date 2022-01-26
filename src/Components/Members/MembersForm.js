@@ -3,25 +3,18 @@ import { ErrorMessage, Field, Form, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { yupImages, yupLinks, yupLongDesc, yupTitles } from "../../Helpers/formValidations";
 import "../FormStyles.css";
 
 const MembersForm = () => {
   const [imgState, setImgState] = useState({ path: "" });
 
   const validationSchema = Yup.object({
-    name_member: Yup.string()
-      .min(4, "Minimo 4 caracteres")
-      .required("Campo obligatorio"),
-    description_text: Yup.string().required("Campo obligatorio"),
-    image_member: Yup.mixed()
-      .required("Campo obligatorio")
-      .test(
-        "fileFormat",
-        "Extensión inválida. Solo archivos jpg o png",
-        (value) => ["image/jpeg", "image/png"].includes(value?.type)
-      ),
-    link_linkedin: Yup.string().url().required("Campo obligatorio"),
-    link_facebook: Yup.string().url().required("Campo obligatorio"),
+    name_member: yupTitles(),
+    description_text: yupLongDesc(),
+    image_member: yupImages(),
+    link_linkedin: yupLinks(),
+    link_facebook: yupLinks(),
   });
 
   const inputHandler = (event, editor) => {

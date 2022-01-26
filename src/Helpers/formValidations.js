@@ -78,6 +78,12 @@ const yupConfirmPass = (passRef,passMsg) =>
   .oneOf([Yup.ref(passRef), null], passMsg)
   .required(INPUT_REQUIRED)
 
+  const yupLinks = () =>
+  Yup.string()
+  .url()
+  .required(INPUT_REQUIRED)
+
+
 export {
   yupCustomString,
   yupConfirmPass,
@@ -91,4 +97,5 @@ export {
   yupShortDesc, 
   yupTitles, 
   yupUserRoles,
+  yupLinks,
 }
