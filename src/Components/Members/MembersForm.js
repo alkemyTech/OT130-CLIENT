@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ErrorMessage, Field, Form, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -7,7 +7,6 @@ import "../FormStyles.css";
 
 const MembersForm = () => {
   const [imgState, setImgState] = useState({ path: "" });
-  const [imageState, setImageState] = useState({ image_member: "" });
 
   const validationSchema = Yup.object({
     name_member: Yup.string("Enter your name")
@@ -30,18 +29,12 @@ const MembersForm = () => {
   const inputHandler = (event, editor) => {
     formik.setFieldValue("description_text", editor.getData());
   };
-
-  useEffect(() => {
-    formik.setFieldValue("image_member", imageState?.image_member);
-  }, []);
-
+  
   const handleFileChange = (event) => {
-    setImageState({
-      image_member: event.target.files[0],
-    });
+    formik.setFieldValue("image_member", event.currentTarget.files[0]);
     setImgState({
       ...imgState,
-      path: URL.createObjectURL(event.target.files[0]),
+      path: URL.createObjectURL(event.currentTarget.files[0]),
     });
   };
 
@@ -107,7 +100,7 @@ const MembersForm = () => {
           <img
             className="img-member img-fluid"
             src={imgState?.path}
-            id="preview-image"
+            id="image_member"
             alt="image_member"
           />
         </div>
