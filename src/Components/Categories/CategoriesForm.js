@@ -1,114 +1,113 @@
 import React, { useRef, useState } from 'react';
-import '../FormStyles.css';
-
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import '../FormStyles.css';
 import { 
+    acceptedImageFormats,
     categoryDescriptionSchema, 
     categoryFileSchema, 
     categoryNameSchema 
 } from '../../Validations/CategoriesValidation';
 import { 
-    Patch, 
-    Post 
+    saveCategory, 
+    updateCategory 
 } from '../../Services/privateApiService';
 
-const date = new Date().toJSON()
+const currentDate = new Date().toJSON()
 
 const CategoriesForm = ({ category }) => {
 
-    const initialStateValuesInput = {
+    const initialCategoryValues = {
         id: 0,
         name: "",
         description: "",
         image: "",
         parent_category_id: 0,
-        created_at: date,
-        updated_at: date,
+        created_at: currentDate,
+        updated_at: currentDate,
         deleted_at: ""
     };
     const [errorName, setErrorName] = useState('');
     const [errorDescription, setErrorDescription] = useState('');
     const [errorFile, setErrorFile] = useState('');
-    const [categorieValues, setCategorieValues] = useState( category || initialStateValuesInput );   
+    const [categoryValues, setCategoryValues] = useState( category || initialCategoryValues );   
 
     const inputRefImage = useRef();
 
     const handleCkeditorChange = ( event, editor ) => {
         const data = editor.getData();
-        setCategorieValues({ 
-            ...categorieValues, 
+        setCategoryValues({ 
+            ...categoryValues, 
             description: data 
         })
     };
+
     const handlePictureClick = () => {
         inputRefImage.current.click();
     };
+
     const handleChange = (e) => {
         if ( e.target.name === 'name' ) {
-            setCategorieValues({ 
-                ...categorieValues, 
+            setCategoryValues({ 
+                ...categoryValues, 
                 name: e.target.value 
             })
         } if ( e.target.name === 'image' ) {
             const file = e.target.files[0]
             if ({ file }) {
-                setCategorieValues({ 
-                    ...categorieValues, 
+                setCategoryValues({ 
+                    ...categoryValues, 
                     image: file 
                 })          
             }}
     };
-    const validateName = ()=>{
+
+    const validateName = () => {
         setErrorName('');
-        categoryNameSchema.validate( categorieValues )
+        categoryNameSchema.validate( categoryValues )
         .catch( err => {
-            const errorActive = err.errors[0];
-            if ( errorActive === 'Minimo 4 caracteres' ) {               
-                setErrorName( errorActive )
-            } else if ( errorActive === 'Campo obligatorio' ) {                
-                setErrorName( errorActive )                
-            }
+            const errorActive = err.errors[0];                       
+                setErrorName( errorActive )         
         });
     };
-    const validateDescription = ()=>{        
+
+    const validateDescription = () => {        
         setErrorDescription('');
-        categoryDescriptionSchema.validate( categorieValues )
+        categoryDescriptionSchema.validate( categoryValues )
         .catch( err => {
-            const errorActive = err.errors[0];
-            if ( errorActive === 'Campo obligatorio' ) {
-                setErrorDescription( errorActive )
-            }
+            const errorActive = err.errors[0];           
+                setErrorDescription( errorActive )            
         });
     };
-    const validateFile = ()=>{
+
+    const validateFile = () => {
         setErrorFile('');  
-        categoryFileSchema.validate( categorieValues )
+        categoryFileSchema.validate( categoryValues )
         .catch(err => {
-            const errorActive = err.errors[0];            
-            if ( errorActive === 'El formato debe ser .png/.jpg' ) {
-                setErrorFile( errorActive )
-            }
+            const errorActive = err.errors[0];         
+                setErrorFile( errorActive )            
         });
     };
-    const validatateData = async()=>{
+
+    const validatateData = async () => {
         validateName();
         validateDescription();
         validateFile();
-        const validName = await categoryNameSchema.isValid( categorieValues );
-        const validDescription = await categoryDescriptionSchema.isValid( categorieValues );
-        const validFile = await categoryFileSchema.isValid( categorieValues );
+        const validName = await categoryNameSchema.isValid( categoryValues );
+        const validDescription = await categoryDescriptionSchema.isValid( categoryValues );
+        const validFile = await categoryFileSchema.isValid( categoryValues );
               
         if ( validName && validDescription && validFile ) {    
-            validateRequest();
+            choiceTypeRequest();
         };   
     };
-    const validateRequest = async() => {
+
+    const choiceTypeRequest = async() => {
         category        
-        ? await Patch(`categories/${categorieValues.id}`, categorieValues)        
-        : await Post(`categories`, categorieValues)       
+        ? await updateCategory(`categories/${categoryValues.id}`, categoryValues)        
+        : await saveCategory(`categories`, categoryValues)       
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         validatateData();
@@ -119,7 +118,7 @@ const CategoriesForm = ({ category }) => {
             <input 
                 className="input-field" 
                 type="text" name="name" 
-                value={categorieValues.name} 
+                value={categoryValues.name} 
                 onChange={handleChange} 
                 placeholder="Title" 
             >
@@ -128,7 +127,7 @@ const CategoriesForm = ({ category }) => {
             <CKEditor
                 editor={ClassicEditor}
                 onChange={handleCkeditorChange}
-                data={categorieValues.description}
+                data={categoryValues.description}
             />
            {errorDescription && <div className='text-danger'>{errorDescription}</div> }
             <input 
@@ -137,7 +136,7 @@ const CategoriesForm = ({ category }) => {
                 onChange={handleChange} 
                 className="hideElement" 
                 ref={inputRefImage}
-                accept='image/png,image/jpeg'
+                accept={acceptedImageFormats}
             >
             </input>
             <button 
