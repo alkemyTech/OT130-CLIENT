@@ -2,10 +2,10 @@ import React from "react";
 import * as yup from "yup";
 import { Container } from "react-bootstrap";
 import { useFormik } from "formik";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+
 import "../FormStyles.css";
 import "./loginForm.css";
+import { Button, TextField } from "@mui/material";
 
 const LoginForm = () => {
 
