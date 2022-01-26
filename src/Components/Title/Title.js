@@ -1,12 +1,12 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import "./title.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { defaultTitleImage } from "../../Helpers/imagePaths";
 
 const Title = ({ text, image }) => {
   return (
     <Container className="title-container" fluid>
-        <img className="title-image"  src={image || "images/banner-img.jpg"} />
+        <Image className="title-image"  src={image || defaultTitleImage} />
         <p className="title-text">{text}</p>
     </Container>
   );
