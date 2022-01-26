@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
-import { postOrganizationData } from "../../Services/organizationService";
+import { updateOrganizationData } from "../../Services/organizationService";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()
@@ -16,7 +16,7 @@ const WelcomeTextForm = ({ welcomeText }) => (
     initialValues={{ welcomeText }}
     validationSchema={validationSchema}
     onSubmit={(values) =>
-      postOrganizationData({ welcome_text: values.welcomeText, name: "string" })
+      updateOrganizationData({ welcome_text: values.welcomeText, name: "string" })
     }
   >
     {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
