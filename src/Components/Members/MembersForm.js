@@ -12,8 +12,7 @@ const MembersForm = () => {
     name_member: Yup.string()
       .min(4, "Minimo 4 caracteres")
       .required("Campo obligatorio"),
-    description_text: Yup.string()
-      .required("Campo obligatorio"),
+    description_text: Yup.string().required("Campo obligatorio"),
     image_member: Yup.mixed()
       .required("Campo obligatorio")
       .test(
@@ -21,17 +20,14 @@ const MembersForm = () => {
         "Extensión inválida. Solo archivos jpg o png",
         (value) => ["image/jpeg", "image/png"].includes(value?.type)
       ),
-    link_linkedin: Yup.string().url()
-      .required("Campo obligatorio"),
-    link_facebook: Yup.string()
-      .url()
-      .required("Campo obligatorio"),
+    link_linkedin: Yup.string().url().required("Campo obligatorio"),
+    link_facebook: Yup.string().url().required("Campo obligatorio"),
   });
 
   const inputHandler = (event, editor) => {
     formik.setFieldValue("description_text", editor.getData());
   };
-  
+
   const handleFileChange = (event) => {
     formik.setFieldValue("image_member", event.currentTarget.files[0]);
     setImgState({
@@ -66,14 +62,17 @@ const MembersForm = () => {
           {...formik.getFieldProps("name_member")}
           placeholder="Nombre"
         />
-        <ErrorMessage className="me-auto" name="name_member" />
-
+        <div className="error-message message">
+          <ErrorMessage className="me-auto" name="name_member" />
+        </div>
         <CKEditor
           editor={ClassicEditor}
           id="description_text"
           onChange={inputHandler}
         />
-        <ErrorMessage className="me-auto" name="description_text" />
+        <div className="error-message message">
+          <ErrorMessage className="me-auto" name="description_text" />
+        </div>
         <div className="row row-cols-1 row-cols-md-2">
           <div className="d-flex flex-column ">
             <Field
@@ -84,7 +83,9 @@ const MembersForm = () => {
               placeholder="Facebook"
               {...formik.getFieldProps("link_linkedin")}
             />
-            <ErrorMessage className="me-auto" name="link_linkedin" />
+            <div className="error-message message">
+              <ErrorMessage className="me-auto" name="link_linkedin" />
+            </div>
           </div>
           <div className="d-flex flex-column">
             <Field
@@ -95,7 +96,9 @@ const MembersForm = () => {
               placeholder="Linkedin"
               {...formik.getFieldProps("link_facebook")}
             />
-            <ErrorMessage className="me-auto" name="link_facebook" />
+            <div className="error-message message">
+              <ErrorMessage className="me-auto" name="link_facebook" />
+            </div>
           </div>
         </div>
         <div className="row row-cols-2 align-items-center justify-content-between">
@@ -107,7 +110,9 @@ const MembersForm = () => {
             alt="image_member"
           />
         </div>
-        <ErrorMessage className="me-auto" name="image_member" />
+        <div className="error-message message">
+          <ErrorMessage className="me-auto" name="image_member" />
+        </div>
         <button className="submit-btn" type="submit">
           Send
         </button>
