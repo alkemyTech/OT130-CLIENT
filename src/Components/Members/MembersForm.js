@@ -9,21 +9,23 @@ const MembersForm = () => {
   const [imgState, setImgState] = useState({ path: "" });
 
   const validationSchema = Yup.object({
-    name_member: Yup.string("Enter your name")
+    name_member: Yup.string()
       .min(4, "Minimo 4 caracteres")
-      .required("Name is required"),
-    description_text: Yup.string("Write some description").required(
-      "Description is required"
-    ),
+      .required("Campo obligatorio"),
+    description_text: Yup.string()
+      .required("Campo obligatorio"),
     image_member: Yup.mixed()
-      .required("Image is required")
+      .required("Campo obligatorio")
       .test(
         "fileFormat",
         "Extensión inválida. Solo archivos jpg o png",
         (value) => ["image/jpeg", "image/png"].includes(value?.type)
       ),
-    link_linkedin: Yup.string().url().required("Linkedin link is required"),
-    link_facebook: Yup.string().url().required("Facebook link is required"),
+    link_linkedin: Yup.string().url()
+      .required("Campo obligatorio"),
+    link_facebook: Yup.string()
+      .url()
+      .required("Campo obligatorio"),
   });
 
   const inputHandler = (event, editor) => {
@@ -49,6 +51,7 @@ const MembersForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
 
@@ -61,7 +64,7 @@ const MembersForm = () => {
           name="name_member"
           type="text"
           {...formik.getFieldProps("name_member")}
-          placeholder="Enter name"
+          placeholder="Nombre"
         />
         <ErrorMessage className="me-auto" name="name_member" />
 
