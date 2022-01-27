@@ -2,42 +2,64 @@ import React, { useState, useEffect } from 'react';
 import '../FormStyles.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import axios from 'axios';
-import swal from 'sweetalert';
+import { addNewSlide, editSlide, getSlide } from "../../Services/privateApiService";
 
 const SlidesForm = ({ slide }) => {
 
     const [getState, setGetState] = useState([]);
+    const [order, setOrder] = useState("Este campo es obligatorio")
+    const [requiredName, setRequiredName] = useState(false)
+    const [requiredDescription, setRequiredDescription] = useState(false)
+    const [requiredImage, setRequiredImage] = useState(false)
+    const [requiredOrder, setRequiredOrder] = useState(false)
 
-    const requestGet = async () => {
-        await axios.get('http://ongapi.alkemy.org/api/slides')
-            .then((res) => setGetState(res.data.data))
-            .catch((error) => console.log("error:", error))
+
+    const bringSlide = async () => {
+        let data = await getSlide('/slides');
+        setGetState(data)
     }
 
     useEffect(() => {
-        requestGet()
+        bringSlide()
     }, []);
 
-    useEffect(() => {
-
-        if (slide !== undefined) {
-            const { name, description, image } = slide;
-            setInitialValues({ ...initialValues, name: name, description: description, image: image });
+    const uniqueOrder = () => {
+        let isUnique = true;
+        for (let i = 0; i < getState.length; i++) {
+            if (getState[i].order == initialValues.order) {
+                setRequiredOrder(true)
+                setOrder('Elija otro número que no haya sido usado');
+                isUnique = false;
+                break
+            }
         }
+        return isUnique
+    }
 
+    useEffect(() => {
+        if (slide) {
+            const { name, description, image } = slide;
+            setInitialValues({
+                ...initialValues,
+                name,
+                description,
+                image
+            });
+        }
     }, []);
 
     const [initialValues, setInitialValues] = useState({
         name: '',
         description: '',
-        image: ''
+        image: '',
+        order: ''
     });
 
     const handleChange = (e) => {
-        console.log(e);
+
         if (e.target.name === 'name') {
             setInitialValues({ ...initialValues, name: e.target.value })
+
         } else if (e.target.name === 'image') {
             let file = e.target.files[0];
             let reader = new FileReader();
@@ -48,6 +70,8 @@ const SlidesForm = ({ slide }) => {
                 setInitialValues({ ...initialValues, image: base64 })
             }
 
+        } else if (e.target.name === 'order') {
+            setInitialValues({ ...initialValues, order: e.target.value })
         }
     };
 
@@ -56,65 +80,88 @@ const SlidesForm = ({ slide }) => {
         setInitialValues({ ...initialValues, description: data })
     };
 
-    const requestPost = async () => {
+    const addSlide = () => {
         const body = {
             id: 0,
             name: initialValues.name,
             description: initialValues.description,
             image: initialValues.image,
-            order: 0,
-            user_id: 0,
+            order: initialValues.order,
             created_at: "2022-01-21T12:31:52.129Z",
             updated_at: "2022-01-21T12:31:52.129Z",
             deleted_at: "2022-01-21T12:31:52.129Z"
         }
-        await axios.post('http://ongapi.alkemy.org/api/slides', body)
-            .then((res) => console.log(res))
-            .catch((error) => console.log("error:", error))
+        addNewSlide("/slides", body)
     };
 
-    const requestPatch = async () => {
+    const updateSlide = () => {
         const body = {
             name: initialValues.name,
             description: initialValues.description,
             image: initialValues.image,
-            order: 0,
-            user_id: 0,
+            order: initialValues.order,
             created_at: "2022-01-21T12:31:52.129Z",
             updated_at: "2022-01-21T12:31:52.129Z",
             deleted_at: "2022-01-21T12:31:52.129Z"
         }
-        await axios.patch('http://ongapi.alkemy.org/api/slides', body)
-            .then((res) => console.log(res))
-            .catch((error) => console.log("error:", error))
+        editSlide("/slides", body)
     };
-
-
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        const { name, description, image } = initialValues;
 
-        if ([name, description, image].includes("")) {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Por favor complete todos los campos!',
-            })
-        } else if (slide === undefined) {
-            requestPost()
+        const { name, description, image, order } = initialValues;
+
+        name === "" ? setRequiredName(true) : setRequiredName(false);
+        description === "" ? setRequiredDescription(true) : setRequiredDescription(false);
+        image === "" ? setRequiredImage(true) : setRequiredImage(false);
+
+        if (order === "") {
+            setRequiredOrder(true)
         } else {
-            requestPatch()
+            setRequiredOrder(false);
+            uniqueOrder();
         }
+
+        if (!slide && ![name, description, image, order].includes("") && uniqueOrder()) {
+            addSlide();
+        } else if (slide && ![name, description, image, order].includes("") && uniqueOrder()) {
+            updateSlide();
+        }
+        clearForm()
     };
 
+    const clearForm = () => {
+        setInitialValues({
+            name: '',
+            description: '',
+            image: '',
+            order: ''
+        })
+        document.getElementById('form').reset()
+    }
+
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" minLength="4" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
-            <CKEditor className="input-field" type="text" name="description" editor={ClassicEditor} value={initialValues.description} onChange={handleChangeDescription} placeholder="Write the description" />
-            <input className='input-field' type="file" name='image' id='file' accept="image/png, image/jpeg" placeholder='Add image' onChange={handleChange}></input>
+
+        <form className="form-container" id='form' onSubmit={handleSubmit}>
+
+            <input className={requiredName ? "input-field requerido" : "input-field "} type="text" minLength="4" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
+            {requiredName ? <span className='span-requerido'>Este campo es obligatorio</span> : ""}
+
+            <div className={requiredDescription ? 'requerido' : ''}>
+                <CKEditor type="text" name="description" id="editor" value={initialValues.description} editor={ClassicEditor} onChange={handleChangeDescription} placeholder="Write the description" />
+            </div>
+            {requiredDescription ? <span className='span-requerido'>Este campo es obligatorio</span> : ""}
+
+            <input className={requiredImage ? "input-field requerido" : "input-field"} type="file" name='image' files={[initialValues.image]} id='file' accept="image/png, image/jpeg" placeholder='Add image' onChange={handleChange}></input>
+            {requiredImage ? <span className='span-requerido'>Este campo es obligatorio</span> : ""}
+
+            <input className={requiredOrder ? 'input-field requerido' : 'input-field'} type="number" name='order' value={initialValues.order} placeholder='Slide order number' onChange={handleChange}></input>
+            {requiredOrder ? <span className='span-requerido' id='order'>{order}</span> : ""}
+
             <button className="submit-btn" type="submit">Send</button>
+
         </form>
     );
 }

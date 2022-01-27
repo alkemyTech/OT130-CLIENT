@@ -11,6 +11,17 @@
     border: 1px solid #c1c1c1;
 }
 
+.requerido{
+    border: 1px solid red;
+}
+
+.span-requerido{
+    color: red;
+    font-size: x-small;
+    margin-top: -10px;
+}
+
+
 .select-field{
     padding: 10px;
     border: 1px solid #c1c1c1;
