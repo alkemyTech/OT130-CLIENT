@@ -1,7 +1,7 @@
-import axios from "./baseAxios";
+import { Get } from "./privateApiService";
 
 const getSlides = async () => {
-  const response = await axios.get("slides");
+  const response = await Get("slides");
   return response.data;
 };
 
