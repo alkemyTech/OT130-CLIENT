@@ -31,7 +31,6 @@ const ContactForm = () => {
 
   const sendForm = async (form) => {
     const res = await Post(`https://formsubmit.co/ajax/${contactEmail}`, form);
-    console.log(res.data.success);
     if (res.data.success) {
       setSuccess(true);
     } else {
@@ -46,13 +45,12 @@ const ContactForm = () => {
     <Formik
       initialValues={emptyContact}
       onSubmit={(val, {resetForm}) => {
-        console.log(val);
-        resetForm();
         sendForm(val);
+        resetForm();
       }}
       validationSchema={validation}
     >
-      {({values, touched, handleSubmit, handleChange}) => (
+      {({touched, handleSubmit, handleChange}) => (
         <form className="form-container" onSubmit={handleSubmit}>
           <Field
             className="select-field"
