@@ -14,7 +14,7 @@ const Post = async (url, data) => await instance.post(url, data);
 
 const Patch = async (url, data) => await instance.patch(url, data);
 
-const Get = async (url) => await instance.post(url);
+const Get = async (url) => await instance.get(url);
 
 export { 
   Get,
