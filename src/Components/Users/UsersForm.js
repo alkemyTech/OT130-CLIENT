@@ -83,7 +83,7 @@ const FormComponent = ({
         {isSubmitting && <Spinner animation="border" />}
         {success ? (
           <p className="message success text-center">
-            Se ha actualizado el usuario
+            Se ha guardado el usuario
           </p>
         ) : (
           <p className="message error text-center">{requestError}</p>

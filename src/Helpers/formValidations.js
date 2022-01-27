@@ -11,7 +11,7 @@ import {
   TITLE_SHORT 
 } from './messagesText'
 
-const IMAGE_MAX = 1
+const INPUT_IMAGE_MAX_IMAGE_QUANTITY = 1
 
 const yupTitles = () =>
   Yup.string()
@@ -43,7 +43,7 @@ const yupImages = () =>
     .test(
       "fileFormat",
       INVALID_IMAGE_EXT,
-      (value) => ["image/jpeg", "image/png"].includes(value?.type)
+      (value) => value ? ["image/jpeg", "image/png"].includes(value.type) : true
     );
 
 const yupEmail = () =>   
@@ -81,7 +81,7 @@ const yupConfirmPass = (passRef,passMsg) =>
   .required(INPUT_REQUIRED)
 
 export {
-  IMAGE_MAX,
+  INPUT_IMAGE_MAX_IMAGE_QUANTITY,
   yupCustomString,
   yupConfirmPass,
   yupEmail, 
