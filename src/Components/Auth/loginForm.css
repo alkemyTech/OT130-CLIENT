@@ -1,0 +1,28 @@
+.form-login{
+    width: 80%;
+    margin: 2rem auto;
+}
+.input-login {
+    margin: 1rem !important;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+}
+.form-button {
+    width: 100%;
+    border-radius: 0 !important;
+    margin: 1rem !important;
+    padding: 0.5rem !important;
+    background-color: #2e86c1 !important;
+    color: #fff !important;
+}
+/* Mui classes */
+.MuiInputLabel-formControl {
+    padding: 0px 5px !important;
+    background-color: white;
+    border: 1px solid #c1c1c1 !important;
+    border-radius: 5px;
+}
+.MuiInputBase-input {
+    padding: 15px 10px !important;
+    border: 1px solid #c1c1c1 !important;
+}
