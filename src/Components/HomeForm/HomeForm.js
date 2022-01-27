@@ -13,14 +13,19 @@ const HomeForm = () => {
   const [slides, setSlides] = useState([{}]);
   const [welcomeText, setWelcomeText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const slides = await getSlides();
-      const organizationData = await getOrganizationData();
-      setSlides(slides?.data);
-      setWelcomeText(organizationData?.data?.welcome_text);
-      setIsLoading(false);
+      try {
+        const slides = await getSlides();
+        const organizationData = await getOrganizationData();
+        setSlides(slides?.data);
+        setWelcomeText(organizationData?.data?.welcome_text);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+      }
     };
     fetchData();
   }, []);
@@ -29,7 +34,9 @@ const HomeForm = () => {
     setSlides([...slides, {}]);
   };
 
-  return (
+  return error ? (
+    <div className="text-center my-3">Algo salio mal :(</div>
+  ) : (
     <Container>
       <h1 className="text-center my-3">Formulario de edición del home</h1>
       {isLoading ? (
