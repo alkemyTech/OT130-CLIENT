@@ -1,45 +1,26 @@
 import React from 'react';
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
+import { getSlide } from "../../Services/publicApiService";
+import { useEffect, useState } from 'react';
+
 
 function CarouselHero() {
+
+    const [getState, setGetState] = useState();
+
+    const bringSlide = async () => {
+        let data = await getSlide('/slides');
+        setGetState(data)
+    }
+
+    useEffect(() => {
+        bringSlide()
+    }, []);
+
     return (
         <>
-            <Carousel className='carousel'> 
-                <Carousel.Item className='carousel-item'>
-                    <img
-                        className="d-block w-100 img-carousel"
-                        src='https://ep01.epimg.net/elpais/imagenes/2021/04/02/album/1617358467_015666_1617366075_noticia_normal.jpg'
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100 img-carousel"
-                        src='https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg'
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100 img-carousel"
-                        src='https://www.recreoviral.com/wp-content/uploads/2015/08/Im%C3%A1genes-perfectan-que-relajan-el-alma.jpg'
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
+            <Carousel className='carousel'>
+                {getState && getState.map((res) => <Carousel.Item className='carousel-item' key={res.id}><img src={res.image} className='d-block w-100 img-carousel' alt="First slide"></img></Carousel.Item>)}
             </Carousel>
 
             <Container className='cont-welcome-text'>
@@ -52,6 +33,7 @@ function CarouselHero() {
                     </Col>
                 </Row>
             </Container>
+
         </>
     )
 }
