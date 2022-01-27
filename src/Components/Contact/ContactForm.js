@@ -87,6 +87,7 @@ const ContactForm = () => {
             rows="10"
             style={{resize: "none"}}
             onChange={handleChange("message")}
+            placeholder="Escriba un mensaje"
           />
           {touched.message ? <ErrorMessage name="message" /> : null}
           <button type="submit" className="submit-btn">
