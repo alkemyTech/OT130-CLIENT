@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-
+import { IMAGE_ACCEPTED_EXTENSIONS } from "../config/imageConfig";
 import { 
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
@@ -10,8 +10,6 @@ import {
   TITLE_LONG,
   TITLE_SHORT 
 } from './messagesText'
-
-const INPUT_IMAGE_MAX_IMAGE_QUANTITY = 1
 
 const yupTitles = () =>
   Yup.string()
@@ -43,7 +41,7 @@ const yupImages = () =>
     .test(
       "fileFormat",
       INVALID_IMAGE_EXT,
-      (value) => value ? ["image/jpeg", "image/png"].includes(value.type) : true
+      (value) => value ? IMAGE_ACCEPTED_EXTENSIONS.includes(value.type) : true
     );
 
 const yupEmail = () =>   
@@ -81,7 +79,6 @@ const yupConfirmPass = (passRef,passMsg) =>
   .required(INPUT_REQUIRED)
 
 export {
-  INPUT_IMAGE_MAX_IMAGE_QUANTITY,
   yupCustomString,
   yupConfirmPass,
   yupEmail, 

@@ -3,11 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { toBase64 } from "../../Helpers/base64";
 import FormComponent from "./UsersForm";
-import {
-  NETWORK_ERROR,
-  UNKNOWN_ERROR,
-  EMAIL_TAKEN,
-} from "../../Helpers/messagesText";
+import { UNKNOWN_ERROR } from "../../Helpers/messagesText";
 import {
   yupTitles,
   yupEmail,
@@ -15,9 +11,9 @@ import {
   yupImages,
   yupUserRoles,
   yupPassword,
-  INPUT_IMAGE_MAX_IMAGE_QUANTITY,
 } from "../../Helpers/formValidations";
 import { postUser, updateUser } from "../../Services/usersService";
+import { INPUT_IMAGE_MAX_IMAGE_QUANTITY } from "../../config/imageConfig";
 
 const validation = Yup.object().shape({
   name: yupTitles(),
@@ -34,7 +30,6 @@ const initialValues = {
   description: "",
   role_id: 2,
   image_file: null,
-  profile_image: "",
   password: "",
 };
 
@@ -50,33 +45,24 @@ const submit = async (params) => {
   } = params;
   values.role_id = Number(values.role_id);
 
-  values.profile_image = await toBase64(values.image_file);
-
-  try {
-    const response = user
-      ? await updateUser(values, user)
-      : await postUser(values);
-
-    if (response.data.success) {
-      setSuccess(true);
-      resetForm();
-      fileInputRef.current.value = null;
-    } else {
-      setRequestError(UNKNOWN_ERROR);
-    }
-
-    setSubmitting(false);
-  } catch (error) {
-    if (error.message === "Network Error") {
-      setRequestError(NETWORK_ERROR);
-    } else if (error.response.data.errors.email) {
-      setRequestError(EMAIL_TAKEN);
-    } else {
-      setRequestError(UNKNOWN_ERROR);
-    }
-
-    setSubmitting(false);
+  if (values.image_file) {
+    values.profile_image = await toBase64(values.image_file);
   }
+
+  delete values.image_file;
+  const response = user
+    ? await updateUser(values, user, setRequestError)
+    : await postUser(values, setRequestError);
+
+  if (response.data.success) {
+    setSuccess(true);
+    resetForm();
+    fileInputRef.current.value = null;
+  } else {
+    setRequestError(UNKNOWN_ERROR);
+  }
+
+  setSubmitting(false);
 };
 
 const CreateEditUser = ({ user }) => {
