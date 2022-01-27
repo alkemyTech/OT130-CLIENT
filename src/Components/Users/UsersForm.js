@@ -1,9 +1,8 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Spinner } from "react-bootstrap";
 import { ErrorMessage, Field, Form } from "formik";
 import "../FormStyles.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import userTypes from "../../Helpers/userTypes";
 
 
