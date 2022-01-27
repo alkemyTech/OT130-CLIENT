@@ -6,9 +6,11 @@ import {
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
+  NUMBER_SHORT,
   PASSWORD_SHORT,
   TITLE_LONG,
-  TITLE_SHORT 
+  TITLE_SHORT, 
+  INVALID_PHONE
 } from './messagesText'
 
 const yupTitles = () =>
@@ -76,8 +78,14 @@ const yupPassRegister = (minMsg,passMsg) =>
 const yupConfirmPass = (passRef,passMsg) =>
   Yup.string()
   .oneOf([Yup.ref(passRef), null], passMsg)
-  .required(INPUT_REQUIRED)
-
+    .required(INPUT_REQUIRED)
+  
+const yupPhone = () =>
+  Yup.string()
+    .matches(/^[0-9]+$/,INVALID_PHONE)
+    .min(8, NUMBER_SHORT)
+    .required(INPUT_REQUIRED);
+    
 export {
   yupCustomString,
   yupConfirmPass,
@@ -88,6 +96,7 @@ export {
   yupLastName,
   yupPassword, 
   yupPassRegister,
+  yupPhone,
   yupShortDesc, 
   yupTitles, 
   yupUserRoles,
