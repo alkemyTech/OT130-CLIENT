@@ -7,7 +7,8 @@ import React, {useEffect, useState} from "react";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {Get} from "../../Services/privateApiService";
+import {Get, Patch, Post} from "../../Services/privateApiService";
+import {UNKNOWN_ERROR} from "../../Helpers/messagesText";
 
 const emptyObject = {
   id: "",
@@ -19,8 +20,8 @@ const emptyObject = {
 
 const NewsForm = ({news}) => {
   const [initialValues, setInitialValues] = useState(news || emptyObject);
-  const [error, setError] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   const getCategories = async () => {
     const res = await Get("categories");
@@ -41,31 +42,51 @@ const NewsForm = ({news}) => {
   };
 
   const handleSubmit = ({name, content, image, category_id}) => {
-    console.log(name, content, image, category_id);
+    setInitialValues({name, content, image, category_id});
+
+    if (initialValues.id) {
+      const res = Patch(`news/${initialValues.id}`, initialValues);
+
+      if (res.data.success) {
+        setSuccess(true);
+      } else {
+        alert(`${UNKNOWN_ERROR}: ${res.data.message}`);
+      }
+    } else {
+      const res = Post("news", initialValues);
+
+      if (res.data.success) {
+        setSuccess(true);
+        console.log(res.data.message);
+      } else {
+        setSuccess(`${UNKNOWN_ERROR}: ${res.data.message}`);
+      }
+    }
   };
 
   useEffect(() => {
     console.log(initialValues);
   }, [initialValues]);
+  useEffect(() => {
+    console.log(success);
+  }, [success]);
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => handleSubmit(values)}
+      onSubmit={(values, {resetForm}) => {
+        resetForm();
+        handleSubmit(values);
+      }}
     >
       {({values, handleChange, handleSubmit, touched, setFieldValue}) => (
         <form className="form-container" onSubmit={handleSubmit}>
-          {error && (
-            <div className="">
-              <p>Todos los campos son obligatorios</p>
-            </div>
-          )}
           <input
             className="input-field"
             type="text"
             name="title"
             onChange={handleChange("name")}
-            placeholder="Enter News"
+            placeholder="Titulo de la noticia"
             value={values.name}
           />
           <CKEditor
@@ -82,6 +103,9 @@ const NewsForm = ({news}) => {
               accept="image/*"
               onChange={handleChange("image")}
             />
+            {values.id && (
+              <p className=" mt-3">Ingrese nueva si desea cambiar</p>
+            )}
           </div>
           <select
             className="select-field"
@@ -90,7 +114,7 @@ const NewsForm = ({news}) => {
             onChange={handleChange("category_id")}
           >
             <option value="" disabled>
-              Select category
+              Seleccionar categoria
             </option>
             {categories.map(({id, name}) => (
               <option value={id} key={id}>
@@ -99,7 +123,7 @@ const NewsForm = ({news}) => {
             ))}
           </select>
           <button className="submit-btn" type="submit">
-            {initialValues.id ? "Edit" : "Send"}
+            {values.id ? "Editar" : "Enviar"}
           </button>
         </form>
       )}
