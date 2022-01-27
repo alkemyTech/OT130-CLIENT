@@ -2,16 +2,16 @@ import React, { useRef, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../FormStyles.css';
-import { 
-    acceptedImageFormats,
+import {    
     categoryDescriptionSchema, 
     categoryFileSchema, 
-    categoryNameSchema 
+    categoryNameSchema, 
+    SUPPORTED_IMAGE_FORMATS
 } from '../../Validations/CategoriesValidation';
 import { 
     saveCategory, 
     updateCategory 
-} from '../../Services/privateApiService';
+} from '../../Services/categoryService/categoryService';
 
 const currentDate = new Date().toJSON()
 
@@ -26,7 +26,7 @@ const CategoriesForm = ({ category }) => {
         created_at: currentDate,
         updated_at: currentDate,
         deleted_at: ""
-    };
+    };   
     const [errorName, setErrorName] = useState('');
     const [errorDescription, setErrorDescription] = useState('');
     const [errorFile, setErrorFile] = useState('');
@@ -47,19 +47,21 @@ const CategoriesForm = ({ category }) => {
     };
 
     const handleChange = (e) => {
-        if ( e.target.name === 'name' ) {
-            setCategoryValues({ 
-                ...categoryValues, 
-                name: e.target.value 
-            })
-        } if ( e.target.name === 'image' ) {
-            const file = e.target.files[0]
-            if ({ file }) {
-                setCategoryValues({ 
-                    ...categoryValues, 
-                    image: file 
-                })          
-            }}
+        const { name, value } = e.target;
+        setCategoryValues((categoryValues) => {
+          if (name === 'image') {
+            const value = e.target.files[0]
+            return {
+                ...categoryValues,
+                [name]: value,
+              };
+          }else{
+            return {
+                ...categoryValues,
+                [name]: value,
+              };
+          }   
+        });     
     };
 
     const validateName = () => {
@@ -67,7 +69,7 @@ const CategoriesForm = ({ category }) => {
         categoryNameSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];                       
-                setErrorName( errorActive )         
+                setErrorName(errorActive);         
         });
     };
 
@@ -76,7 +78,7 @@ const CategoriesForm = ({ category }) => {
         categoryDescriptionSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];           
-                setErrorDescription( errorActive )            
+                setErrorDescription(errorActive);            
         });
     };
 
@@ -85,14 +87,25 @@ const CategoriesForm = ({ category }) => {
         categoryFileSchema.validate( categoryValues )
         .catch(err => {
             const errorActive = err.errors[0];         
-                setErrorFile( errorActive )            
+                setErrorFile(errorActive);      
         });
     };
 
-    const validatateData = async () => {
+    const validateData = () => {
         validateName();
         validateDescription();
-        validateFile();
+        validateFile();       
+    };
+
+    const choiceTypeRequest = () => {
+        category        
+        ? updateCategory(categoryValues.id, categoryValues)        
+        : saveCategory(categoryValues);       
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();        
+        validateData();
         const validName = await categoryNameSchema.isValid( categoryValues );
         const validDescription = await categoryDescriptionSchema.isValid( categoryValues );
         const validFile = await categoryFileSchema.isValid( categoryValues );
@@ -100,17 +113,6 @@ const CategoriesForm = ({ category }) => {
         if ( validName && validDescription && validFile ) {    
             choiceTypeRequest();
         };   
-    };
-
-    const choiceTypeRequest = async() => {
-        category        
-        ? await updateCategory(`categories/${categoryValues.id}`, categoryValues)        
-        : await saveCategory(`categories`, categoryValues)       
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        validatateData();
     };  
 
     return (
@@ -136,7 +138,7 @@ const CategoriesForm = ({ category }) => {
                 onChange={handleChange} 
                 className="hideElement" 
                 ref={inputRefImage}
-                accept={acceptedImageFormats}
+                accept={SUPPORTED_IMAGE_FORMATS}
             >
             </input>
             <button 

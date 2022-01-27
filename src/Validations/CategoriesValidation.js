@@ -1,6 +1,7 @@
 import * as yup from 'yup'
 
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]
+const SUPPORTED_IMAGE_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+const CATEGORY_URL = '/categories';
 
 export const categoryNameSchema = yup.object().shape({
   name: yup
@@ -17,8 +18,10 @@ export const categoryFileSchema = yup.object().shape({
   image: yup
   .mixed()
   .required("Campo obligatorio")
-  .test('fileType', "El formato debe ser .png/.jpg", value => SUPPORTED_FORMATS.includes(value.type))
+  .test('fileType', "El formato debe ser .png/.jpg", value => SUPPORTED_IMAGE_FORMATS.includes(value.type))
 });
 
-export const acceptedImageFormats = 'image/png,image/jpeg';
-
+export {
+  SUPPORTED_IMAGE_FORMATS,
+  CATEGORY_URL
+}

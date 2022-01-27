@@ -8,12 +8,12 @@ const config = {
   },
 };
 const instance = axios.create(config); 
-const saveCategory = async (url, data) => await instance.post(url, data);
-const updateCategory = async (url, data) => await instance.patch(url, data);
-const getCaregory = async (url, data) => await instance.post(url, data);
+const post = async (url, data) => await instance.post(url, data);
+const patch = async (url, data) => await instance.patch(url, data);
+const get = async (url, data) => await instance.post(url, data);
 
 export { 
-  saveCategory, 
-  updateCategory, 
-  getCaregory 
+  post, 
+  patch, 
+  get 
 };
