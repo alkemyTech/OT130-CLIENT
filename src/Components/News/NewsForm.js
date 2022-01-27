@@ -1,5 +1,6 @@
+import * as Yup from "yup";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
-import {Formik} from "formik";
+import {ErrorMessage, Formik} from "formik";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import React, {useEffect, useState} from "react";
@@ -8,7 +9,8 @@ import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {Get, Patch, Post} from "../../Services/privateApiService";
-import {UNKNOWN_ERROR} from "../../Helpers/messagesText";
+import {INPUT_REQUIRED, UNKNOWN_ERROR} from "../../Helpers/messagesText";
+import {yupImages, yupTitles} from "../../Helpers/formValidations";
 
 const emptyObject = {
   id: "",
@@ -41,8 +43,15 @@ const NewsForm = ({news}) => {
     setFieldValue("content", editor.getData());
   };
 
+  const validation = Yup.object().shape({
+    name: yupTitles(),
+    content: Yup.string().required(INPUT_REQUIRED),
+    image: yupImages(),
+    category_id: Yup.number().required(INPUT_REQUIRED),
+  });
+
   const handleSubmit = ({name, content, image, category_id}) => {
-    setInitialValues({name, content, image, category_id});
+    setInitialValues({name, content, image: image.name, category_id});
 
     if (initialValues.id) {
       const res = Patch(`news/${initialValues.id}`, initialValues);
@@ -78,6 +87,7 @@ const NewsForm = ({news}) => {
         resetForm();
         handleSubmit(values);
       }}
+      validationSchema={validation}
     >
       {({values, handleChange, handleSubmit, touched, setFieldValue}) => (
         <form className="form-container" onSubmit={handleSubmit}>
@@ -89,11 +99,15 @@ const NewsForm = ({news}) => {
             placeholder="Titulo de la noticia"
             value={values.name}
           />
+          {touched.name ? <ErrorMessage name="name" /> : null}
+
           <CKEditor
             editor={ClassicEditor}
             data={initialValues?.content}
             onChange={(e, editor) => handleChangeCKE(editor, setFieldValue)}
           />
+
+          {touched.content ? <ErrorMessage name="content" /> : null}
           <div className="input-field">
             <label>Imagen: </label>
             <input
@@ -101,12 +115,13 @@ const NewsForm = ({news}) => {
               type="file"
               name="img"
               accept="image/*"
-              onChange={handleChange("image")}
+              onChange={(e) => setFieldValue("image", e.currentTarget.files[0])}
             />
             {values.id && (
               <p className=" mt-3">Ingrese nueva si desea cambiar</p>
             )}
           </div>
+          {touched.image ? <ErrorMessage name="image" /> : null}
           <select
             className="select-field"
             name="category"
@@ -122,6 +137,7 @@ const NewsForm = ({news}) => {
               </option>
             ))}
           </select>
+          {touched.category_id ? <ErrorMessage name="category_id" /> : null}
           <button className="submit-btn" type="submit">
             {values.id ? "Editar" : "Enviar"}
           </button>
