@@ -49,11 +49,11 @@ const NewsForm = ({news}) => {
     category_id: Yup.number().required(INPUT_REQUIRED),
   });
 
-  const handleSubmit = ({name, content, image, category_id}) => {
+  const handleSubmit = async ({name, content, image, category_id}) => {
     setInitialValues({name, content, image: image.name, category_id});
 
     if (initialValues.id) {
-      const res = Patch(`news/${initialValues.id}`, initialValues);
+      const res = await Patch(`news/${initialValues.id}`, initialValues);
 
       if (res.data.success) {
         setSuccess(true);
@@ -61,13 +61,17 @@ const NewsForm = ({news}) => {
         alert(`${UNKNOWN_ERROR}: ${res.data.message}`);
       }
     } else {
-      const res = Post("news", initialValues);
+      const res = await Post("news", initialValues);
 
       if (res.data.success) {
         setSuccess(true);
       } else {
         setSuccess(`${UNKNOWN_ERROR}: ${res.data.message}`);
       }
+    }
+
+    if (success) {
+      setInitialValues(emptyObject);
     }
   };
 
