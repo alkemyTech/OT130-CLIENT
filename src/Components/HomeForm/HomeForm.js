@@ -7,12 +7,12 @@ import { getSlides } from "../../Services/slideService";
 import WelcomeTextForm from "../WelcomeTextForm/WelcomeTextForm";
 import SlidesForm from "../Slides/SlidesForm";
 
+import { SLIDES_LIMIT } from "../../Helpers/constants";
+
 const HomeForm = () => {
   const [slides, setSlides] = useState([{}]);
   const [welcomeText, setWelcomeText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  const SLIDES_LIMIT = 3;
 
   useEffect(() => {
     const fetchData = async () => {
