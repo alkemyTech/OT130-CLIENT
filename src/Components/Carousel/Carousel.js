@@ -1,12 +1,14 @@
 import React from "react";
 import { Carousel as BootstrapCarousel } from "react-bootstrap";
 
+import { CAROUSEL_INTERVAL } from "../../Helpers/constants";
+
 import "./Carousel.css";
 
 const Carousel = ({ slides }) => (
   <BootstrapCarousel>
     {slides.map((slide, index) => (
-      <BootstrapCarousel.Item key={index} interval={5000}>
+      <BootstrapCarousel.Item key={index} interval={CAROUSEL_INTERVAL}>
         <img
           className="slide-image d-block w-100"
           src={slide.image}
