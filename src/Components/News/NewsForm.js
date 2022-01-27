@@ -1,16 +1,15 @@
 import * as Yup from "yup";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {ErrorMessage, Formik} from "formik";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import React, {useEffect, useState} from "react";
+import {INPUT_REQUIRED, UNKNOWN_ERROR} from "../../Helpers/messagesText";
+import {yupImages, yupTitles} from "../../Helpers/formValidations";
+import {Get, Patch, Post} from "../../Services/privateApiService";
 
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {Get, Patch, Post} from "../../Services/privateApiService";
-import {INPUT_REQUIRED, UNKNOWN_ERROR} from "../../Helpers/messagesText";
-import {yupImages, yupTitles} from "../../Helpers/formValidations";
 
 const emptyObject = {
   id: "",
@@ -66,19 +65,11 @@ const NewsForm = ({news}) => {
 
       if (res.data.success) {
         setSuccess(true);
-        console.log(res.data.message);
       } else {
         setSuccess(`${UNKNOWN_ERROR}: ${res.data.message}`);
       }
     }
   };
-
-  useEffect(() => {
-    console.log(initialValues);
-  }, [initialValues]);
-  useEffect(() => {
-    console.log(success);
-  }, [success]);
 
   return (
     <Formik
@@ -106,8 +97,8 @@ const NewsForm = ({news}) => {
             data={initialValues?.content}
             onChange={(e, editor) => handleChangeCKE(editor, setFieldValue)}
           />
-
           {touched.content ? <ErrorMessage name="content" /> : null}
+
           <div className="input-field">
             <label>Imagen: </label>
             <input
@@ -122,6 +113,7 @@ const NewsForm = ({news}) => {
             )}
           </div>
           {touched.image ? <ErrorMessage name="image" /> : null}
+
           <select
             className="select-field"
             name="category"
@@ -138,9 +130,15 @@ const NewsForm = ({news}) => {
             ))}
           </select>
           {touched.category_id ? <ErrorMessage name="category_id" /> : null}
+
           <button className="submit-btn" type="submit">
             {values.id ? "Editar" : "Enviar"}
           </button>
+          {success && (
+            <h2 className="message success-message">
+              Noticia enviada correctamente
+            </h2>
+          )}
         </form>
       )}
     </Formik>
