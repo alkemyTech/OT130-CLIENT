@@ -8,15 +8,6 @@ const config = {
   },
 };
 
-<<<<<<< HEAD
-const instance = axios.create(config);
-
-const Post = async (url, data) => await instance.post(url, data);
-
-const Patch = async (url, data) => await instance.patch(url, data);
-
-const Get = async (url, data) => await instance.post(url, data);
-=======
 const instance = axios.create( config ); 
 
 const post = async ( url, data ) => { 
@@ -45,10 +36,9 @@ const get = async ( url, data ) => {
     return error;
   }
 };
->>>>>>> temp
 
 export { 
-  Get,
-  Post,
-  Patch 
+  get,
+  post,
+  patch 
 };
