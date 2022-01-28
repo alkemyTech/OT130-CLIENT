@@ -13,8 +13,6 @@ const ActivitiesList = () => {
 
   return (
     <div>
-      <Title text="Actividades" />
-      <Container>
             <h1 className='text-center my-3'>Listado Actividades</h1>
             <ul className="list-container">
                 {activitiesMock.length > 0 ? (
@@ -30,7 +28,6 @@ const ActivitiesList = () => {
                 <p>No hay actividades</p>
                 )}
             </ul>
-      </Container>
     </div>
   );
 };

@@ -15,6 +15,7 @@ import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import UserForm from './Components/Users/UsersForm';
 import './App.css';
+import Activities from './Components/Activities/Activities';
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/activities" component={ActivitiesList} />
+          <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
@@ -37,6 +38,7 @@ function App() {
       </BrowserRouter>
     <div className="App">
       <header className="App-header">
+        <Activities />
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
         <p>
