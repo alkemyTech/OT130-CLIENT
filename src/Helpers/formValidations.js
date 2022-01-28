@@ -75,13 +75,13 @@ const yupPassRegister = (minMsg,passMsg) =>
 
 const yupConfirmPass = (passRef,passMsg) =>
   Yup.string()
-   .oneOf([Yup.ref(passRef), null], passMsg)
-   .required(INPUT_REQUIRED)
+    .oneOf([Yup.ref(passRef), null], passMsg)
+    .required(INPUT_REQUIRED)
 
   const yupLinks = () =>
   Yup.string()
-   .url()
-   .required(INPUT_REQUIRED)
+    .url()
+    .required(INPUT_REQUIRED)
 
 
 export {
