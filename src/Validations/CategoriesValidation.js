@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-const SUPPORTED_IMAGE_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+const SUPPORTED_IMAGE_FORMATS = ["image/jpeg", "image/png"];
 const CATEGORY_URL = '/categories';
 
 export const categoryNameSchema = yup.object().shape({

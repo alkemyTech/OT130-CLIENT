@@ -38,7 +38,7 @@ const CategoriesForm = ({ category }) => {
         const data = editor.getData();
         setCategoryValues({ 
             ...categoryValues, 
-            description: data 
+            description: data, 
         })
     };
 
@@ -46,74 +46,73 @@ const CategoriesForm = ({ category }) => {
         inputRefImage.current.click();
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCategoryValues((categoryValues) => {
-          if (name === 'image') {
-            const value = e.target.files[0]
+    const handleChange = ( e ) => {
+        let { name, value } = e.target;
+        setCategoryValues(( categoryValues ) => {
+            if (name === 'image') {
+                value = e.target.files[0];            
+            }  
             return {
                 ...categoryValues,
                 [name]: value,
-              };
-          }else{
-            return {
-                ...categoryValues,
-                [name]: value,
-              };
-          }   
-        });     
+            };
+        });  
     };
 
-    const validateName = () => {
+    const setErrorInputName = () => {
         setErrorName('');
         categoryNameSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];                       
-                setErrorName(errorActive);         
+                setErrorName( errorActive );         
         });
     };
 
-    const validateDescription = () => {        
+    const setErrorInputDescription = () => {        
         setErrorDescription('');
         categoryDescriptionSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];           
-                setErrorDescription(errorActive);            
+                setErrorDescription( errorActive );            
         });
     };
 
-    const validateFile = () => {
+    const setErrorInputFile = () => {
         setErrorFile('');  
         categoryFileSchema.validate( categoryValues )
         .catch(err => {
             const errorActive = err.errors[0];         
-                setErrorFile(errorActive);      
+                setErrorFile( errorActive );      
         });
     };
-
-    const validateData = () => {
-        validateName();
-        validateDescription();
-        validateFile();       
+    const updateFormErrorDetails = ()=>{
+        setErrorInputName();
+        setErrorInputDescription();
+        setErrorInputFile();
     };
-
-    const choiceTypeRequest = () => {
-        category        
-        ? updateCategory(categoryValues.id, categoryValues)        
-        : saveCategory(categoryValues);       
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();        
-        validateData();
+    
+    const formValidation = async () => {
         const validName = await categoryNameSchema.isValid( categoryValues );
         const validDescription = await categoryDescriptionSchema.isValid( categoryValues );
         const validFile = await categoryFileSchema.isValid( categoryValues );
               
         if ( validName && validDescription && validFile ) {    
-            choiceTypeRequest();
-        };   
-    };  
+            return true;       
+        };         
+    };    
+
+    const choiceTypeRequest = () => {        
+     category        
+        ? updateCategory( categoryValues.id, categoryValues )        
+        : saveCategory( categoryValues );       
+    };
+
+    const handleSubmit = async ( e ) =>{
+        e.preventDefault();
+        updateFormErrorDetails();
+        const validatedForm = await formValidation();
+        validatedForm && choiceTypeRequest();        
+    };
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
@@ -146,13 +145,13 @@ const CategoriesForm = ({ category }) => {
                 type='button' 
                 onClick={handlePictureClick}
             >
-                Select image
+                Selecciona una imagen
             </button>
             {errorFile && <div className='text-danger'>{errorFile}</div> }
             <button 
                 className="submit-btn" 
                 type="submit"
-            >Send</button>        
+            >Enviar</button>        
         </form>
     );
 };

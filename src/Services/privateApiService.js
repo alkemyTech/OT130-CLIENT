@@ -7,10 +7,35 @@ const config = {
     "content-type": "application/json",
   },
 };
-const instance = axios.create(config); 
-const post = async (url, data) => await instance.post(url, data);
-const patch = async (url, data) => await instance.patch(url, data);
-const get = async (url, data) => await instance.post(url, data);
+
+const instance = axios.create( config ); 
+
+const post = async ( url, data ) => { 
+  try {
+    const res = await instance.post( url, data );
+    return res;
+  } catch ( error ) {
+    return error;
+  }
+};
+
+const patch = async ( url, data ) => { 
+  try {
+    const res = await instance.patch( url, data );
+    return res;
+  } catch ( error ) {
+    return error;   
+  }
+};
+
+const get = async ( url, data ) => { 
+  try {
+    const res = await instance.get( url, data );
+    return res;
+  } catch ( error ) { 
+    return error;
+  }
+};
 
 export { 
   post, 
