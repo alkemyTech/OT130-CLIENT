@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import "./SlideCard.css";
 
@@ -11,9 +12,11 @@ const SlideCard = ({ slide, onClickDelete }) => {
         <Card.Title className="text-center">{slide?.name}</Card.Title>
         <Card.Text> Orden: {slide?.order}</Card.Text>
         <div className="text-center">
-          <Button variant="primary" className="mx-3">
-            Editar
-          </Button>
+          <Link to={`/backoffice/create-slide/${slide.id}`}>
+            <Button variant="primary" className="mx-3">
+              Editar
+            </Button>
+          </Link>
           <Button variant="danger" onClick={() => onClickDelete(slide.id)}>Borrar</Button>
         </div>
       </Card.Body>
