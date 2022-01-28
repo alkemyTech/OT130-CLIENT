@@ -5,6 +5,7 @@ import { Counter } from './features/counter/Counter';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import Donation from './Components/Donations/Donation'
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
+          <Route path="/donar" component={Donation}/>
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
