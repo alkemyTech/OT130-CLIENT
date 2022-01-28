@@ -9,7 +9,6 @@ import { yupImages, yupLongDesc, yupTitles } from "../../Helpers/formValidations
 import "../../Components/FormStyles.css";
 import "./styles.css";
 import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from "../../Helpers/messagesText";
-import { CREATE_ACTIVITY } from "../../rutas/config";
 
 const initialValues = {
   name: "",
