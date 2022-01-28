@@ -17,6 +17,7 @@ const PASSWORD_REGISTER_CONTAIN =
   "La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).";
 const PASSWORD_DONT_MATCH = "Las contraseñas no coinciden";
 const ACTIVITY_ADDED_SUCCESSFULLY = "La actividad fue añadida correctamente";
+const ACTIVITY_ADDED_ERROR = "Ocurrió un error al intentar añadir la actividad";
 const NO_ACTIVITIES = "No se han encontrado actividades";
 const SEND = "Enviar";
 const ACTIVITY_TITLE = "Titulo de la actividad";
@@ -38,4 +39,5 @@ export {
   NO_ACTIVITIES,
   SEND,
   ACTIVITY_TITLE,
+  ACTIVITY_ADDED_ERROR,
 };

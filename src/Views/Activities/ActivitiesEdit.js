@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { EmptyScreen } from "../../Components/EmptyScreen";
-import FormActivities from "../../Components/Activities/Form";
+import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
 import { getActivityDataById, updateActivityDataById } from "../../Services/activitiesService";
 import { toBase64 } from "../../Helpers/base64";
 import { yupLongDesc, yupTitles } from "../../Helpers/formValidations";
@@ -59,7 +59,7 @@ const ActivitiesEdit = ({ match: { params } }) => {
     >
       {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
         return (
-          <FormActivities
+          <ActivitiesForm
             handleSubmit={handleSubmit}
             setFieldValue={setFieldValue}
             values={values}

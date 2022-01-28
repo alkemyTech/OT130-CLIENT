@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Views/Activities/ActivitiesForm';
+import ActivitiesCreate from './Views/Activities/ActivitiesCreate';
 import ActivitiesEdit from './Views/Activities/ActivitiesEdit'
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import MembersForm from './Components/Members/MembersForm';
@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
+          <Route path="/create-activity" component={ActivitiesCreate} />
           <Route path="/edit-activity/:id" component={ActivitiesEdit} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />

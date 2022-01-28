@@ -2,13 +2,13 @@ import * as Yup from "yup";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Formik } from "formik";
-import FormActivities from "../../Components/Activities/Form";
+import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
 import { saveActivityData } from "../../Services/activitiesService";
 import { toBase64 } from "../../Helpers/base64";
 import { yupImages, yupLongDesc, yupTitles } from "../../Helpers/formValidations";
 import "../../Components/FormStyles.css";
 import "./styles.css";
-import { ACTIVITY_ADDED_SUCCESSFULLY } from "../../Helpers/messagesText";
+import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from "../../Helpers/messagesText";
 import { CREATE_ACTIVITY } from "../../rutas/config";
 
 const initialValues = {
@@ -17,9 +17,10 @@ const initialValues = {
   image: "",
 };
 
-const ActivitiesForm = () => {
-  const { push } = useHistory();
+const ActivitiesCreate = () => {
+  const { go } = useHistory();
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const validation = Yup.object().shape({
     name: yupTitles(),
@@ -31,22 +32,36 @@ const ActivitiesForm = () => {
     setFieldValue("description", editor.getData());
   };
 
-  const handleSubmit = async ({ image, name, description }) => {
+  const handleSuccess = () => {
     setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+      go(0);
+    }, 3000);
+  };
+
+  const handleSubmit = async ({ image, name, description }) => {
     const base64Img = await toBase64(image);
     const body = {
       name,
       image: base64Img,
       description,
     };
-    await saveActivityData(body);
-    setSuccess(false);
-    push(CREATE_ACTIVITY, { success: "true" });
+    const { success } = await saveActivityData(body);
+    success ? handleSuccess() : setErrorMessage(true);
+  };
+
+  const handleScreenMessages = () => {
+    if (errorMessage) {
+      return <p className="align-text-center">{ACTIVITY_ADDED_ERROR}</p>;
+    } else if (success) {
+      return <p className="align-text-center">{ACTIVITY_ADDED_SUCCESSFULLY}</p>;
+    }
   };
 
   return (
     <div>
-      {success && <p className="success-message">{ACTIVITY_ADDED_SUCCESSFULLY}</p>}
+      {handleScreenMessages()}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -56,7 +71,7 @@ const ActivitiesForm = () => {
       >
         {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
           return (
-            <FormActivities
+            <ActivitiesForm
               handleSubmit={handleSubmit}
               setFieldValue={setFieldValue}
               values={values}
@@ -72,4 +87,4 @@ const ActivitiesForm = () => {
   );
 };
 
-export default ActivitiesForm;
+export default ActivitiesCreate;

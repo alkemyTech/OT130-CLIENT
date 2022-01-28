@@ -5,7 +5,7 @@ import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SEND, ACTIVITY_TITLE } from "../../Helpers/messagesText";
 
-const FormActivities = ({
+const ActivitiesForm = ({
   handleSubmit,
   setFieldValue,
   values,
@@ -24,14 +24,14 @@ const FormActivities = ({
       placeholder={ACTIVITY_TITLE}
       value={values.name}
     />
-    {touched.name ? <ErrorMessage name="name" /> : null}
+    {touched.name && <ErrorMessage name="name" />}
 
     <CKEditor
       editor={ClassicEditor}
       data={activityData?.description}
       onChange={(e, editor) => CKEditorHandleOnChange(editor, setFieldValue)}
     />
-    {touched.description ? <ErrorMessage name="description" /> : null}
+    {touched.description && <ErrorMessage name="description" />}
     <input
       className="submit-btn"
       type="file"
@@ -47,4 +47,4 @@ const FormActivities = ({
   </form>
 );
 
-export default FormActivities;
+export default ActivitiesForm;
