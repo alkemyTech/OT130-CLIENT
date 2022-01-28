@@ -1,14 +1,13 @@
 import React from 'react';
-import Title from '../Title/Title';
-import Texts from '../About/Texts';
 
+import ListTexts from '../ListTexts/ListTexts';
 const data = require('./about.json');
+
 const About = () => {
     
     return (
         <>
-            <Title text="Nosotros" />
-            <Texts texts={data}/>
+            <ListTexts itemsSection={data}/>
         </>
     )
 };
