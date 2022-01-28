@@ -2,16 +2,16 @@ import React, { useRef, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../FormStyles.css';
-import {    
-    categoryDescriptionSchema, 
-    categoryFileSchema, 
-    categoryNameSchema, 
-    SUPPORTED_IMAGE_FORMATS
-} from '../../Validations/CategoriesValidation';
+import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
 import { 
     saveCategory, 
     updateCategory 
 } from '../../Services/categoryService/categoryService';
+import { 
+    categoryDescriptionSchema, 
+    categoryFileSchema, 
+    categoryNameSchema 
+} from '../../Validations/CategoriesValidation';
 
 const currentDate = new Date().toJSON()
 
@@ -59,47 +59,56 @@ const CategoriesForm = ({ category }) => {
         });  
     };
 
-    const setErrorInputName = () => {
+    const cleanErrorsMessages = () => {
         setErrorName('');
+        setErrorDescription('');
+        setErrorFile('');  
+    };
+
+    const validateInputName = async () => {
+        const validName = await categoryNameSchema.isValid( categoryValues );
         categoryNameSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];                       
                 setErrorName( errorActive );         
         });
+        if ( validName  ) {    
+            return true;       
+        };           
     };
 
-    const setErrorInputDescription = () => {        
-        setErrorDescription('');
+    const validateInputDescription = async () => { 
+        const validDescription = await categoryDescriptionSchema.isValid( categoryValues );       
         categoryDescriptionSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];           
                 setErrorDescription( errorActive );            
         });
+        if ( validDescription ) {    
+            return true;       
+        }; 
     };
 
-    const setErrorInputFile = () => {
-        setErrorFile('');  
+    const validateInputFile = async () => {
+        const validFile = await categoryFileSchema.isValid( categoryValues );
         categoryFileSchema.validate( categoryValues )
         .catch(err => {
             const errorActive = err.errors[0];         
                 setErrorFile( errorActive );      
         });
-    };
-    const updateFormErrorDetails = ()=>{
-        setErrorInputName();
-        setErrorInputDescription();
-        setErrorInputFile();
-    };
-    
+        if ( validFile ) {    
+            return true;       
+        }; 
+    };  
+   
     const formValidation = async () => {
-        const validName = await categoryNameSchema.isValid( categoryValues );
-        const validDescription = await categoryDescriptionSchema.isValid( categoryValues );
-        const validFile = await categoryFileSchema.isValid( categoryValues );
-              
+        const validName = await validateInputName();
+        const validDescription = await validateInputDescription();
+        const validFile = await validateInputFile();
         if ( validName && validDescription && validFile ) {    
             return true;       
         };         
-    };    
+    };   
 
     const choiceTypeRequest = () => {        
      category        
@@ -109,7 +118,7 @@ const CategoriesForm = ({ category }) => {
 
     const handleSubmit = async ( e ) =>{
         e.preventDefault();
-        updateFormErrorDetails();
+        cleanErrorsMessages();
         const validatedForm = await formValidation();
         validatedForm && choiceTypeRequest();        
     };

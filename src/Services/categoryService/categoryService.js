@@ -1,4 +1,4 @@
-import { CATEGORY_URL } from "../../Validations/CategoriesValidation";
+import { CATEGORY_URL } from "../../config/imagePaths";
 import { 
     patch, 
     post 
@@ -6,12 +6,11 @@ import {
 
 const updateCategory = async ( id, data ) => {
     const res = await patch( `${CATEGORY_URL}/${id}`, data );
-    console.log( res ); // Retirar
     return res;
 };
+
 const saveCategory = async ( data ) => {
     const res = await post( CATEGORY_URL, data );
-    console.log( res ); // Retirar
     return res;
 };
 

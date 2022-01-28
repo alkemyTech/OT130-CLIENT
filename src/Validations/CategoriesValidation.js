@@ -1,27 +1,26 @@
 import * as yup from 'yup'
-
-const SUPPORTED_IMAGE_FORMATS = ["image/jpeg", "image/png"];
-const CATEGORY_URL = '/categories';
+import { SUPPORTED_IMAGE_FORMATS } from '../config/imagePaths';
+import { 
+  INPUT_REQUIRED, 
+  INVALID_IMAGE_EXT, 
+  TITLE_SHORT 
+} from '../Helpers/messagesText';
 
 export const categoryNameSchema = yup.object().shape({
   name: yup
   .string()
-  .required("Campo obligatorio")
-  .min(4, "Minimo 4 caracteres")
+  .required(INPUT_REQUIRED)
+  .min(4, TITLE_SHORT)
 });
 export const categoryDescriptionSchema = yup.object().shape({
   description: yup
   .string()
-  .required("Campo obligatorio")
+  .required(INPUT_REQUIRED)
 });
 export const categoryFileSchema = yup.object().shape({
   image: yup
   .mixed()
-  .required("Campo obligatorio")
-  .test('fileType', "El formato debe ser .png/.jpg", value => SUPPORTED_IMAGE_FORMATS.includes(value.type))
+  .required(INPUT_REQUIRED)
+  .test('fileType', INVALID_IMAGE_EXT, value => SUPPORTED_IMAGE_FORMATS.includes(value.type))
 });
 
-export {
-  SUPPORTED_IMAGE_FORMATS,
-  CATEGORY_URL
-}
