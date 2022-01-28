@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./logo.svg";
 import {Counter} from "./features/counter/Counter";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -14,6 +13,7 @@ import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import UserForm from "./Components/Users/UsersForm";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
