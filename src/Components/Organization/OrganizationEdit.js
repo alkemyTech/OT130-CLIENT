@@ -6,7 +6,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { updateOrganizationData } from "../../Services/organiationService";
-import { yupShortDesc, yupTitles , yupImages , yupLongDesc , yupUrlWebSite} from "../../Helpers/formValidations";
+import { yupShortDesc, yupTitles , yupImages , yupLongDesc , yupLinks} from "../../Helpers/formValidations";
 import { toBase64 } from "../../Helpers/base64";
 import "./style.css";
 import { ORGANIZATION } from "../../rutas/config";
@@ -36,10 +36,10 @@ const OrganizationEdit = () => {
     long_description: yupLongDesc(),
     short_description: yupShortDesc(),
     logo: yupImages(),
-    linkedin_url: yupUrlWebSite(),
-    instagram_url: yupUrlWebSite(),
-    facebook_url: yupUrlWebSite(),
-    twitter_url: yupUrlWebSite() 
+    linkedin_url: yupLinks(),
+    instagram_url: yupLinks(),
+    facebook_url: yupLinks(),
+    twitter_url: yupLinks() 
   });
 
   const initialValues =  {
