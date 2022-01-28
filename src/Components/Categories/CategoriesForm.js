@@ -38,7 +38,7 @@ const CategoriesForm = ({ category }) => {
         const data = editor.getData();
         setCategoryValues({ 
             ...categoryValues, 
-            description: data 
+            description: data, 
         })
     };
 
@@ -46,6 +46,7 @@ const CategoriesForm = ({ category }) => {
         inputRefImage.current.click();
     };
 
+<<<<<<< HEAD
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCategoryValues((categoryValues) => {
@@ -60,31 +61,56 @@ const CategoriesForm = ({ category }) => {
     };
 
     const validateInputName = () => {
+=======
+    const handleChange = ( e ) => {
+        let { name, value } = e.target;
+        setCategoryValues(( categoryValues ) => {
+            if (name === 'image') {
+                value = e.target.files[0];            
+            }  
+            return {
+                ...categoryValues,
+                [name]: value,
+            };
+        });  
+    };
+
+    const setErrorInputName = () => {
+>>>>>>> temp
         setErrorName('');
         categoryNameSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];                       
-                setErrorName(errorActive);         
+                setErrorName( errorActive );         
         });
     };
 
+<<<<<<< HEAD
     const validateInputDescription = () => {        
+=======
+    const setErrorInputDescription = () => {        
+>>>>>>> temp
         setErrorDescription('');
         categoryDescriptionSchema.validate( categoryValues )
         .catch( err => {
             const errorActive = err.errors[0];           
-                setErrorDescription(errorActive);            
+                setErrorDescription( errorActive );            
         });
     };
 
+<<<<<<< HEAD
     const validateInputFile = () => {
+=======
+    const setErrorInputFile = () => {
+>>>>>>> temp
         setErrorFile('');  
         categoryFileSchema.validate( categoryValues )
         .catch(err => {
             const errorActive = err.errors[0];         
-                setErrorFile(errorActive);      
+                setErrorFile( errorActive );      
         });
     };
+<<<<<<< HEAD
 
     const validateInputs = () => {
         validateInputName();
@@ -115,6 +141,36 @@ const CategoriesForm = ({ category }) => {
         choiceTypeRequest();
          
     };  
+=======
+    const updateFormErrorDetails = ()=>{
+        setErrorInputName();
+        setErrorInputDescription();
+        setErrorInputFile();
+    };
+    
+    const formValidation = async () => {
+        const validName = await categoryNameSchema.isValid( categoryValues );
+        const validDescription = await categoryDescriptionSchema.isValid( categoryValues );
+        const validFile = await categoryFileSchema.isValid( categoryValues );
+              
+        if ( validName && validDescription && validFile ) {    
+            return true;       
+        };         
+    };    
+
+    const choiceTypeRequest = () => {        
+     category        
+        ? updateCategory( categoryValues.id, categoryValues )        
+        : saveCategory( categoryValues );       
+    };
+
+    const handleSubmit = async ( e ) =>{
+        e.preventDefault();
+        updateFormErrorDetails();
+        const validatedForm = await formValidation();
+        validatedForm && choiceTypeRequest();        
+    };
+>>>>>>> temp
 
     return (
         <form className="form-container" onSubmit={handleValidateForm}>

@@ -1,11 +1,18 @@
 import { CATEGORY_URL } from "../../Validations/CategoriesValidation";
-import { patch, post } from "../privateApiService";
+import { 
+    patch, 
+    post 
+} from "../privateApiService";
 
-const updateCategory = (id, data) => {
-    patch(`${CATEGORY_URL}/${id}`,data)
+const updateCategory = async ( id, data ) => {
+    const res = await patch( `${CATEGORY_URL}/${id}`, data );
+    console.log( res ); // Retirar
+    return res;
 };
-const saveCategory = (data) => {
-    post(CATEGORY_URL, data)
+const saveCategory = async ( data ) => {
+    const res = await post( CATEGORY_URL, data );
+    console.log( res ); // Retirar
+    return res;
 };
 
 export{
