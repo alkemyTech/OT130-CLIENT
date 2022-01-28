@@ -10,9 +10,9 @@ const response = {
 
 export const getData = async () => {
     try {
-      response.data = await axios.get(`${HOST}/projects`);
-      return response.data;
+      const {data} = await axios.get(`${HOST}/projects`);
+      return response.data = data;
     } catch (error) {
       return response.error = error;
     }
-  };
+};

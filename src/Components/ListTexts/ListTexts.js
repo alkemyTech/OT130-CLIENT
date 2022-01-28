@@ -8,11 +8,11 @@ const ListTexts = ({ itemSection }) => {
 
     return (
         <>
-            {itemSection.map(({title, description ,id}, index) => {
+            {itemSection.map(({subtitle, description ,id}, index) => {
                 return(
-                    <div key={id}>
+                    <div key={index}>
                         <Container className="mt-5" >
-                            <h2 className="list-texts-subtitle mb-4">{title}</h2>
+                            <h2 className="list-texts-subtitle mb-4">{subtitle}</h2>
                             <p className="list-texts-description">{description}</p>
                         </Container>
                     </div>
