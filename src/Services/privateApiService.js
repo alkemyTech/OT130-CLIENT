@@ -3,7 +3,7 @@ import axios from "axios";
 const config = {
   baseURL: "http://ongapi.alkemy.org/api/",
   headers: {
-    //Group: 130, //Aqui va el ID del equipo!!
+    Group: 130, //Aqui va el ID del equipo!!
     "content-type": "application/json",
   },
 };
@@ -16,8 +16,8 @@ const Patch = async (url, data) => await instance.patch(url, data);
 
 const Get = async (url) => await instance.get(url);
 
-export { 
+export {
   Get,
   Post,
-  Patch 
+  Patch
 };

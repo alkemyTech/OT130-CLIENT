@@ -1,41 +1,44 @@
 import * as Yup from "yup";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {CKEditor} from "@ckeditor/ckeditor5-react";
-import {ErrorMessage, Formik} from "formik";
-import React, {useEffect, useState} from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { ErrorMessage, Formik } from "formik";
+import React, { useEffect, useState } from "react";
 
-import {INPUT_REQUIRED, UNKNOWN_ERROR} from "../../Helpers/messagesText";
-import {yupImages, yupTitles} from "../../Helpers/formValidations";
-import {Get, Patch, Post} from "../../Services/privateApiService";
+import { getCategories } from "../../Services/categoriesService";
+import { INPUT_REQUIRED } from "../../Helpers/messagesText";
+import { sendNews, updateNews } from "../../Services/newsService";
+import { toBase64 } from "../../Helpers/base64";
+import { yupImages, yupTitles } from "../../Helpers/formValidations";
 
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const initialValues = {
-  id: "",
+  id: null,
   name: "",
   content: "",
   image: "",
   category_id: "",
 };
 
-const NewsForm = ({editNews}) => {
+const NewsForm = ({ editNews }) => {
   const [news, setNews] = useState(editNews || initialValues);
   const [categories, setCategories] = useState([]);
   const [success, setSuccess] = useState(false);
+  const [requestError, setRequestError] = useState();
 
-  const getCategories = async () => {
-    const res = await Get("categories");
-
-    if (res.data.success) {
-      setCategories(res.data.data);
-    } else {
-      alert(res.data.message);
+  const updateCategories = async () => {
+    const { data, error } = await getCategories();
+    if (data.success) {
+      setCategories(data.data);
+    }
+    if (error) {
+      setRequestError(error);
     }
   };
 
   useEffect(() => {
-    getCategories();
+    updateCategories();
   }, []);
 
   const handleChangeCKE = (editor, setFieldValue) => {
@@ -49,42 +52,36 @@ const NewsForm = ({editNews}) => {
     category_id: Yup.number().required(INPUT_REQUIRED),
   });
 
-  const handleSubmit = async ({name, content, image, category_id}) => {
-    setNews({name, content, image: image.name, category_id});
 
-    if (news.id) {
-      const res = await Patch(`news/${news.id}`, news);
+  const handleSubmit = async (values) => {
+    const base64Image = await toBase64(values.image);
 
-      if (res.data.success) {
-        setSuccess(true);
-      } else {
-        alert(`${UNKNOWN_ERROR}: ${res.data.message}`);
-      }
-    } else {
-      const res = await Post("news", news);
+    values.image = base64Image;
 
-      if (res.data.success) {
-        setSuccess(true);
-      } else {
-        setSuccess(`${UNKNOWN_ERROR}: ${res.data.message}`);
-      }
-    }
+    const { data, error } = news.id
+      ? await updateNews(values)
+      : await sendNews(values);
 
-    if (success) {
+    console.log(data, error);
+    if (data.success) {
+      setSuccess(true);
       setNews(initialValues);
+    }
+    if (error) {
+      setRequestError(error);
     }
   };
 
   return (
     <Formik
       initialValues={news}
-      onSubmit={(values, {resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         resetForm();
         handleSubmit(values);
       }}
       validationSchema={validation}
     >
-      {({values, handleChange, handleSubmit, touched, setFieldValue}) => (
+      {({ values, handleChange, handleSubmit, touched, setFieldValue }) => (
         <form className="form-container" onSubmit={handleSubmit}>
           <input
             className="input-field"
@@ -108,7 +105,7 @@ const NewsForm = ({editNews}) => {
             <input
               className=" px-2"
               type="file"
-              name="img"
+              name="image"
               accept="image/*"
               onChange={(e) => setFieldValue("image", e.currentTarget.files[0])}
             />
@@ -127,7 +124,7 @@ const NewsForm = ({editNews}) => {
             <option value="" disabled>
               Seleccionar categoria
             </option>
-            {categories.map(({id, name}) => (
+            {categories.map(({ id, name }) => (
               <option value={id} key={id}>
                 {name}
               </option>
@@ -138,10 +135,12 @@ const NewsForm = ({editNews}) => {
           <button className="submit-btn" type="submit">
             {values.id ? "Editar" : "Enviar"}
           </button>
-          {success && (
-            <h2 className="message success-message">
+          {success ? (
+            <p className="message success-message">
               Noticia enviada correctamente
-            </h2>
+            </p>
+          ) : (
+            <p className="mssage error">{requestError}</p>
           )}
         </form>
       )}
