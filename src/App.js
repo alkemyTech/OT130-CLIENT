@@ -18,6 +18,8 @@ import { ScreenDashboard } from "./Screens/ScreenDashboard";
 import UserForm from './Components/Users/UsersForm';
 import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <>
