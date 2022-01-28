@@ -1,34 +1,25 @@
 import { Post, Patch } from "./privateApiService";
-import {
-  NETWORK_ERROR,
-  UNKNOWN_ERROR,
-  EMAIL_TAKEN,
-} from "../Helpers/messagesText";
 
-const handleUserErrors = (error, setMessage) => {
-  if (error.message === "Network Error") {
-    setMessage(NETWORK_ERROR);
-  } else if (error.response.data.errors.email) {
-    setMessage(EMAIL_TAKEN);
-  } else {
-    setMessage(UNKNOWN_ERROR);
+const response = { error: null, data: {} };
+
+const postUser = async (values) => {
+  try {
+    const {data} = await Post("/users", values);
+    response.data = data 
+  } catch (error) {
+    response.error = error
   }
+  return response
 };
 
-const postUser = async (data, setMessage) => {
+const updateUser = async (values, user) => {
   try {
-    return await Post("/users", data);
+    const {data} = await Post("/users", values);
+    response.data = data
   } catch (error) {
-    handleUserErrors(error, setMessage);
+    response.error = error
   }
-};
-
-const updateUser = async (data, user, setMessage) => {
-  try {
-    return await Patch(`/users/${user.id}`, data);
-  } catch (error) {
-    handleUserErrors(error, setMessage);
-  }
+  return response
 };
 
 export { postUser, updateUser };

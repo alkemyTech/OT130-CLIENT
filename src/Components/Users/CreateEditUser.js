@@ -3,7 +3,11 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { toBase64 } from "../../Helpers/base64";
 import FormComponent from "./UsersForm";
-import { UNKNOWN_ERROR } from "../../Helpers/messagesText";
+import {
+  NETWORK_ERROR,
+  UNKNOWN_ERROR,
+  EMAIL_TAKEN,
+} from "../../Helpers/messagesText";
 import {
   yupTitles,
   yupEmail,
@@ -50,17 +54,23 @@ const submit = async (params) => {
   }
 
   delete values.image_file;
-  const response = user
+  const { error, data } = user
     ? await updateUser(values, user, setRequestError)
     : await postUser(values, setRequestError);
-
-  if (response.data.success) {
-    setSuccess(true);
-    resetForm();
-    fileInputRef.current.value = null;
+  
+  if (error.message === "Network Error") {
+    setRequestError(NETWORK_ERROR);
+  } else if (error.response.data.errors.email) {
+    setRequestError(EMAIL_TAKEN);
   } else {
     setRequestError(UNKNOWN_ERROR);
   }
+  
+  if (data.success) {
+    setSuccess(true);
+    resetForm();
+    fileInputRef.current.value = null;
+  } 
 
   setSubmitting(false);
 };
