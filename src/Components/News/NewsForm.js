@@ -2,8 +2,8 @@ import * as Yup from "yup";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {ErrorMessage, Formik} from "formik";
-
 import React, {useEffect, useState} from "react";
+
 import {INPUT_REQUIRED, UNKNOWN_ERROR} from "../../Helpers/messagesText";
 import {yupImages, yupTitles} from "../../Helpers/formValidations";
 import {Get, Patch, Post} from "../../Services/privateApiService";
@@ -11,7 +11,7 @@ import {Get, Patch, Post} from "../../Services/privateApiService";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const emptyObject = {
+const initialValues = {
   id: "",
   name: "",
   content: "",
@@ -19,8 +19,8 @@ const emptyObject = {
   category_id: "",
 };
 
-const NewsForm = ({news}) => {
-  const [initialValues, setInitialValues] = useState(news || emptyObject);
+const NewsForm = ({editNews}) => {
+  const [news, setNews] = useState(editNews || initialValues);
   const [categories, setCategories] = useState([]);
   const [success, setSuccess] = useState(false);
 
@@ -50,10 +50,10 @@ const NewsForm = ({news}) => {
   });
 
   const handleSubmit = async ({name, content, image, category_id}) => {
-    setInitialValues({name, content, image: image.name, category_id});
+    setNews({name, content, image: image.name, category_id});
 
-    if (initialValues.id) {
-      const res = await Patch(`news/${initialValues.id}`, initialValues);
+    if (news.id) {
+      const res = await Patch(`news/${news.id}`, news);
 
       if (res.data.success) {
         setSuccess(true);
@@ -61,7 +61,7 @@ const NewsForm = ({news}) => {
         alert(`${UNKNOWN_ERROR}: ${res.data.message}`);
       }
     } else {
-      const res = await Post("news", initialValues);
+      const res = await Post("news", news);
 
       if (res.data.success) {
         setSuccess(true);
@@ -71,13 +71,13 @@ const NewsForm = ({news}) => {
     }
 
     if (success) {
-      setInitialValues(emptyObject);
+      setNews(initialValues);
     }
   };
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={news}
       onSubmit={(values, {resetForm}) => {
         resetForm();
         handleSubmit(values);
@@ -94,14 +94,14 @@ const NewsForm = ({news}) => {
             placeholder="Titulo de la noticia"
             value={values.name}
           />
-          {touched.name ? <ErrorMessage name="name" /> : null}
+          {touched.name && <ErrorMessage name="name" />}
 
           <CKEditor
             editor={ClassicEditor}
-            data={initialValues?.content}
+            data={news?.content}
             onChange={(e, editor) => handleChangeCKE(editor, setFieldValue)}
           />
-          {touched.content ? <ErrorMessage name="content" /> : null}
+          {touched.content && <ErrorMessage name="content" />}
 
           <div className="input-field">
             <label>Imagen: </label>
@@ -116,7 +116,7 @@ const NewsForm = ({news}) => {
               <p className=" mt-3">Ingrese nueva si desea cambiar</p>
             )}
           </div>
-          {touched.image ? <ErrorMessage name="image" /> : null}
+          {touched.image && <ErrorMessage name="image" />}
 
           <select
             className="select-field"
@@ -133,7 +133,7 @@ const NewsForm = ({news}) => {
               </option>
             ))}
           </select>
-          {touched.category_id ? <ErrorMessage name="category_id" /> : null}
+          {touched.category_id && <ErrorMessage name="category_id" />}
 
           <button className="submit-btn" type="submit">
             {values.id ? "Editar" : "Enviar"}
