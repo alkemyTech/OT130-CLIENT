@@ -1,32 +1,121 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React, { useState } from "react";
+import { ErrorMessage, Field, Form, useFormik, FormikProvider } from "formik";
+import * as Yup from "yup";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { yupImages, yupLinks, yupLongDesc, yupTitles } from "../../Helpers/formValidations";
+import "../FormStyles.css";
 
 const MembersForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    description: ''
-  })
+  const [imgState, setImgState] = useState({ path: "" });
 
-  const handleChange = (e) => {
-    if(e.target.name === 'name'){
-      setInitialValues({...initialValues, name: e.target.value})
-    } if(e.target.name === 'description'){
-      setInitialValues({...initialValues, description: e.target.value})
-    }
-  }
+  const validationSchema = Yup.object({
+    name_member: yupTitles(),
+    description_text: yupLongDesc(),
+    image_member: yupImages(),
+    link_linkedin: yupLinks(),
+    link_facebook: yupLinks(),
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  }
+  const inputHandler = (event, editor) => {
+    formik.setFieldValue("description_text", editor.getData());
+  };
+
+  const handleFileChange = (event) => {
+    formik.setFieldValue("image_member", event.currentTarget.files[0]);
+    setImgState({
+      ...imgState,
+      path: URL.createObjectURL(event.currentTarget.files[0]),
+    });
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      name_member: "",
+      description_text: "",
+      image_member: "",
+      link_linkedin: "",
+      link_facebook: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      // Quitar el siguiente console.log cuando se realice la petición a API 
+      console.log(values);
+    },
+  });
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-      <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
-      <button className="submit-btn" type="submit">Send</button>
-    </form>
+    <FormikProvider value={formik}>
+      <Form className="form-container">
+        <div className="row-cols-1">
+          <Field
+            className="input-field"
+            id="name_member"
+            name="name_member"
+            type="text"
+            {...formik.getFieldProps("name_member")}
+            placeholder="Nombre"
+          />
+          <div className="error-message message">
+            <ErrorMessage className="me-auto" name="name_member" />
+          </div>
+        </div>
+        <div>
+          <CKEditor
+            editor={ClassicEditor}
+            id="description_text"
+            onChange={inputHandler}
+          />
+          <div className="error-message message">
+            <ErrorMessage className="me-auto" name="description_text" />
+          </div>
+        </div>
+        <div className="row row-cols-1 row-cols-md-2">
+          <div className="d-flex flex-column ">
+            <Field
+              className="input-field"
+              type="url"
+              id="link_linkedin"
+              name="link_linkedin"
+              placeholder="Facebook"
+              {...formik.getFieldProps("link_linkedin")}
+            />
+            <div className="error-message message">
+              <ErrorMessage className="me-auto" name="link_linkedin" />
+            </div>
+          </div>
+          <div className="d-flex flex-column">
+            <Field
+              className="input-field"
+              type="url"
+              id="link_facebook"
+              name="link_facebook"
+              placeholder="Linkedin"
+              {...formik.getFieldProps("link_facebook")}
+            />
+            <div className="error-message message">
+              <ErrorMessage className="me-auto" name="link_facebook" />
+            </div>
+          </div>
+        </div>
+        <div className="row row-cols-1 row-cols-md-2 align-items-center justify-content-between">
+          <input name="image_member" type="file" onChange={handleFileChange} />
+          <img
+            className=" mx-auto my-2 img-member img-fluid"
+            src={imgState?.path}
+            id="image_member"
+            alt="image_member"
+          />
+        <div className="error-message message">
+          <ErrorMessage className="me-auto" name="image_member" />
+        </div>
+        </div>
+        <button className="submit-btn" type="submit">
+          Send
+        </button>
+      </Form>
+    </FormikProvider>
   );
-}
- 
+};
+
 export default MembersForm;
