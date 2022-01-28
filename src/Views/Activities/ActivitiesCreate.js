@@ -19,7 +19,7 @@ const initialValues = {
 
 const ActivitiesCreate = () => {
   const { go } = useHistory();
-  const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
   const validation = Yup.object().shape({
@@ -33,9 +33,9 @@ const ActivitiesCreate = () => {
   };
 
   const handleSuccess = () => {
-    setSuccess(true);
+    setSuccessMessage(true);
     setTimeout(() => {
-      setSuccess(false);
+      setSuccessMessage(false);
       go(0);
     }, 3000);
   };
@@ -47,14 +47,14 @@ const ActivitiesCreate = () => {
       image: base64Img,
       description,
     };
-    const { success } = await saveActivityData(body);
-    success ? handleSuccess() : setErrorMessage(true);
+    const { successMessage } = await saveActivityData(body);
+    successMessage ? handleSuccess() : setErrorMessage(true);
   };
 
   const handleScreenMessages = () => {
     if (errorMessage) {
       return <p className="align-text-center">{ACTIVITY_ADDED_ERROR}</p>;
-    } else if (success) {
+    } else if (successMessage) {
       return <p className="align-text-center">{ACTIVITY_ADDED_SUCCESSFULLY}</p>;
     }
   };
@@ -78,7 +78,7 @@ const ActivitiesCreate = () => {
               touched={touched}
               formikHandleOnChange={handleChange}
               CKEditorHandleOnChange={handleCKEditorChange}
-              submitting={success}
+              submitting={successMessage}
             />
           );
         }}
