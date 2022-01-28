@@ -1,15 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
 const config = {
-    headers: {
-        Group: 01                //Aqui va el ID del equipo!!
-    }
-}
+  baseURL: "http://ongapi.alkemy.org/api/",
+  headers: {
+    Group: 130, //Aqui va el ID del equipo!!
+    "content-type": "application/json",
+  },
+};
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+const instance = axios.create(config);
 
-export default Get
+const Post = async (url, data) => await instance.post(url, data);
+
+const Patch = async (url, data) => await instance.patch(url, data);
+
+const Get = async (url, data) => await instance.post(url, data);
+
+export { 
+  Get,
+  Post,
+  Patch 
+};
