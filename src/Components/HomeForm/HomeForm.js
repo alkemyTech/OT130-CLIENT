@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 
-import { getOrganizationData } from "../../Services/organizationService";
-import { getSlides } from "../../Services/slideService";
-
 import WelcomeTextForm from "../WelcomeTextForm/WelcomeTextForm";
 import SlidesForm from "../Slides/SlidesForm";
 
 import { SLIDES_LIMIT } from "../../Helpers/constants";
+import { Get } from "../../Services/privateApiService";
 
 const HomeForm = () => {
   const [slides, setSlides] = useState([{}]);
@@ -18,8 +16,8 @@ const HomeForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const slides = await getSlides();
-        const organizationData = await getOrganizationData();
+        const { data: slides } = await Get("slides");
+        const { data: organizationData } = await Get("organization");
         setSlides(slides?.data);
         setWelcomeText(organizationData?.data?.welcome_text);
         setIsLoading(false);
