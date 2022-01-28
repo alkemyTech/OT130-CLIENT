@@ -33,7 +33,7 @@ const NewsForm = ({ editNews }) => {
       setCategories(data.data);
     }
     if (error) {
-      setRequestError(error);
+      setRequestError(error.message);
     }
   };
 
@@ -52,7 +52,6 @@ const NewsForm = ({ editNews }) => {
     category_id: Yup.number().required(INPUT_REQUIRED),
   });
 
-
   const handleSubmit = async (values) => {
     const base64Image = await toBase64(values.image);
 
@@ -62,13 +61,12 @@ const NewsForm = ({ editNews }) => {
       ? await updateNews(values)
       : await sendNews(values);
 
-    console.log(data, error);
     if (data.success) {
       setSuccess(true);
       setNews(initialValues);
     }
     if (error) {
-      setRequestError(error);
+      setRequestError(error.message);
     }
   };
 
