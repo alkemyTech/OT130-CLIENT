@@ -67,7 +67,7 @@ const yupFirstName = () =>
   
 const yupLastName = () =>
   Yup.string()
-  .required(INPUT_REQUIRED)
+    .required(INPUT_REQUIRED)
 
 const yupPassRegister = (minMsg,passMsg) =>
   Yup.string()
@@ -86,6 +86,12 @@ const yupPhone = () =>
     .min(8, NUMBER_SHORT)
     .required(INPUT_REQUIRED);
     
+const yupLinks = () =>
+  Yup.string()
+    .url()
+    .required(INPUT_REQUIRED)
+
+
 export {
   yupCustomString,
   yupConfirmPass,
@@ -100,4 +106,5 @@ export {
   yupShortDesc, 
   yupTitles, 
   yupUserRoles,
+  yupLinks,
 }
