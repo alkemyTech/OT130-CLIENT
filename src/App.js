@@ -1,25 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import ContactForm from './Components/Contact/ContactForm';
-import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import { ScreenDashboard } from './Screens/ScreenDashboard';
 import UserForm from './Components/Users/UsersForm';
 import './App.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
