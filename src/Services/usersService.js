@@ -1,25 +1,29 @@
 import { Post, Patch } from "./privateApiService";
 
-const response = { error: null, data: {} };
+const addUser = async (values) => {
+  const response = { error: null, data: {} };
 
-const postUser = async (values) => {
   try {
-    const {data} = await Post("/users", values);
-    response.data = data 
+    const { data } = await Post("/users", values);
+    response.data = data;
   } catch (error) {
-    response.error = error
+    response.error = error;
   }
-  return response
+  
+  return response;
 };
 
 const updateUser = async (values, user) => {
+  const response = { error: null, data: {} };
+
   try {
-    const {data} = await Post("/users", values);
-    response.data = data
+    const { data } = await Patch(`/users/${user.id}`, values);
+    response.data = data;
   } catch (error) {
-    response.error = error
+    response.error = error;
   }
-  return response
+
+  return response;
 };
 
-export { postUser, updateUser };
+export { addUser, updateUser };

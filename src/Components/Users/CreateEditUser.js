@@ -16,7 +16,7 @@ import {
   yupUserRoles,
   yupPassword,
 } from "../../Helpers/formValidations";
-import { postUser, updateUser } from "../../Services/usersService";
+import { addUser, updateUser } from "../../Services/usersService";
 import { INPUT_IMAGE_MAX_IMAGE_QUANTITY } from "../../config/imageConfig";
 
 const validation = Yup.object().shape({
@@ -37,6 +37,15 @@ const initialValues = {
   password: "",
 };
 
+const getErrorMessage = (error) => {
+  if (error.message === "Network Error") {
+    return NETWORK_ERROR;
+  } else if (error.response.data.errors.email) {
+    return EMAIL_TAKEN;
+  }
+  return UNKNOWN_ERROR;
+};
+
 const submit = async (params) => {
   const {
     setRequestError,
@@ -47,6 +56,10 @@ const submit = async (params) => {
     fileInputRef,
     setSubmitting,
   } = params;
+
+  setRequestError("");
+  setSuccess(false)
+
   values.role_id = Number(values.role_id);
 
   if (values.image_file) {
@@ -55,22 +68,17 @@ const submit = async (params) => {
 
   delete values.image_file;
   const { error, data } = user
-    ? await updateUser(values, user, setRequestError)
-    : await postUser(values, setRequestError);
-  
-  if (error.message === "Network Error") {
-    setRequestError(NETWORK_ERROR);
-  } else if (error.response.data.errors.email) {
-    setRequestError(EMAIL_TAKEN);
-  } else {
-    setRequestError(UNKNOWN_ERROR);
-  }
-  
-  if (data.success) {
+    ? await updateUser(values, user)
+    : await addUser(values);
+
+  if (error) {
+    const errorMessage = getErrorMessage(error);
+    setRequestError(errorMessage);
+  } else if (data.success) {
     setSuccess(true);
     resetForm();
     fileInputRef.current.value = null;
-  } 
+  }
 
   setSubmitting(false);
 };
