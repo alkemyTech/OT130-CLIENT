@@ -5,13 +5,21 @@ import {
 } from "../privateApiService";
 
 const updateCategory = async ( id, data ) => {
-    const res = await patch( `${CATEGORY_URL}/${id}`, data );
-    return res;
+    try {
+        const res = await patch( `${CATEGORY_URL}/${id}`, data );
+        return res;
+    } catch ( error ) {
+        return error;
+    } 
 };
 
 const saveCategory = async ( data ) => {
-    const res = await post( CATEGORY_URL, data );
-    return res;
+    try {
+        const res = await post( CATEGORY_URL, data );
+        return res;
+    } catch ( error ) {
+        return error;
+    }   
 };
 
 export{

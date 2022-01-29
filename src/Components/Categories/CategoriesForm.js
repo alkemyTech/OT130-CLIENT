@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Swal from 'sweetalert2'
 import '../FormStyles.css';
 import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
 import { 
@@ -11,12 +12,16 @@ import {
     categoryDescriptionSchema, 
     categoryFileSchema, 
     categoryNameSchema 
-} from '../../Validations/CategoriesValidation';
+} from '../../Helpers/CategoriesValidation';
+import { 
+    ALERT_ICON_ERROR, 
+    ALERT_ICON_SUCCESS 
+} from '../../Helpers/messagesText';
 
 const currentDate = new Date().toJSON()
 
-const CategoriesForm = ({ category }) => {
-
+const CategoriesForm = ({ category }) => {  
+    
     const initialCategoryValues = {
         id: 0,
         name: "",
@@ -33,6 +38,17 @@ const CategoriesForm = ({ category }) => {
     const [categoryValues, setCategoryValues] = useState( category || initialCategoryValues );   
 
     const inputRefImage = useRef();
+
+    const messageAlert = (error, icon) => {
+        return(   
+            Swal.fire({
+            position: 'top-end',
+            icon: icon,
+            title: error,
+            showConfirmButton: false,
+            timer: 1000
+          }) )
+    };  
 
     const handleCkeditorChange = ( event, editor ) => {
         const data = editor.getData();
@@ -63,57 +79,66 @@ const CategoriesForm = ({ category }) => {
         setErrorName('');
         setErrorDescription('');
         setErrorFile('');  
-    };
-
-    const validateInputName = async () => {
-        const validName = await categoryNameSchema.isValid( categoryValues );
-        categoryNameSchema.validate( categoryValues )
-        .catch( err => {
-            const errorActive = err.errors[0];                       
-                setErrorName( errorActive );         
-        });
-        if ( validName  ) {    
-            return true;       
-        };           
-    };
-
-    const validateInputDescription = async () => { 
-        const validDescription = await categoryDescriptionSchema.isValid( categoryValues );       
-        categoryDescriptionSchema.validate( categoryValues )
-        .catch( err => {
-            const errorActive = err.errors[0];           
-                setErrorDescription( errorActive );            
-        });
-        if ( validDescription ) {    
-            return true;       
-        }; 
-    };
-
-    const validateInputFile = async () => {
-        const validFile = await categoryFileSchema.isValid( categoryValues );
-        categoryFileSchema.validate( categoryValues )
-        .catch(err => {
-            const errorActive = err.errors[0];         
-                setErrorFile( errorActive );      
-        });
-        if ( validFile ) {    
-            return true;       
-        }; 
     };  
    
-    const formValidation = async () => {
-        const validName = await validateInputName();
-        const validDescription = await validateInputDescription();
-        const validFile = await validateInputFile();
-        if ( validName && validDescription && validFile ) {    
-            return true;       
-        };         
-    };   
+    const formValidation =  async () => {
+        const validations = [
+            await validateName( categoryValues ),
+            await validateDescription( categoryValues ),
+            await validateFile( categoryValues )
+        ];
+    
+        const allValidationsAreOk = validations.every( validation => validation );
+    
+        return allValidationsAreOk;    
+    };
+    
+    const validateName = async ( categoryValues ) => {
+        try {
+            await categoryNameSchema.validate( categoryValues );
+            return true
+        } catch( err ) {
+            const errorActive = err.errors[0];
+            setErrorName( errorActive );    
+            return false;
+        };
+    };
+    
+    const validateDescription = async ( categoryValues ) => {
+        try {
+            await categoryDescriptionSchema.validate( categoryValues );
+            return true
+        } catch(err) {
+            const errorActive = err.errors[0];
+            setErrorDescription( errorActive );    
+            return false;
+        };
+    };
+    
+    const validateFile = async ( categoryValues ) => {
+        try {
+            await categoryFileSchema.validate( categoryValues );
+            return true
+        } catch( err ) {
+            const errorActive = err.errors[0];
+            setErrorFile( errorActive );    
+            return false;
+        };
+    };
 
-    const choiceTypeRequest = () => {        
-     category        
-        ? updateCategory( categoryValues.id, categoryValues )        
-        : saveCategory( categoryValues );       
+    const requestToDo = async ( request, id ) => {
+        try {
+            const { data } = await request( categoryValues, id ) 
+            messageAlert( data.error, ALERT_ICON_SUCCESS )           
+          } catch ( error ) {
+            messageAlert( error, ALERT_ICON_ERROR )
+          };
+    };
+
+    const choiceTypeRequest = () => {  
+      category
+            ? requestToDo( updateCategory, categoryValues.id )
+            : requestToDo( saveCategory );          
     };
 
     const handleSubmit = async ( e ) =>{
