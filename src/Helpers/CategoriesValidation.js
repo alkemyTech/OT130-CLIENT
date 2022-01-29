@@ -1,7 +1,9 @@
 import * as yup from 'yup'
 import { SUPPORTED_IMAGE_FORMATS } from '../config/imagePaths';
-import { INPUT_REQUIRED, TITLE_SHORT, INVALID_IMAGE_EXT } from "./messagesText";
-
+import { 
+  INPUT_REQUIRED, TITLE_SHORT, 
+  INVALID_IMAGE_EXT 
+} from "./messagesText";
 
 const categoryNameSchema = yup.object().shape({
   name: yup

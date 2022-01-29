@@ -39,7 +39,7 @@ const CategoriesForm = ({ category }) => {
 
     const inputRefImage = useRef();
 
-    const messageAlert = (error, icon) => {
+    const messageAlert = ( error, icon ) => {
         return(   
             Swal.fire({
             position: 'top-end',
@@ -65,12 +65,12 @@ const CategoriesForm = ({ category }) => {
     const handleChange = ( e ) => {
         let { name, value } = e.target;
         setCategoryValues(( categoryValues ) => {
-            if (name === 'image') {
+            if ( name === 'image' ) {
                 value = e.target.files[0];            
             }  
             return {
                 ...categoryValues,
-                [name]: value,
+                [ name ]: value,
             };
         });  
     };
@@ -96,7 +96,7 @@ const CategoriesForm = ({ category }) => {
     const validateName = async ( categoryValues ) => {
         try {
             await categoryNameSchema.validate( categoryValues );
-            return true
+            return true;
         } catch( err ) {
             const errorActive = err.errors[0];
             setErrorName( errorActive );    
@@ -107,7 +107,7 @@ const CategoriesForm = ({ category }) => {
     const validateDescription = async ( categoryValues ) => {
         try {
             await categoryDescriptionSchema.validate( categoryValues );
-            return true
+            return true;
         } catch(err) {
             const errorActive = err.errors[0];
             setErrorDescription( errorActive );    
@@ -118,7 +118,7 @@ const CategoriesForm = ({ category }) => {
     const validateFile = async ( categoryValues ) => {
         try {
             await categoryFileSchema.validate( categoryValues );
-            return true
+            return true;
         } catch( err ) {
             const errorActive = err.errors[0];
             setErrorFile( errorActive );    
