@@ -9,20 +9,20 @@ import { EDIT_ORGANIZATION } from "../../rutas/config";
 const Organization = () => {
   const { push } = useHistory();
   const [organizationData, setOrganizationData] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
     handleGetOrganization();
   }, []);
 
   const handleGetOrganization = async () => {
-    const { data } = await getOrganizationData();
-    setOrganizationData(data);
+    const response = await getOrganizationData();
+    response.data ?  setOrganizationData(response.data) : setErrorMessage('Error al obtener la organización');
   };
 
   const goToEdit = (e) => {
     push(EDIT_ORGANIZATION, { id: organizationData?.id });
   };
-  console.log(organizationData)
 
   return (
     <div className="container">
@@ -38,9 +38,10 @@ const Organization = () => {
               Editar
             </button>
           </>
-        ) : (
-          <Spinner animation="border" />
-        )}
+        ) : errorMessage 
+          ? (<p>{errorMessage}</p>)
+          :(<Spinner animation="border" />)
+        }
       </div>
     </div>
   );

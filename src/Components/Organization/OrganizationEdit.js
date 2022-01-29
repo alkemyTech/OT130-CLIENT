@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Redirect, useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -10,7 +10,7 @@ import { yupShortDesc, yupTitles , yupImages , yupLongDesc , yupLinks} from "../
 import { toBase64 } from "../../Helpers/base64";
 import "./style.css";
 import { ORGANIZATION } from "../../rutas/config";
-
+import { IMAGE_EXTENSION } from "../../Helpers/constants";
 
 const OrganizationEdit = () => {
   const {
@@ -18,14 +18,8 @@ const OrganizationEdit = () => {
     location: { state },
   } = useHistory();
   const id = state?.id || null;
-  const [submitForm, setSubmitForm] = useState(false);
-
-  const timerMessage = (time) => {
-    setTimeout(() => {
-        setSubmitForm(false);
-        push(ORGANIZATION);
-    }, time);
-  };
+  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState();
 
   const handleCKEditorChange = (editor, setFieldValue) => {
     setFieldValue("short_description", editor.getData());
@@ -35,11 +29,11 @@ const OrganizationEdit = () => {
     name: yupTitles(),
     long_description: yupLongDesc(),
     short_description: yupShortDesc(),
-    logo: yupImages(),
-    linkedin_url: yupLinks(),
+    linkedin_url: yupLinks(), 
     instagram_url: yupLinks(),
     facebook_url: yupLinks(),
-    twitter_url: yupLinks() 
+    twitter_url: yupLinks(),
+    logo: yupImages()
   });
 
   const initialValues =  {
@@ -53,17 +47,26 @@ const OrganizationEdit = () => {
     logo: ''
   };
 
-  const onSubmit = async (values) => {
-    try{
-      values.logo = await toBase64(values.logo);
-    }catch(error){
-      console.log(error);
-    }
-    await updateOrganizationData(values, id);
-    setSubmitForm(true);
-    timerMessage(3000);
-    formik.resetForm();
+  const submitOk = () => {
+    setSuccessMessage('Organización actualizada correctamente');
+    setTimeout(() => {
+      setSuccessMessage(null);
+      push(ORGANIZATION);
+    }, 2000);
+  }
 
+  const submitFail = (msgError) => {
+    setErrorMessage(msgError);
+    setTimeout(() => {
+      setErrorMessage(null);
+    }, 2000);
+  }
+
+  const onSubmit = async (values) => {
+    values.logo = await toBase64(values.logo);
+    const response = await updateOrganizationData(values, id);
+    response.data  ? submitOk() : submitFail(response);
+    formik.resetForm();
   };
  
   const formik = useFormik({
@@ -79,7 +82,8 @@ const OrganizationEdit = () => {
         <div className="organization-fields-container row">
           <h1>Editar Organización</h1>
           <form  onSubmit={formik.handleSubmit}>
-        
+          
+            
             <div className="form-group mb-4 mt-4">
               <label htmlFor="name">Nombre</label>
               <input
@@ -201,7 +205,7 @@ const OrganizationEdit = () => {
                 ref={formik.fileInput}
                 type="file"
                 className="form-control"
-                accept="image/png , image/jpeg"
+                accept={IMAGE_EXTENSION}
                 id="logo"
                 name="logo"
                 placeholder="Logo"
@@ -213,12 +217,14 @@ const OrganizationEdit = () => {
                 <div className="error-message message">{formik.errors.logo}</div>
               ) : null}
             </div>
-            {submitForm && <div className="success-message message">Organización editada correctamente</div>}
+         
+            {errorMessage ? <div className="error-message message">{errorMessage}</div>
+            : <div className="success-message message">{successMessage}</div>}
+
             <button type="submit" className="submit-btn mb-4 mt-4">
               Guardar
             </button>
             <Link className="submit-btn btn btn-danger" to={ORGANIZATION}>Cancelar</Link>
-
           </form>
         </div>
       </div>            
