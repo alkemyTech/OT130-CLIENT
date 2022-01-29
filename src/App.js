@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Activities from './Components/Activities/Activities';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import ActivitiesList from './Components/Activities/ActivitiesList';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -15,7 +15,6 @@ import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import UserForm from './Components/Users/UsersForm';
 import './App.css';
-import Activities from './Components/Activities/Activities';
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/activities" component={ActivitiesList} />
+          <Route path="/activities" component={Activities} />
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
@@ -38,7 +37,6 @@ function App() {
       </BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <Activities />
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
         <p>
