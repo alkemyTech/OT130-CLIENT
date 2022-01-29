@@ -1,9 +1,9 @@
-import { Patch, Post } from "./privateApiService";
+import { Patch, Post } from './privateApiService';
 
 const saveNews = async (values) => {
   const response = { error: null, data: {} };
   try {
-    const { data } = await Post("/news", values);
+    const { data } = await Post('/news', values);
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -22,4 +22,7 @@ const updateNews = async (values) => {
   return response;
 };
 
-export { saveNews, updateNews };
+export {
+  saveNews,
+  updateNews
+};
