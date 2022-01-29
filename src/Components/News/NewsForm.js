@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 
 import { getCategories } from "../../Services/categoriesService";
 import { INPUT_REQUIRED } from "../../Helpers/messagesText";
-import { sendNews, updateNews } from "../../Services/newsService";
+import { saveNews, updateNews } from "../../Services/newsService";
 import { toBase64 } from "../../Helpers/base64";
 import { yupImages, yupTitles } from "../../Helpers/formValidations";
 
@@ -29,11 +29,11 @@ const NewsForm = ({ editNews }) => {
 
   const updateCategories = async () => {
     const { data, error } = await getCategories();
-    if (data.success) {
-      setCategories(data.data);
-    }
+
     if (error) {
       setRequestError(error.message);
+    } else {
+      setCategories(data.data);
     }
   };
 
@@ -59,14 +59,13 @@ const NewsForm = ({ editNews }) => {
 
     const { data, error } = news.id
       ? await updateNews(values)
-      : await sendNews(values);
+      : await saveNews(values);
 
-    if (data.success) {
-      setSuccess(true);
-      setNews(initialValues);
-    }
     if (error) {
       setRequestError(error.message);
+    } else {
+      setSuccess(true);
+      setNews(initialValues);
     }
   };
 

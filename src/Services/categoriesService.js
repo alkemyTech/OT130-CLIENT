@@ -1,8 +1,7 @@
 import { Get } from "./privateApiService";
 
-const response = { error: null, data: {} };
-
 const getCategories = async () => {
+  const response = { error: null, data: {} };
   try {
     const { data } = await Get("/categories");
     response.data = data;

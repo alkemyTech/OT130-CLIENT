@@ -1,8 +1,7 @@
 import { Patch, Post } from "./privateApiService";
 
-const response = { error: null, data: {} };
-
-const sendNews = async (values) => {
+const saveNews = async (values) => {
+  const response = { error: null, data: {} };
   try {
     const { data } = await Post("/news", values);
     response.data = data;
@@ -13,6 +12,7 @@ const sendNews = async (values) => {
 };
 
 const updateNews = async (values) => {
+  const response = { error: null, data: {} };
   try {
     const { data } = await Patch(`/news/${values.id}`, values);
     response.data = data;
@@ -22,7 +22,4 @@ const updateNews = async (values) => {
   return response;
 };
 
-export {
-  sendNews,
-  updateNews
-};
+export { saveNews, updateNews };
