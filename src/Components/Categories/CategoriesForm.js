@@ -12,7 +12,7 @@ import {
     categoryDescriptionSchema, 
     categoryFileSchema, 
     categoryNameSchema 
-} from '../../Helpers/CategoriesValidation';
+} from '../../Helpers/categoriesValidation';
 import { 
     ALERT_ICON_ERROR, 
     ALERT_ICON_SUCCESS 
@@ -49,7 +49,7 @@ const CategoriesForm = ({ category }) => {
             timer: 1000
           }) )
     };  
-
+ 
     const handleCkeditorChange = ( event, editor ) => {
         const data = editor.getData();
         setCategoryValues({ 
