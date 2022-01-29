@@ -1,12 +1,13 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import { DEFAULT_THANKS_DONATION_MESSAGE } from "../../config/defaultTexts";
+import "./Donation.css";
+import { DONATION_THANKS_TEXT } from "../../Helpers/componentText";
 
-const Thanks = ({ text }) => {
+const Thanks = () => {
   return (
-    <Container>
+    <Container className="donation-container">
       <Row className="justify-content-center">
-        {text || DEFAULT_THANKS_DONATION_MESSAGE}
+        <p className="donation-thanks">{DONATION_THANKS_TEXT}</p>
       </Row>
     </Container>
   );
