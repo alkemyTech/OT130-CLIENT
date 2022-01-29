@@ -1,7 +1,7 @@
+import { ErrorMessage } from 'formik';
 import React from 'react';
 import './styles.css';
 import { LOGO } from '../../assets';
-import { ErrorMessage } from 'formik';
 
 const OrganizationEditForm = ({
   handleSubmit,
