@@ -4,9 +4,9 @@ const getCategories = async () => {
   const response = { error: null, data: {} };
   try {
     const { data } = await Get('/categories');
-    response.data = data;
+    response.data = data.data;
   } catch (error) {
-    response.error = error;
+    response.error = error.message;
   }
   return response;
 };

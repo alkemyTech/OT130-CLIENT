@@ -31,9 +31,9 @@ const NewsForm = ({ editNews }) => {
     const { data, error } = await getCategories();
 
     if (error) {
-      setRequestError(error.message);
+      setRequestError(error);
     } else {
-      setCategories(data.data);
+      setCategories(data);
     }
   };
 
@@ -62,7 +62,7 @@ const NewsForm = ({ editNews }) => {
       : await saveNews(values);
 
     if (error) {
-      setRequestError(error.message);
+      setRequestError(error);
     } else {
       setSuccess(true);
       setNews(initialValues);
