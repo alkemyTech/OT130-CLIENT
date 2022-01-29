@@ -81,9 +81,7 @@ const OrganizationEdit = () => {
       <div className="container ">
         <div className="organization-fields-container row">
           <h1>Editar Organización</h1>
-          <form  onSubmit={formik.handleSubmit}>
-          
-            
+          <form  onSubmit={formik.handleSubmit}> 
             <div className="form-group mb-4 mt-4">
               <label htmlFor="name">Nombre</label>
               <input
