@@ -1,17 +1,17 @@
 import * as Yup from "yup";
 
-import { 
+import {
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
-  NUMBER_SHORT,
+  NUMBER_TO_SHORT_ERROR,
   PASSWORD_SHORT,
   TITLE_LONG,
-  TITLE_SHORT, 
-  INVALID_PHONE
-} from './messagesText'
+  TITLE_SHORT,
+  SHOULD_BE_DIGITS_ONLY,
+} from './messagesText';
 
 const yupTitles = () =>
   Yup.string()
@@ -82,8 +82,8 @@ const yupConfirmPass = (passRef,passMsg) =>
   
 const yupPhone = () =>
   Yup.string()
-    .matches(/^[0-9]+$/,INVALID_PHONE)
-    .min(8, NUMBER_SHORT)
+    .matches(/^[0-9]+$/, SHOULD_BE_DIGITS_ONLY)
+    .min(8, NUMBER_TO_SHORT_ERROR)
     .required(INPUT_REQUIRED);
     
 const yupLinks = () =>
