@@ -13,10 +13,8 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import Organization from "./Components/Organization/Organization";
-import OrganizationEdit from './Components/Organization/OrganizationEdit'
+import Organization from "./Screens/Organization/Organization";
+import OrganizationEdit from './Screens/Organization/OrganizationEdit'
 import { ScreenDashboard } from "./Screens/ScreenDashboard";
 import UserForm from './Components/Users/UsersForm';
 import './App.css';

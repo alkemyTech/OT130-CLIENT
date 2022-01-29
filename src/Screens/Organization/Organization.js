@@ -1,22 +1,27 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Spinner } from "react-bootstrap";
-import { getOrganizationData } from "../../Services/organizationService";
-import "./style.css";
-import { EDIT_ORGANIZATION } from "../../rutas/config";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Spinner } from 'react-bootstrap';
+import { getOrganizationData } from '../../Services/organizationService';
+import './styles.css';
+import { EDIT_ORGANIZATION } from '../../rutas/config';
+import {
+  ORGANIZATION_FETCH_ERROR,
+} from '../../Helpers/messagesText';
 
 const Organization = () => {
   const { push } = useHistory();
   const [organizationData, setOrganizationData] = useState();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     handleGetOrganization();
   }, []);
 
+
   const handleGetOrganization = async () => {
-    const { data, error } = await getOrganizationData();
-    data && setOrganizationData(data)
+    const { data } = await getOrganizationData();
+    data ? setOrganizationData(data) : setErrorMessage(true);
   };
 
   const goToEdit = (e) => {
@@ -25,6 +30,7 @@ const Organization = () => {
 
   return (
     <div className="container">
+      {errorMessage && <p className="align-text-center">{ORGANIZATION_FETCH_ERROR}</p>}
       <div className="organization-fields-container">
         {organizationData ? (
           <>
