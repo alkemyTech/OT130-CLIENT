@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ListTexts from '../ListTexts/ListTexts';
 import Title from '../Title/Title';
-const data = require('./about.json');
+import { getData } from '../../Services/aboutService';
+
 
 const About = () => {
+    const [dataTexts, setDataTexts] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
-    return (
+    useEffect(() => {
+        handleGetData();
+    }, [])
+
+    const handleGetData = async () => {
+        const response = await getData();
+        response.error ?  setErrorMessage(response) : setDataTexts(response);
+    }
+
+    return (    
         <>
-            <section>
-                <Title text='Nosotros'/>
-            </section>
-            <section >
-                <ListTexts itemSection={data} />
-            </section>
+            {dataTexts ?
+            <>
+                <Title text={dataTexts[0].title}/>
+                <ListTexts itemSection={dataTexts}/>
+            </>
+            :<h1>{errorMessage}</h1>}   
         </>
     )
 };

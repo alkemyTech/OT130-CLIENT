@@ -1,18 +1,14 @@
-import axios from "axios";
-const HOST = "http://ongapi.alkemy.org/api";
-
-const response = {
-    error: null,
-    data: {}
-};
-
-// Service de prueba para el endpoint de about
+import axios from 'axios';
 
 export const getData = async () => {
-    try {
-      const {data} = await axios.get(`${HOST}/projects`);
-      return response.data = data;
-    } catch (error) {
-      return response.error = error;
-    }
+  const response = {
+    data: [],
+    error: ''
+  }
+  try {
+    const {data} = await axios.get('http://127.0.0.1:5500/ot130-client/src/Services/about.json');
+    return response.data = data;
+  } catch (error) {
+    return response.error = 'Error al obtener los datos';
+  }
 };
