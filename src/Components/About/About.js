@@ -3,7 +3,6 @@ import ListTexts from '../ListTexts/ListTexts';
 import Title from '../Title/Title';
 import { getData } from '../../Services/aboutService';
 
-
 const About = () => {
     const [dataTexts, setDataTexts] = useState();
     const [errorMessage, setErrorMessage] = useState();
