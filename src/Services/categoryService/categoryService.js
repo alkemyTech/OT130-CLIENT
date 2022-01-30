@@ -6,20 +6,18 @@ import {
 
 const updateCategory = async ( id, data ) => {
     try {
-        const res = await patch( `${CATEGORY_URL}/${id}`, data );
-        return res;
+        return await patch( `${CATEGORY_URL}/${id}`, data );         
     } catch ( error ) {
         return error;
-    } 
+    }; 
 };
 
 const saveCategory = async ( data ) => {
     try {
-        const res = await post( CATEGORY_URL, data );
-        return res;
+        return await post( CATEGORY_URL, data );         
     } catch ( error ) {
         return error;
-    }   
+    };   
 };
 
 export{
