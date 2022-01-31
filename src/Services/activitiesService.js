@@ -1,24 +1,16 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { API_URL } from '../config/api';
+import { Get } from './privateApiService';
 
-export function useActivitiesService() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const getActivities = async () => {
+  const response = { error: null, data: {} };
 
-  useEffect(() => {
-    (async function () {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(`${API_URL}/activities`);
-        setData(response.data.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        alert('Hubo un error en la conexión al servidor ');
-      }
-    })();
-  }, []);
+  try {
+    const { data } = await Get('/activities');
+    response.data = data.data;
+    
+  } catch (error) {
+    response.error = error.message;
+  }
+  return response;
+};
 
-  return [data, isLoading];
-}
+export { getActivities };
