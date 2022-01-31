@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../FormStyles.css';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { addNewSlide, editSlide, getSlide } from "../../Services/privateApiService";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,7 +24,7 @@ const SlidesForm = ({ slide }) => {
 
   useEffect(() => {
     getSlide('/slides')
-      .then((data) => setGetState(data))
+      .then((response) => setGetState(response.data.data))
       .catch((err) => alert("Error:", err));
   }, []);
 

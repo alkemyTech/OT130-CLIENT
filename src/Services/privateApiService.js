@@ -19,19 +19,15 @@ const Patch = async (url, data) => await instance.patch(url, data);
 const Get = async (url) => await instance.get(url);
 
 const addNewSlide = (endpoint, body) => {
-   return axios.post(baseURL + endpoint, body);
+  return axios.post(baseURL + endpoint, body);
 };
 
 const editSlide = (endpoint, body, id) => {
-   return axios.put(baseURL + endpoint + `/${id}`, body); 
+  return axios.put(baseURL + endpoint + `/${id}`, body);
 }
 
-const getSlide = async (endpoint) => {
-    let response
-    await axios.get(baseURL + endpoint)
-        .then((res) => { response = res.data.data })
-        .catch((error) => console.log("error:", error));
-    return response
+const getSlide = (endpoint) => {
+  return axios.get(baseURL + endpoint);
 }
 
 export {
@@ -40,5 +36,5 @@ export {
   Patch,
   addNewSlide,
   editSlide,
-  getSlide 
+  getSlide
 };
