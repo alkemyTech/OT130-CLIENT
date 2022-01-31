@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import swal from "sweetalert";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
 import { updateOrganizationData } from "../../Services/organizationService";
@@ -12,14 +13,15 @@ const validationSchema = Yup.object({
 });
 
 const WelcomeTextForm = ({ welcomeText }) => {
-  const submitOrganizationData = async (values, { setErrors }) => {
+  const submitOrganizationData = async (values) => {
     const { error } = await updateOrganizationData({
       welcome_text: values.welcomeText,
       name: "string",
     });
     if (error) {
-      setErrors({ welcomeText: `Error: ${error.message}` });
+      return swal("Error", error.message, "error");
     }
+    swal("Actualizado con éxito", "", "success");
   };
 
   return (
@@ -34,7 +36,6 @@ const WelcomeTextForm = ({ welcomeText }) => {
         touched,
         handleChange,
         handleBlur,
-        status,
         isSubmitting,
       }) => (
         <Form>
