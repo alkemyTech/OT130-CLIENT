@@ -5,10 +5,7 @@ const getSlides = async () => {
     const { data } = await Get("slides");
     return data;
   } catch (error) {
-    if (error.response) {
-      return { error: error.response.data };
-    }
-    return { error };
+    return { error: error.response?.data || error };
   }
 };
 
@@ -16,10 +13,7 @@ const deleteSlide = async (slideId) => {
   try {
     return await Delete(`slides/${slideId}`);
   } catch (error) {
-    if (error.response) {
-      return { error: error.response.data };
-    }
-    return { error };
+    return { error: error.response?.data || error };
   }
 };
 
