@@ -1,32 +1,61 @@
-import React from 'react';
+import React, {  useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../CardListStyles.css';
+import { ActivityItem } from './ActivityItem';
+
+const activitiesMock = [
+  { id: 1,
+    name: 'Titulo de prueba1',
+    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
+    createdAt: "date", 
+  },
+  { id: 2,
+    name: 'Titulo de prueba2',
+    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
+    createdAt: "date", 
+  },
+  { id: 3,
+    name: 'Titulo de prueba3',
+    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
+    createdAt: "date", 
+  },   
+];
 
 const ActivitiesList = () => {
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
-
-    return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
-        </div>
-    );
-}
  
+  const [ activitiesList, setActivities ] = useState( activitiesMock );
+
+  const handleDeleteActivity = ( id ) => {  
+    const newActivitiesList = activitiesList.filter( activity => activity.id !== id )
+    setActivities( newActivitiesList );
+  };
+ 
+  return (
+    <div className="container-xl">
+      <h1 className="m-4">Listado Actividades</h1>
+      <Link 
+        to="/backoffice/activities/create" 
+        className="ms-5 btn btn-primary"
+      >
+        Agregar actividad
+      </Link>
+      <div className="row m-5 d-flex justify-content-between">
+        {
+          activitiesList.length > 0 
+          ? activitiesList.map(( activity ) => {
+            return (              
+            <ActivityItem            
+              activity={ activity }
+              handleDeleteActivity={ handleDeleteActivity }     
+            />
+            )
+            })
+          : <p className="fs-2">No hay actividades</p>
+        }
+      </div>
+    </div>
+  );
+}
+
 export default ActivitiesList;
+

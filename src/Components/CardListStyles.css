@@ -15,3 +15,6 @@
     cursor: pointer;
     background-color: #61BBF8;
 }
+.cardWidth{
+    max-width: 540px;
+}
