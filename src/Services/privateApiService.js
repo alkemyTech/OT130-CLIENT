@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        Group: 0o01                //Aqui va el ID del equipo!!
+        Group: 130                //Aqui va el ID del equipo!!
     }
 }
 const baseURL = "http://ongapi.alkemy.org/api";
@@ -14,15 +14,11 @@ const Get = () => {
 }
 
 const addNewSlide = (endpoint, body) => {
-    axios.post(baseURL + endpoint, body)
-        .then((res) => { return res })
-        .catch((error) => console.log("error:", error))
+   return axios.post(baseURL + endpoint, body);
 };
 
-const editSlide = (endpoint, body) => {
-    axios.patch(baseURL, endpoint, body)
-        .then((res) => { return res })
-        .catch((error) => console.log("error:", error))
+const editSlide = (endpoint, body, id) => {
+   return axios.put(baseURL + endpoint + `/${id}`, body); 
 }
 
 const getSlide = async (endpoint) => {
