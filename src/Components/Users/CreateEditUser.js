@@ -37,57 +37,57 @@ const initialValues = {
   password: "",
 };
 
-const getErrorMessage = (error) => {
-  if (error.message === "Network Error") {
-    return NETWORK_ERROR;
-  } else if (error.response.data.errors.email) {
-    return EMAIL_TAKEN;
-  }
-  return UNKNOWN_ERROR;
-};
-
-const submit = async (params) => {
-  const {
-    setRequestError,
-    values,
-    user,
-    setSuccess,
-    resetForm,
-    fileInputRef,
-    setSubmitting,
-  } = params;
-
-  setRequestError("");
-  setSuccess(false)
-
-  values.role_id = Number(values.role_id);
-
-  if (values.image_file) {
-    values.profile_image = await toBase64(values.image_file);
-  }
-
-  delete values.image_file;
-  const { error, data } = user
-    ? await updateUser(values, user)
-    : await addUser(values);
-
-  if (error) {
-    const errorMessage = getErrorMessage(error);
-    setRequestError(errorMessage);
-  } else if (data.success) {
-    setSuccess(true);
-    resetForm();
-    fileInputRef.current.value = null;
-  }
-
-  setSubmitting(false);
-};
-
 const CreateEditUser = ({ user }) => {
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
 
   const fileInputRef = useRef();
+
+  const getErrorMessage = (error) => {
+    if (error.message === "Network Error") {
+      return NETWORK_ERROR;
+    } else if (error.response?.data?.errors?.email) {
+      return EMAIL_TAKEN;
+    }
+    return UNKNOWN_ERROR;
+  };
+  
+  const submit = async (params) => {
+    const {
+      setRequestError,
+      values,
+      user,
+      setSuccess,
+      resetForm,
+      fileInputRef,
+      setSubmitting,
+    } = params;
+  
+    setRequestError("");
+    setSuccess(false)
+  
+    values.role_id = Number(values.role_id);
+  
+    if (values.image_file) {
+      values.profile_image = await toBase64(values.image_file);
+    }
+  
+    delete values.image_file;
+    const { error, data } = user
+      ? await updateUser(values, user)
+      : await addUser(values);
+  
+    if (error) {
+      const errorMessage = getErrorMessage(error);
+      setRequestError(errorMessage);
+    } else if (data.success) {
+      setSuccess(true);
+      resetForm();
+      fileInputRef.current.value = null;
+    }
+  
+    setSubmitting(false);
+  };
 
   return (
     <Formik
