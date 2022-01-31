@@ -95,8 +95,7 @@ const CategoriesForm = ({ category }) => {
     
     const validateName = async ( categoryValues ) => {
         try {
-            await categoryNameSchema.validate( categoryValues );
-            return true;
+            return await categoryNameSchema.validate( categoryValues );
         } catch( err ) {
             const errorActive = err.errors[0];
             setErrorName( errorActive );    
@@ -106,8 +105,7 @@ const CategoriesForm = ({ category }) => {
     
     const validateDescription = async ( categoryValues ) => {
         try {
-            await categoryDescriptionSchema.validate( categoryValues );
-            return true;
+            return await categoryDescriptionSchema.validate( categoryValues );
         } catch(err) {
             const errorActive = err.errors[0];
             setErrorDescription( errorActive );    
@@ -117,8 +115,7 @@ const CategoriesForm = ({ category }) => {
     
     const validateFile = async ( categoryValues ) => {
         try {
-            await categoryFileSchema.validate( categoryValues );
-            return true;
+            return await categoryFileSchema.validate( categoryValues );
         } catch( err ) {
             const errorActive = err.errors[0];
             setErrorFile( errorActive );    
