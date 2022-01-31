@@ -1,23 +1,27 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Spinner } from "react-bootstrap";
-import { getOrganizationData } from "../../Services/organiationService";
-import "./style.css";
-import { EDIT_ORGANIZATION } from "../../rutas/config";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Spinner } from 'react-bootstrap';
+import { getOrganizationData } from '../../Services/organizationService';
+import { EDIT_ORGANIZATION } from '../../rutas/config';
+import './style.css';
+import {
+  ORGANIZATION_FETCH_ERROR,
+} from '../../Helpers/messagesText';
 
 const Organization = () => {
   const { push } = useHistory();
   const [organizationData, setOrganizationData] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     handleGetOrganization();
   }, []);
 
+
   const handleGetOrganization = async () => {
-    const response = await getOrganizationData();
-    response.data ?  setOrganizationData(response.data) : setErrorMessage('Error al obtener la organización');
+    const { data } = await getOrganizationData();
+    data ? setOrganizationData(data) : setErrorMessage(true);
   };
 
   const goToEdit = (e) => {
@@ -26,6 +30,7 @@ const Organization = () => {
 
   return (
     <div className="container">
+      {errorMessage && <p className="align-text-center">{ORGANIZATION_FETCH_ERROR}</p>}
       <div className="organization-fields-container">
         {organizationData ? (
           <>
@@ -38,10 +43,9 @@ const Organization = () => {
               Editar
             </button>
           </>
-        ) : errorMessage 
-          ? (<p>{errorMessage}</p>)
-          :(<Spinner animation="border" />)
-        }
+        ) : (
+          <Spinner animation="border" />
+        )}
       </div>
     </div>
   );

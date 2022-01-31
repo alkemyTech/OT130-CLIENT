@@ -5,7 +5,8 @@ import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { updateOrganizationData } from "../../Services/organiationService";
+import MessageSubmit from "./MessageSubmit";
+import { updateOrganizationData } from "../../Services/organizationService";
 import { yupShortDesc, yupTitles , yupImages , yupLongDesc , yupLinks} from "../../Helpers/formValidations";
 import { toBase64 } from "../../Helpers/base64";
 import "./style.css";
@@ -14,12 +15,12 @@ import { IMAGE_EXTENSION } from "../../Helpers/constants";
 
 const OrganizationEdit = () => {
   const {
-    push,
     location: { state },
   } = useHistory();
   const id = state?.id || null;
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setSuccessMessage] = useState();
+  const [show, setShow] = useState(false);
 
   const handleCKEditorChange = (editor, setFieldValue) => {
     setFieldValue("short_description", editor.getData());
@@ -47,28 +48,14 @@ const OrganizationEdit = () => {
     logo: ''
   };
 
-  const submitOk = () => {
-    setSuccessMessage('Organización actualizada correctamente');
-    setTimeout(() => {
-      setSuccessMessage(null);
-      push(ORGANIZATION);
-    }, 2000);
-  }
-
-  const submitFail = (msgError) => {
-    setErrorMessage(msgError);
-    setTimeout(() => {
-      setErrorMessage(null);
-    }, 2000);
-  }
-
   const onSubmit = async (values) => {
     values.logo = await toBase64(values.logo);
     const response = await updateOrganizationData(values, id);
-    response.data  ? submitOk() : submitFail(response);
+    (response.data) ? setSuccessMessage(response.data) : setErrorMessage(response);
+    setShow(!show);
     formik.resetForm();
   };
- 
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -80,7 +67,10 @@ const OrganizationEdit = () => {
     (
       <div className="container ">
         <div className="organization-fields-container row">
-          <h1>Editar Organización</h1>
+          <div className="col-md-12 d-flex">
+          <h1 className="col-10">Editar Organización</h1>
+          <Link className=" pt-3 btn btn-danger col" to={ORGANIZATION}>Volver</Link>
+          </div>
           <form  onSubmit={formik.handleSubmit}> 
             <div className="form-group mb-4 mt-4">
               <label htmlFor="name">Nombre</label>
@@ -211,18 +201,16 @@ const OrganizationEdit = () => {
                   formik.setFieldValue('logo', e.currentTarget.files[0]);
                 }}
               />
-              {formik.touched.logo && formik.errors.logo ? (
+              {formik.touched.logo && formik.errors.logo &&
                 <div className="error-message message">{formik.errors.logo}</div>
-              ) : null}
+              }
             </div>
-         
-            {errorMessage ? <div className="error-message message">{errorMessage}</div>
-            : <div className="success-message message">{successMessage}</div>}
-
+            {successMessage && <MessageSubmit styleType={'success-message'} show={show} submitMessage={'Se actualizo correctamente'} time={3000}/>}
+            {errorMessage && <MessageSubmit styleType={'error-message'} show={show} submitMessage={'Hubo un error al actualizar'} time={3000}/>}
             <button type="submit" className="submit-btn mb-4 mt-4">
               Guardar
             </button>
-            <Link className="submit-btn btn btn-danger" to={ORGANIZATION}>Cancelar</Link>
+            
           </form>
         </div>
       </div>            

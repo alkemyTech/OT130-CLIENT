@@ -3,7 +3,7 @@ import { HOST } from "./config";
 
 export const getOrganizationData = async () => {
   const response = {
-    data:{},
+    data: {},
     error: null,
   }
   try {
@@ -16,7 +16,7 @@ export const getOrganizationData = async () => {
 
 export const updateOrganizationData = async (body, id) => {
   const response = {
-    data:{},
+    data: {},
     error:''
   }
   try {
