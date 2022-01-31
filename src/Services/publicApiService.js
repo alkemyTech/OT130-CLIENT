@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        Group: 0o01                 //Aqui va el ID del equipo!!
+        Group: 130                 //Aqui va el ID del equipo!!
     }
 }
 
@@ -14,12 +14,8 @@ const Get = () => {
     .catch(err => console.log(err))
 }
 
-const getSlide = async (endpoint) => {
-    let response
-    await axios.get(baseURL + endpoint)
-        .then((res) => { response = res.data.data })
-        .catch((error) => console.log("error:", error));
-    return response
+const getSlide = (endpoint) => {
+    return axios.get(baseURL + endpoint);
 }
 
 export { Get, getSlide }

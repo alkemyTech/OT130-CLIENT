@@ -1,11 +1,10 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-
 function News() {
     return (
         <>
-            <Container className='cont-news'>
+            <Container className='container-news'>
 
                 <Row>
                     <Col className='title-news'>
@@ -67,7 +66,7 @@ function News() {
                     </Col>
                 </Row>
 
-                <Row className='cont-btn'>
+                <Row className='container-btn'>
                     <Col className='btn-news'>
                         <Button variant="primary">VER TODAS</Button>
                     </Col>

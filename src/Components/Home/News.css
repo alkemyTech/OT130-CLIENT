@@ -1,10 +1,10 @@
-.cont-news .row .title-news{
+.container-news .row .title-news {
     display: flex;
     justify-content: center;
     margin-top: 8px;
     margin-bottom: 70px;
 }
-.cont-news .row .title-news h3{
+.container-news .row .title-news h3 {
     font-size: 48px;
     line-height: 72px;
     letter-spacing: -1.5%;
@@ -12,24 +12,24 @@
     font-weight: 400;
 }
 
-.cont-news .row-news{
+.container-news .row-news {
     display: flex;
     gap: 20px;
 }
 
-.cont-news .row-news .col-news{
+.container-news .row-news .col-news {
     display: flex;
     justify-content: center;
 }
 
-.cont-btn{
+.container-btn {
     margin-top: 65px;
 }
-.cont-btn .btn-news{
+.container-btn .btn-news {
     display: flex;
     justify-content: center;
 }
-.cont-btn .btn-news button{
+.container-btn .btn-news button {
     font-weight: 500;
     font-size: 15px;
     line-height: 18,29px;
