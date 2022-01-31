@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Delete, Get } from "../../Services/privateApiService";
+
+import { getSlides, deleteSlide } from "../../Services/slidesService";
+
 import SlideCard from "../SlideCard/SlideCard";
 
 const SlidesList = () => {
@@ -10,28 +12,28 @@ const SlidesList = () => {
 
   useEffect(() => {
     const getdata = async () => {
-      try {
-        const { data: slides } = await Get("slides");
-        setSlides(slides?.data);
-      } catch (error) {
-        setError(error);
+      const { data: slides, error } = await getSlides();
+      if (error) {
+        return setError(error);
       }
+      setError(null);
+      setSlides(slides);
     };
     getdata();
   }, []);
 
   const handleDeleteSlide = async (slideId) => {
-    try {
-      await Delete(`slides/${slideId}`);
-      const updatedSlides = slides.filter((slide) => slide.id !== slideId);
-      setSlides(updatedSlides);
-    } catch (error) {
-      setError(error);
+    const { error } = await deleteSlide(slideId);
+    if (error) {
+      return setError(error);
     }
+    const updatedSlides = slides.filter((slide) => slide.id !== slideId);
+    setError(null);
+    setSlides(updatedSlides);
   };
 
   return (
-    <div class="container">
+    <div className="container">
       <Link to="/backoffice/create-slide">
         <Button variant="primary" className="my-3">
           Crear slide +
@@ -39,13 +41,13 @@ const SlidesList = () => {
       </Link>
       {error && (
         <Alert variant="danger" className="text-center">
-          Ocurrió un error
+          Error: {error.message}
         </Alert>
       )}
-      {slides.length > 0 ? (
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-          {slides.map((slide) => (
-            <div class="col">
+      {slides?.length > 0 ? (
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+          {slides.map((slide, index) => (
+            <div className="col" key={index}>
               <SlideCard slide={slide} onClickDelete={handleDeleteSlide} />
             </div>
           ))}
