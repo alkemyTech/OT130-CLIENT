@@ -12,8 +12,8 @@ const About = () => {
     }, [])
 
     const handleGetData = async () => {
-        const response = await getData();
-        response.error ?  setErrorMessage(response) : setDataTexts(response);
+        const { error, data } = await getData();
+        (error) ? setErrorMessage(error) : setDataTexts(data);
     }
 
     return (    
