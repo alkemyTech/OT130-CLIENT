@@ -22,6 +22,7 @@ const HomeForm = () => {
         if (error) {
           return setError(error);
         }
+        setError(null);
         setSlides(slides);
       };
       const fetchOrganizationData = async () => {
@@ -29,6 +30,7 @@ const HomeForm = () => {
         if (error) {
           return setError(error);
         }
+        setError(null);
         setWelcomeText(organizationData?.welcome_text);
       };
       await fetchSlidesData();
@@ -47,7 +49,7 @@ const HomeForm = () => {
       <h1 className="text-center my-3">Formulario de edición del home</h1>
       {error ? (
         <Alert variant="danger" className="text-center my-3">
-          Error: {error}
+          Error: {error.message}
         </Alert>
       ) : isLoading ? (
         <div className="text-center">
