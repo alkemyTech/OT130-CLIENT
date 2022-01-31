@@ -6,9 +6,9 @@ const getSlides = async () => {
     return data;
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data?.message };
+      return { error: error.response.data };
     }
-    return { error: error.message };
+    return { error };
   }
 };
 
