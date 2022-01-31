@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 
 import { getSlides, deleteSlide } from "../../Services/slidesService";
 
@@ -8,15 +9,13 @@ import SlideCard from "../SlideCard/SlideCard";
 
 const SlidesList = () => {
   const [slides, setSlides] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getdata = async () => {
       const { data: slides, error } = await getSlides();
       if (error) {
-        return setError(error);
+        return swal("Error", error.message, "error");
       }
-      setError(null);
       setSlides(slides);
     };
     getdata();
@@ -25,10 +24,10 @@ const SlidesList = () => {
   const handleDeleteSlide = async (slideId) => {
     const { error } = await deleteSlide(slideId);
     if (error) {
-      return setError(error);
+      return swal("Error", error.message, "error");
     }
+    swal("Eliminado con éxito", "", "success");
     const updatedSlides = slides.filter((slide) => slide.id !== slideId);
-    setError(null);
     setSlides(updatedSlides);
   };
 
@@ -39,11 +38,6 @@ const SlidesList = () => {
           Crear slide +
         </Button>
       </Link>
-      {error && (
-        <Alert variant="danger" className="text-center">
-          Error: {error.message}
-        </Alert>
-      )}
       {slides?.length > 0 ? (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
           {slides.map((slide, index) => (
