@@ -5,22 +5,16 @@ const getOrganizationData = async () => {
     const { data } = await Get("organization");
     return data;
   } catch (error) {
-    if (error.response) {
-      return { error: error.response.data };
-    }
-    return { error };
+    return { error: error.response?.data || error };
   }
 };
 
 const updateOrganizationData = async (data) => {
-    try {
-        return await Post("organization", data)
-    } catch (error) {
-        if (error.response) {
-        return { error: error.response.data };
-        }
-        return { error };
-    }
-}
+  try {
+    return await Post("organization", data);
+  } catch (error) {
+    return { error: error.response?.data || error };
+  }
+};
 
 export { getOrganizationData, updateOrganizationData };
