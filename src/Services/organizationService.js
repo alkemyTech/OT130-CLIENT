@@ -6,9 +6,9 @@ const getOrganizationData = async () => {
     return data;
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data?.message };
+      return { error: error.response.data };
     }
-    return { error: error.message };
+    return { error };
   }
 };
 
@@ -17,9 +17,9 @@ const updateOrganizationData = async (data) => {
         return await Post("organization", data)
     } catch (error) {
         if (error.response) {
-        return { error: error.response.data?.message };
+        return { error: error.response.data };
         }
-        return { error: error.message };
+        return { error };
     }
 }
 
