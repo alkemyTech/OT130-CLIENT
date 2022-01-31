@@ -18,7 +18,7 @@ const WelcomeTextForm = ({ welcomeText }) => {
       name: "string",
     });
     if (error) {
-      setErrors({ welcomeText: `Error: ${error}` });
+      setErrors({ welcomeText: `Error: ${error.message}` });
     }
   };
 
