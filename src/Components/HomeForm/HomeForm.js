@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Button, Container, Spinner } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
+import swal from "sweetalert";
 
 import { getSlides } from "../../Services/slidesService";
 import { getOrganizationData } from "../../Services/organizationService";
@@ -13,32 +14,31 @@ const HomeForm = () => {
   const [slides, setSlides] = useState([{}]);
   const [welcomeText, setWelcomeText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchSlidesData = async () => {
-        const { data: slides, error } = await getSlides();
-        if (error) {
-          return setError(error);
-        }
-        setError(null);
-        setSlides(slides);
-      };
-      const fetchOrganizationData = async () => {
-        const { data: organizationData, error } = await getOrganizationData();
-        if (error) {
-          return setError(error);
-        }
-        setError(null);
-        setWelcomeText(organizationData?.welcome_text);
-      };
       await fetchSlidesData();
       await fetchOrganizationData();
       setIsLoading(false);
     };
     fetchData();
   }, []);
+
+  const fetchSlidesData = async () => {
+    const { data: slides, error } = await getSlides();
+    if (error) {
+      return swal("Error", error.message, "error");
+    }
+    setSlides(slides);
+  };
+
+  const fetchOrganizationData = async () => {
+    const { data: organizationData, error } = await getOrganizationData();
+    if (error) {
+      return swal("Error", error.message, "error");
+    }
+    setWelcomeText(organizationData?.welcome_text);
+  };
 
   const addSlide = () => {
     setSlides([...slides, {}]);
@@ -47,11 +47,7 @@ const HomeForm = () => {
   return (
     <Container>
       <h1 className="text-center my-3">Formulario de edición del home</h1>
-      {error ? (
-        <Alert variant="danger" className="text-center my-3">
-          Error: {error.message}
-        </Alert>
-      ) : isLoading ? (
+      {isLoading ? (
         <div className="text-center">
           <Spinner animation="border" role="status" className="text-center">
             <span className="visually-hidden">Cargando...</span>
