@@ -1,17 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
 const config = {
-    headers: {
-        Group: 130                //Aqui va el ID del equipo!!
-    }
-}
+  baseURL: "http://ongapi.alkemy.org/api/",
+  headers: {
+    Group: 130, //Aqui va el ID del equipo!!
+    "content-type": "application/json",
+  },
+};
+
 const baseURL = "http://ongapi.alkemy.org/api";
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-}
+const instance = axios.create(config);
+
+const Post = async (url, data) => await instance.post(url, data);
+
+const Patch = async (url, data) => await instance.patch(url, data);
+
+const Get = async (url) => await instance.get(url);
 
 const addNewSlide = (endpoint, body) => {
    return axios.post(baseURL + endpoint, body);
@@ -29,6 +34,11 @@ const getSlide = async (endpoint) => {
     return response
 }
 
-export { Get, addNewSlide, editSlide, getSlide }
-
-
+export {
+  Get,
+  Post,
+  Patch,
+  addNewSlide,
+  editSlide,
+  getSlide 
+};

@@ -5,7 +5,6 @@
     flex-direction: column;
     gap: 15px;
 }
-
 .input-field{
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
@@ -21,6 +20,11 @@
     margin-top: -10px;
 }
 
+.input-field:focus {
+    outline: 0;
+    border: 1px solid #0e7fe1;
+    box-shadow: inset 0px 0px 3px 1px rgba(211, 211, 211, 0.548);
+}
 
 .select-field{
     padding: 10px;
@@ -37,4 +41,18 @@
 .submit-btn:hover{
     cursor: pointer;
     background-color: #3498DB;
+}
+
+.img-member {
+    width: 150px;
+}
+.message {
+    font-size: 12px;
+    margin-top: 5px;
+}
+.error-message {
+    color: red;
+}
+.success-message {
+    color: green;
 }
