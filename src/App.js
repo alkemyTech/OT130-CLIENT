@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
@@ -13,10 +14,11 @@ import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ScreenDashboard } from "./Screens/ScreenDashboard";
 import UserForm from './Components/Users/UsersForm';
 import './App.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
     <div className="App">
