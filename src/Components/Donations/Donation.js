@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import DonationButton from "./DonationButton";
-import { DONATION_TITLE_TEXT } from "../../Helpers/componentText";
+import { DONATION_TITLE_TEXT } from "../../Helpers/messagesText";
 
 const Donations = ({ text }) => {
   return (

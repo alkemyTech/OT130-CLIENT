@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "./Donation.css";
-import { DONATION_THANKS_TEXT } from "../../Helpers/componentText";
+import { DONATION_THANKS_TEXT } from "../../Helpers/messagesText";
 
 const Thanks = () => {
   return (

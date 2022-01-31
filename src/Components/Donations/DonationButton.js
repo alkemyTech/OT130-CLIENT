@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "./Donation.css";
-import { DONATION_BUTTON_TEXT } from "../../Helpers/componentText";
+import { DONATION_BUTTON_TEXT } from "../../Helpers/messagesText";
 
 const donate = () => {
   // TODO: Completar con función de donación

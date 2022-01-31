@@ -16,9 +16,18 @@ const PASSWORD_SHORT = "Mínimo 6 caracteres"
 const PASSWORD_REGISTER_CONTAIN = 'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'
 const PASSWORD_DONT_MATCH = "Las contraseñas no coinciden"
 
+// Textos de donación
+
+const DONATION_TITLE_TEXT = "¡Contribuye!";
+const DONATION_BUTTON_TEXT = "Contribuir";
+const DONATION_THANKS_TEXT = "¡Muchas gracias por contribuir!";
+
 export {
     DESCRIPTION_LONG, 
-    DESCRIPTION_SHORT, 
+    DESCRIPTION_SHORT,
+    DONATION_TITLE_TEXT,
+    DONATION_BUTTON_TEXT,
+    DONATION_THANKS_TEXT, 
     INPUT_REQUIRED, 
     INVALID_IMAGE_EXT, 
     INVALID_EMAIL,
