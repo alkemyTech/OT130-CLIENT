@@ -1,13 +1,12 @@
-import axios from 'axios';
+import dataAbout from '../Services/mocks/about.json';
 
 export const getData = async () => {
   const response = {
-    data: [],
+    data: {},
     error: ''
   }
   try {
-    const {data} = await axios.get('http://127.0.0.1:5500/ot130-client/src/Services/about.json');
-    return response.data = data;
+    return response.data = dataAbout;
   } catch (error) {
     return response.error = 'Error al obtener los datos';
   }

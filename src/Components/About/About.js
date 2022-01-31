@@ -18,12 +18,13 @@ const About = () => {
 
     return (    
         <>
-            {dataTexts ?
-            <>
-                <Title text={dataTexts[0].title}/>
-                <ListTexts itemSection={dataTexts}/>
-            </>
-            :<h1>{errorMessage}</h1>}   
+            { dataTexts
+            ?  <>
+                    <Title text={dataTexts[0].title}/>
+                    <ListTexts itemSection={dataTexts}/>
+                </>
+            : <h1>{errorMessage}</h1>
+            }
         </>
     )
 };
