@@ -15,6 +15,12 @@ const SlidesForm = ({ slide }) => {
   const [requiredImage, setRequiredImage] = useState(false);
   const [requiredOrder, setRequiredOrder] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [initialValues, setInitialValues] = useState({
+    name: '',
+    description: '',
+    image: '',
+    order: ''
+  });
 
   useEffect(() => {
     getSlide('/slides')
@@ -22,18 +28,7 @@ const SlidesForm = ({ slide }) => {
       .catch((err) => alert("Error:", err));
   }, []);
 
-  const uniqueOrder = () => {
-    let isUnique = true;
-    for (let i = 0; i < getState.length; i++) {
-      if (getState[i].order == initialValues.order) {
-        setRequiredOrder(true)
-        setOrder('Elija otro número que no haya sido usado');
-        isUnique = false;
-        break;
-      }
-    }
-    return isUnique;
-  }
+  const isOrderAlreadyUsed = getState.some(state => state.order === parseInt(initialValues.order));
 
   useEffect(() => {
     if (slide) {
@@ -46,13 +41,6 @@ const SlidesForm = ({ slide }) => {
       });
     }
   }, []);
-
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    description: '',
-    image: '',
-    order: ''
-  });
 
   const handleChange = (e) => {
 
@@ -74,7 +62,7 @@ const SlidesForm = ({ slide }) => {
     }
   };
 
-  const handleChangeDescription = (editor) => {
+  const handleChangeDescription = (event, editor) => {
     const data = editor.getData();
     setInitialValues({ ...initialValues, description: data });
   };
@@ -85,9 +73,9 @@ const SlidesForm = ({ slide }) => {
       description: initialValues.description,
       image: initialValues.image,
       order: initialValues.order,
-      created_at: "2022-01-21T12:31:52.129Z",
-      updated_at: "2022-01-21T12:31:52.129Z",
-      deleted_at: "2022-01-21T12:31:52.129Z"
+      created_at: new Date(),
+      updated_at: new Date(),
+      deleted_at: new Date()
     };
 
     addNewSlide("/slides", body)
@@ -123,14 +111,16 @@ const SlidesForm = ({ slide }) => {
     description === "" ? setRequiredDescription(true) : setRequiredDescription(false);
     image === "" ? setRequiredImage(true) : setRequiredImage(false);
 
-    if (order === "") {
-      setRequiredOrder(true)
-    } else {
+    if (order === "" ) {
+      setRequiredOrder(true);
+    } else if ( isOrderAlreadyUsed ){
+      setRequiredOrder(true);
+      setOrder('Elija otro número que no haya sido usado');
+    }  else {
       setRequiredOrder(false);
-      uniqueOrder();
     }
 
-    if (![name, description, image, order].includes("") && uniqueOrder()) {
+    if (![name, description, image, order].includes("") && !isOrderAlreadyUsed ) {
       handleSubmit(e);
     } else {
       setLoading(false);
