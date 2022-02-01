@@ -18,7 +18,6 @@ const Organization = () => {
     handleGetOrganization();
   }, []);
 
-
   const handleGetOrganization = async () => {
     const { data } = await getOrganizationData();
     data ? setOrganizationData(data) : setErrorMessage(true);

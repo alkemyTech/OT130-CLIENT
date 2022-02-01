@@ -2,6 +2,7 @@ import { Formik, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as Yup from 'yup';
+import { Alert } from '../../Components/Alert';
 import { updateOrganizationData } from '../../Services/organizationService';
 import { yupShortDesc, yupTitles } from '../../Helpers/formValidations';
 import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
@@ -26,31 +27,21 @@ const OrganizationEdit = () => {
   } = useHistory();
   const id = state?.id || null;
   const [selectedImage, setSelectedImage] = useState({ image: LOGO });
-  const [successMessage, setSuccessMessage] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSuccess = () => {
-    setSuccessMessage(true);
-    setTimeout(() => {
-      setSuccessMessage(false);
-      push(ORGANIZATION);
-    }, 3000);
+    Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
+    push(ORGANIZATION);
   };
 
   const handleSubmit = async ({ logo, name, description }) => {
     const { data } = await updateOrganizationData(
-      { name, short_description: description, logo: logo },
+      { name, 
+        short_description: description, 
+        logo: logo 
+      },
       id,
     );
-    data ? handleSuccess() : setErrorMessage(true);
-  };
-
-  const handleScreenMessages = () => {
-    if (errorMessage) {
-      return <p className="align-text-center">{ORGANIZATION_EDITED_ERROR}</p>;
-    } else if (successMessage) {
-      return <p className="align-text-center">{ORGANIZATION_EDITED_SUCCESSFULLY}</p>;
-    }
+    data ? handleSuccess() : Alert(undefined, ORGANIZATION_EDITED_ERROR, true);
   };
 
   const validation = Yup.object().shape({
@@ -64,28 +55,25 @@ const OrganizationEdit = () => {
   };
 
   return id ? (
-    <div>
-      {handleScreenMessages()}
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values) => handleSubmit(values)}
-        validationSchema={validation}
-      >
-        {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
-          return (
-            <OrganizationEditForm
-              handleSubmit={handleSubmit}
-              setFieldValue={setFieldValue}
-              values={values}
-              touched={touched}
-              handleChange={handleChange}
-              handleSelectImage={handleSelectImage}
-              selectedImage={selectedImage}
-            />
-          );
-        }}
-      </Formik>
-    </div>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values) => handleSubmit(values)}
+      validationSchema={validation}
+    >
+      {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
+        return (
+          <OrganizationEditForm
+            handleSubmit={handleSubmit}
+            setFieldValue={setFieldValue}
+            values={values}
+            touched={touched}
+            handleChange={handleChange}
+            handleSelectImage={handleSelectImage}
+            selectedImage={selectedImage}
+          />
+        );
+      }}
+    </Formik>
   ) : (
     <Redirect to="/backoffice/organization" />
   );
