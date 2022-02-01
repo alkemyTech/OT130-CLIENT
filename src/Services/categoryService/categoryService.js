@@ -4,23 +4,31 @@ import {
     Post 
 } from "../privateApiService";
 
-const updateCategory = async ( id, data ) => {
-    try {
-        return await Patch( `${CATEGORY_URL}/${id}`, data );         
-    } catch ( error ) {
-        return error;
-    }; 
+const saveCategory = async (values) => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Post( CATEGORY_URL, values );
+    response.data = data.data;
+  } catch (error) {
+    response.error = error.message;
+  };
+  return response;
 };
 
-const saveCategory = async ( data ) => {
-    try {
-        return await Post( CATEGORY_URL, data );         
-    } catch ( error ) {
-        return error;
-    };   
+const updateCategory = async (id, values) => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Patch( `${CATEGORY_URL}/${id}`, values );
+    response.data = data.data;
+  } catch (error) {
+    response.error = error.message;
+  };
+  return response;
 };
 
-export{
-    updateCategory,
-    saveCategory
+export {
+    saveCategory,
+    updateCategory
 };
+
+

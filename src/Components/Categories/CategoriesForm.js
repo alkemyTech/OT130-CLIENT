@@ -12,7 +12,7 @@ import {
     categoryDescriptionSchema, 
     categoryFileSchema, 
     categoryNameSchema 
-} from '../../Helpers/categoriesValidation';
+} from '../../Helpers/categoryValidation';
 import { 
     ALERT_ICON_ERROR, 
     ALERT_ICON_SUCCESS 
@@ -39,12 +39,11 @@ const CategoriesForm = ({ category }) => {
 
     const inputRefImage = useRef();
 
-    const messageAlert = ( error, icon ) => {
+    const messageAlert = ( icon ) => {
         return(   
             Swal.fire({
             position: 'top-end',
             icon: icon,
-            title: error,
             showConfirmButton: false,
             timer: 1000
           }) )
@@ -78,7 +77,8 @@ const CategoriesForm = ({ category }) => {
     const cleanErrorsMessages = () => {
         setErrorName('');
         setErrorDescription('');
-        setErrorFile('');  
+        setErrorFile(''); 
+ 
     };  
    
     const formValidation =  async () => {
@@ -124,12 +124,11 @@ const CategoriesForm = ({ category }) => {
     };
 
     const requestToDo = async ( request, id ) => {
-        try {
-            const { data } = await request( categoryValues, id ) 
-            messageAlert( data.error, ALERT_ICON_SUCCESS )           
-          } catch ( error ) {
-            messageAlert( error, ALERT_ICON_ERROR )
-          };
+        const {data}  = await request( categoryValues, id )       
+        data
+           ? messageAlert( ALERT_ICON_SUCCESS ) 
+           : messageAlert( ALERT_ICON_ERROR )
+                        
     };
 
     const choiceTypeRequest = () => {  
@@ -140,7 +139,7 @@ const CategoriesForm = ({ category }) => {
 
     const handleSubmit = async ( e ) =>{
         e.preventDefault();
-        cleanErrorsMessages();
+        cleanErrorsMessages();       
         const validatedForm = await formValidation();
         validatedForm && choiceTypeRequest();        
     };
@@ -182,7 +181,9 @@ const CategoriesForm = ({ category }) => {
             <button 
                 className="submit-btn" 
                 type="submit"
-            >Enviar</button>        
+            >
+                Enviar
+            </button>        
         </form>
     );
 };
