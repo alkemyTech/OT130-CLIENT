@@ -7,11 +7,14 @@ function CarouselHero() {
   const [getState, setGetState] = useState();
 
   useEffect(() => {
-    getSlide('/slides')
-      .then((res) => {
+    (async function () {
+      try {
+        const res = await getSlide('/slides')
         setGetState(res.data.data)
-      })
-      .catch((error) => alert("Error:", error));
+      } catch (error) {
+        alert("Error:", error)
+      }
+    })()
   }, []);
 
   return (

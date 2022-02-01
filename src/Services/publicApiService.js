@@ -8,16 +8,16 @@ const config = {
 
 const baseURL = "http://ongapi.alkemy.org/api";
 
-const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+const Get = async () => {
+  try {
+    const resp = await axios.get("https://jsonplaceholder.typicode.com/users", config)
+    console.log(resp.data);
+  } catch (error) {
+    console.log("Error:", error)
+  }
 };
 
-const getSlide = (endpoint) => {
-    return axios.get(baseURL + endpoint);
-}
+const getSlide = async (endpoint) => await axios.get(baseURL + endpoint);
 
 export { Get, getSlide }
 
