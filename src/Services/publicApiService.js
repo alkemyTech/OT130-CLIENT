@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const config = {
   headers: {
@@ -6,11 +6,9 @@ const config = {
   },
 };
 
-const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+const Get = async (route, id) => {
+  const url = route + `${id ? '/' + String(id) : null}`;
+  return await axios.get(url, config);
 };
 
-export default Get;
+export default {Get};
