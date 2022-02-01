@@ -8,10 +8,11 @@ export const getOrganizationData = async () => {
   }
   try {
     const { data } = await axios.get(`${HOST}/organization`);
-    return response.data = data;
+    response.data = data;
   } catch (error) {
-    return response.error = 'Error al obtener los datos de la organización';
+    response.error = 'Error al obtener los datos de la organización';
   }
+  return response;
 };
 
 export const updateOrganizationData = async (body, id) => {
@@ -21,10 +22,11 @@ export const updateOrganizationData = async (body, id) => {
   }
   try {
     const { data } = await axios.put(`${HOST}/organization/${id}`, body);
-    return response.data = data;
+    response.data = data;
   } catch (error) {
-    return response.error = 'Error al actualizar la organización';
+    response.error = 'Error al actualizar la organización';
   } 
+  return response;
 };
 
 export const getOrganizationDataById = async (id) => {
@@ -34,8 +36,9 @@ export const getOrganizationDataById = async (id) => {
   }
   try {
     const { data } = await axios.get(`${HOST}/organization/${id}`);
-    return response.data = data;
+    response.data = data;
   } catch (error) {
-    return response.error = 'Error al obtener los datos de la organización';
+    response.error = 'Error al obtener los datos de la organización';
   }
+  return response;
 };
