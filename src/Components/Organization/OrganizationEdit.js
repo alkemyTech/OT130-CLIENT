@@ -50,7 +50,7 @@ const OrganizationEdit = () => {
 
   const onSubmit = async (values) => {
     values.logo = await toBase64(values.logo);
-    const { data, error} = await updateOrganizationData(values, id);
+    const { data, error } = await updateOrganizationData(values, id);
     (data) ? setSuccessMessage(data) : setErrorMessage(error);
     setShow(!show);
     formik.resetForm();
