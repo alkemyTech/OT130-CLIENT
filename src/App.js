@@ -13,6 +13,7 @@ import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import UserForm from './Components/Users/UsersForm';
+import Detail from './Components/Activities/Detail/Detail';
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/actividades/:id" component={Detail} />
         </Switch>
       </BrowserRouter>
     <div className="App">
