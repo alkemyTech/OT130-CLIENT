@@ -18,23 +18,8 @@ const Patch = async (url, data) => await instance.patch(url, data);
 
 const Get = async (url) => await instance.get(url);
 
-const addNewSlide = (endpoint, body) => {
-  return axios.post(baseURL + endpoint, body);
-};
-
-const editSlide = (endpoint, body, id) => {
-  return axios.put(baseURL + endpoint + `/${id}`, body);
-}
-
-const getSlide = (endpoint) => {
-  return axios.get(baseURL + endpoint);
-}
-
 export {
   Get,
   Post,
   Patch,
-  addNewSlide,
-  editSlide,
-  getSlide
 };
