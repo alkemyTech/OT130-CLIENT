@@ -1,9 +1,8 @@
 import axios from "axios";
+import { API_URL } from '../config/api';
 
 const config = {
-  headers: {
-    Group: 130, //Aqui va el ID del equipo!!
-  },
+  baseURL: API_URL,
 };
 
 const Get = () => {
