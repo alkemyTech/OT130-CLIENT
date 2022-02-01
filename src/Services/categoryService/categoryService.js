@@ -1,12 +1,12 @@
 import { CATEGORY_URL } from "../../config/imagePaths";
 import { 
-    patch, 
-    post 
+    Patch, 
+    Post 
 } from "../privateApiService";
 
 const updateCategory = async ( id, data ) => {
     try {
-        return await patch( `${CATEGORY_URL}/${id}`, data );         
+        return await Patch( `${CATEGORY_URL}/${id}`, data );         
     } catch ( error ) {
         return error;
     }; 
@@ -14,7 +14,7 @@ const updateCategory = async ( id, data ) => {
 
 const saveCategory = async ( data ) => {
     try {
-        return await post( CATEGORY_URL, data );         
+        return await Post( CATEGORY_URL, data );         
     } catch ( error ) {
         return error;
     };   

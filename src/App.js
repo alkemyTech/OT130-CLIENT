@@ -1,23 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import MembersForm from './Components/Members/MembersForm';
-import NewsForm from './Components/News/NewsForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import React from "react";
+import { Counter } from "./features/counter/Counter";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import logo from "./logo.svg";
+import ActivitiesForm from "./Components/Activities/ActivitiesForm";
+import CategoriesForm from "./Components/Categories/CategoriesForm";
+import NewsForm from "./Components/News/NewsForm";
+import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
+import SlidesForm from "./Components/Slides/SlidesForm";
+import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
+import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import MembersForm from "./Components/Members/MembersForm";
+import ProjectsForm from "./Components/Projects/ProjectsForm";
 import { ScreenDashboard } from "./Screens/ScreenDashboard";
-import UserForm from './Components/Users/UsersForm';
-import './App.css';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import UserForm from "./Components/Users/UsersForm";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -38,53 +35,53 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <Counter />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <span>
+            <span>Learn </span>
+            <a
+              className="App-link"
+              href="https://reactjs.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React
+            </a>
+            <span>, </span>
+            <a
+              className="App-link"
+              href="https://redux.js.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Redux
+            </a>
+            <span>, </span>
+            <a
+              className="App-link"
+              href="https://redux-toolkit.js.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Redux Toolkit
+            </a>
+            ,<span> and </span>
+            <a
+              className="App-link"
+              href="https://react-redux.js.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React Redux
+            </a>
+          </span>
+        </header>
+      </div>
     </>
   );
 }
