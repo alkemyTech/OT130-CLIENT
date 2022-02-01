@@ -32,7 +32,7 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
-          <Route path="/actividades/:id" component={Detail} />
+          <Route path="/actividades" component={Detail} />
         </Switch>
       </BrowserRouter>
     <div className="App">
