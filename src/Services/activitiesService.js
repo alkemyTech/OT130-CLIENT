@@ -1,5 +1,5 @@
-import axios from "axios";
-import { HOST } from "./config";
+import axios from 'axios';
+import { HOST } from './config';
 
 export const getActivityDataById = async (id) => {
   try {
