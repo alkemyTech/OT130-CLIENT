@@ -7,8 +7,8 @@ const config = {
 };
 
 const Get = async (route, id) => {
-  const url = route + `${id ? '/' + String(id) : null}`;
+  const url = route + `${id ? "/" + String(id) : null}`;
   return await axios.get(url, config);
 };
 
-export default {Get};
+export default { Get };
