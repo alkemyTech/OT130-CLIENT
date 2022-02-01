@@ -1,24 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { getUser } from '../../Services/usersService';
+import { deleteUser, getUsers } from '../../Services/usersService';
+import Swal from 'sweetalert2';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
   const [RequestError, setRequestError] = useState();
 
   const updateUserList = async () => {
-    const { data, error } = await getUser();
+    const { data, error } = await getUsers();
 
     if (error) {
       setRequestError(error);
     } else {
       setUserList(data);
     }
-    console.log(error, data);
+  };
+
+  const editData = async () => {};
+
+  const deleteData = async (id) => {
+    await Swal.fire({
+      title: 'Esta seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        const { data, error } = deleteUser(id);
+        if (error) {
+          setRequestError(error);
+        } else {
+          updateUserList();
+        }
+      }
+    });
   };
 
   useEffect(() => {
     updateUserList();
-  }, []);
+  }, [userList]);
 
   return (
     <div>
@@ -40,7 +61,7 @@ const UserList = () => {
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>
-                  <button>Eliminar</button>
+                  <button onClick={() => deleteData(el.id)}>Eliminar</button>
                   <button>Editar</button>
                 </td>
               </tr>
