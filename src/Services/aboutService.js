@@ -6,8 +6,9 @@ export const getData = async () => {
     error: null
   }
   try {
-    return response.data = dataAbout;
+    response.data = dataAbout;
   } catch (error) {
-    return response.error = 'Error al obtener los datos';
+    response.error = 'Error al obtener los datos';
   }
+  return response;
 };
