@@ -2,6 +2,7 @@ import React from "react";
 import { Counter } from "./features/counter/Counter";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import logo from "./logo.svg";
+import Activities from "./Components/Activities";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
@@ -21,7 +22,8 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          {/* <Route path="/" exact component={} />  Esta ruta debe ser para el Home */}
+          <Route path="/activities" component={Activities} />
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />

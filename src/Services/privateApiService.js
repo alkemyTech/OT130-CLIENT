@@ -4,7 +4,7 @@ import { API_URL } from '../config/api';
 const config = {
   baseURL: API_URL,
   headers: {
-    // Group: 130, //Aqui va el ID del equipo!!
+    Group: 130, //Aqui va el ID del equipo!!
     'content-type': 'application/json',
   },
 };

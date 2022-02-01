@@ -1,10 +1,10 @@
 import React from "react";
-import { useActivitiesService } from "../../customHooks/useActivitiesService";
+import { useRequestActivities } from "../../customHooks/useRequestActivities";
 import "../CardListStyles.css";
 
 
 const ActivitiesList = () => {
-  const [allActivities, isLoading] = useActivitiesService([]);
+  const [allActivities, isLoading] = useRequestActivities([]);
 // isLoading para implementar en futuro spinner de carga.
 // Reemplazar Mock por customHooks
   const activitiesMock = [

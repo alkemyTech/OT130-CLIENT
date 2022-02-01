@@ -1,24 +1,27 @@
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import { getActivities } from '../Services/activitiesService';
 
-export function useActivitiesService() {
+export function useRequestActivities() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async function () {
-      try {
         setIsLoading(true);
         const { error, data } = await getActivities();
         if (error) {
           console.error(error);
-       } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error en la aplicación.',
+            confirmButtonColor: '#0e7fe1'
+          }) 
+        } else {
           setData(data);
-       }
+        }
         setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
     })();
   }, []);
 
