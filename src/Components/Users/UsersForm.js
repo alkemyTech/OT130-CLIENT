@@ -1,38 +1,95 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Row, Spinner } from "react-bootstrap";
+import { ErrorMessage, Field, Form } from "formik";
+import "../FormStyles.css";
+import userTypes from "../../Helpers/userTypes";
 
-const UserForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        email: '',
-        roleId: ''
-    })
 
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        }
-    }
+const FormComponent = ({
+  touched,
+  handleSubmit,
+  setFieldValue,
+  success,
+  requestError,
+  isSubmitting,
+  fileInputRef,
+  imageMax
+}) => {
+  return (
+    <Form onSubmit={handleSubmit} className="form-container">
+      <Field
+        className="input-field"
+        type="text"
+        name="name"
+        placeholder="Nombre"
+      ></Field>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
+      {touched.name && <ErrorMessage name="name" />}
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
-            <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
-                <option value="" disabled >Select the role</option>
-                <option value="1">Admin</option>
-                <option value="2">User</option>
-            </select>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
-    );
-}
- 
-export default UserForm;
+      <Field
+        className="input-field"
+        type="text"
+        name="email"
+        placeholder="Email"
+      ></Field>
+
+      {touched.email && <ErrorMessage name="email" />}
+
+      <Field
+        className="input-field"
+        type="text"
+        name="description"
+        placeholder="Descripción"
+      ></Field>
+
+      {touched.description && <ErrorMessage name="description" />}
+
+      <Field
+        className="input-field"
+        type="password"
+        name="password"
+        placeholder="Password"
+      ></Field>
+
+      {touched.password && <ErrorMessage name="password" />}
+
+      <Field className="select-field" as="select" name="role_id">
+        {Object.keys(userTypes).map((key)=>{
+          return <option value={key}>{userTypes[key]}</option>
+        })}
+      </Field>
+      <div>
+        <label style={{ paddingRight: "10px" }}>Subir imagen de usuario</label>
+        <input
+          ref={fileInputRef}
+          type="file"
+          max={imageMax}
+          name="image_file"
+          accept="image/png, image/jpeg"
+          onChange={(e) => {
+            setFieldValue("image_file", e.currentTarget.files[0]);
+          }}
+        />
+        <div>
+          <ErrorMessage name="image_file" />
+        </div>
+      </div>
+      <button type="submit" className="submit-btn">
+        Enviar
+      </button>
+      <Row className="justify-content-center">
+        {isSubmitting && <Spinner animation="border" />}
+        {success ? (
+          <p className="message success text-center">
+            Se ha guardado el usuario
+          </p>
+        ) : (
+          <p className="message error text-center">{requestError}</p>
+        )}
+      </Row>
+    </Form>
+  );
+};
+
+export default FormComponent
