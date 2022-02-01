@@ -16,15 +16,15 @@ const HomeForm = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchSlidesData();
-      await fetchOrganizationData();
+    const getData = async () => {
+      await getSlidesData();
+      await getOrganization();
       setIsLoading(false);
     };
-    fetchData();
+    getData();
   }, []);
 
-  const fetchSlidesData = async () => {
+  const getSlidesData = async () => {
     const { data: slides, error } = await getSlides();
     if (error) {
       return swal("Error", error.message, "error");
@@ -32,7 +32,7 @@ const HomeForm = () => {
     setSlides(slides);
   };
 
-  const fetchOrganizationData = async () => {
+  const getOrganization = async () => {
     const { data: organizationData, error } = await getOrganizationData();
     if (error) {
       return swal("Error", error.message, "error");
