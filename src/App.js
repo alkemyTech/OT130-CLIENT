@@ -3,8 +3,8 @@ import { Counter } from "./features/counter/Counter";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import ActivitiesCreate from './Views/Activities/ActivitiesCreate';
-import ActivitiesEdit from './Views/Activities/ActivitiesEdit'
+import ActivitiesCreate from './Screens/Activities/ActivitiesCreate';
+import ActivitiesEdit from './Screens/Activities/ActivitiesEdit'
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import CreateEditUser from "./Components/Users/CreateEditUser"
 import NewsForm from "./Components/News/NewsForm";
