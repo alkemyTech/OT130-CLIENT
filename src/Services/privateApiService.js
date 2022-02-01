@@ -30,5 +30,6 @@ const GetToken = () => {
 export {
   Get,
   Post,
-  Patch
+  Patch,
+  GetToken,
 };
