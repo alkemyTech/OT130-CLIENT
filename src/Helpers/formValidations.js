@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { IMAGE_ACCEPTED_EXTENSIONS } from "../config/imageConfig";
 import { 
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
@@ -40,7 +41,7 @@ const yupImages = () =>
     .test(
       "fileFormat",
       INVALID_IMAGE_EXT,
-      (value) => ["image/jpeg", "image/png"].includes(value?.type)
+      (value) => value ? IMAGE_ACCEPTED_EXTENSIONS.includes(value.type) : true
     );
 
 const yupEmail = () =>   
