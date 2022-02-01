@@ -1,10 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
+import { useRequestMembers } from '../../customHooks/useRequestMembers';
 import '../CardListStyles.css';
 
 const MembersList = () => {
-  // Mock de prueba cambiar por data de api.
+  const [allMembers, isLoading] = useRequestMembers([]);
+  console.log("🚀 ~ file: MembersList.js ~ line 9 ~ MembersList ~ allMembers", allMembers)
+  // isLoading para implementar en futuro spinner de carga.
+  // Reemplazar Mock por customHooks
   const membersMock = [
     {
       id: 1,
@@ -52,6 +56,7 @@ const MembersList = () => {
     <div>
       <h1 className="my-4">Listado De Miembros</h1>
       <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around">
+        {/* reemplazar activitiesMock por allMembers */}
         {membersMock.length > 0 ? (
           membersMock.map((member) => {
             return (
