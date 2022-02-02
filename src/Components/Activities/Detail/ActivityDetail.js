@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Title from '../../Title/Title';
-import './Detail.css'
+import './ActivityDetail.css'
 
-function Detail() {
+function ActivityDetail() {
 
   return (
     <>
@@ -32,4 +32,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default ActivityDetail;
