@@ -15,12 +15,13 @@ const SlidesForm = ({ slide }) => {
   const [requiredImage, setRequiredImage] = useState(false);
   const [requiredOrder, setRequiredOrder] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [initialValues, setInitialValues] = useState({
+  const defaultInitialValues = {
     name: '',
     description: '',
     image: '',
     order: ''
-  });
+  }
+  const [initialValues, setInitialValues] = useState(defaultInitialValues);
 
   useEffect(() => {
     (async function () {
@@ -81,8 +82,6 @@ const SlidesForm = ({ slide }) => {
       image: initialValues.image,
       order: initialValues.order,
       created_at: new Date(),
-      updated_at: new Date(),
-      deleted_at: new Date()
     };
 
     try {
@@ -101,9 +100,7 @@ const SlidesForm = ({ slide }) => {
       description: initialValues.description,
       image: initialValues.image,
       order: initialValues.order,
-      created_at: "2022-01-21T12:31:52.129Z",
       updated_at: "2022-01-21T12:31:52.129Z",
-      deleted_at: "2022-01-21T12:31:52.129Z"
     };
 
     try {
@@ -116,16 +113,11 @@ const SlidesForm = ({ slide }) => {
     }
   };
 
-  const validateFormData = (e) => {
+  const emptyInputValidation = (input, funcion) => {
+    input === "" ? funcion(true) : funcion(false)
+  }
 
-    e.preventDefault();
-    setLoading(true);
-
-    const { name, description, image, order } = initialValues;
-    name === "" ? setRequiredName(true) : setRequiredName(false);
-    description === "" ? setRequiredDescription(true) : setRequiredDescription(false);
-    image === "" ? setRequiredImage(true) : setRequiredImage(false);
-
+  const validationInputOrder = (order) => {
     if (order === "") {
       setRequiredOrder(true);
     } else if (isOrderAlreadyUsed()) {
@@ -134,38 +126,56 @@ const SlidesForm = ({ slide }) => {
     } else {
       setRequiredOrder(false);
     }
+  }
+
+  const showError = () => {
+    const { name, description, image, order } = initialValues;
+    emptyInputValidation(name, setRequiredName);
+    emptyInputValidation(description, setRequiredDescription);
+    emptyInputValidation(image, setRequiredImage);
+    validationInputOrder(order);
+  }
+
+  const isFormValid = () => {
+    const { name, description, image, order } = initialValues;
+    showError();
 
     if (![name, description, image, order].includes("") && !isOrderAlreadyUsed()) {
-      handleSubmit(e);
+      return true;
     } else {
-      setLoading(false);
+      return false;
     }
-
   }
 
   const handleSubmit = (e) => {
-    if (!slide) {
-      addSlide()
-    } else if (slide && slide.id) {
-      updateSlide(slide.id)
+    e.preventDefault();
+    setLoading(true);
+
+    if (isFormValid()) {
+
+      if (!slide) {
+        addSlide()
+      } else if (slide && slide.id) {
+        updateSlide(slide.id)
+      };
+
+      clearForm();
+      e.target.reset();
+
+    } else {
+      setLoading(false)
     }
 
-    clearForm()
-    e.target.reset()
+
   };
 
   const clearForm = () => {
-    setInitialValues({
-      name: '',
-      description: '',
-      image: '',
-      order: ''
-    })
+    setInitialValues(defaultInitialValues);
   }
 
   return (
 
-    <form className="form-container" onSubmit={validateFormData}>
+    <form className="form-container" onSubmit={handleSubmit}>
 
       <input
         className={requiredName ? "input-field input-required" : "input-field "}
