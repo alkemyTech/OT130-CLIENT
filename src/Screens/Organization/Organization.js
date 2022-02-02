@@ -16,7 +16,6 @@ import { Alert } from '../../Components/Alert';
 const Organization = () => {
   const { push } = useHistory();
   const [organizationData, setOrganizationData] = useState();
-  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     getOrganization();
