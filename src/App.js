@@ -37,6 +37,7 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
+      
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
