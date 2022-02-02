@@ -13,7 +13,7 @@ const config = {
 
 const instance = axios.create(config);
 
-const Post = async (url, data) => await instance.post(url, data);
+const Post = async (url, body) => await instance.post(url, body);
 
 const Patch = async (url, data) => await instance.patch(url, data);
 
