@@ -18,10 +18,4 @@ const Get = async (url) => await instance.get(url);
 
 const Delete = async (url, data) => await instance.delete(url, data);
 
-
-export {
-  Get,
-  Post,
-  Patch,
-  Delete
-};
+export { Get, Post, Patch, Delete };
