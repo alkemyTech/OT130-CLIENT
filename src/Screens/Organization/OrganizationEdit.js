@@ -37,10 +37,10 @@ const OrganizationEdit = () => {
       id,
     );
     if (data) {
-      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
+      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY, 'success');
       push(ORGANIZATION);
     } else {
-      Alert(undefined, ORGANIZATION_EDITED_ERROR, true);
+      Alert(undefined, ORGANIZATION_EDITED_ERROR, 'error');
     }
   };
 
