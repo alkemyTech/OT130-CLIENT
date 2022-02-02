@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import ActivitiesCreate from './Screens/Activities/ActivitiesCreate';
-import ActivitiesEdit from './Screens/Activities/ActivitiesEdit'
+import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
+import ActivitiesEdition from './Screens/Activities/ActivitiesEdition'
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -26,8 +26,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesCreate} />
-          <Route path="/edit-activity/:id" component={ActivitiesEdit} />
+          <Route path="/create-activity" component={ActivitiesCreation} />
+          <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />

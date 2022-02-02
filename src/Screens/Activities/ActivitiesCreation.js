@@ -17,7 +17,7 @@ const initialValues = {
   image: '',
 };
 
-const ActivitiesCreate = () => {
+const ActivitiesCreation = () => {
   const { go } = useHistory();
   const [loading, setLoading] = useState(false);
 
@@ -31,11 +31,6 @@ const ActivitiesCreate = () => {
     setFieldValue('description', editor.getData());
   };
 
-  const handleSuccess = () => {
-    Alert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
-    go(0);
-  };
-
   const handleSubmit = async ({ image, name, description }) => {
     setLoading(true);
     const base64Img = await toBase64(image);
@@ -46,7 +41,12 @@ const ActivitiesCreate = () => {
     };
     const { success } = await saveActivityData(body);
     setLoading(false);
-    success ? handleSuccess() : Alert(undefined, ACTIVITY_ADDED_ERROR, true);
+    if (success) {
+      Alert(undefined, ACTIVITY_ADDED_SUCCESSFULLY, 'success');
+      go(0);
+    } else {
+      Alert(undefined, ACTIVITY_ADDED_ERROR, 'error');
+    }
   };
 
   return (
@@ -74,4 +74,4 @@ const ActivitiesCreate = () => {
   );
 };
 
-export default ActivitiesCreate;
+export default ActivitiesCreation;

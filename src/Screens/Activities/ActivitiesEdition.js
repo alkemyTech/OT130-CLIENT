@@ -1,22 +1,30 @@
-import * as Yup from "yup";
-import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
-import { EmptyScreen } from "../../Components/EmptyScreen";
-import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
-import { getActivityDataById, updateActivityDataById } from "../../Services/activitiesService";
-import { toBase64 } from "../../Helpers/base64";
-import { yupLongDesc, yupTitles } from "../../Helpers/formValidations";
-import "../../Components/FormStyles.css";
-import { NO_ACTIVITIES } from "../../Helpers/messagesText";
+import * as Yup from 'yup';
+import { Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { EmptyScreen } from '../../Components/EmptyScreen';
+import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
+import { getActivityDataById, updateActivityDataById } from '../../Services/activitiesService';
+import { toBase64 } from '../../Helpers/base64';
+import { yupLongDesc, yupTitles } from '../../Helpers/formValidations';
+import '../../Components/FormStyles.css';
+import {
+  ACTIVITY_EDITED_ERROR,
+  ACTIVITY_EDITED_SUCCESSFULLY,
+  ACTIVITY_FETCH_ERROR,
+  ALERT_ICON_ERROR,
+  ALERT_ICON_SUCCESS,
+  NO_ACTIVITIES,
+} from '../../Helpers/messagesText';
+import { Alert } from '../../Components/Alert';
 
-const ActivitiesEdit = ({ match: { params } }) => {
+const ActivitiesEdition = ({ match: { params } }) => {
   const [activityData, setActivityData] = useState();
   const [submitting, setSubmitting] = useState();
 
   const initialValues = {
-    name: activityData?.name || "",
-    description: activityData?.description || "",
-    image: "",
+    name: activityData?.name || '',
+    description: activityData?.description || '',
+    image: '',
   };
 
   useEffect(() => {
@@ -30,11 +38,11 @@ const ActivitiesEdit = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data } = await getActivityDataById(params.id);
-    data && setActivityData(data);
+    data ? setActivityData(data) : Alert(undefined, ACTIVITY_FETCH_ERROR, ALERT_ICON_ERROR);
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
-    setFieldValue("description", editor.getData());
+    setFieldValue('description', editor.getData());
   };
 
   const handleSubmitForm = async ({ image, name, description }) => {
@@ -45,8 +53,11 @@ const ActivitiesEdit = ({ match: { params } }) => {
       ...(base64Img && { image: base64Img }),
       description,
     };
-    await updateActivityDataById(params.id, body);
+    const { success } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
+    success
+      ? Alert(undefined, ACTIVITY_EDITED_SUCCESSFULLY, ALERT_ICON_SUCCESS)
+      : Alert(undefined, ACTIVITY_EDITED_ERROR, ALERT_ICON_ERROR);
   };
 
   return activityData ? (
@@ -77,4 +88,4 @@ const ActivitiesEdit = ({ match: { params } }) => {
   );
 };
 
-export default ActivitiesEdit;
+export default ActivitiesEdition;

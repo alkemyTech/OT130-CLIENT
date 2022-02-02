@@ -21,6 +21,9 @@ const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
 const ACTIVITY_ADDED_SUCCESSFULLY = 'La actividad fue añadida correctamente';
 const ACTIVITY_ADDED_ERROR = 'Ocurrió un error al intentar añadir la actividad';
+const ACTIVITY_EDITED_SUCCESSFULLY = 'La actividad fue editada correctamente';
+const ACTIVITY_EDITED_ERROR = 'Ocurrió un error al intentar editar la actividad';
+const ACTIVITY_FETCH_ERROR = 'Ocurrió un error al intentar buscar la actividad con la ID dada';
 const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
@@ -43,6 +46,9 @@ export {
   ALERT_ICON_ERROR,
   ACTIVITY_ADDED_SUCCESSFULLY,
   ACTIVITY_ADDED_ERROR,
+  ACTIVITY_FETCH_ERROR,
+  ACTIVITY_EDITED_ERROR,
+  ACTIVITY_EDITED_SUCCESSFULLY,
   NO_ACTIVITIES,
   SEND,
   ACTIVITY_TITLE,

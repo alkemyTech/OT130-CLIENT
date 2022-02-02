@@ -1,9 +1,10 @@
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { ErrorMessage } from "formik";
-import { Spinner } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { SEND, ACTIVITY_TITLE } from "../../Helpers/messagesText";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ErrorMessage } from 'formik';
+import { Spinner } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { SEND, ACTIVITY_TITLE } from '../../Helpers/messagesText';
+import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
 
 const ActivitiesForm = ({
   handleSubmit,
@@ -20,7 +21,7 @@ const ActivitiesForm = ({
       className="input-field"
       type="text"
       name="name"
-      onChange={formikHandleOnChange("name")}
+      onChange={formikHandleOnChange('name')}
       placeholder={ACTIVITY_TITLE}
       value={values.name}
     />
@@ -37,8 +38,8 @@ const ActivitiesForm = ({
       type="file"
       max={1}
       name="image"
-      accept="image/png, image/jpeg"
-      onChange={(e) => setFieldValue("image", e.currentTarget.files[0])}
+      accept={SUPPORTED_IMAGE_FORMATS}
+      onChange={(e) => setFieldValue('image', e.currentTarget.files[0])}
     />
     {touched.image ? <ErrorMessage name="image" /> : null}
     <button className="submit-btn" type="submit" disabled={submitting}>
