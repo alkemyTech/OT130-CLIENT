@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Container, Spinner } from "react-bootstrap";
 import swal from "sweetalert";
 
-import { getSlides } from "../../Services/slidesService";
-import { getOrganizationData } from "../../Services/organizationService";
+import { getSlides, getOrganizationData } from "../../Services/homeService";
 
 import WelcomeTextForm from "../WelcomeTextForm/WelcomeTextForm";
 import SlidesForm from "../Slides/SlidesForm";

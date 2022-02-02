@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import swal from "sweetalert";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
-import { updateOrganizationData } from "../../Services/organizationService";
+import { updateOrganizationData } from "../../Services/homeService";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()

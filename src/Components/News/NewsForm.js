@@ -4,9 +4,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ErrorMessage, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 
-import { getCategories } from '../../Services/categoriesService';
 import { INPUT_REQUIRED } from '../../Helpers/messagesText';
-import { saveNews, updateNews } from '../../Services/newsService';
+import { getCategories, saveNews, updateNews } from '../../Services/homeService';
 import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupTitles } from '../../Helpers/formValidations';
 
