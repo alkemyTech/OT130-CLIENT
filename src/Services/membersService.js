@@ -1,5 +1,4 @@
 import { Get } from './privateApiService';
-
 const getMembers = async () => {
   const response = { error: null, data: {} };
 

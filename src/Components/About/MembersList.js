@@ -6,59 +6,13 @@ import '../CardListStyles.css';
 
 const MembersList = () => {
   const [allMembers, isLoading] = useRequestMembers([]);
-  console.log("🚀 ~ file: MembersList.js ~ line 9 ~ MembersList ~ allMembers", allMembers)
-  // isLoading para implementar en futuro spinner de carga.
-  // Reemplazar Mock por customHooks
-  const membersMock = [
-    {
-      id: 1,
-      name: 'Titulo de prueba',
-      image:
-        'https://tse3.mm.bing.net/th?id=OIP.5GtIUbFAWh5wMljmcMGgKgHaHa&pid=Api&P=0&w=172&h=172',
-      description:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam',
-      facebookUrl: '',
-      linkedinUrl: '',
-    },
-    {
-      id: 2,
-      name: 'Titulo de prueba',
-      image:
-        'https://tse3.mm.bing.net/th?id=OIP.5GtIUbFAWh5wMljmcMGgKgHaHa&pid=Api&P=0&w=172&h=172',
-      description:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam',
-      facebookUrl: '',
-      linkedinUrl: '',
-    },
-    {
-      id: 3,
-      name: 'Titulo de prueba',
-      image:
-        'https://tse3.mm.bing.net/th?id=OIP.5GtIUbFAWh5wMljmcMGgKgHaHa&pid=Api&P=0&w=172&h=172',
-      description:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam',
-      facebookUrl: '',
-      linkedinUrl: '',
-    },
-    {
-      id: 4,
-      name: 'Titulo de prueba',
-      image:
-        'https://tse3.mm.bing.net/th?id=OIP.5GtIUbFAWh5wMljmcMGgKgHaHa&pid=Api&P=0&w=172&h=172',
-      description:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam',
-      facebookUrl: '',
-      linkedinUrl: '',
-    },
-  ];
-
+  
   return (
     <div>
       <h1 className="my-4">Listado De Miembros</h1>
       <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around">
-        {/* reemplazar activitiesMock por allMembers */}
-        {membersMock.length > 0 ? (
-          membersMock.map((member) => {
+        {allMembers.length > 0 ? (
+          allMembers.map((member) => {
             return (
               <div className="card-info m-1" key={member.id}>
                 <Card.Img
