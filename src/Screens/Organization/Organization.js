@@ -9,7 +9,9 @@ import {
   ORGANIZATION_LOGO,
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
+  ALERT_ICON_ERROR,
 } from '../../Helpers/messagesText';
+import { Alert } from '../../Components/Alert';
 
 const Organization = () => {
   const { push } = useHistory();
@@ -22,7 +24,7 @@ const Organization = () => {
 
   const getOrganization = async () => {
     const { data } = await organizationService.getOrganizationData();
-    data ? setOrganizationData(data) : setErrorMessage(true);
+    data ? setOrganizationData(data) : Alert(undefined, ORGANIZATION_FETCH_ERROR, ALERT_ICON_ERROR);
   };
 
   const goToEdit = (e) => {
@@ -31,7 +33,6 @@ const Organization = () => {
 
   return (
     <div className="container">
-      {errorMessage && <p className="align-text-center">{ORGANIZATION_FETCH_ERROR}</p>}
       <div className="organization-fields-container">
         {organizationData ? (
           <>

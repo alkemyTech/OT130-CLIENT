@@ -10,6 +10,8 @@ import './styles.css';
 import { LOGO } from '../../assets';
 import { ORGANIZATION } from '../../rutas/config';
 import {
+  ALERT_ICON_ERROR,
+  ALERT_ICON_SUCCESS,
   ORGANIZATION_EDITED_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';
@@ -37,10 +39,10 @@ const OrganizationEdit = () => {
       id,
     );
     if (data) {
-      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY, 'success');
+      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY, ALERT_ICON_SUCCESS);
       push(ORGANIZATION);
     } else {
-      Alert(undefined, ORGANIZATION_EDITED_ERROR, 'error');
+      Alert(undefined, ORGANIZATION_EDITED_ERROR, ALERT_ICON_ERROR);
     }
   };
 
