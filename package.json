@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@ckeditor/ckeditor5-build-balloon": "^31.1.0",
     "@ckeditor/ckeditor5-build-balloon-block": "^31.1.0",
-    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@ckeditor/ckeditor5-build-decoupled-document": "^31.1.0",
     "@ckeditor/ckeditor5-build-inline": "^31.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.3",
@@ -24,9 +24,9 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
+    "sweetalert2": "^11.3.10",
     "react-scripts": "5.0.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.3.10",
     "yup": "^0.32.11"
   },
   "scripts": {

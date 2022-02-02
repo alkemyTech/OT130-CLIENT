@@ -23,6 +23,8 @@ const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organ
 const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
+const ALERT_ICON_SUCCESS = 'success';
+const ALERT_ICON_ERROR = 'error';
 
 export {
   DESCRIPTION_LONG,
@@ -44,4 +46,6 @@ export {
   ORGANIZATION_LOGO,
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
+  ALERT_ICON_SUCCESS,
+  ALERT_ICON_ERROR,
 };
