@@ -43,6 +43,10 @@
     background-color: #3498DB;
 }
 
+.hideElement{
+    display: none;
+}
+
 .img-member {
     width: 150px;
 }
