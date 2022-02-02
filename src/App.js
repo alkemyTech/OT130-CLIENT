@@ -1,20 +1,22 @@
 import React from 'react';
+import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import logo from './logo.svg';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
-import CreateEditUser from './Components/Users/CreateEditUser';
+import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
+import ProjectsForm from './Components/Projects/ProjectsForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
+import HomeForm from './Components/HomeForm/HomeForm';
+import CreateEditUser from './Components/Users/CreateEditUser';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,6 +29,7 @@ function App() {
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
+          <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />

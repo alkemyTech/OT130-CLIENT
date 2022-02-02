@@ -1,20 +1,20 @@
-import axios from "axios";
-import { HOST } from "./config";
+import { Get, Post } from "./privateApiService";
 
-export const getOrganizationData = async () => {
+const getOrganizationData = async () => {
   try {
-    const response = await axios.get(`${HOST}/organization`);
-    return response.data;
+    const { data } = await Get("organization");
+    return data;
   } catch (error) {
-    return error;
+    return { error: error.response?.data || error };
   }
 };
 
-export const updateOrganizationData = async (body, id) => {
+const updateOrganizationData = async (data) => {
   try {
-    const response = await axios.put(`${HOST}/organization/${id}`, body);
-    return response.data;
+    return await Post("organization", data);
   } catch (error) {
-    return error;
+    return { error: error.response?.data || error };
   }
 };
+
+export { getOrganizationData, updateOrganizationData };
