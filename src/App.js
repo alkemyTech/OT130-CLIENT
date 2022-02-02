@@ -10,10 +10,14 @@ import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import UserForm from "./Components/Users/UsersForm";
 import SlidesList from "./Components/Slides/SlidesList";
-import logo from "./logo.svg";
+import HomeForm from './Components/HomeForm/HomeForm';
+import CreateEditUser from "./Components/Users/CreateEditUser"
 import { Counter } from "./features/counter/Counter";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
+import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import logo from "./logo.svg";
 
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -29,6 +33,7 @@ function App() {
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
+          <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/slides" component={SlidesList} />
           <Route path="/create-testimonials" component={TestimonialForm} />
