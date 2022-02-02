@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Spinner } from 'react-bootstrap';
-import { getOrganizationData } from '../../Services/organizationService';
+import * as organizationService from'../../Services/organizationService';
 import './styles.css';
 import { EDIT_ORGANIZATION } from '../../rutas/config';
 import {
@@ -18,11 +18,11 @@ const Organization = () => {
   const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
-    handleGetOrganization();
+    getOrganization();
   }, []);
 
-  const handleGetOrganization = async () => {
-    const { data } = await getOrganizationData();
+  const getOrganization = async () => {
+    const { data } = await organizationService.getOrganizationData();
     data ? setOrganizationData(data) : setErrorMessage(true);
   };
 
