@@ -11,7 +11,6 @@ export function useRequestMembers() {
         setIsLoading(true);
         const { error, data } = await getMembers();
         if (error) {
-          console.error(error);
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
