@@ -11,7 +11,6 @@ export function useRequestActivities() {
         setIsLoading(true);
         const { error, data } = await getActivities();
         if (error) {
-          console.error(error);
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

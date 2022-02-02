@@ -1,11 +1,11 @@
-import { Get } from './privateApiService';
+import dataActivities from '../Services/mocks/activities.json'
+// Luego Cambiar Moock por request
 
 const getActivities = async () => {
   const response = { error: null, data: {} };
 
   try {
-    const { data } = await Get('/activities');
-    response.data = data.data;
+    response.data = dataActivities;
     
   } catch (error) {
     response.error = error.message;
