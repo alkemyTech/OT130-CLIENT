@@ -5,6 +5,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from 'sweetalert2';
 
 const SlidesForm = ({ slide }) => {
 
@@ -26,10 +27,15 @@ const SlidesForm = ({ slide }) => {
   useEffect(() => {
     (async function () {
       try {
-        const response = await getSlides('/slides');
+        const response = await getSlides();
         setGetState(response.data.data);
       } catch (error) {
-        alert("Error: Error de conexión con el servidor.");
+        Swal.fire({
+          icon: 'error',
+          text: "Error: Error de conexión con el servidor.",
+          showConfirmButton: false,
+          timer: 2000,
+        })
       }
     })()
   }, []);
@@ -85,10 +91,20 @@ const SlidesForm = ({ slide }) => {
     };
 
     try {
-      const response = await addNewSlide("/slides", body);
-      alert(response.data.message);
+      const response = await addNewSlide(body);
+      Swal.fire({
+        icon: 'success',
+        text: (response.data.message),
+        showConfirmButton: false,
+        timer: 2000,
+      })
     } catch (error) {
-      alert("Error:", error)
+      Swal.fire({
+        icon: 'error',
+        text: ('Error: Error de conexión con el servidor.'),
+        showConfirmButton: false,
+        timer: 2000,
+      })
     } finally {
       setLoading(false)
     }
@@ -104,10 +120,20 @@ const SlidesForm = ({ slide }) => {
     };
 
     try {
-      const response = await editSlide("/slides", body);
-      alert(response.data.message);
+      const response = await editSlide(body, id);
+      Swal.fire({
+        icon: 'success',
+        text: (response.data.message),
+        showConfirmButton: false,
+        timer: 2000,
+      })
     } catch (error) {
-      alert("Error:", error)
+      Swal.fire({
+        icon: 'error',
+        text: ('Error: Error de conexión con el servidor.'),
+        showConfirmButton: false,
+        timer: 2000,
+      })
     } finally {
       setLoading(false)
     }
@@ -165,8 +191,6 @@ const SlidesForm = ({ slide }) => {
     } else {
       setLoading(false)
     }
-
-
   };
 
   const clearForm = () => {
@@ -242,6 +266,7 @@ const SlidesForm = ({ slide }) => {
       </button>
 
     </form>
+
   );
 }
 
