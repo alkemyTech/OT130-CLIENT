@@ -21,7 +21,7 @@ const GetToken = () => {
   if (token) {
     return {
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer" + token,
       },
     };
   }
