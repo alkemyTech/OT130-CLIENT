@@ -7,6 +7,7 @@ const UNKNOWN_ERROR = 'Ha ocurrido un error'
 
 const DESCRIPTION_LONG = "Descripción demasiado larga"
 const DESCRIPTION_SHORT = "Mínimo 10 caracteres"
+const EMAIL_TAKEN = 'El email ya ha sido registrado.'
 const INPUT_REQUIRED = "Campo obligatorio"
 const INVALID_EMAIL = "Email inválido"
 const INVALID_IMAGE_EXT = "Extensión inválida. Solo archivos jpg o png"
@@ -19,6 +20,7 @@ const PASSWORD_DONT_MATCH = "Las contraseñas no coinciden"
 export {
     DESCRIPTION_LONG, 
     DESCRIPTION_SHORT, 
+    EMAIL_TAKEN,
     INPUT_REQUIRED, 
     INVALID_IMAGE_EXT, 
     INVALID_EMAIL,
