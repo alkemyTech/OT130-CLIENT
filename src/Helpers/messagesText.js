@@ -20,6 +20,9 @@ const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const ORGANIZATION_FETCH_ERROR = 'Ocurrió un error al intentar traer los datos de la organización';
 const ORGANIZATION_EDITED_SUCCESSFULLY = 'La organizacion fue editada correctamente';
 const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organización';
+const ORGANIZATION_LOGO = 'Logo de la organización';
+const ORGANIZATION_NAME = 'Nombre de la organización';
+const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 
 export {
   DESCRIPTION_LONG,
@@ -38,4 +41,7 @@ export {
   ORGANIZATION_EDITED_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
   ORGANIZATION_FETCH_ERROR,
+  ORGANIZATION_LOGO,
+  ORGANIZATION_NAME,
+  ORGANIZATION_DESCRIPTION,
 };

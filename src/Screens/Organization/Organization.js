@@ -7,6 +7,9 @@ import './styles.css';
 import { EDIT_ORGANIZATION } from '../../rutas/config';
 import {
   ORGANIZATION_FETCH_ERROR,
+  ORGANIZATION_LOGO,
+  ORGANIZATION_NAME,
+  ORGANIZATION_DESCRIPTION,
 } from '../../Helpers/messagesText';
 
 const Organization = () => {
@@ -34,10 +37,14 @@ const Organization = () => {
         {organizationData ? (
           <>
             <p>
-              Organization logo: <img src={organizationData?.logo} alt="logo" />
+              {`${ORGANIZATION_LOGO}:`} <img src={organizationData.logo} alt="logo" />
             </p>
-            <p>Organization name: {organizationData?.name}</p>
-            <p>Organization description: {organizationData?.short_description}</p>
+            <p>
+              {`${ORGANIZATION_NAME}:`} {organizationData.name}
+            </p>
+            <p>
+              {`${ORGANIZATION_DESCRIPTION}:`} {organizationData.short_description}
+            </p>
             <button className="submit-btn" type="submit" onClick={goToEdit}>
               Editar
             </button>

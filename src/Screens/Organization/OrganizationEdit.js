@@ -21,27 +21,27 @@ const initialValues = {
 };
 
 const OrganizationEdit = () => {
+  const [selectedImage, setSelectedImage] = useState({ image: LOGO });
   const {
     push,
     location: { state },
   } = useHistory();
   const id = state?.id || null;
-  const [selectedImage, setSelectedImage] = useState({ image: LOGO });
-
-  const handleSuccess = () => {
-    Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
-    push(ORGANIZATION);
-  };
 
   const handleSubmit = async ({ logo, name, description }) => {
-    const { data } = await updateOrganizationData(
-      { name, 
-        short_description: description, 
-        logo: logo 
-      },
+    const { data } = await updateOrganizationData({ 
+      name, 
+      short_description: description, 
+      logo: logo 
+    },
       id,
     );
-    data ? handleSuccess() : Alert(undefined, ORGANIZATION_EDITED_ERROR, true);
+    if (data) {
+      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
+      push(ORGANIZATION);
+    } else {
+      Alert(undefined, ORGANIZATION_EDITED_ERROR, true);
+    }
   };
 
   const validation = Yup.object().shape({
