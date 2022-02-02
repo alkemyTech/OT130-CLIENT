@@ -17,7 +17,6 @@ import { ScreenDashboard } from "./Screens/ScreenDashboard";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MembersList from "./Components/About/MembersList";
 
 function App() {
   return (
@@ -40,7 +39,6 @@ function App() {
         </Switch>
       </BrowserRouter>
       <div className="App">
-        <MembersList/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Counter />

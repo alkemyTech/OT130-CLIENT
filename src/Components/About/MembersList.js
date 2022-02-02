@@ -11,7 +11,7 @@ const MembersList = () => {
     <div>
       <h1 className="my-4">Listado De Miembros</h1>
       <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around">
-        {!isLoading &&  allMembers.length > 0 ? (
+        {!isLoading && allMembers.length > 0 ? (
           allMembers.map((member) => {
             return (
               <div className="card-info m-1" key={member.id}>
