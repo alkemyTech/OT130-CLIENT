@@ -11,12 +11,14 @@ const config = {
   },
 };
 
-const instance = axios.create(config);
-
-const Post = async (url, data) => await instance.post(url, data);
+const instance = axios.create( config ); 
 
 const Patch = async (endpoint, body) => await instance.patch(config.baseURL + endpoint, body, config.headers);
 
+const Post = async ( url, data ) =>  await instance.post( url, data );
+
+const Patch = async ( url, data ) => await instance.patch( url, data );
+ 
 const Get = async (url) => await instance.get(url);
 
 export {
