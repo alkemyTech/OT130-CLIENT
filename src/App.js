@@ -68,7 +68,7 @@ function App() {
             <span>, </span>
             <a
               className="App-link"
-              href="https://redux-toolkit.js.org/"status
+              href="https://redux-toolkit.js.org/"
               target="_blank"
               rel="noopener noreferrer"
             >
