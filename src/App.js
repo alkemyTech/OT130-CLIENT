@@ -14,6 +14,10 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import Home from './Components/Home';
 import HomeForm from './Components/HomeForm/HomeForm';
 import CreateEditUser from "./Components/Users/CreateEditUser"
+<<<<<<< HEAD
+=======
+import Home from './Components/Home';
+>>>>>>> df355c5f3922481cffe0e0af069251edb9538523
 import { ScreenDashboard } from "./Screens/ScreenDashboard";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
