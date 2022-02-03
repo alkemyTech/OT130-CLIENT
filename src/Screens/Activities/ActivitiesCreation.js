@@ -9,7 +9,7 @@ import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations
 import '../../Components/FormStyles.css';
 import './styles.css';
 import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
-import { Alert } from '../../Components/Alert';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const initialValues = {
   name: '',
@@ -42,10 +42,10 @@ const ActivitiesCreation = () => {
     const { success } = await saveActivityData(body);
     setLoading(false);
     if (success) {
-      Alert(undefined, ACTIVITY_ADDED_SUCCESSFULLY, 'success');
+      SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
       go(0);
     } else {
-      Alert(undefined, ACTIVITY_ADDED_ERROR, 'error');
+      ErrorAlert(undefined, ACTIVITY_ADDED_ERROR);
     }
   };
 

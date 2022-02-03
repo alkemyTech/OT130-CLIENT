@@ -15,7 +15,7 @@ import {
   ALERT_ICON_SUCCESS,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
-import { Alert } from '../../Components/Alert';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const ActivitiesEdition = ({ match: { params } }) => {
   const [activityData, setActivityData] = useState();
@@ -56,8 +56,8 @@ const ActivitiesEdition = ({ match: { params } }) => {
     const { success } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
     success
-      ? Alert(undefined, ACTIVITY_EDITED_SUCCESSFULLY, ALERT_ICON_SUCCESS)
-      : Alert(undefined, ACTIVITY_EDITED_ERROR, ALERT_ICON_ERROR);
+      ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
+      : ErrorAlert(undefined, ACTIVITY_EDITED_ERROR);
   };
 
   return activityData ? (
