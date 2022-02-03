@@ -35,9 +35,9 @@ function App() {
           <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
-          <Route path="/donar" component={Donation}/>
-          <Route path='/gracias' component={Thanks}/>
+          <Route path="/donate" component={Donation}/>
           <Route path="/school-campaign" component={SchoolCampaign} />
+          <Route path='/thanks' component={Thanks}/>
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
