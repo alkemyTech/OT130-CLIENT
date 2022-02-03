@@ -16,21 +16,22 @@ const Patch = async (url, data) => await instance.patch(url, data);
 
 const Get = async (url) => await instance.get(url);
 
-const GetToken = () => {
+const getToken = () => {
   const token = localStorage.getItem("token");
-  if (token) {
-    return {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-  }
-  
-};
+  return token ? token : "";
+}
+
+const getAuthorization = () => {
+  const token = getToken();
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+}
 
 export {
   Get,
   Post,
   Patch,
-  GetToken,
+  getToken,
+  getAuthorization,
 };
