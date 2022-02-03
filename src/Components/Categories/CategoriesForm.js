@@ -4,10 +4,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2'
 import '../FormStyles.css';
 import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
-import { 
-    saveCategory, 
-    updateCategory 
-} from '../../Services/categoryService/categoryService';
+import { saveCategory, updateCategory } from '../../Services/categoriesService';
 import { 
     categoryDescriptionSchema, 
     categoryFileSchema, 
