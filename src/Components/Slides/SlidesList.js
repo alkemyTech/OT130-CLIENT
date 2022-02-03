@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
 
 import { getSlides, deleteSlide } from "../../Services/slidesService";
+import { ErrorAlert, SuccessAlert } from "../Alert";
 
 import SlideCard from "../SlideCard/SlideCard";
 
@@ -14,7 +14,7 @@ const SlidesList = () => {
     const getdata = async () => {
       const { data: slides, error } = await getSlides();
       if (error) {
-        return swal("Error", error.message, "error");
+        return ErrorAlert("Error", error.message);
       }
       setSlides(slides);
     };
@@ -24,11 +24,11 @@ const SlidesList = () => {
   const handleDeleteSlide = async (slideId) => {
     const { error } = await deleteSlide(slideId);
     if (error) {
-      return swal("Error", error.message, "error");
+      return ErrorAlert("Error", error.message);
     }
-    swal("Eliminado con éxito", "", "success");
     const updatedSlides = slides.filter((slide) => slide.id !== slideId);
     setSlides(updatedSlides);
+    SuccessAlert("Eliminado con éxito", "");
   };
 
   return (
