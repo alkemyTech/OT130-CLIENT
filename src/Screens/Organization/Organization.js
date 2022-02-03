@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Spinner } from 'react-bootstrap';
-import * as organizationService from'../../Services/organizationService';
+import * as organizationService from '../../Services/organizationService';
 import './styles.css';
 import { EDIT_ORGANIZATION } from '../../rutas/config';
 import {
@@ -9,9 +9,8 @@ import {
   ORGANIZATION_LOGO,
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
-  ALERT_ICON_ERROR,
 } from '../../Helpers/messagesText';
-import { Alert } from '../../Components/Alert';
+import { ErrorAlert } from '../../Components/Alert';
 
 const Organization = () => {
   const { push } = useHistory();
@@ -23,7 +22,7 @@ const Organization = () => {
 
   const getOrganization = async () => {
     const { data } = await organizationService.getOrganizationData();
-    data ? setOrganizationData(data) : Alert(undefined, ORGANIZATION_FETCH_ERROR, ALERT_ICON_ERROR);
+    data ? setOrganizationData(data) : ErrorAlert(undefined, ORGANIZATION_FETCH_ERROR);
   };
 
   const goToEdit = (e) => {

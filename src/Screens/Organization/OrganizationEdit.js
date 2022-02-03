@@ -2,16 +2,14 @@ import { Formik, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as Yup from 'yup';
-import { Alert } from '../../Components/Alert';
+import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 import { updateOrganizationData } from '../../Services/organizationService';
 import { yupShortDesc, yupTitles } from '../../Helpers/formValidations';
-import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
 import './styles.css';
 import { LOGO } from '../../assets';
 import { ORGANIZATION } from '../../rutas/config';
 import {
-  ALERT_ICON_ERROR,
-  ALERT_ICON_SUCCESS,
   ORGANIZATION_EDITED_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';
@@ -39,10 +37,10 @@ const OrganizationEdit = () => {
       id,
     );
     if (data) {
-      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY, ALERT_ICON_SUCCESS);
+      SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
       push(ORGANIZATION);
     } else {
-      Alert(undefined, ORGANIZATION_EDITED_ERROR, ALERT_ICON_ERROR);
+      ErrorAlert(undefined, ORGANIZATION_EDITED_ERROR);
     }
   };
 
