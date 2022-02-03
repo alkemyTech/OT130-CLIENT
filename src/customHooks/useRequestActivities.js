@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import { ErrorAlert } from '../Components/Alert';
+import { ALERT_ERROR_API } from '../Helpers/messagesText';
 import { getActivities } from '../Services/activitiesService';
 
 export function useRequestActivities() {
@@ -11,12 +12,7 @@ export function useRequestActivities() {
         setIsLoading(true);
         const { error, data } = await getActivities();
         if (error) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Hubo un error en la aplicación.',
-            confirmButtonColor: '#0e7fe1'
-          }) 
+          ErrorAlert(ALERT_ERROR_API)
         } else {
           setData(data);
         }

@@ -5,12 +5,7 @@ import '../CardListStyles.css';
 
 const ActivitiesList = () => {
   const [allActivities, isLoading] = useRequestActivities([]);
-  console.log(
-    '🚀 ~ file: ActivitiesList.js ~ line 9 ~ ActivitiesList ~ allActivities',
-    allActivities,
-  );
-  console.log('🚀 ~ file: ActivitiesList.js ~ line 9 ~ ActivitiesList ~ isLoading', isLoading);
-
+  
   return (
     <div>
       <h1 className="text-center my-3">Listado Actividades</h1>
