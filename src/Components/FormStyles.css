@@ -9,7 +9,6 @@
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
 }
-
 .input-field:focus {
     outline: 0;
     border: 1px solid #0e7fe1;
@@ -19,17 +18,18 @@
     padding: 10px;
     border: 1px solid #c1c1c1;
 }
-
 .submit-btn{
     background-color: #2E86C1;
     padding: 10px 15px;
     border: none;
     color: #fff;
 }
-
 .submit-btn:hover{
     cursor: pointer;
     background-color: #3498DB;
+}
+.hideElement{
+    display: none;
 }
 .img-member {
     width: 150px;
