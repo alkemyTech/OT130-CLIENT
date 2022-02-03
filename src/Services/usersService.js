@@ -44,13 +44,8 @@ const deleteUser = async (id) => {
     const { data } = await Delete(`/users/${id}`);
     response.data = data;
   } catch (error) {
-    response.error = error;
+    response.error = error.message;
   }
 };
 
-export {
-  addUser,
-  deleteUser,
-  getUsers,
-  updateUser
-};
+export { addUser, deleteUser, getUsers, updateUser };

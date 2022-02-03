@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { deleteUser, getUsers } from '../../Services/usersService';
 import Swal from 'sweetalert2';
+import { Link, useHistory } from 'react-router-dom';
+import CreateEditUser from './CreateEditUser';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
-  const [RequestError, setRequestError] = useState();
+  const history = useHistory();
+  const [editUser, setEditUser] = useState({});
 
   const updateUserList = async () => {
     const { data, error } = await getUsers();
 
     if (error) {
-      setRequestError(error);
+      Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
     } else {
       setUserList(data);
     }
   };
 
-  const editData = async () => {};
+  const editData = (el) => {
+    history.push(`/backoffice/users/${el.id}`);
+  };
 
-  const deleteData = async (id) => {
-    await Swal.fire({
+  const deleteData = (el) => {
+    Swal.fire({
       title: 'Esta seguro?',
       icon: 'warning',
       showCancelButton: true,
@@ -27,10 +32,14 @@ const UserList = () => {
       cancelButtonText: 'No',
     }).then((res) => {
       if (res.isConfirmed) {
-        const { data, error } = deleteUser(id);
+        const { data, error } = deleteUser(el.id);
         if (error) {
-          setRequestError(error);
+          Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
         } else {
+          Swal.fire({
+            title: 'Eliminado correctamente',
+            icon: 'success',
+          });
           updateUserList();
         }
       }
@@ -39,10 +48,11 @@ const UserList = () => {
 
   useEffect(() => {
     updateUserList();
-  }, [userList]);
+  }, []);
 
   return (
     <div>
+      <Link to="/backoffice/users/create">Crear Usuario</Link>
       <h2>UserList</h2>
       <table>
         <thead>
@@ -61,8 +71,8 @@ const UserList = () => {
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>
-                  <button onClick={() => deleteData(el.id)}>Eliminar</button>
-                  <button>Editar</button>
+                  <button onClick={() => deleteData(el)}>Eliminar</button>
+                  <button onClick={() => editData(el)}>Editar</button>
                 </td>
               </tr>
             ))
@@ -70,6 +80,7 @@ const UserList = () => {
         </tbody>
       </table>
     </div>
+    
   );
 };
 
