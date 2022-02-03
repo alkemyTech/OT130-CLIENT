@@ -14,12 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
 import CreateEditUser from "./Components/Users/CreateEditUser"
 import { ScreenDashboard } from "./Screens/ScreenDashboard";
-<<<<<<< HEAD
-import UserForm from "./Components/Users/UsersForm";
 import ActivitiesList from './Components/Activities/ActivitiesList';
-=======
-
->>>>>>> main
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -73,7 +68,7 @@ function App() {
             <span>, </span>
             <a
               className="App-link"
-              href="https://redux-toolkit.js.org/"
+              href="https://redux-toolkit.js.org/"status
               target="_blank"
               rel="noopener noreferrer"
             >
