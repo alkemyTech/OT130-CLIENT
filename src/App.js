@@ -1,5 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import { Counter } from "./features/counter/Counter";
+import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
+
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import MembersForm from "./Components/Members/MembersForm";
@@ -10,19 +15,12 @@ import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import UserForm from "./Components/Users/UsersForm";
 import SlidesList from "./Components/Slides/SlidesList";
-import HomeForm from './Components/HomeForm/HomeForm';
-import CreateEditUser from "./Components/Users/CreateEditUser"
-import { Counter } from "./features/counter/Counter";
-import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import HomeForm from "./Components/HomeForm/HomeForm";
+import CreateEditUser from "./Components/Users/CreateEditUser";
 import logo from "./logo.svg";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
-import CreateEditUser from "./Components/Users/CreateEditUser";
 
 function App() {
   return (
