@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import React from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
-import Swal from 'sweetalert2';
+import { SuccessAlert } from '../Alert';
 
 import { yupEmail, yupFirstName, yupShortDesc, yupPhone } from '../../Helpers/formValidations';
 
@@ -23,7 +23,7 @@ const ContactForm = () => {
   });
 
   const sendForm = async (form) => {
-    Swal.fire({ title: 'Formulario enviado correctamente', icon: 'success', timer: 5000 });
+    SuccessAlert('Exito', 'Formulario enviado correctamente');
   };
 
   return (
