@@ -18,7 +18,7 @@ const PASSWORD_REGISTER_CONTAIN = 'La contraseña debe tener una longitud mínim
 const PASSWORD_DONT_MATCH = "Las contraseñas no coinciden"
 const ALERT_ICON_SUCCESS = "success"
 const ALERT_ICON_ERROR = "error"
-
+const ALERT_ERROR_API = "Hubo un error en la aplicacíon"
 
 
 export {
@@ -36,5 +36,6 @@ export {
     TITLE_SHORT, 
     UNKNOWN_ERROR, 
     ALERT_ICON_SUCCESS,
-    ALERT_ICON_ERROR
+    ALERT_ICON_ERROR,
+    ALERT_ERROR_API
 }

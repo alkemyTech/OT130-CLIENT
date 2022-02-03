@@ -1,7 +1,7 @@
-import { ErrorMessage } from 'formik';
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 import { getMembers } from '../Services/membersService';
+import { ErrorAlert } from '../Components/Alert';
+import { ALERT_ERROR_API } from '../Helpers/messagesText';
 
 export function useRequestMembers() {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ export function useRequestMembers() {
         setIsLoading(true);
         const { error, data } = await getMembers();
         if (error) {
-          ErrorMessage()
+          ErrorAlert(ALERT_ERROR_API)
         } else {
           setData(data);
         }
