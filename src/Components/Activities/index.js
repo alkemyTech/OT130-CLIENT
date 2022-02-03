@@ -1,8 +1,8 @@
 import React from "react";
-import Title from "../Title/Title";
-import "../CardListStyles.css";
 import { Container } from "react-bootstrap";
+import Title from "../Title/Title";
 import ActivitiesList from "./ActivitiesList";
+import "../CardListStyles.css";
 
 const Activities = () => {
 
