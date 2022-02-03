@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { useRequestMembers } from '../../customHooks/useRequestMembers';
 import '../CardListStyles.css';
@@ -11,7 +11,7 @@ const MembersList = () => {
     <div>
       <h1 className="my-4">Listado De Miembros</h1>
       <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around">
-        {!isLoading && allMembers.length > 0 ? (
+        {allMembers.length > 0 ? (
           allMembers.map((member) => {
             return (
               <div className="card-info m-1" key={member.id}>
@@ -37,6 +37,11 @@ const MembersList = () => {
           })
         ) : (
           <p>No hay actividades</p>
+        )}
+         {isLoading && (
+          <div className="position-absolute text-center">
+            <Spinner variant="primary" animation="border" role="status" />
+          </div>
         )}
       </ul>
     </div>
