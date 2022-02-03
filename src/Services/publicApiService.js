@@ -7,8 +7,17 @@ const config = {
 };
 
 const Get = async (route, id) => {
-  const url = route + `${id ? "/" + String(id) : null}`;
-  return await axios.get(url, config);
+  const response = { data: {}, error: null };
+  const url = route + `${id ? '/' + id : null}`;
+
+  try {
+    const { data } = await axios.get(url, config);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+
+  return response;
 };
 
 export default { Get };
