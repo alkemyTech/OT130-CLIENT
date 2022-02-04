@@ -11,8 +11,6 @@ import {
   ACTIVITY_EDITED_ERROR,
   ACTIVITY_EDITED_SUCCESSFULLY,
   ACTIVITY_FETCH_ERROR,
-  ALERT_ICON_ERROR,
-  ALERT_ICON_SUCCESS,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
@@ -37,8 +35,9 @@ const ActivitiesEdition = ({ match: { params } }) => {
   });
 
   const loadActivity = async () => {
-    const { data } = await getActivityDataById(params.id);
-    data ? setActivityData(data) : Alert(undefined, ACTIVITY_FETCH_ERROR, ALERT_ICON_ERROR);
+    const { data, error } = await getActivityDataById(params.id);
+    console.log(data, 'ddddddddd');
+    data ? setActivityData(data.data) : ErrorAlert(ACTIVITY_FETCH_ERROR, error.message);
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
@@ -53,11 +52,11 @@ const ActivitiesEdition = ({ match: { params } }) => {
       ...(base64Img && { image: base64Img }),
       description,
     };
-    const { success } = await updateActivityDataById(params.id, body);
+    const { data, error } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
-    success
+    data
       ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      : ErrorAlert(undefined, ACTIVITY_EDITED_ERROR);
+      : ErrorAlert(ACTIVITY_EDITED_ERROR, error.message);
   };
 
   return activityData ? (

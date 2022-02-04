@@ -39,13 +39,14 @@ const ActivitiesCreation = () => {
       image: base64Img,
       description,
     };
-    const { success } = await saveActivityData(body);
+    const { data, error } = await saveActivityData(body);
+
     setLoading(false);
-    if (success) {
+    if (data) {
       SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
       go(0);
     } else {
-      ErrorAlert(undefined, ACTIVITY_ADDED_ERROR);
+      ErrorAlert(ACTIVITY_ADDED_ERROR, error.message);
     }
   };
 

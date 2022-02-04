@@ -29,8 +29,6 @@ const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
-const ALERT_ICON_SUCCESS = 'success';
-const ALERT_ICON_ERROR = 'error';
 
 export {
   DESCRIPTION_LONG,
@@ -57,4 +55,5 @@ export {
   NO_ACTIVITIES,
   SEND,
   ACTIVITY_TITLE,
+  NUMBER_TO_SHORT_ERROR,
 };
