@@ -23,7 +23,7 @@ export const ActivityItem = ({ activity, handleDeleteActivity }) => {
   const { id, name, image, createdAt } = activity;
 
   return <>
-    <div className="card shadow m-1 cardWidth col-6" key={id}>
+    <div className="card shadow m-1 cardWidth col-6" >
       <div className="row g-0">
         <div className="col-md-4">
           <img
@@ -72,7 +72,7 @@ export const ActivityItem = ({ activity, handleDeleteActivity }) => {
               </h5>
             </div>
             <div className="modal-body">
-              <ActivitiesForm
+              <ActivitiesForm             
                 activity={activity}
               />
             </div>

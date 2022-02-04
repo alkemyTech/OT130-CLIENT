@@ -44,7 +44,8 @@ const ActivitiesList = () => {
           activitiesList.length > 0 
           ? activitiesList.map(( activity ) => {
             return (              
-            <ActivityItem            
+            <ActivityItem
+              key={activity.id}            
               activity={ activity }
               handleDeleteActivity={ handleDeleteActivity }     
             />
@@ -52,7 +53,7 @@ const ActivitiesList = () => {
             })
           : <p className="fs-2">No hay actividades</p>
         }
-      </div>
+      </div>     
     </div>
   );
 }
