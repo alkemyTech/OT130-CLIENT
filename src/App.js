@@ -1,10 +1,11 @@
-import React from "react";
-import { Counter } from "./features/counter/Counter";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import logo from "./logo.svg";
-import Activities from "./Components/Activities";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
+import React from 'react';
+import logo from './logo.svg';
+import { Counter } from './features/counter/Counter';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Activities from './Components/Activities'
+import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import CategoriesForm from './Components/Categories/CategoriesForm';
+import ContactForm from './Components/Contact/ContactForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
@@ -13,17 +14,19 @@ import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
-import CreateEditUser from "./Components/Users/CreateEditUser"
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import CreateEditUser from './Components/Users/CreateEditUser';
+import { ScreenDashboard } from './Screens/ScreenDashboard';
+
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />  Esta ruta debe ser para el Home */}
+          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route path="/contact" component={ContactForm} />
           <Route path="/activities" component={Activities} />
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
