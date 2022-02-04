@@ -32,7 +32,7 @@ const ActivitiesList = () => {
  
   return (
     <div className="container-xl">
-      <h1 className="m-4">Listado Actividades</h1>
+      <h1 className="m-4">Listado de actividades</h1>
       <Link 
         to="/backoffice/activities/create" 
         className="ms-5 btn btn-primary"
