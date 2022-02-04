@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as Yup from 'yup';
-import { Alert } from '../../Components/Alert';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 import { updateOrganizationData } from '../../Services/organizationService';
 import { yupImages, yupLongDesc, yupShortDesc, yupTitles, yupLinks } from '../../Helpers/formValidations';
 import { toBase64 } from '../../Helpers/base64';
@@ -53,10 +53,10 @@ const OrganizationEdit = () => {
     );
     if (data) {
       setOrganizationData(data);
-      Alert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
+      SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
       push(ORGANIZATION);
     } else {
-      Alert(undefined, ORGANIZATION_EDITED_ERROR, true);
+      ErrorAlert(undefined, ORGANIZATION_EDITED_ERROR, true);
     }
   };
 
@@ -65,10 +65,10 @@ const OrganizationEdit = () => {
     description: yupShortDesc(),
     long: yupLongDesc(),
     logo: yupImages(),
-    linkedin_url: Yup.yupLinks(),
-    twitter_url: Yup.yupLinks(),
-    facebook_url: Yup.yupLinks(),
-    instagram_url: Yup.yupLinks(),
+    linkedin_url: yupLinks(),
+    twitter_url: yupLinks(),
+    facebook_url: yupLinks(),
+    instagram_url: yupLinks(),
   });
 
   return id ? (
