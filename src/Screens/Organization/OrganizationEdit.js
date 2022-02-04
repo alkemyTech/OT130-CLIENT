@@ -4,7 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import * as Yup from 'yup';
 import { Alert } from '../../Components/Alert';
 import { updateOrganizationData } from '../../Services/organizationService';
-import { yupImages, yupLongDesc, yupShortDesc, yupTitles } from '../../Helpers/formValidations';
+import { yupImages, yupLongDesc, yupShortDesc, yupTitles, yupLinks } from '../../Helpers/formValidations';
 import { toBase64 } from '../../Helpers/base64';
 import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
 import './styles.css';
@@ -21,7 +21,11 @@ const OrganizationEdit = () => {
     name: '',
     description: '',
     long: '',
-    logo: '' ,
+    logo: '',
+    linkedin_url: '',
+    twitter_url: '',
+    facebook_url: '',
+    instagram_url: '',
   };
   const {
     push,
@@ -33,13 +37,17 @@ const OrganizationEdit = () => {
     setFieldValue('description', editor.getData());
   };
 
-  const handleSubmit = async ({ logo, name, description, long }) => {
+  const handleSubmit = async ({ logo, name, description, long, linkedin_url, twitter_url, facebook_url, instagram_url }) => {
     const base64Img = await toBase64(logo);
     const { data } = await updateOrganizationData({ 
       name, 
       short_description: description, 
       long_description: long,
-      logo: base64Img 
+      logo: base64Img,
+      linkedin: linkedin_url,
+      twitter: twitter_url,
+      facebook: facebook_url,
+      instagram: instagram_url,
     },
       id,
     );
@@ -57,6 +65,10 @@ const OrganizationEdit = () => {
     description: yupShortDesc(),
     long: yupLongDesc(),
     logo: yupImages(),
+    linkedin_url: Yup.yupLinks(),
+    twitter_url: Yup.yupLinks(),
+    facebook_url: Yup.yupLinks(),
+    instagram_url: Yup.yupLinks(),
   });
 
   return id ? (
