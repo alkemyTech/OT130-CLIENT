@@ -30,12 +30,7 @@ const SlidesForm = ({ slide }) => {
         const response = await getSlides();
         setGetState(response.data.data);
       } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          text: "Error: Error de conexión con el servidor.",
-          showConfirmButton: false,
-          timer: 2000,
-        })
+        createAlert('error', 'Error: Error de conexión con el servidor.');
       }
     })()
   }, []);
@@ -92,19 +87,9 @@ const SlidesForm = ({ slide }) => {
 
     try {
       const response = await addNewSlide(body);
-      Swal.fire({
-        icon: 'success',
-        text: (response.data.message),
-        showConfirmButton: false,
-        timer: 2000,
-      })
+      createAlert('success', response.data.message);
     } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        text: ('Error: Error de conexión con el servidor.'),
-        showConfirmButton: false,
-        timer: 2000,
-      })
+      createAlert('error', 'Error: Error de conexión con el servidor.');
     } finally {
       setLoading(false)
     }
@@ -121,47 +106,14 @@ const SlidesForm = ({ slide }) => {
 
     try {
       const response = await editSlide(body, id);
-      Swal.fire({
-        icon: 'success',
-        text: (response.data.message),
-        showConfirmButton: false,
-        timer: 2000,
-      })
+      createAlert('success', response.data.message);
     } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        text: ('Error: Error de conexión con el servidor.'),
-        showConfirmButton: false,
-        timer: 2000,
-      })
+      createAlert('error', 'Error: Error de conexión con el servidor.');
     } finally {
       setLoading(false)
     }
   };
-
-  const emptyInputValidation = (input, funcion) => {
-    input === "" ? funcion(true) : funcion(false)
-  }
-
-  const validationInputOrder = (order) => {
-    if (order === "") {
-      setRequiredOrder(true);
-    } else if (isOrderAlreadyUsed()) {
-      setRequiredOrder(true);
-      setOrder('Elija otro número que no haya sido usado');
-    } else {
-      setRequiredOrder(false);
-    }
-  }
-
-  const showError = () => {
-    const { name, description, image, order } = initialValues;
-    emptyInputValidation(name, setRequiredName);
-    emptyInputValidation(description, setRequiredDescription);
-    emptyInputValidation(image, setRequiredImage);
-    validationInputOrder(order);
-  }
-
+  
   const isFormValid = () => {
     const { name, description, image, order } = initialValues;
     showError();
@@ -188,8 +140,41 @@ const SlidesForm = ({ slide }) => {
     }
   };
 
+  const showError = () => {
+    setAsRequiredInput();
+    validationInputOrder(initialValues.order);
+  }
+
+  const setAsRequiredInput = () => {
+    const { name, description, image } = initialValues;
+
+    setRequiredName(!name);
+    setRequiredDescription(!description);
+    setRequiredImage(!image);
+  }
+
+  const validationInputOrder = (order) => {
+    if (order === "") {
+      setRequiredOrder(true);
+    } else if (isOrderAlreadyUsed()) {
+      setRequiredOrder(true);
+      setOrder('Elija otro número que no haya sido usado');
+    } else {
+      setRequiredOrder(false);
+    }
+  }
+
   const clearForm = () => {
     setInitialValues(defaultInitialValues);
+  }
+
+  const createAlert =  (icon, text) => {
+    Swal.fire({
+      icon: icon,
+      text: text,
+      showConfirmButton: false,
+      timer: 2000,
+    })
   }
 
   return (
