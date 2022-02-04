@@ -30,5 +30,6 @@ const Put = async (url, data) => {
 export {
   Get,
   Post,
-  Patch
+  Patch,
+  Put
 };
