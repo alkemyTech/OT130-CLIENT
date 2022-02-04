@@ -2,7 +2,7 @@ import { Get, Post } from "./privateApiService";
 
 const getOrganizationData = async () => {
   try {
-    const { data } = await Get("organization");
+    const { data } = await Get("organiyation");
     return data;
   } catch (error) {
     return { error: error.response?.data || error };
