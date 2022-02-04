@@ -17,7 +17,16 @@ const Post = async ( url, data ) =>  await instance.post( url, data );
 
 const Patch = async ( url, data ) => await instance.patch( url, data );
 
-const Delete = async ( url ) =>  await instance.delete( url );
+const Delete = async (url, id) => {
+  const response = { error: null, data: {} };
+  try {
+      const { data } = await instance.delete( `${url}/${id}` );
+      response.data = data;
+  } catch ( error ) {
+      response.error = error;
+  };
+  return response;
+};
  
 const Get = async ( url ) => await instance.get( url );
 
