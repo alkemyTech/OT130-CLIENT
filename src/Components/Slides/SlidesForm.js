@@ -165,12 +165,7 @@ const SlidesForm = ({ slide }) => {
   const isFormValid = () => {
     const { name, description, image, order } = initialValues;
     showError();
-
-    if (![name, description, image, order].includes("") && !isOrderAlreadyUsed()) {
-      return true;
-    } else {
-      return false;
-    }
+    return ![name, description, image, order].includes("") && !isOrderAlreadyUsed();
   }
 
   const handleSubmit = (e) => {
