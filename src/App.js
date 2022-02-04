@@ -16,10 +16,12 @@ import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
 import CreateEditUser from './Components/Users/CreateEditUser';
+import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/create-activity" component={ActivitiesCreation} />
           <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
+          <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
