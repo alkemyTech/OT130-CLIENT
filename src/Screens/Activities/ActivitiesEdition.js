@@ -36,7 +36,6 @@ const ActivitiesEdition = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data, error } = await getActivityDataById(params.id);
-    console.log(data, 'ddddddddd');
     data ? setActivityData(data.data) : ErrorAlert(ACTIVITY_FETCH_ERROR, error.message);
   };
 
