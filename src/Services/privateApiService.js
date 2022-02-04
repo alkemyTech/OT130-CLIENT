@@ -16,6 +16,17 @@ const Patch = async ( url, data ) => await instance.patch( url, data );
  
 const Get = async (url) => await instance.get(url);
 
+const Put = async (url, data) => {
+  const response = {}
+  try {
+    const { data } = await instance.put(url, data);
+    response.data = data
+  } catch (error) {
+    response.error = error
+  }
+  return response
+}
+
 export {
   Get,
   Post,
