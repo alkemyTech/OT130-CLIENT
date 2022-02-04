@@ -1,4 +1,4 @@
-import { Post, Patch } from "./privateApiService";
+import { Get, Post, Patch, Delete } from "./privateApiService";
 
 const addUser = async (values) => {
   const response = { error: null, data: {} };
@@ -26,4 +26,34 @@ const updateUser = async (values, user) => {
   return response;
 };
 
-export { addUser, updateUser };
+const getUser = async () => {
+  const response = { error: null, data: {} };
+
+  try {
+    const { data } = await Get("/users");
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+
+  return response;
+};
+
+const deleteUser = async (id) => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Delete(`/users/${id}`);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+
+  return response;
+};
+
+export { 
+  addUser,
+  deleteUser,
+  updateUser,
+  getUser
+ };
