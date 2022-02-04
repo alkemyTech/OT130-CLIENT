@@ -21,7 +21,7 @@ const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
-const ALERT_ERROR_API = "Hubo un error en la aplicacíon"
+const ALERT_ERROR_API = "Hubo un error en la aplicación"
 
 
 export {
