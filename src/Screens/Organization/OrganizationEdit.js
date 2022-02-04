@@ -11,7 +11,6 @@ import './styles.css';
 
 import { ORGANIZATION } from '../../rutas/config';
 import {
-  ORGANIZATION_EDITED_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';
 
@@ -39,7 +38,7 @@ const OrganizationEdit = () => {
 
   const handleSubmit = async ({ logo, name, description, long, linkedin_url, twitter_url, facebook_url, instagram_url }) => {
     const base64Img = await toBase64(logo);
-    const { data } = await updateOrganizationData({ 
+    const { data, error } = await updateOrganizationData({ 
       name, 
       short_description: description, 
       long_description: long,
@@ -56,7 +55,7 @@ const OrganizationEdit = () => {
       SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
       push(ORGANIZATION);
     } else {
-      ErrorAlert(undefined, ORGANIZATION_EDITED_ERROR, true);
+      ErrorAlert(undefined, error, true);
     }
   };
 

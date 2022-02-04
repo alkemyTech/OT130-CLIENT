@@ -15,14 +15,14 @@ const OrganizationEditForm = ({
 }) => (
   <form className="container" onSubmit={handleSubmit}>
     <div className="organization-fields-container">
-      <h2>Editart Organización  </h2>  
+      <h2>Editar Organización</h2>  
       <label htmlFor="name  mt-3 mb-3">Nombre de la Organización:</label>
       <input
         className="input-field mb-3"
         type="text"
         name="name"
         onChange={handleChange}
-        placeholder="Organization title"
+        placeholder="Nombre de la Organización"
         value={values?.name}
       />
       {touched.name && <ErrorMessage name="name" />}
@@ -41,7 +41,7 @@ const OrganizationEditForm = ({
         type="text"
         name="long"
         onChange={handleChange}
-        placeholder="Organization short description"
+        placeholder="Descripción Larga"
         value={values?.long}
       />
       {touched.description && <ErrorMessage name="long"/>}
