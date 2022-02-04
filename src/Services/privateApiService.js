@@ -18,7 +18,7 @@ const Get = async (url) => await instance.get(url);
 
 const getToken = () => {
   const token = localStorage.getItem("token");
-  return token ? token : "";
+  return token || '';
 }
 
 const getAuthorization = () => {
