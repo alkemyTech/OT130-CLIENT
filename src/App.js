@@ -1,10 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import Donation from './Components/Donations/Donation'
+import ContactForm from './Components/Contact/ContactForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
@@ -14,11 +15,11 @@ import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
-import CreateEditUser from "./Components/Users/CreateEditUser"
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import CreateEditUser from './Components/Users/CreateEditUser';
+import { ScreenDashboard } from './Screens/ScreenDashboard';
 
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route path="/contact" component={ContactForm} />
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
