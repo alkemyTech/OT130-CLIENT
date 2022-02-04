@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
+import ActivitiesEdition from './Screens/Activities/ActivitiesEdition'
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import ContactForm from './Components/Contact/ContactForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
@@ -12,11 +15,11 @@ import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
-import CreateEditUser from "./Components/Users/CreateEditUser"
-import { ScreenDashboard } from "./Screens/ScreenDashboard";
+import CreateEditUser from './Components/Users/CreateEditUser';
+import { ScreenDashboard } from './Screens/ScreenDashboard';
 
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -24,7 +27,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
+          <Route path="/create-activity" component={ActivitiesCreation} />
+          <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
