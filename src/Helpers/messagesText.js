@@ -18,27 +18,42 @@ const PASSWORD_SHORT = 'Mínimo 6 caracteres';
 const PASSWORD_REGISTER_CONTAIN =
   'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).';
 const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
-const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
-
+const ACTIVITY_ADDED_SUCCESSFULLY = 'La actividad fue añadida correctamente';
+const ACTIVITY_ADDED_ERROR = 'Ocurrió un error al intentar añadir la actividad';
+const ACTIVITY_EDITED_SUCCESSFULLY = 'La actividad fue editada correctamente';
+const ACTIVITY_EDITED_ERROR = 'Ocurrió un error al intentar editar la actividad';
+const ACTIVITY_FETCH_ERROR = 'Ocurrió un error al intentar buscar la actividad con la ID dada';
+const NO_ACTIVITIES = 'No se han encontrado actividades';
+const SEND = 'Enviar';
+const ACTIVITY_TITLE = 'Titulo de la actividad';
+const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 
 export {
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
   EMAIL_TAKEN,
-  INVALID_EMAIL,
-  INVALID_IMAGE_EXT,
   INPUT_REQUIRED,
+  INVALID_IMAGE_EXT,
+  INVALID_EMAIL,
   NETWORK_ERROR,
-  NUMBER_TO_SHORT_ERROR,
-  PASSWORD_DONT_MATCH,
-  PASSWORD_REGISTER_CONTAIN,
   PASSWORD_SHORT,
+  PASSWORD_REGISTER_CONTAIN,
+  PASSWORD_DONT_MATCH,
   SHOULD_BE_DIGITS_ONLY,
   TITLE_LONG,
   TITLE_SHORT,
   UNKNOWN_ERROR,
   ALERT_ICON_SUCCESS,
   ALERT_ICON_ERROR,
+  ACTIVITY_ADDED_SUCCESSFULLY,
+  ACTIVITY_ADDED_ERROR,
+  ACTIVITY_FETCH_ERROR,
+  ACTIVITY_EDITED_ERROR,
+  ACTIVITY_EDITED_SUCCESSFULLY,
+  NO_ACTIVITIES,
+  SEND,
+  ACTIVITY_TITLE,
+  NUMBER_TO_SHORT_ERROR,
 };
