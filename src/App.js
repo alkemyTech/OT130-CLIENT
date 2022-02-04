@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
+import ActivitiesEdition from './Screens/Activities/ActivitiesEdition'
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import ContactForm from './Components/Contact/ContactForm';
 import MembersForm from './Components/Members/MembersForm';
@@ -25,8 +27,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/contact" component={ContactForm} />
-          <Route path="/create-activity" component={ActivitiesForm} />
+          <Route path="/create-activity" component={ActivitiesCreation} />
+          <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
