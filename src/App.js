@@ -42,7 +42,6 @@ function App() {
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization" component={Organization} />
-          <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
