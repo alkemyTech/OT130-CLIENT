@@ -1,58 +1,73 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as Yup from 'yup';
-import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 import { updateOrganizationData } from '../../Services/organizationService';
-import { yupShortDesc, yupTitles } from '../../Helpers/formValidations';
-import './styles.css';
-import { LOGO } from '../../assets';
-import { ORGANIZATION } from '../../rutas/config';
+import { yupImages, yupLongDesc, yupShortDesc, yupTitles, yupLinks } from '../../Helpers/formValidations';
+import { toBase64 } from '../../Helpers/base64';
+import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
+
+import { BACKOFFICE_ORGANIZATION } from '../../rutas/config';
 import {
-  ORGANIZATION_EDITED_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';
 
-const initialValues = {
-  name: '',
-  description: '',
-  logo: LOGO,
-};
-
 const OrganizationEdit = () => {
-  const [selectedImage, setSelectedImage] = useState({ image: LOGO });
+  const [organizationData, setOrganizationData] = useState();
+  const initialValues = {
+    name: '',
+    description: '',
+    long: '',
+    logo: '',
+    linkedin_url: '',
+    twitter_url: '',
+    facebook_url: '',
+    instagram_url: '',
+  };
   const {
     push,
     location: { state },
   } = useHistory();
   const id = state?.id || null;
 
-  const handleSubmit = async ({ logo, name, description }) => {
-    const { data } = await updateOrganizationData({ 
+  const handleCKEditorChange = (editor, setFieldValue) => {
+    setFieldValue('description', editor.getData());
+  };
+
+  const handleSubmit = async ({ logo, name, description, long, linkedin_url, twitter_url, facebook_url, instagram_url }) => {
+    const base64Img = await toBase64(logo);
+    const { data, error } = await updateOrganizationData({ 
       name, 
       short_description: description, 
-      logo: logo 
+      long_description: long,
+      logo: base64Img,
+      linkedin: linkedin_url,
+      twitter: twitter_url,
+      facebook: facebook_url,
+      instagram: instagram_url,
     },
       id,
     );
     if (data) {
+      setOrganizationData(data);
       SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
-      push(ORGANIZATION);
+      push(BACKOFFICE_ORGANIZATION);
     } else {
-      ErrorAlert(undefined, ORGANIZATION_EDITED_ERROR);
+      ErrorAlert(undefined, error, true);
     }
   };
 
   const validation = Yup.object().shape({
     name: yupTitles(),
     description: yupShortDesc(),
+    long: yupLongDesc(),
+    logo: yupImages(),
+    linkedin_url: yupLinks(),
+    twitter_url: yupLinks(),
+    facebook_url: yupLinks(),
+    instagram_url: yupLinks(),
   });
-
-  const handleSelectImage = (value, setFieldValue) => {
-    setFieldValue('logo', value);
-    setSelectedImage({ image: value });
-  };
 
   return id ? (
     <Formik
@@ -68,8 +83,8 @@ const OrganizationEdit = () => {
             values={values}
             touched={touched}
             handleChange={handleChange}
-            handleSelectImage={handleSelectImage}
-            selectedImage={selectedImage}
+            organizationData={organizationData}
+            CKEditorHandleOnChange={handleCKEditorChange}
           />
         );
       }}
