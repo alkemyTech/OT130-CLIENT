@@ -16,8 +16,8 @@ import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import Home from './Components/Home';
 import HomeForm from './Components/HomeForm/HomeForm';
-import UserForm from './Components/Users/UsersForm';
 import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
@@ -32,7 +32,8 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route path="/" exact component={Home} />           Esta ruta debe ser para el Home
+          <Route path="/contact" component={ContactForm} />
           <Route path="/create-activity" component={ActivitiesCreation} />
           <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
@@ -53,6 +54,7 @@ function App() {
 
         </Switch>
       </BrowserRouter>
+      
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
