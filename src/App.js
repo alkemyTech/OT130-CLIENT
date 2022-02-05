@@ -24,8 +24,6 @@ import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
-import { ConfirmAlert } from './Components/Alert';
 
 function App() {
   return (
