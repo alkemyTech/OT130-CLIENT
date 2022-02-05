@@ -17,12 +17,14 @@ import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
+import UserForm from './Components/Users/UsersForm';
+import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -46,7 +48,9 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path='/thanks' component={Thanks}/>
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice" component={ScreenDashboard} />
+
         </Switch>
       </BrowserRouter>
       <div className="App">

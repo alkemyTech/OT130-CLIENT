@@ -1,0 +1,21 @@
+.container-detail-text {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+}
+
+.container-detail-text p {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 426px) {
+
+    .container-detail-text {
+        padding: 0 20px;
+    }
+
+    .container-detail-text p {
+        font-size: 16px;
+        text-align: justify;
+    }
+}
