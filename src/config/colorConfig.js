@@ -1,0 +1,6 @@
+const SPINNER_COLOR_GREEN_BLUE = "#36D7B7";
+
+export {
+    SPINNER_COLOR_GREEN_BLUE
+};
+

@@ -1,6 +1,0 @@
-const SPINNER_COLOR_VERDITER = "#36D7B7";
-
-export {
-    SPINNER_COLOR_VERDITER
-};
-
