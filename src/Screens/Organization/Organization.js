@@ -21,8 +21,8 @@ const Organization = () => {
   }, []);
 
   const getOrganization = async () => {
-    const { data } = await organizationService.getOrganizationData();
-    data ? setOrganizationData(data) : ErrorAlert(undefined, ORGANIZATION_FETCH_ERROR);
+    const { data, error } = await organizationService.getOrganizationData();
+    data ? setOrganizationData(data) : ErrorAlert(ORGANIZATION_FETCH_ERROR, error.message);
   };
 
   const goToEdit = (e) => {
