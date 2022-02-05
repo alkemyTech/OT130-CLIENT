@@ -2,7 +2,6 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ErrorMessage } from 'formik';
 import React from 'react';
-import './styles.css';
 
 const OrganizationEditForm = ({
   handleSubmit,
