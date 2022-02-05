@@ -20,6 +20,7 @@ const PASSWORD_REGISTER_CONTAIN =
 const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
+const ALERT_ICON_WARNING = 'warning';
 const ACTIVITY_ADDED_SUCCESSFULLY = 'La actividad fue añadida correctamente';
 const ACTIVITY_ADDED_ERROR = 'Ocurrió un error al intentar añadir la actividad';
 const ACTIVITY_EDITED_SUCCESSFULLY = 'La actividad fue editada correctamente';
@@ -57,6 +58,7 @@ export {
   UNKNOWN_ERROR,
   ALERT_ICON_SUCCESS,
   ALERT_ICON_ERROR,
+  ALERT_ICON_WARNING,
   ACTIVITY_ADDED_SUCCESSFULLY,
   ACTIVITY_ADDED_ERROR,
   ACTIVITY_FETCH_ERROR,
