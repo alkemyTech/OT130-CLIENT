@@ -1,5 +1,6 @@
+import { Post, Put, Get } from './privateApiService';
 import dataActivities from '../Services/mocks/activities.json'
-// Luego Cambiar Moock por request
+//@TODO: Luego Cambiar Moock por request
 
 const getActivities = async () => {
   const response = { error: null, data: {} };
@@ -14,3 +15,9 @@ const getActivities = async () => {
 };
 
 export { getActivities };
+
+export const getActivityDataById = async (id) => await Get(`activities/${id}`);
+
+export const updateActivityDataById = async (id, body) => await Put(`activities/${id}`, body);
+
+export const saveActivityData = async (body) => await Post('activities', body);

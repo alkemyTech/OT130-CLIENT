@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ErrorAlert } from '../Components/Alert';
-import { ALERT_ERROR_API } from '../Helpers/messagesText';
+import { UNKNOWN_ERROR } from '../Helpers/messagesText';
 import { getActivities } from '../Services/activitiesService';
 
 export function useRequestActivities() {
@@ -12,7 +12,7 @@ export function useRequestActivities() {
         setIsLoading(true);
         const { error, data } = await getActivities();
         if (error) {
-          ErrorAlert(ALERT_ERROR_API)
+          ErrorAlert(UNKNOWN_ERROR)
         } else {
           setData(data);
         }
