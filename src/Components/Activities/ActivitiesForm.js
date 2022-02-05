@@ -1,32 +1,51 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ErrorMessage } from 'formik';
+import { Spinner } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { SEND, ACTIVITY_TITLE } from '../../Helpers/messagesText';
+import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
 
-const ActivitiesForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        description: ''
-    });
+const ActivitiesForm = ({
+  handleSubmit,
+  setFieldValue,
+  values,
+  touched,
+  formikHandleOnChange,
+  CKEditorHandleOnChange,
+  activityData,
+  submitting,
+}) => (
+  <form className="form-container" onSubmit={handleSubmit}>
+    <input
+      className="input-field"
+      type="text"
+      name="name"
+      onChange={formikHandleOnChange('name')}
+      placeholder={ACTIVITY_TITLE}
+      value={values.name}
+    />
+    {touched.name && <ErrorMessage name="name" />}
 
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
-    }
+    <CKEditor
+      editor={ClassicEditor}
+      data={activityData?.description}
+      onChange={(e, editor) => CKEditorHandleOnChange(editor, setFieldValue)}
+    />
+    {touched.description && <ErrorMessage name="description" />}
+    <input
+      className="submit-btn"
+      type="file"
+      max={1}
+      name="image"
+      accept={SUPPORTED_IMAGE_FORMATS}
+      onChange={(e) => setFieldValue('image', e.currentTarget.files[0])}
+    />
+    {touched.image ? <ErrorMessage name="image" /> : null}
+    <button className="submit-btn" type="submit" disabled={submitting}>
+      {submitting ? <Spinner animation="border" /> : SEND}
+    </button>
+  </form>
+);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
-    
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description"></input>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
-    );
-}
- 
 export default ActivitiesForm;
