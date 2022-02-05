@@ -22,10 +22,9 @@ import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
 
 function App() {
   return (
