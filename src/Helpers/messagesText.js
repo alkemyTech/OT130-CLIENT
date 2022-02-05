@@ -29,6 +29,7 @@ const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
+const FETCH_ERROR = 'Ocurrió un error al intentar buscar informacion solicitada';
 
 export {
   DESCRIPTION_LONG,
@@ -56,4 +57,5 @@ export {
   SEND,
   ACTIVITY_TITLE,
   NUMBER_TO_SHORT_ERROR,
+  FETCH_ERROR
 };
