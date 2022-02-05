@@ -30,9 +30,18 @@ const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 
+// Textos de donación
+
+const DONATION_TITLE_TEXT = "¡Contribuye!";
+const DONATION_BUTTON_TEXT = "Contribuir";
+const DONATION_THANKS_TEXT = "¡Muchas gracias por contribuir!";
+
 export {
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
+  DONATION_BUTTON_TEXT,
+  DONATION_TITLE_TEXT,
+  DONATION_THANKS_TEXT,
   EMAIL_TAKEN,
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
