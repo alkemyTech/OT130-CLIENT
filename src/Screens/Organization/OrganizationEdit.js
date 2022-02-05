@@ -9,7 +9,6 @@ import { toBase64 } from '../../Helpers/base64';
 import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
 
 import { BACKOFFICE_ORGANIZATION } from '../../rutas/config';
-
 import {
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';

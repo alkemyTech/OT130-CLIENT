@@ -29,7 +29,7 @@ const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
-const ORGANIZATION_EDITED_SUCCESSFULLY = "La organización fue editada correctamente"
+const ORGANIZATION_EDITED_SUCCESSFULLY = 'La Organización fue editada correctamente';
 
 // Textos de donación
 
@@ -67,4 +67,5 @@ export {
   SEND,
   ACTIVITY_TITLE,
   NUMBER_TO_SHORT_ERROR,
+  ORGANIZATION_EDITED_SUCCESSFULLY
 };
