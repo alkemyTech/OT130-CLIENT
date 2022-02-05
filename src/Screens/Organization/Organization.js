@@ -30,7 +30,7 @@ const Organization = () => {
   };
 
   return (
-    <div className="container">
+    <div className="organization-main-container">
       <div className="organization-fields-container">
         {organizationData ? (
           <>
