@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import '../FormStyles.css';
-import { addNewSlide, editSlide, getSlides } from "../../Services/slidesService";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Spinner from 'react-bootstrap/Spinner';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Swal from 'sweetalert2';
+import Spinner from 'react-bootstrap/Spinner';
+import { ErrorAlert, SuccessAlert } from '../Alert';
+import { addNewSlide, editSlide, getSlides } from "../../Services/slidesService";
+import '../FormStyles.css';
 
 const SlidesForm = ({ slide }) => {
 
@@ -24,31 +24,29 @@ const SlidesForm = ({ slide }) => {
   }
   const [initialValues, setInitialValues] = useState(defaultInitialValues);
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const response = await getSlides();
-        setGetState(response.data.data);
-      } catch (error) {
-        createAlert('error', 'Error: Error de conexión con el servidor.');
-      }
-    })()
-  }, []);
-
   const isOrderAlreadyUsed = () => {
-    getState.some(state => state.order === parseInt(initialValues.order));
+    return getState.some(state => state.order === parseInt(initialValues.order));
+  }
+
+  const setInitialValuesToUpdateSlide = () => {
+    const { name, description, image } = slide;
+    setInitialValues({
+      ...initialValues,
+      name,
+      description,
+      image
+    });
   }
 
   useEffect(() => {
+    (async function () {
+      const response = await getSlides();
+      setGetState(response.data.data);
+    })();
+
     if (slide) {
-      const { name, description, image } = slide;
-      setInitialValues({
-        ...initialValues,
-        name,
-        description,
-        image
-      });
-    }
+      setInitialValuesToUpdateSlide();
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -85,15 +83,10 @@ const SlidesForm = ({ slide }) => {
       created_at: new Date(),
     };
 
-    try {
-      const response = await addNewSlide(body);
-      createAlert('success', response.data.message);
-    } catch (error) {
-      createAlert('error', 'Error: Error de conexión con el servidor.');
-    } finally {
-      setLoading(false)
-    }
-  };
+    const response = await addNewSlide(body);
+    SuccessAlert("", response.data.message);
+    setLoading(false);
+  }
 
   const updateSlide = async (id) => {
     const body = {
@@ -104,19 +97,16 @@ const SlidesForm = ({ slide }) => {
       updated_at: "2022-01-21T12:31:52.129Z",
     };
 
-    try {
-      const response = await editSlide(body, id);
-      createAlert('success', response.data.message);
-    } catch (error) {
-      createAlert('error', 'Error: Error de conexión con el servidor.');
-    } finally {
-      setLoading(false)
-    }
+    const response = await editSlide(body, id);
+    SuccessAlert("", response.data.message);
+    setLoading(false)
   };
-  
+
   const isFormValid = () => {
     const { name, description, image, order } = initialValues;
-    showError();
+    setAsRequiredInput();
+    validationInputOrder(initialValues.order);
+
     return ![name, description, image, order].includes("") && !isOrderAlreadyUsed();
   }
 
@@ -140,11 +130,6 @@ const SlidesForm = ({ slide }) => {
     }
   };
 
-  const showError = () => {
-    setAsRequiredInput();
-    validationInputOrder(initialValues.order);
-  }
-
   const setAsRequiredInput = () => {
     const { name, description, image } = initialValues;
 
@@ -166,15 +151,6 @@ const SlidesForm = ({ slide }) => {
 
   const clearForm = () => {
     setInitialValues(defaultInitialValues);
-  }
-
-  const createAlert =  (icon, text) => {
-    Swal.fire({
-      icon: icon,
-      text: text,
-      showConfirmButton: false,
-      timer: 2000,
-    })
   }
 
   return (

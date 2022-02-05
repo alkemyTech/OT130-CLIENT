@@ -8,15 +8,40 @@ const config = {
   },
 };
 
-const baseURL = "http://ongapi.alkemy.org/api";
-
 const instance = axios.create(config);
 
-const addNewSlide = async (body) => await instance.post(baseURL + '/slides', body);
+const getSlides = async () => {
+  const response = {};
+  try {
+      const { data } = await instance.get(config.baseURL + 'slides');
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
 
-const editSlide = async (body, id) => await instance.put(baseURL + '/slides' + `/${id}`, body);
+const addNewSlide = async (body) => {
+  const response = {};
+  try {
+      const { data } = await instance.post(config.baseURL + 'slides', body);
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
 
-const getSlides = async () => await instance.get(baseURL + '/slides');
+const editSlide = async (body, id) => {
+  const response = {};
+  try {
+      const { data } = await instance.put(config.baseURL + 'slides' + `/${id}`, body);
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
 
 export {
   addNewSlide,
