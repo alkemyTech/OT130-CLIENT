@@ -45,4 +45,16 @@ const Put = async (url, body) => {
   return response;
 };
 
-export { Get, Post, Patch, Put };
+const getToken = () => {
+  const token = localStorage.getItem("token");
+  return token || '';
+}
+
+const getAuthorization = () => {
+  const token = getToken();
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+}
+
+export { Get, Post, Patch, Put, getAuthorization, getToken };
