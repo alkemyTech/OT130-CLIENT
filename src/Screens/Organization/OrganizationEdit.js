@@ -8,7 +8,7 @@ import { yupImages, yupLongDesc, yupShortDesc, yupTitles, yupLinks } from '../..
 import { toBase64 } from '../../Helpers/base64';
 import OrganizationEditForm from '../../Components/Organization/OrganizationEditForm';
 
-import { BACKOFFICE_ORGANIZATION_EDIT } from '../../rutas/config';
+import { BACKOFFICE_ORGANIZATION } from '../../rutas/config';
 import {
   ORGANIZATION_EDITED_SUCCESSFULLY,
 } from '../../Helpers/messagesText';
@@ -52,7 +52,7 @@ const OrganizationEdit = () => {
     if (data) {
       setOrganizationData(data);
       SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
-      push(BACKOFFICE_ORGANIZATION_EDIT);
+      push(BACKOFFICE_ORGANIZATION);
     } else {
       ErrorAlert(undefined, error, true);
     }
