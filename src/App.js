@@ -6,6 +6,7 @@ import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition'
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import Donation from './Components/Donations/Donation'
 import ContactForm from './Components/Contact/ContactForm';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -13,14 +14,17 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
+import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import HomeForm from './Components/HomeForm/HomeForm';
+import UserForm from './Components/Users/UsersForm';
+import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -40,9 +44,13 @@ function App() {
           <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
+          <Route path="/donate" component={Donation}/>
           <Route path="/school-campaign" component={SchoolCampaign} />
+          <Route path='/thanks' component={Thanks}/>
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice" component={ScreenDashboard} />
+
         </Switch>
       </BrowserRouter>
       <div className="App">
@@ -58,7 +66,7 @@ function App() {
               className="App-link"
               href="https://reactjs.org/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer" 
             >
               React
             </a>

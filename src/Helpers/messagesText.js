@@ -30,10 +30,20 @@ const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 const FETCH_ERROR = 'Ocurrió un error al intentar buscar informacion solicitada';
+const ORGANIZATION_EDITED_SUCCESSFULLY = 'La Organización fue editada correctamente';
+
+// Textos de donación
+
+const DONATION_TITLE_TEXT = "¡Contribuye!";
+const DONATION_BUTTON_TEXT = "Contribuir";
+const DONATION_THANKS_TEXT = "¡Muchas gracias por contribuir!";
 
 export {
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
+  DONATION_BUTTON_TEXT,
+  DONATION_TITLE_TEXT,
+  DONATION_THANKS_TEXT,
   EMAIL_TAKEN,
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
@@ -57,5 +67,6 @@ export {
   SEND,
   ACTIVITY_TITLE,
   NUMBER_TO_SHORT_ERROR,
-  FETCH_ERROR
+  FETCH_ERROR,
+  ORGANIZATION_EDITED_SUCCESSFULLY
 };
