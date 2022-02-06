@@ -1,32 +1,36 @@
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
+import { useRequestActivities } from '../../customHooks/useRequestActivities';
 import '../CardListStyles.css';
 
 const ActivitiesList = () => {
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+  const [allActivities, isLoading] = useRequestActivities([]);
 
-    return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
-        </div>
-    );
-}
- 
+  return (
+    <div>
+      <h1 className="text-center my-3">Listado Actividades</h1>
+      <ul className="list-container row">
+        {!isLoading &&
+          (allActivities.length > 0 ? (
+            allActivities.map((activity) => {
+              return (
+                <li className="card-info " key={activity.id}>
+                  <h3>{activity.name}</h3>
+                  <p>{activity.description}</p>
+                </li>
+              );
+            })
+          ) : (
+            <p>No hay actividades</p>
+          ))}
+        {isLoading && (
+          <div className="position-absolute text-center">
+            <Spinner variant="primary" animation="border" role="status" />
+          </div>
+        )}
+      </ul>
+    </div>
+  );
+};
+
 export default ActivitiesList;
