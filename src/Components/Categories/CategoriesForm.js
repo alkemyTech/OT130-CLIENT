@@ -7,7 +7,7 @@ import { SUPPORTED_IMAGE_FORMATS } from '../../config/imagePaths';
 import { 
     saveCategory, 
     updateCategory 
-} from '../../Services/homeService';
+} from '../../Services/categoriesService';
 import { 
     categoryDescriptionSchema, 
     categoryFileSchema, 
