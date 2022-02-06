@@ -21,6 +21,7 @@ import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
+import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route exact path="/backoffice/organization" component={Organization} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
