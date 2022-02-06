@@ -32,16 +32,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-//Spinner
+### Spinner
 
 Para el Loader spinner se utilizo la libreria "react-spinners" su implementacion es sencilla y esta bien documentada,
 para utilizar el componente Spinner se importa como un funcional component regular.
 
-Link de la libreria en npm:https://www.npmjs.com/package/react-spinners
+[Documentacion de la libreria en npm](https://www.npmjs.com/package/react-spinners)
 
-Ejemplo de implementacion:
+#### Ejemplo de implementacion:
 
-importar  DotLoader  desde  "react-spinners/DotLoader" ;
+~~~
+import  DotLoader  from  "react-spinners/DotLoader" ;
+import { css } from "@emotion/react";
 
 const color = "red";
 const  override  =  css ` 
@@ -63,16 +65,21 @@ export const Spinner = () => {
     </>
   )
 };
+~~~
 
-MPORTANTE : Este paquete utiliza "emotion". Recuerde agregar el complemento a .babelrc, por ejemplo:
+-MPORTANTE : Este paquete utiliza "emotion". Recuerde agregar el complemento a .babelrc, por ejemplo:
 
+~~~
 {
     "presets": ["@babel/preset-react", "@babel/preset-env"],
     "plugins": ["@emotion"]
 }
+~~~
 
-Ejemplo de uso:
+-Ejemplo de uso:
 
+~~~
 import { Spinner } from "../Components/Spinner/Spinner";
 
 <Spinner />
+~~~
