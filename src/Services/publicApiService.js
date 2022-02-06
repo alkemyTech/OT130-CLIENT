@@ -13,5 +13,5 @@ const instance = axios.create(config);
 
 const getSlide = async () => await instance.get(baseURL + '/slides');
 
-export { Get, getSlide }
+export { getSlide }
 
