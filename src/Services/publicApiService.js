@@ -7,8 +7,11 @@ const config = {
     'Content-type': 'application/json',
   },
 };
+const baseURL = "http://ongapi.alkemy.org/api";
 
 const instance = axios.create(config);
+
+const getSlide = async () => await instance.get(baseURL + '/slides');
 
 const Post = async (url, body) => {
   const response = {};
@@ -21,6 +24,5 @@ const Post = async (url, body) => {
   return response;
 }
 
-export {
-  Post,
-};
+export {Post, getSlide }
+

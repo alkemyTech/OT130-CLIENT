@@ -1,0 +1,38 @@
+.container-news .row .title-news {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 70px;
+}
+.container-news .row .title-news h3 {
+    font-size: 48px;
+    line-height: 72px;
+    letter-spacing: -1.5%;
+    text-align: center;
+    font-weight: 400;
+}
+
+.container-news .row-news {
+    display: flex;
+    gap: 20px;
+}
+
+.container-news .row-news .col-news {
+    display: flex;
+    justify-content: center;
+}
+
+.container-btn {
+    margin-top: 65px;
+}
+.container-btn .btn-news {
+    display: flex;
+    justify-content: center;
+}
+.container-btn .btn-news button {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18,29px;
+    letter-spacing: -1.5%;
+    text-align: center;
+}

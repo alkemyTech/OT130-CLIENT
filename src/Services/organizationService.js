@@ -9,12 +9,19 @@ const getOrganizationData = async () => {
   }
 };
 
-const updateOrganizationData = async (data) => {
-  try {
-    return await Post("organization", data);
-  } catch (error) {
-    return { error: error.response?.data || error };
+const updateOrganizationData = async (values) => {
+  const response = {
+    data:{},
+    error: ''
   }
+  try {
+    const { data } = await Post("organization", values);
+    response.data = data;
+  } catch (error) {
+    response.error = 'Error al actualizar la organización';
+  }
+
+  return response;
 };
 
 export { getOrganizationData, updateOrganizationData };
