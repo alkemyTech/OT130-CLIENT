@@ -11,7 +11,4 @@ const config = {
 const baseURL = "http://ongapi.alkemy.org/api";
 const instance = axios.create(config);
 
-const getSlide = async () => await instance.get(baseURL + '/slides');
-
-export { getSlide }
 
