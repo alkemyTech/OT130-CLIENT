@@ -67,7 +67,7 @@ export const Spinner = () => {
 };
 ~~~
 
--MPORTANTE : Este paquete utiliza "emotion". Recuerde agregar el complemento a .babelrc, por ejemplo:
+-IMPORTANTE : Este paquete utiliza "emotion". Recuerde agregar el complemento a .babelrc, por ejemplo:
 
 ~~~
 {
