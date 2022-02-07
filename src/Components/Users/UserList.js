@@ -11,9 +11,9 @@ const UserList = () => {
     const { data, error } = await getUsers();
 
     if (error) {
-      Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
+      Swal.fire({ title: 'Error', icon: 'error', text: `${error.message}` });
     } else {
-      setUserList(data);
+      setUserList(data.data);
     }
   };
 

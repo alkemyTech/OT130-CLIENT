@@ -1,67 +1,23 @@
 import { Post, Patch, Get, Delete } from './privateApiService';
 
 const addUser = async (values) => {
-  const response = { error: null, data: {} };
-
-  try {
-    const { data } = await Post('/users', values);
-    response.data = data;
-  } catch (error) {
-    response.error = error;
-  }
-
-  return response;
+  return await Post('/users', values);
 };
 
 const updateUser = async (values, user) => {
-  const response = { error: null, data: {} };
-
-  try {
-    const { data } = await Patch(`/users/${user.id}`, values);
-    response.data = data;
-  } catch (error) {
-    response.error = error;
-  }
-
-  return response;
+  return Patch(`/users/${user.id}`, values);
 };
 
 const getUser = async (id) => {
-  const response = { error: null, data: {} };
-  try {
-    const { data } = await Get(`/users/${id}`);
-    response.data = data.data;
-  } catch (error) {
-    response.error = error.message;
-  }
-  return response;
+  return await Get(`/users/${id}`);
 };
 
 const getUsers = async () => {
-  const response = { error: null, data: {} };
-  try {
-    const { data } = await Get(`/users`);
-    response.data = data.data;
-  } catch (error) {
-    response.error = error.message;
-  }
-  return response;
+  return await Get(`/users`);
 };
 
 const deleteUser = async (id) => {
-  const response = { error: null, data: {} };
-  try {
-    const { data } = await Delete(`/users/${id}`);
-    response.data = data;
-  } catch (error) {
-    response.error = error.message;
-  }
+  return await Delete(`/users/${id}`);
 };
 
-export {
-  addUser,
-  deleteUser,
-  getUser,
-  getUsers,
-  updateUser
-};
+export { addUser, deleteUser, getUser, getUsers, updateUser };
