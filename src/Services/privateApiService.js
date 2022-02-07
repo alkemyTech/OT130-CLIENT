@@ -23,6 +23,8 @@ const Post = async (url, body) => {
 
 const Patch = async (url, data) => await instance.patch(url, data);
 
+const Delete = async (url) => await instance.delete(url);
+
 const Get = async (url) => {
   const response = {};
   try {
@@ -45,4 +47,4 @@ const Put = async (url, body) => {
   return response;
 };
 
-export { Get, Post, Patch, Put };
+export { Get, Post, Patch, Put, Delete };
