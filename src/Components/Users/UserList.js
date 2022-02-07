@@ -54,9 +54,11 @@ const UserList = () => {
       <h2>UserList</h2>
       <table>
         <thead>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Acciones</th>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
         </thead>
         <tbody>
           {userList.length === 0 ? (
@@ -65,7 +67,7 @@ const UserList = () => {
             </tr>
           ) : (
             userList.map((el) => (
-              <tr>
+              <tr key={el.id}>
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>
