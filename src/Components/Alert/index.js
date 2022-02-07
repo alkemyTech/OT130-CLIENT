@@ -18,4 +18,14 @@ const ErrorAlert = (title, message) =>
     timer: ALERT_OUT_TIMER,
   });
 
-export { SuccessAlert, ErrorAlert };
+const ConfirmAlert = (title, message) => {
+  return Swal.fire({
+    title: title,
+    icon: 'warning',
+    text: message,
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No',
+  });
+};
+export { SuccessAlert, ErrorAlert, ConfirmAlert };

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUser } from '../../Services/usersService';
-import Swal from 'sweetalert2';
 import CreateEditUser from './CreateEditUser';
+import { ErrorAlert } from '../Alert';
 
 const EditUser = () => {
   const [user, setUser] = useState({});
@@ -10,10 +10,9 @@ const EditUser = () => {
   let { id } = useParams();
 
   const getById = async () => {
-    console.log('peticion');
     const { data, error } = await getUser(id);
     if (error) {
-      Swal.fire({ title: 'Error', icon: 'error', text: `${error.message}` });
+      ErrorAlert('Error', error.message);
     } else {
       setUser(data.data);
       setSuccess(true);

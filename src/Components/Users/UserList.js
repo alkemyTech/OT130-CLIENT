@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { deleteUser, getUsers } from '../../Services/usersService';
 import Swal from 'sweetalert2';
 import { Link, useHistory } from 'react-router-dom';
+import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -26,22 +27,15 @@ const UserList = () => {
   };
 
   const deleteData = (el) => {
-    Swal.fire({
-      title: 'Esta seguro?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-    }).then((res) => {
+    ConfirmAlert('Estas seguro?', 'Una vez hecho no podra deshacerse').then((res) => {
       if (res.isConfirmed) {
         const { error } = deleteUser(el.id);
+        console.log(error);
         if (error) {
+          ErrorAlert('Error', error.message);
           Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
         } else {
-          Swal.fire({
-            title: 'Eliminado correctamente',
-            icon: 'success',
-          });
+          SuccessAlert(undefined, 'Usuario eliminado correctamente');
           updateUserList();
         }
       }
