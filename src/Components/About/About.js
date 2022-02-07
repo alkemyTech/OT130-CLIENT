@@ -4,6 +4,7 @@ import Title from '../Title/Title';
 import { getData } from '../../Services/aboutService';
 import { Spinner } from '../Spinner/Spinner';
 import { ErrorMessage } from '../ErrorMesage/ErrorMessage';
+import { ErrorAlert } from '../Alert';
 
 const About = () => {
   const [dataTexts, setDataTexts] = useState();
@@ -29,7 +30,7 @@ const About = () => {
   return (
     <>
       {loading && <Spinner />}
-      {errorMessage && <ErrorMessage message={ errorMessage } />}
+      {errorMessage && ErrorAlert(errorMessage)}
       {dataTexts &&
         <>
           <Title text={dataTexts[0].title} />

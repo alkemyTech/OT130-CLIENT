@@ -1,4 +1,4 @@
-/*import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ErrorMessage } from 'formik';
 import React from 'react';
@@ -105,4 +105,3 @@ const OrganizationEditForm = ({
 );
 
 export default OrganizationEditForm;
-*/
