@@ -3,6 +3,7 @@ import { deleteUser, getUsers } from '../../Services/usersService';
 import Swal from 'sweetalert2';
 import { Link, useHistory } from 'react-router-dom';
 import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
+import usersMock from '../../Services/mocks/users.json';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -12,14 +13,22 @@ const UserList = () => {
     const { data, error } = await getUsers();
 
     if (error) {
-      Swal.fire({ title: 'Error', icon: 'error', text: `${error.message}` });
+      ErrorAlert('Error', error.message);
     } else {
       setUserList(data.data);
     }
   };
 
+  const getMockUsers = async () => {
+    try {
+      setUserList(usersMock);
+    } catch (error) {
+      ErrorAlert('Error', error.message);
+    }
+  };
+
   useEffect(() => {
-    updateUserList();
+    getMockUsers();
   }, []);
 
   const editData = (el) => {

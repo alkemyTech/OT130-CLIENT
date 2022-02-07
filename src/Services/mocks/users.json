@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  },
+  {
+    "id": 2,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  },
+  {
+    "id": 3,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  },
+  {
+    "id": 4,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  },
+  {
+    "id": 5,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  },
+  {
+    "id": 6,
+    "name": "Nombre de prueba",
+    "email": "Correo de prueba"
+  }
+]
