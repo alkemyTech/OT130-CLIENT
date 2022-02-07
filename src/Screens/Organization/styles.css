@@ -1,0 +1,23 @@
+.organization-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.organization-fields-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #c1c1c1;
+  padding: 30px;
+}
+
+.submit-btn {
+  width: 100%;
+}
+
+.align-text-center {
+  text-align: center;
+}
