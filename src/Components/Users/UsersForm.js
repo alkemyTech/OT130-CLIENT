@@ -1,10 +1,9 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Spinner } from "react-bootstrap";
-import { ErrorMessage, Field, Form } from "formik";
-import "../FormStyles.css";
-import userTypes from "../../Helpers/userTypes";
-
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Spinner } from 'react-bootstrap';
+import { ErrorMessage, Field, Form } from 'formik';
+import '../FormStyles.css';
+import userTypes from '../../Helpers/userTypes';
 
 const FormComponent = ({
   touched,
@@ -14,25 +13,15 @@ const FormComponent = ({
   requestError,
   isSubmitting,
   fileInputRef,
-  imageMax
+  imageMax,
 }) => {
   return (
     <Form onSubmit={handleSubmit} className="form-container">
-      <Field
-        className="input-field"
-        type="text"
-        name="name"
-        placeholder="Nombre"
-      ></Field>
+      <Field className="input-field" type="text" name="name" placeholder="Nombre"></Field>
 
       {touched.name && <ErrorMessage name="name" />}
 
-      <Field
-        className="input-field"
-        type="text"
-        name="email"
-        placeholder="Email"
-      ></Field>
+      <Field className="input-field" type="text" name="email" placeholder="Email"></Field>
 
       {touched.email && <ErrorMessage name="email" />}
 
@@ -45,22 +34,17 @@ const FormComponent = ({
 
       {touched.description && <ErrorMessage name="description" />}
 
-      <Field
-        className="input-field"
-        type="password"
-        name="password"
-        placeholder="Password"
-      ></Field>
+      <Field className="input-field" type="password" name="password" placeholder="Password"></Field>
 
       {touched.password && <ErrorMessage name="password" />}
 
       <Field className="select-field" as="select" name="role_id">
-        {Object.keys(userTypes).map((key)=>{
-          return <option value={key}>{userTypes[key]}</option>
+        {Object.keys(userTypes).map((key) => {
+          return <option value={key}>{userTypes[key]}</option>;
         })}
       </Field>
       <div>
-        <label style={{ paddingRight: "10px" }}>Subir imagen de usuario</label>
+        <label style={{ paddingRight: '10px' }}>Subir imagen de usuario</label>
         <input
           ref={fileInputRef}
           type="file"
@@ -68,7 +52,7 @@ const FormComponent = ({
           name="image_file"
           accept="image/png, image/jpeg"
           onChange={(e) => {
-            setFieldValue("image_file", e.currentTarget.files[0]);
+            setFieldValue('image_file', e.currentTarget.files[0]);
           }}
         />
         <div>
@@ -81,9 +65,7 @@ const FormComponent = ({
       <Row className="justify-content-center">
         {isSubmitting && <Spinner animation="border" />}
         {success ? (
-          <p className="message success text-center">
-            Se ha guardado el usuario
-          </p>
+          <p className="message success text-center">Se ha guardado el usuario</p>
         ) : (
           <p className="message error text-center">{requestError}</p>
         )}
@@ -92,4 +74,4 @@ const FormComponent = ({
   );
 };
 
-export default FormComponent
+export default FormComponent;

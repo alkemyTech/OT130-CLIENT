@@ -1,0 +1,31 @@
+.carousel {
+    height: 50vh;
+    margin-top: 67px;
+    margin-bottom: 26px;
+}
+
+.carousel .carousel-item .img-carousel {
+    height: 50vh;
+}
+
+.container-welcome-text {
+    margin-bottom: 89px;
+}
+
+.container-welcome-text .row .welcome-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-welcome-text .row .welcome-text h2 {
+    font-size: 56px;
+    line-height: 80px;
+    letter-spacing: -1.5%;
+    font-weight: 400;
+
+}

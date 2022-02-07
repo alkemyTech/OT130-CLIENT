@@ -31,12 +31,17 @@ const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
 const FETCH_ERROR = 'Ocurrió un error al intentar buscar informacion solicitada';
 const ORGANIZATION_EDITED_SUCCESSFULLY = 'La Organización fue editada correctamente';
+const ORGANIZATION_FETCH_ERROR = 'Ocurrió un error al intentar traer los datos de la organización';
+const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organización';
+const ORGANIZATION_LOGO = 'Logo de la organización';
+const ORGANIZATION_NAME = 'Nombre de la organización';
+const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 
 // Textos de donación
 
-const DONATION_TITLE_TEXT = "¡Contribuye!";
-const DONATION_BUTTON_TEXT = "Contribuir";
-const DONATION_THANKS_TEXT = "¡Muchas gracias por contribuir!";
+const DONATION_TITLE_TEXT = '¡Contribuye!';
+const DONATION_BUTTON_TEXT = 'Contribuir';
+const DONATION_THANKS_TEXT = '¡Muchas gracias por contribuir!';
 
 export {
   DESCRIPTION_LONG,
@@ -49,6 +54,7 @@ export {
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
   NETWORK_ERROR,
+  ORGANIZATION_EDITED_SUCCESSFULLY,
   PASSWORD_SHORT,
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
@@ -67,6 +73,15 @@ export {
   SEND,
   ACTIVITY_TITLE,
   NUMBER_TO_SHORT_ERROR,
+<<<<<<< HEAD
   FETCH_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY
+=======
+  ORGANIZATION_EDITED_SUCCESSFULLY,
+  ORGANIZATION_EDITED_ERROR,
+  ORGANIZATION_FETCH_ERROR,
+  ORGANIZATION_LOGO,
+  ORGANIZATION_NAME,
+  ORGANIZATION_DESCRIPTION,
+>>>>>>> 980d03dd0823b6a922375fff35f5080b248ecc6c
 };
