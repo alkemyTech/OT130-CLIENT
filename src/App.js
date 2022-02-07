@@ -21,15 +21,9 @@ import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
-<<<<<<< HEAD
-
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-=======
 import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> main
 
 function App() {
   return (
