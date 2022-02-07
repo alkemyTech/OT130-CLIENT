@@ -9,7 +9,7 @@ const getActivities = async () => {
   }
 };
 
-const getActivity = async (id) => {
+const getActivityDataById = async (id) => {
   try {
     const { data } = await Get(`/activities/${id}`);
     return data;
@@ -27,7 +27,7 @@ const deleteActivity = async (id) => {
   }
 };
 
-const updateActivity = async (id) => {
+const updateActivityDataById = async (id) => {
   try {
     const { data } = await Put(`/activities/${id}`);
     return data;
@@ -36,7 +36,7 @@ const updateActivity = async (id) => {
   }
 };
 
-const createActivity = async () => {
+const saveActivityData = async () => {
   try {
     const { data } = await Post("/activities");
     return data;
@@ -47,8 +47,8 @@ const createActivity = async () => {
 
 export {
   getActivities,
-  getActivity,
+  getActivityDataById,
   deleteActivity,
-  updateActivity,
-  createActivity,
+  updateActivityDataById,
+  saveActivityData,
 };
