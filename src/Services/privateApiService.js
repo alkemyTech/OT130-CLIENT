@@ -10,17 +10,50 @@ const config = {
 
 const instance = axios.create(config);
 
-const Get = async (url) => await instance.get(url);
-
-const Delete = async (url, data) => await instance.delete(url, data);
+const Post = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.post(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
 
 const Patch = async (url, data) => await instance.patch(url, data);
 
-const Post = async (url, data) => await instance.post(url, data);
-
-export {
-  Get,
-  Delete,
-  Patch,
-  Post
+const Get = async (url) => {
+  const response = {};
+  try {
+    const { data } = await instance.get(url);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
 };
+
+const Put = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.put(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+
+const Delete = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+
+export { Get, Post, Patch, Put, Delete };
