@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { deleteUser, getUsers } from '../../Services/usersService';
 import Swal from 'sweetalert2';
 import { Link, useHistory } from 'react-router-dom';
-import CreateEditUser from './CreateEditUser';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
   const history = useHistory();
-  const [editUser, setEditUser] = useState({});
 
   const updateUserList = async () => {
     const { data, error } = await getUsers();
@@ -19,8 +17,12 @@ const UserList = () => {
     }
   };
 
+  useEffect(() => {
+    updateUserList();
+  }, []);
+
   const editData = (el) => {
-    history.push(`/backoffice/users/${el.id}`);
+    history.push(`/backoffice/users/edit/${el.id}`);
   };
 
   const deleteData = (el) => {
@@ -32,7 +34,7 @@ const UserList = () => {
       cancelButtonText: 'No',
     }).then((res) => {
       if (res.isConfirmed) {
-        const { data, error } = deleteUser(el.id);
+        const { error } = deleteUser(el.id);
         if (error) {
           Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
         } else {
@@ -45,10 +47,6 @@ const UserList = () => {
       }
     });
   };
-
-  useEffect(() => {
-    updateUserList();
-  }, []);
 
   return (
     <div>
@@ -80,7 +78,6 @@ const UserList = () => {
         </tbody>
       </table>
     </div>
-    
   );
 };
 

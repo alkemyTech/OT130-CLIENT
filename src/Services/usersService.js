@@ -26,9 +26,19 @@ const updateUser = async (values, user) => {
   return response;
 };
 
+const getUser = async (id) => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Get(`/users/${id}`);
+    response.data = data.data;
+  } catch (error) {
+    response.error = error.message;
+  }
+  return response;
+};
+
 const getUsers = async () => {
   const response = { error: null, data: {} };
-
   try {
     const { data } = await Get(`/users`);
     response.data = data.data;
@@ -48,4 +58,10 @@ const deleteUser = async (id) => {
   }
 };
 
-export { addUser, deleteUser, getUsers, updateUser };
+export {
+  addUser,
+  deleteUser,
+  getUser,
+  getUsers,
+  updateUser
+};

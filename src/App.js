@@ -16,6 +16,7 @@ import { ScreenDashboard } from './Screens/ScreenDashboard';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserList from './Components/Users/UserList';
+import EditUser from './Components/Users/EditUser';
 
 function App() {
   return (
@@ -28,9 +29,10 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/backoffice/users" component={UserList} />
+          <Route exact path="/backoffice/users" component={UserList} />
+          <Route exact path="/backoffice/users/create" component={CreateEditUser} />
+          <Route exact path="/backoffice/users/edit/:id" component={EditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
