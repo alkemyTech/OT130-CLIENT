@@ -1,62 +1,36 @@
-import React, {  useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
+import { useRequestActivities } from '../../customHooks/useRequestActivities';
 import '../CardListStyles.css';
-import { ActivityItem } from './ActivityItem';
-
-const activitiesMock = [
-  { id: 1,
-    name: 'Titulo de prueba1',
-    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
-    createdAt: "date", 
-  },
-  { id: 2,
-    name: 'Titulo de prueba2',
-    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
-    createdAt: "date", 
-  },
-  { id: 3,
-    name: 'Titulo de prueba3',
-    image: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
-    createdAt: "date", 
-  },   
-];
 
 const ActivitiesList = () => {
- 
-  const [ activitiesList, setActivities ] = useState( activitiesMock );
+  const [allActivities, isLoading] = useRequestActivities([]);
 
-  const handleDeleteActivity = ( id ) => {  
-    const newActivitiesList = activitiesList.filter( activity => activity.id !== id )
-    setActivities( newActivitiesList );
-  };
- 
   return (
-    <div className="container-xl">
-      <h1 className="m-4">Listado de actividades</h1>
-      <Link 
-        to="/backoffice/activities/create" 
-        className="ms-5 btn btn-primary"
-      >
-        Agregar actividad
-      </Link>
-      <div className="row m-5 d-flex justify-content-between">
-        {
-          activitiesList.length > 0 
-          ? activitiesList.map(( activity ) => {
-            return (              
-            <ActivityItem
-              key={activity.id}            
-              activity={ activity }
-              handleDeleteActivity={ handleDeleteActivity }     
-            />
-            )
+    <div>
+      <h1 className="text-center my-3">Listado Actividades</h1>
+      <ul className="list-container row">
+        {!isLoading &&
+          (allActivities.length > 0 ? (
+            allActivities.map((activity) => {
+              return (
+                <li className="card-info " key={activity.id}>
+                  <h3>{activity.name}</h3>
+                  <p>{activity.description}</p>
+                </li>
+              );
             })
-          : <p className="fs-2">No hay actividades</p>
-        }
-      </div>     
+          ) : (
+            <p>No hay actividades</p>
+          ))}
+        {isLoading && (
+          <div className="position-absolute text-center">
+            <Spinner variant="primary" animation="border" role="status" />
+          </div>
+        )}
+      </ul>
     </div>
   );
-}
+};
 
 export default ActivitiesList;
-

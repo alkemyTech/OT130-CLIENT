@@ -9,6 +9,7 @@
     padding: 10px 30px;
     background-color: #A1D4F6;
     border-radius: 5px;
+    min-width: 18rem;
 }
 
 .card-info:hover{
@@ -17,4 +18,11 @@
 }
 .cardWidth{
     max-width: 540px;
+}
+.icon-social-media  {
+    font-size: 2rem;
+}
+.description-text {
+    text-align: justify;
+    word-spacing:0px;
 }
