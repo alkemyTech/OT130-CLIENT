@@ -1,7 +1,7 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
 import { useRequestActivities } from '../../customHooks/useRequestActivities';
 import '../CardListStyles.css';
+import Loader from '../Spinner/Loader';
 
 const ActivitiesList = () => {
   const [allActivities, isLoading] = useRequestActivities([]);
@@ -25,7 +25,7 @@ const ActivitiesList = () => {
           ))}
         {isLoading && (
           <div className="position-absolute text-center">
-            <Spinner variant="primary" animation="border" role="status" />
+            <Loader/>
           </div>
         )}
       </ul>
