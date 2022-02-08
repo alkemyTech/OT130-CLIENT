@@ -3,12 +3,10 @@ import ListTexts from '../ListTexts/ListTexts';
 import Title from '../Title/Title';
 import { getData } from '../../Services/aboutService';
 import { Spinner } from '../Spinner/Spinner';
-import { ErrorMessage } from '../ErrorMesage/ErrorMessage';
 import { ErrorAlert } from '../Alert';
 
 const About = () => {
   const [dataTexts, setDataTexts] = useState();
-  const [errorMessage, setErrorMessage] = useState( null );
   const [loading, setLoading] = useState( false );
 
   useEffect(() => {
@@ -22,7 +20,7 @@ const About = () => {
       setErrorMessage( error );
     } else {
       setDataTexts( data );
-      setErrorMessage( null );
+      ErrorAlert( error )
     }
     setLoading( false );
   };
@@ -30,7 +28,6 @@ const About = () => {
   return (
     <>
       {loading && <Spinner />}
-      {errorMessage && ErrorAlert(errorMessage)}
       {dataTexts &&
         <>
           <Title text={dataTexts[0].title} />

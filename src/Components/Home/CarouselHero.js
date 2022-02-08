@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { getSlide } from "../../Services/publicApiService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import Swal from 'sweetalert2'
+import { ErrorAlert } from '../Alert';
+import { Spinner } from '../Spinner/Spinner';
+
 
 function CarouselHero() {
 
   const [getState, setGetState] = useState();
+  const [loading, setLoading] = useState( false );
 
-  useEffect(() => {
+
+  useEffect(() => {    
+    setLoading( true );
+
     (async function () {
       try {
         const res = await getSlide()
         setGetState(res.data.data)
-      } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          text: 'Error: no se puede conectar con el servidor',
-          showConfirmButton: false,
-          timer: 2000
-        })
+      } catch ( error ) {
+        ErrorAlert( error )
       }
+      setLoading( false );
     })()
   }, []);
 
   return (
     <>
+    {loading && <Spinner/>}
       <Carousel className='carousel'>
         {getState && getState.map((res) =>
           <Carousel.Item className='carousel-item' key={res.id}>
