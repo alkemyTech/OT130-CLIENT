@@ -29,14 +29,18 @@ const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
-const ORGANIZATION_EDITED_SUCCESSFULLY = 'La organización fue editada correctamente';
-
+const ORGANIZATION_EDITED_SUCCESSFULLY = 'La Organización fue editada correctamente';
+const ORGANIZATION_FETCH_ERROR = 'Ocurrió un error al intentar traer los datos de la organización';
+const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organización';
+const ORGANIZATION_LOGO = 'Logo de la organización';
+const ORGANIZATION_NAME = 'Nombre de la organización';
+const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 
 // Textos de donación
 
-const DONATION_TITLE_TEXT = "¡Contribuye!";
-const DONATION_BUTTON_TEXT = "Contribuir";
-const DONATION_THANKS_TEXT = "¡Muchas gracias por contribuir!";
+const DONATION_TITLE_TEXT = '¡Contribuye!';
+const DONATION_BUTTON_TEXT = 'Contribuir';
+const DONATION_THANKS_TEXT = '¡Muchas gracias por contribuir!';
 
 export {
   DESCRIPTION_LONG,
@@ -68,4 +72,9 @@ export {
   SEND,
   ACTIVITY_TITLE,
   NUMBER_TO_SHORT_ERROR,
+  ORGANIZATION_EDITED_ERROR,
+  ORGANIZATION_FETCH_ERROR,
+  ORGANIZATION_LOGO,
+  ORGANIZATION_NAME,
+  ORGANIZATION_DESCRIPTION,
 };
