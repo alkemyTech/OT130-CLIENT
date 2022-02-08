@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { deleteUser, getUsers } from '../../Services/usersService';
-import Swal from 'sweetalert2';
 import { Link, useHistory } from 'react-router-dom';
-import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
-import usersMock from '../../Services/mocks/users.json';
 import { Button, Table } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
+import { deleteUser, getUsers } from '../../Services/usersService';
+import usersMock from '../../Services/mocks/users.json';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -22,20 +20,20 @@ const UserList = () => {
     }
   };
 
-  const getMockUsers = async () => {
-    try {
-      setUserList(usersMock);
-    } catch (error) {
-      ErrorAlert('Error', error.message);
-    }
-  };
-
   useEffect(() => {
     updateUserList();
   }, []);
 
   const editData = (el) => {
     history.push(`/backoffice/users/edit/${el.id}`);
+  };
+
+  const getMockUsers = async () => {
+    try {
+      setUserList(usersMock);
+    } catch (error) {
+      ErrorAlert('Error', error.message);
+    }
   };
 
   const deleteData = (el) => {
@@ -45,7 +43,6 @@ const UserList = () => {
         console.log(error);
         if (error) {
           ErrorAlert('Error', error.message);
-          Swal.fire({ title: 'Error', icon: 'error', text: `${error}` });
         } else {
           SuccessAlert(undefined, 'Usuario eliminado correctamente');
           updateUserList();
@@ -55,12 +52,12 @@ const UserList = () => {
   };
 
   return (
-    <div>
+    <div className=" p-1 ">
       <Link to="/backoffice/users/create">
         <Button className=" my-3">Crear Usuario</Button>
       </Link>
-      <h2>UserList</h2>
-      <Table bordered hover>
+      <h2>Lista de Usuarios</h2>
+      <Table responsive bordered hover size="sm">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -76,13 +73,17 @@ const UserList = () => {
           ) : (
             userList.map((el) => (
               <tr key={el.id}>
-                <td>{el.name}</td>
-                <td>{el.email}</td>
+                <td className=" p-3">{el.name}</td>
+                <td className=" p-3">{el.email}</td>
                 <td>
-                  <Button variant="danger" onClick={() => deleteData(el)}>
-                    Eliminar
-                  </Button>
-                  <Button onClick={() => editData(el)}>Editar</Button>
+                  <div className=" d-flex flex-row">
+                    <Button className=" m-1" onClick={() => editData(el)}>
+                      Editar
+                    </Button>
+                    <Button className=" m-1" variant="danger" onClick={() => deleteData(el)}>
+                      Eliminar
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))
