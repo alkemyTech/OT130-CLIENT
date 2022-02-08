@@ -50,8 +50,8 @@ function App() {
           <Route path="/thanks" component={Thanks} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/activities/:id" component={ActivityDetail} />
-          <Route path="/backoffice" component={ScreenDashboard} />
           <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
+          <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
       
