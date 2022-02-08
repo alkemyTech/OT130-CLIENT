@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Table } from 'react-bootstrap';
 
-import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
+import { ConfirmAlert, ErrorAlert } from '../Alert';
 import { deleteUser, getUsers } from '../../Services/usersService';
 import usersMock from '../../Services/mocks/users.json';
 
@@ -37,18 +37,7 @@ const UserList = () => {
   };
 
   const deleteData = (el) => {
-    ConfirmAlert('Estas seguro?', 'Una vez hecho no podra deshacerse').then((res) => {
-      if (res.isConfirmed) {
-        const { error } = deleteUser(el.id);
-        console.log(error);
-        if (error) {
-          ErrorAlert('Error', error.message);
-        } else {
-          SuccessAlert(undefined, 'Usuario eliminado correctamente');
-          updateUserList();
-        }
-      }
-    });
+    ConfirmAlert(deleteUser(el.id), 'Usuario eliminado correctamente');
   };
 
   return (

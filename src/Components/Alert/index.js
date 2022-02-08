@@ -18,15 +18,19 @@ const ErrorAlert = (title, message) =>
     timer: ALERT_OUT_TIMER,
   });
 
-const ConfirmAlert = (title, message) => {
-  return Swal.fire({
-    title: title,
+const ConfirmAlert = (action, confirm_message) =>
+  Swal.fire({
+    title: '¿ Esta seguro ?',
+    text: '¡No podrás revertir esto!',
     icon: ALERT_ICON_WARNING,
-    text: message,
     showCancelButton: true,
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: `Si, ${action}!`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(confirm_message, '', ALERT_ICON_SUCCESS);
+    }
   });
-};
 
 export { SuccessAlert, ErrorAlert, ConfirmAlert };
