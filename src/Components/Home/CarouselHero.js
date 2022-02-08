@@ -4,25 +4,22 @@ import { Carousel, Container, Row, Col } from 'react-bootstrap';
 import { ErrorAlert } from '../Alert';
 import { Spinner } from '../Spinner/Spinner';
 
-
 function CarouselHero() {
 
   const [getState, setGetState] = useState();
   const [loading, setLoading] = useState( false );
 
-
   useEffect(() => {    
     setLoading( true );
-
     (async function () {
       try {
-        const res = await getSlide()
-        setGetState(res.data.data)
+        const res = await getSlide();
+        setGetState(res.data.data);
       } catch ( error ) {
-        ErrorAlert( error )
+        ErrorAlert( error );
       }
       setLoading( false );
-    })()
+    })();
   }, []);
 
   return (
@@ -34,7 +31,6 @@ function CarouselHero() {
             <img src={res.image} className='d-block w-100 img-carousel' alt="First slide"></img>
           </Carousel.Item>)}
       </Carousel>
-
       <Container className='container-welcome-text'>
         <Row>
           <Col xs={12} className='welcome-text'>
@@ -49,7 +45,6 @@ function CarouselHero() {
           </Col>
         </Row>
       </Container>
-
     </>
   )
 }

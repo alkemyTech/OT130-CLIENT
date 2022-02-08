@@ -17,10 +17,9 @@ const About = () => {
   const handleGetData = async () => {
     const { error, data } = await getData();
     if ( error ) {
-      setErrorMessage( error );
+      ErrorAlert( error );
     } else {
-      setDataTexts( data );
-      ErrorAlert( error )
+      setDataTexts( data );      
     }
     setLoading( false );
   };
