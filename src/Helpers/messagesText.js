@@ -35,6 +35,7 @@ const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organ
 const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
+const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
 
 // Textos de donación
 
@@ -53,7 +54,6 @@ export {
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
   NETWORK_ERROR,
-  ORGANIZATION_EDITED_SUCCESSFULLY,
   PASSWORD_SHORT,
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
@@ -78,4 +78,5 @@ export {
   ORGANIZATION_LOGO,
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
+  IMAGE_NOT_AVAIBLE,
 };
