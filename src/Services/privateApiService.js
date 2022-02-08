@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const token = localStorage.getItem('token')
 const config = {
   baseURL: "http://ongapi.alkemy.org/api/",
   headers: {
     //Group: 130, //Aqui va el ID del equipo!!
+    Authorization: `Bearer ${token}`,
     "content-type": "application/json",
   },
 };
