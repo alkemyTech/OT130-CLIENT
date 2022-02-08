@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getSlide } from "../../Services/publicApiService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import Swal from 'sweetalert2'
+import { getSlideData } from '../../Services/homeService';
+import { ErrorAlert } from '../Alert';
 
 function CarouselHero() {
 
@@ -10,15 +10,10 @@ function CarouselHero() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await getSlide()
+        const res = await getSlideData();
         setGetState(res.data.data)
       } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          text: 'Error: no se puede conectar con el servidor',
-          showConfirmButton: false,
-          timer: 2000
-        })
+        ErrorAlert(error);       
       }
     })()
   }, []);
