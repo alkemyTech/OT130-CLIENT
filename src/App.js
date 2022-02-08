@@ -12,6 +12,7 @@ import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
+import SlidesList from './Components/Slides/SlidesList';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route path="/backoffice/slides" component={SlidesList} />
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
