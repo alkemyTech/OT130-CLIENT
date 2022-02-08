@@ -3,13 +3,8 @@ import axios from "axios";
 const config = {
   baseURL: "http://ongapi.alkemy.org/api/",
   headers: {
-<<<<<<< HEAD
     Group: 130, //Aqui va el ID del equipo!!
     'content-type': 'application/json',
-=======
-    //Group: 130, //Aqui va el ID del equipo!!
-    "content-type": "application/json",
->>>>>>> d658b3c88320535cd2da47d809665c23a084bd45
   },
 };
 
@@ -38,8 +33,6 @@ const Get = async (url) => {
   }
   return response;
 };
-
-const Delete = async (url, data) => await instance.delete(url, data);
 
 const Put = async (url, body) => {
   const response = {};
