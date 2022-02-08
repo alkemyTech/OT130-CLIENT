@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { ALERT_OUT_TIMER } from '../../Helpers/constants';
-import { ALERT_ICON_ERROR, ALERT_ICON_SUCCESS } from '../../Helpers/messagesText';
+import { ALERT_ICON_ERROR, ALERT_ICON_SUCCESS, ALERT_ICON_WARNING } from '../../Helpers/messagesText';
 
 const SuccessAlert = (title, message) =>
   Swal.fire({
@@ -21,11 +21,12 @@ const ErrorAlert = (title, message) =>
 const ConfirmAlert = (title, message) => {
   return Swal.fire({
     title: title,
-    icon: 'warning',
+    icon: ALERT_ICON_WARNING,
     text: message,
     showCancelButton: true,
     confirmButtonText: 'Yes',
     cancelButtonText: 'No',
   });
 };
+
 export { SuccessAlert, ErrorAlert, ConfirmAlert };

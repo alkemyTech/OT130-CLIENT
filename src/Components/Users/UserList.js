@@ -4,6 +4,9 @@ import Swal from 'sweetalert2';
 import { Link, useHistory } from 'react-router-dom';
 import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
 import usersMock from '../../Services/mocks/users.json';
+import { Button, Table } from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -28,7 +31,7 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    getMockUsers();
+    updateUserList();
   }, []);
 
   const editData = (el) => {
@@ -53,9 +56,11 @@ const UserList = () => {
 
   return (
     <div>
-      <Link to="/backoffice/users/create">Crear Usuario</Link>
+      <Link to="/backoffice/users/create">
+        <Button className=" my-3">Crear Usuario</Button>
+      </Link>
       <h2>UserList</h2>
-      <table>
+      <Table bordered hover>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -74,14 +79,16 @@ const UserList = () => {
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>
-                  <button onClick={() => deleteData(el)}>Eliminar</button>
-                  <button onClick={() => editData(el)}>Editar</button>
+                  <Button variant="danger" onClick={() => deleteData(el)}>
+                    Eliminar
+                  </Button>
+                  <Button onClick={() => editData(el)}>Editar</Button>
                 </td>
               </tr>
             ))
           )}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
