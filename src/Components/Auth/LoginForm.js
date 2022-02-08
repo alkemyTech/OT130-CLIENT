@@ -5,13 +5,13 @@ import { useFormik } from "formik";
 import { Button, TextField } from "@mui/material";
 import "../FormStyles.css";
 import "./loginForm.css";
-import { yupEmail, yupPassRegister } from "../../Helpers/formValidations";
+import { yupEmail, yupPasswordLogin } from "../../Helpers/formValidations";
 
 const LoginForm = () => {
 
   const validationSchema = yup.object({
     email: yupEmail(),
-    password: yupPassRegister(),
+    password: yupPasswordLogin(),
   });
 
   const formik = useFormik({
