@@ -41,7 +41,7 @@ para utilizar el componente Spinner se importa como un funcional component regul
 
 #### Ejemplo de implementacion:
 
-~~~
+```
 import  DotLoader  from  "react-spinners/DotLoader" ;
 import { css } from "@emotion/react";
 
@@ -55,7 +55,7 @@ const  override  =  css `
 export const Spinner = () => {
   return (
     <>
-      <div className='spinner-container'>
+      <div className='spinner-container'>  
         <DotLoader
           color={color}
           size={150}
@@ -65,21 +65,20 @@ export const Spinner = () => {
     </>
   )
 };
-~~~
-
+```
 -IMPORTANTE : Este paquete utiliza "emotion". Recuerde agregar el complemento a .babelrc, por ejemplo:
 
-~~~
+```
 {
     "presets": ["@babel/preset-react", "@babel/preset-env"],
     "plugins": ["@emotion"]
 }
-~~~
+```
 
 -Ejemplo de uso:
 
-~~~
+```
 import { Spinner } from "../Components/Spinner/Spinner";
 
 <Spinner />
-~~~
+```
