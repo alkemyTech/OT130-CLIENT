@@ -5,23 +5,13 @@ import { useFormik } from "formik";
 import { Button, TextField } from "@mui/material";
 import "../FormStyles.css";
 import "./loginForm.css";
+import { yupEmail, yupPassRegister } from "../../Helpers/formValidations";
 
 const LoginForm = () => {
 
   const validationSchema = yup.object({
-    email: yup
-      .string("Ingrese su email")
-      .email("Ingrese un email valido")
-      .required("Email requerido"),
-
-    password: yup
-      .string("Ingrese su contraseña")
-      .min(6, "La contraseña debe tener como minimo 6 caracteres")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
-        "La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%)."
-      )
-      .required("Contraseña requerida"),
+    email: yupEmail(),
+    password: yupPassRegister(),
   });
 
   const formik = useFormik({
@@ -31,6 +21,7 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      
     },
   });
 

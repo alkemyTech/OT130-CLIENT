@@ -14,10 +14,11 @@ const INVALID_IMAGE_EXT = 'Extensión inválida. Solo archivos jpg o png';
 const NUMBER_TO_SHORT_ERROR = 'El numero debe tener minimo 8 caracteres';
 const TITLE_LONG = 'Nombre muy largo';
 const TITLE_SHORT = 'Mínimo 4 caracteres';
+const PASSWORD_INCORRECT = "La contraseña que ingresaste es incorrecta"
 const PASSWORD_SHORT = 'Mínimo 6 caracteres';
 const PASSWORD_REGISTER_CONTAIN =
   'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).';
-const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
+  const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
 const ACTIVITY_ADDED_SUCCESSFULLY = 'La actividad fue añadida correctamente';
@@ -35,7 +36,6 @@ const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organ
 const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
-
 // Textos de donación
 
 const DONATION_TITLE_TEXT = '¡Contribuye!';
@@ -54,6 +54,7 @@ export {
   INVALID_EMAIL,
   NETWORK_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
+  PASSWORD_INCORRECT,
   PASSWORD_SHORT,
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
