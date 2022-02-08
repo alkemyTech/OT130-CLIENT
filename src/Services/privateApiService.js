@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const config = {
-  baseURL: 'http://ongapi.alkemy.org/api/',
+  baseURL: "http://ongapi.alkemy.org/api/",
   headers: {
     //Group: 130, //Aqui va el ID del equipo!!
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
 };
 
@@ -68,4 +68,4 @@ const Put = async (url, body) => {
   return response;
 };
 
-export { Get, Post, Patch, Put, Delete, getAuthorization, getToken };
+export { Get, Post, Patch, Put, Delete };
