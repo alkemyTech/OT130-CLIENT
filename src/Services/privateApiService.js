@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ErrorAlert } from '../Components/Alert';
 
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
@@ -18,7 +17,6 @@ const Post = async (url, body) => {
     response.data = data;
   } catch (error) {
     response.error = error;
-    ErrorAlert( error );
   }
   return response;
 };
@@ -32,7 +30,6 @@ const Get = async (url) => {
     response.data = data;
   } catch (error) {
     response.error = error;
-    ErrorAlert( error );
   }
   return response;
 };
@@ -44,7 +41,6 @@ const Put = async (url, body) => {
     response.data = data;
   } catch (error) {
     response.error = error;
-    ErrorAlert( error );
   }
   return response;
 };

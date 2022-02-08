@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ErrorAlert } from "../Components/Alert";
 
 const config = {
   baseURL: "http://ongapi.alkemy.org/api/",
@@ -18,8 +17,7 @@ const getSlide = async () => {
       const { data } = await instance.post( baseURL + '/slides' );
       response.data = data;
   } catch ( error ) {
-      response.error = error;
-      ErrorAlert( error );
+      response.error = error;    
   }
   return response;
 };
