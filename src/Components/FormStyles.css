@@ -9,28 +9,44 @@
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
 }
+
+.input-required{
+    border: 1px solid red;
+}
+
+.span-required{
+    color: red;
+    font-size: x-small;
+    margin-top: -10px;
+}
+
 .input-field:focus {
     outline: 0;
     border: 1px solid #0e7fe1;
     box-shadow: inset 0px 0px 3px 1px rgba(211, 211, 211, 0.548);
 }
+
 .select-field{
     padding: 10px;
     border: 1px solid #c1c1c1;
 }
+
 .submit-btn{
     background-color: #2E86C1;
     padding: 10px 15px;
     border: none;
     color: #fff;
 }
+
 .submit-btn:hover{
     cursor: pointer;
     background-color: #3498DB;
 }
+
 .hideElement{
     display: none;
 }
+
 .img-member {
     width: 150px;
 }
