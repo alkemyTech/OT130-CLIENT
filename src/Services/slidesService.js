@@ -43,9 +43,17 @@ const editSlide = async (body, id) => {
   return response;
 }
 
+const deleteSlide = async (slideId) => {
+  try {
+    return await instance.delete(`slides/${slideId}`);
+  } catch (error) {
+    return { error: error.response?.data || error };
+  }
+};
+
 export {
   addNewSlide,
   editSlide,
-  getSlides
+  getSlides,
+  deleteSlide
 };
-
