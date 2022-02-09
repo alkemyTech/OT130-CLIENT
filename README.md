@@ -31,3 +31,40 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Skeleton
+
+### Uso
+
+El componente está diseñado para ser utilizado directamente en sus componentes. Por ejemplo:
+
+```
+<div className="card">
+    <div className="card-image">
+        {item
+            ? <img src={item.image} style={{ width: 210, height: 118 }} />
+            : <Skeleton width={210} height={118}>
+        }
+    </div>
+    <div className="card-body">
+        {item
+            ? <p>{item.text}</p>
+            : ( 
+                <Skeleton variant="text">
+                <Skeleton variant="text">
+                <Skeleton variant="text">
+            )
+        }
+    </div>
+</div>
+```
+
+### Variantes
+
+El componente admite 2 variantes de forma.
+> **Por defecto será rectangular
+
+```
+<Skeleton variant="text" />
+<Skeleton variant="circular" width={40} height={40} />
+```
