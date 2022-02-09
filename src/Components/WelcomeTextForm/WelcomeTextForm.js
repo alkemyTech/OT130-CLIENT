@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
 import { updateOrganizationData } from "../../Services/organizationService";
-import { SuccessAlert, ErrorAlert } from "../Alert";
+import { SuccessAlert } from "../Alert";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()
@@ -18,9 +18,6 @@ const WelcomeTextForm = ({ welcomeText }) => {
       welcome_text: values.welcomeText,
       name: "string",
     });
-    if (error) {
-      return ErrorAlert("Error", error.message);
-    }
     SuccessAlert("Actualizado con éxito", "");
   };
 

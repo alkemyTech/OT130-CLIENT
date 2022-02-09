@@ -3,7 +3,6 @@ import { Button, Container, Spinner } from "react-bootstrap";
 
 import { getSlides } from "../../Services/slidesService";
 import { getOrganizationData } from "../../Services/organizationService";
-import { ErrorAlert } from "../Alert";
 
 import WelcomeTextForm from "../WelcomeTextForm/WelcomeTextForm";
 import SlidesForm from "../Slides/SlidesForm";
@@ -26,17 +25,11 @@ const HomeForm = () => {
 
   const getSlidesData = async () => {
     const { data: slides, error } = await getSlides();
-    if (error) {
-      return ErrorAlert("Error", error.message);
-    }
     setSlides(slides);
   };
 
   const getOrganization = async () => {
     const { data: organizationData, error } = await getOrganizationData();
-    if (error) {
-      return ErrorAlert("Error", error.message);
-    }
     setWelcomeText(organizationData?.welcome_text);
   };
 

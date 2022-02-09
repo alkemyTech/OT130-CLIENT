@@ -13,9 +13,6 @@ const SlidesList = () => {
   useEffect(() => {
     const getdata = async () => {
       const { data: slides, error } = await getSlides();
-      if (error) {
-        return ErrorAlert("Error", error.message);
-      }
       setSlides(slides);
     };
     getdata();
@@ -23,9 +20,6 @@ const SlidesList = () => {
 
   const handleDeleteSlide = async (slideId) => {
     const { error } = await deleteSlide(slideId);
-    if (error) {
-      return ErrorAlert("Error", error.message);
-    }
     const updatedSlides = slides.filter((slide) => slide.id !== slideId);
     setSlides(updatedSlides);
     SuccessAlert("Eliminado con éxito", "");

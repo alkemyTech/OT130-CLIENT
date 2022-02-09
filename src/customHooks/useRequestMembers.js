@@ -9,14 +9,10 @@ export function useRequestMembers() {
 
   useEffect(() => {
     (async function () {
-        setIsLoading(true);
-        const { error, data } = await getMembers();
-        if (error) {
-          ErrorAlert(ALERT_ERROR_API)
-        } else {
-          setData(data);
-        }
-        setIsLoading(false);
+      setIsLoading(true);
+      const { error, data } = await getMembers();
+      setData(data);
+      setIsLoading(false);
     })();
   }, []);
 

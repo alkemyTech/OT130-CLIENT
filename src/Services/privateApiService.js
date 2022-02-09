@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ErrorAlert } from "../Components/Alert";
 
 const config = {
   baseURL: "http://ongapi.alkemy.org/api/",
@@ -17,11 +18,22 @@ const Post = async (url, body) => {
     response.data = data;
   } catch (error) {
     response.error = error;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
 
-const Patch = async (url, data) => await instance.patch(url, data);
+const Patch = async (url, data) => {
+  const response = {};
+  try {
+    const { data } = await instance.patch(url, data);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
+  }
+  return response;
+}
 
 const Get = async (url) => {
   const response = {};
@@ -30,11 +42,22 @@ const Get = async (url) => {
     response.data = data;
   } catch (error) {
     response.error = error;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
 
-const Delete = async (url, data) => await instance.delete(url, data);
+const Delete = async (url, data) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, data);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
+  }
+  return response;
+}
 
 const Put = async (url, body) => {
   const response = {};
@@ -43,6 +66,7 @@ const Put = async (url, body) => {
     response.data = data;
   } catch (error) {
     response.error = error;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };

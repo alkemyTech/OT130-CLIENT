@@ -53,8 +53,6 @@ const OrganizationEdit = () => {
       setOrganizationData(data);
       SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
       push(BACKOFFICE_ORGANIZATION);
-    } else {
-      ErrorAlert(undefined, error, true);
     }
   };
 

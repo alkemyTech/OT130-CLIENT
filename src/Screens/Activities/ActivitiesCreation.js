@@ -8,7 +8,7 @@ import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
 import './styles.css';
-import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
+import { ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const initialValues = {
@@ -45,8 +45,6 @@ const ActivitiesCreation = () => {
     if (data) {
       SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
       go(0);
-    } else {
-      ErrorAlert(ACTIVITY_ADDED_ERROR, error.message);
     }
   };
 

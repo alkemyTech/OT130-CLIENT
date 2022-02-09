@@ -9,17 +9,8 @@ function CarouselHero() {
 
   useEffect(() => {
     (async function () {
-      try {
-        const res = await getSlide()
-        setGetState(res.data.data)
-      } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          text: 'Error: no se puede conectar con el servidor',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }
+      const res = await getSlide()
+      setGetState(res.data.data)
     })()
   }, []);
 
