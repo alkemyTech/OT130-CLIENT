@@ -21,6 +21,7 @@ const PASSWORD_REGISTER_CONTAIN =
   const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
+const ALERT_ICON_WARNING = 'warning';
 const ACTIVITY_ADDED_SUCCESSFULLY = 'La actividad fue añadida correctamente';
 const ACTIVITY_ADDED_ERROR = 'Ocurrió un error al intentar añadir la actividad';
 const ACTIVITY_EDITED_SUCCESSFULLY = 'La actividad fue editada correctamente';
@@ -36,6 +37,8 @@ const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organ
 const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
+const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
+
 // Textos de donación
 
 const DONATION_TITLE_TEXT = '¡Contribuye!';
@@ -64,6 +67,7 @@ export {
   UNKNOWN_ERROR,
   ALERT_ICON_SUCCESS,
   ALERT_ICON_ERROR,
+  ALERT_ICON_WARNING,
   ACTIVITY_ADDED_SUCCESSFULLY,
   ACTIVITY_ADDED_ERROR,
   ACTIVITY_FETCH_ERROR,
@@ -78,4 +82,5 @@ export {
   ORGANIZATION_LOGO,
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
+  IMAGE_NOT_AVAIBLE,
 };
