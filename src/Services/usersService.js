@@ -1,29 +1,23 @@
-import { Post, Patch } from "./privateApiService";
+import { Post, Patch, Get, Delete } from './privateApiService';
 
 const addUser = async (values) => {
-  const response = { error: null, data: {} };
-
-  try {
-    const { data } = await Post("/users", values);
-    response.data = data;
-  } catch (error) {
-    response.error = error;
-  }
-  
-  return response;
+  return await Post('/users', values);
 };
 
 const updateUser = async (values, user) => {
-  const response = { error: null, data: {} };
-
-  try {
-    const { data } = await Patch(`/users/${user.id}`, values);
-    response.data = data;
-  } catch (error) {
-    response.error = error;
-  }
-
-  return response;
+  return await Patch(`/users/${user.id}`, values);
 };
 
-export { addUser, updateUser };
+const getUser = async (id) => {
+  return await Get(`/users/${id}`);
+};
+
+const getUsers = async () => {
+  return await Get(`/users`);
+};
+
+const deleteUser = async (id) => {
+  return await Delete(`/users/${id}`);
+};
+
+export { addUser, deleteUser, getUser, getUsers, updateUser };
