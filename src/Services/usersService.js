@@ -5,7 +5,7 @@ const addUser = async (values) => {
 };
 
 const updateUser = async (values, user) => {
-  return Patch(`/users/${user.id}`, values);
+  return await Patch(`/users/${user.id}`, values);
 };
 
 const getUser = async (id) => {

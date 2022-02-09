@@ -81,8 +81,7 @@ const CreateEditUser = ({ user }) => {
     }
 
     delete values.image_file;
-    const { error, data } = user ? await updateUser(values, user) : await addUser(values);
-
+    const { error, data } = values.id ? await updateUser(values, values) : await addUser(values);
     if (error) {
       const errorMessage = getErrorMessage(error);
       setRequestError(errorMessage);
