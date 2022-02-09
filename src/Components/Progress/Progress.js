@@ -2,9 +2,9 @@ import React from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Progress.css';
 
-const Progress = ({ now }) => {
+const Progress = ({ progressDone }) => {
     return (
-        <ProgressBar className='progress' now={now}/>
+        <ProgressBar className='progress' progressDone={progressDone}/>
     );
 };
 
