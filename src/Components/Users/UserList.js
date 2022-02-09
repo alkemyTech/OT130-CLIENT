@@ -4,7 +4,6 @@ import { Button, Table } from 'react-bootstrap';
 
 import { ConfirmAlert, ErrorAlert } from '../Alert';
 import { deleteUser, getUsers } from '../../Services/usersService';
-import usersMock from '../../Services/mocks/users.json';
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -25,15 +24,7 @@ const UserList = () => {
   }, []);
 
   const editData = (el) => {
-    history.push(`/backoffice/users/edit/${el.id}`);
-  };
-
-  const getMockUsers = async () => {
-    try {
-      setUserList(usersMock);
-    } catch (error) {
-      ErrorAlert('Error', error.message);
-    }
+    history.push(`/backoffice/users/create/${el.id}`);
   };
 
   const deleteData = (el) => {

@@ -16,7 +16,6 @@ import SlidesList from './Components/Slides/SlidesList';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import EditUser from './Components/Users/EditUser';
 import UserList from './Components/Users/UserList';
 import Home from './Components/Home/Index';
 import HomeForm from './Components/HomeForm/HomeForm';
@@ -46,7 +45,7 @@ function App() {
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
-          <Route exact path="/backoffice/users/edit/:id" component={EditUser} />
+          <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
