@@ -26,6 +26,7 @@ import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/thanks" component={Thanks} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/activities/:id" component={ActivityDetail} />
+          <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
