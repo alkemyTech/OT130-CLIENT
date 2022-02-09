@@ -4,11 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { toBase64 } from '../../Helpers/base64';
 import FormComponent from './UsersForm';
-import {
-  NETWORK_ERROR,
-  UNKNOWN_ERROR,
-  EMAIL_TAKEN
-} from '../../Helpers/messagesText';
+import { NETWORK_ERROR, UNKNOWN_ERROR, EMAIL_TAKEN } from '../../Helpers/messagesText';
 import {
   yupTitles,
   yupEmail,
@@ -58,17 +54,13 @@ const CreateEditUser = ({ user }) => {
 
   const getUserById = async () => {
     if (id && currentUser.id === undefined) {
-      console.log(id, currentUser.id);
       const { data, error } = await getUser(id);
       if (error) {
         ErrorAlert('Error', error.message);
       } else {
         setCurrentUser(data.data);
-        console.log(data.data);
-        console.log(currentUser);
       }
     }
-    console.log(currentUser);
   };
 
   useEffect(() => {
