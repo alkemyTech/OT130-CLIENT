@@ -16,15 +16,10 @@ const ActivitiesList = () => {
     dispatch(fetchActivities());
   }, [fetchActivities, dispatch]);
 
-  const getErrorMessage = (error) => {
-    if (error === "Network Error") {
-      return NETWORK_ERROR;
-    }
-    return UNKNOWN_ERROR;
-  };
+  if (error) {
+    ErrorAlert(error === 'Network Error' ? NETWORK_ERROR : UNKNOWN_ERROR);
+  }
 
-  if (error) ErrorAlert(getErrorMessage(error));
-  
   return (
     <div>
       <h1 className="text-center my-3">Listado Actividades</h1>
