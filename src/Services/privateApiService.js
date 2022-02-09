@@ -47,4 +47,16 @@ const Put = async (url, body) => {
   return response;
 };
 
+const getToken = () => {
+  const token = localStorage.getItem("token");
+  return token || '';
+}
+
+const getAuthorization = () => {
+  const token = getToken();
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+}
+
 export { Get, Post, Patch, Put, Delete };

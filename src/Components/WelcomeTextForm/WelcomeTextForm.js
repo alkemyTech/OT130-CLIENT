@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import swal from "sweetalert";
 import { Button, Form as BootstrapForm, FloatingLabel } from "react-bootstrap";
 
 import { updateOrganizationData } from "../../Services/organizationService";
+import { SuccessAlert, ErrorAlert } from "../Alert";
 
 const validationSchema = Yup.object({
   welcomeText: Yup.string()
@@ -19,9 +19,9 @@ const WelcomeTextForm = ({ welcomeText }) => {
       name: "string",
     });
     if (error) {
-      return swal("Error", error.message, "error");
+      return ErrorAlert("Error", error.message);
     }
-    swal("Actualizado con éxito", "", "success");
+    SuccessAlert("Actualizado con éxito", "");
   };
 
   return (
