@@ -1,11 +1,12 @@
 import Swal from 'sweetalert2';
 import { ALERT_OUT_TIMER } from '../../Helpers/constants';
-import { ALERT_ICON_ERROR, ALERT_ICON_SUCCESS, ALERT_ICON_WARNING } from '../../Helpers/messagesText';
+import {
+  ALERT_ICON_ERROR,
+  ALERT_ICON_SUCCESS,
+  ALERT_ICON_WARNING,
+} from '../../Helpers/messagesText';
 
-const InfoAlert = (message) => 
-  Swal.fire(
-    message
-  );
+const InfoAlert = (message) => Swal.fire(message);
 
 const ConfirmAlert = (action, confirm_message) =>
   Swal.fire({
@@ -18,11 +19,7 @@ const ConfirmAlert = (action, confirm_message) =>
     confirmButtonText: `Si, ${action}!`,
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire(
-        confirm_message,
-        '',
-        ALERT_ICON_SUCCESS,
-      );
+      Swal.fire(confirm_message, '', ALERT_ICON_SUCCESS);
     }
   });
 
@@ -42,4 +39,9 @@ const ErrorAlert = (title, message) =>
     timer: ALERT_OUT_TIMER,
   });
 
-export { InfoAlert, ConfirmAlert, SuccessAlert, ErrorAlert };
+export {
+  InfoAlert,
+  ConfirmAlert,
+  SuccessAlert,
+  ErrorAlert
+};
