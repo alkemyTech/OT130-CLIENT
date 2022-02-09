@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getSlide } from "../../Services/publicApiService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
 import { ErrorAlert } from '../Alert';
 import { Spinner } from '../Spinner/Spinner';
+import { getSlides } from '../../Services/slidesService';
 
 function CarouselHero() {
 
@@ -13,7 +13,7 @@ function CarouselHero() {
     setLoading( true );
     (async function () {
       try {
-        const res = await getSlide();
+        const res = await getSlides();
         setGetState(res.data.data);
       } catch ( error ) {
         ErrorAlert( error );
