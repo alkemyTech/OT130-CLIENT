@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import { getSlideData } from '../../Services/homeService';
+import { getSlides } from '../../Services/slidesService';
 import { ErrorAlert } from '../Alert';
 
 function CarouselHero() {
@@ -10,7 +10,7 @@ function CarouselHero() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await getSlideData();
+        const res = await getSlides();
         setGetState(res.data.data)
       } catch (error) {
         ErrorAlert(error);       
