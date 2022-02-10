@@ -3,14 +3,14 @@ import { fetchActivities } from '../actions/activitiesActions';
 
 const initialState = {
   activities: [],
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
 const activitiesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchActivities.pending, (state) => {
-      state.loading = true;
+      state.isLoading = true;
     })
     .addCase(fetchActivities.fulfilled, (state, action) => {
       if (action.payload.error) {
@@ -18,7 +18,7 @@ const activitiesReducer = createReducer(initialState, (builder) => {
       } else {
         state.activities = action.payload.data;
       }
-      state.loading = false;
+      state.isLoading = false;
     })
 });
 

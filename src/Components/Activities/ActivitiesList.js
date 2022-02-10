@@ -10,7 +10,7 @@ import '../CardListStyles.css';
 const ActivitiesList = () => {
   const dispatch = useDispatch();
 
-  const { loading, error, activities } = useSelector(selectActivities);
+  const { isLoading, error, activities } = useSelector(selectActivities);
 
   useEffect(() => {
     dispatch(fetchActivities());
@@ -24,7 +24,7 @@ const ActivitiesList = () => {
     <div>
       <h1 className="text-center my-3">Listado Actividades</h1>
       <ul className="list-container row">
-        {!loading &&
+        {!isLoading &&
           (activities.length > 0 ? (
             activities.map((activity) => {
               return (
