@@ -37,7 +37,7 @@ const ActivitiesList = () => {
           ) : (
             <p>{!error && 'No hay actividades'}</p>
           ))}
-        {loading && (
+        {isLoading && (
           <div className="position-absolute text-center">
             <Spinner variant="primary" animation="border" role="status" />
           </div>
