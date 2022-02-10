@@ -72,7 +72,9 @@ const getToken = () => {
 const getAuthorization = () => {
   const token = getToken();
   return {
-    Authorization: `Bearer ${token}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
 };
 
