@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import slidesReducer from '../redux/slides/slidesSlice';
+import slidesReducer from '../reducers/slidesSlice';
 import counterReducer from '../features/counter/counterSlice'
 
 const reducer = combineReducers({
