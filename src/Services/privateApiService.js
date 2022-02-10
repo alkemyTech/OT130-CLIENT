@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-const token = localStorage.getItem('token');
-
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
-    //Group: 130, //Aqui va el ID del equipo!!
-    Authorization: `Beared ${token}`,
+    Group: 130, //Aqui va el ID del equipo!!
     'content-type': 'application/json',
   },
 };
@@ -24,7 +21,16 @@ const Post = async (url, body) => {
   return response;
 };
 
-const Patch = async (url, data) => await instance.patch(url, data);
+const Patch = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.patch(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
 
 const Get = async (url, id = null) => {
   const response = {};
@@ -37,8 +43,6 @@ const Get = async (url, id = null) => {
   return response;
 };
 
-const Delete = async (url, data) => await instance.delete(url, data);
-
 const Put = async (url, body) => {
   const response = {};
   try {
@@ -50,6 +54,16 @@ const Put = async (url, body) => {
   return response;
 };
 
+const Delete = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';
