@@ -47,7 +47,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 El componente está diseñado para ser utilizado directamente en sus componentes. Por ejemplo:
 
-```
+```Jsx
 <div className="card">
     <div className="card-image">
         {item
@@ -73,7 +73,7 @@ El componente está diseñado para ser utilizado directamente en sus componentes
 El componente admite 2 variantes de forma.
 > **Por defecto será rectangular
 
-```
+```Jsx
 <Skeleton variant="text" />
 <Skeleton variant="circular" width={40} height={40} />
 ```
