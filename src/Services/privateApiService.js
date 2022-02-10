@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
@@ -21,7 +21,16 @@ const Post = async (url, body) => {
   return response;
 };
 
-const Patch = async (url, data) => await instance.patch(url, data);
+const Patch = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.patch(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
 
 const Get = async (url) => {
   const response = {};
@@ -34,12 +43,21 @@ const Get = async (url) => {
   return response;
 };
 
-const Delete = async (url, data) => await instance.delete(url, data);
-
-const Put = async (endpoint, body) => {
+const Put = async (url, body) => {
   const response = {};
   try {
     const { data } = await instance.put(config.baseURL + endpoint, body, getAuthorization());
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+
+const Delete = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, body);
     response.data = data;
   } catch (error) {
     response.error = error;
