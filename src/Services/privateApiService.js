@@ -71,14 +71,14 @@ const getToken = () => {
 
 const getAuthorization = () => {
   const token = getToken();
-  return {
-    Authorization: `Bearer ${token}`,
-  };
+  return `Bearer ${token}`;
 };
 
 const getHeaders = () => {
   return {
-    headers: getAuthorization(),
+    headers: {
+      Authorization: getAuthorization(),
+    },
   };
 };
 
