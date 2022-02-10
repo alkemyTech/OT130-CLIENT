@@ -1,10 +1,13 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { EmptyScreen } from '../../Components/EmptyScreen';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
 import { getActivityDataById, updateActivityDataById } from '../../Services/activitiesService';
 import { toBase64 } from '../../Helpers/base64';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
+import { fetchActivities } from '../../actions/activitiesActions';
 import { yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
 import {
@@ -13,11 +16,12 @@ import {
   ACTIVITY_FETCH_ERROR,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
-import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
+
 
 const ActivitiesEdition = ({ match: { params } }) => {
   const [activityData, setActivityData] = useState();
   const [submitting, setSubmitting] = useState();
+  const dispatch = useDispatch()
 
   const initialValues = {
     name: activityData?.name || '',
@@ -53,9 +57,12 @@ const ActivitiesEdition = ({ match: { params } }) => {
     };
     const { data, error } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
-    data
-      ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      : ErrorAlert(ACTIVITY_EDITED_ERROR, error.message);
+    if (data) {
+      dispatch(fetchActivities)
+      SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
+    } else {
+      ErrorAlert(ACTIVITY_EDITED_ERROR, error.message);
+    }
   };
 
   return activityData ? (

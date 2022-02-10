@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Formik } from 'formik';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
@@ -10,6 +11,7 @@ import '../../Components/FormStyles.css';
 import './styles.css';
 import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
+import { fetchActivities } from '../../actions/activitiesActions';
 
 const initialValues = {
   name: '',
@@ -19,6 +21,7 @@ const initialValues = {
 
 const ActivitiesCreation = () => {
   const { go } = useHistory();
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false);
 
   const validation = Yup.object().shape({
@@ -43,6 +46,7 @@ const ActivitiesCreation = () => {
 
     setLoading(false);
     if (data) {
+      dispatch(fetchActivities)
       SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
       go(0);
     } else {
