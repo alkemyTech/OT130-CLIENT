@@ -1,0 +1,19 @@
+.donation-container {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.donation-text {
+    font-size: 30px;
+}
+
+.donation-button {
+    font-size: 20px;
+}
+
+.donation-thanks {
+    font-size: 30px;
+    text-align: center;
+}
