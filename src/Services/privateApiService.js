@@ -29,7 +29,7 @@ const Patch = async (url, data) => await instance.patch(url, data);
 const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getAuthorization());
     response.data = data;
   } catch (error) {
     response.error = error;
