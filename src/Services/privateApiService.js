@@ -3,7 +3,7 @@ import axios from 'axios';
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
-    //Group: 130, //Aqui va el ID del equipo!!
+    Group: 130, //Aqui va el ID del equipo!!
     'content-type': 'application/json',
   },
 };
@@ -58,4 +58,26 @@ const Put = async (url, body) => {
   return response;
 };
 
-export { Get, Post, Patch, Put };
+const Delete = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+const getToken = () => {
+  const token = localStorage.getItem('token');
+  return token || '';
+};
+
+const getAuthorization = () => {
+  const token = getToken();
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+};
+
+export { Get, Post, Patch, Put, Delete };
