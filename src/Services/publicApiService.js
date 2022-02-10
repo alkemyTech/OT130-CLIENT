@@ -4,11 +4,25 @@ const config = {
   baseURL: 'http://ongapi.alkemy.org/api',
   headers: {
     Group: 130, //Aqui va el ID del equipo!!
-    'Content-type': 'application/json',
+    'content-type': 'application/json',
   },
 };
-const baseURL = "http://ongapi.alkemy.org/api";
 
+const Get = async (route, id) => {
+  const response = { data: {}, error: null };
+  const url = route + `${id ? '/' + id : ''}`;
+
+  try {
+    const { data } = await instance.get(url);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+
+  return response;
+};
+
+const baseURL = 'http://ongapi.alkemy.org/api';
 const instance = axios.create(config);
 
 const getSlide = async () => await instance.get(baseURL + '/slides');
@@ -24,5 +38,5 @@ const Post = async (url, body) => {
   return response;
 }
 
-export {Post, getSlide }
+export {Post, getSlide, Get }
 
