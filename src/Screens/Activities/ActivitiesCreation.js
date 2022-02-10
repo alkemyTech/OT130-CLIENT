@@ -1,20 +1,14 @@
 import * as Yup from 'yup';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Formik } from 'formik';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
-import { saveActivity, setLoading } from '../../actions/activitiesActions';
-import { selectActivities } from '../../reducers/activitiesReducer';
+import { saveActivityData } from '../../Services/activitiesService';
 import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
 import './styles.css';
-import {
-  ACTIVITY_ADDED_ERROR,
-  ACTIVITY_ADDED_SUCCESSFULLY,
-  NETWORK_ERROR,
-} from '../../Helpers/messagesText';
+import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const initialValues = {
@@ -24,9 +18,8 @@ const initialValues = {
 };
 
 const ActivitiesCreation = () => {
-  const history = useHistory()
-  const dispatch = useDispatch();
-  const { loading, error, data } = useSelector(selectActivities);
+  const { go } = useHistory();
+  const [loading, setLoading] = useState(false);
 
   const validation = Yup.object().shape({
     name: yupTitles(),
@@ -39,26 +32,23 @@ const ActivitiesCreation = () => {
   };
 
   const handleSubmit = async ({ image, name, description }) => {
-
-    dispatch(setLoading(true));
+    setLoading(true);
     const base64Img = await toBase64(image);
     const body = {
       name,
       image: base64Img,
       description,
     };
-    dispatch(saveActivity({ body }));
-  };
+    const { data, error } = await saveActivityData(body);
 
-  useEffect(() => {
-    if (error) {
-      ErrorAlert(error === 'Network Error' ? NETWORK_ERROR : ACTIVITY_ADDED_ERROR);
+    setLoading(false);
+    if (data) {
+      SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
+      go(0);
+    } else {
+      ErrorAlert(ACTIVITY_ADDED_ERROR, error.message);
     }
-    if (data?.success) {
-      SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY);
-      history.push('/activities')
-    }
-  }, [error, data]);
+  };
 
   return (
     <Formik

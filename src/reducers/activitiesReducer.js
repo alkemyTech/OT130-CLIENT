@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setLoading, fetchActivities, saveActivity } from '../actions/activitiesActions';
+import { fetchActivities } from '../actions/activitiesActions';
 
 const initialState = {
   activities: [],
@@ -9,9 +9,6 @@ const initialState = {
 
 const activitiesReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setLoading, (state, action) => {
-      state.loading = action.payload
-    })
     .addCase(fetchActivities.pending, (state) => {
       state.loading = true;
     })
@@ -23,18 +20,6 @@ const activitiesReducer = createReducer(initialState, (builder) => {
       }
       state.loading = false;
     })
-    .addCase(saveActivity.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(saveActivity.fulfilled, (state, action) => {
-      if (action.payload.error) {
-        state.error = action.payload.error;
-      } else {
-        state.data = action.payload.data;
-        state.activities = [...state.activities, action.payload.data.data];
-      }
-      state.loading = false;
-    });
 });
 
 export const selectActivities = (state) => state.activities;
