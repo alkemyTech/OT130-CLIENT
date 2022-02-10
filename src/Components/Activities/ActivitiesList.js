@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRequestActivities } from '../../customHooks/useRequestActivities';
-import { selectActivities, fetchActivities } from '../../features/activities/activitiesSlice';
+import { fetchActivities } from '../../actions/activitiesActions';
+import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../Alert';
 import '../CardListStyles.css';

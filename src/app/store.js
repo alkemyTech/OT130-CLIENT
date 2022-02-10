@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import activitiesReducer from '../features/activities/activitiesSlice';
+import activitiesReducer from '../reducers/activitiesReducer';
 import counterReducer from '../features/counter/counterSlice';
 
 export default configureStore({

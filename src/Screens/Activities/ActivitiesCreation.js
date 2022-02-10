@@ -4,12 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Formik } from 'formik';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
-import { saveActivityData } from '../../Services/activitiesService';
-import {
-  saveActivity,
-  selectActivities,
-  setLoading,
-} from '../../features/activities/activitiesSlice';
+import { saveActivity, setLoading } from '../../actions/activitiesActions';
+import { selectActivities } from '../../reducers/activitiesReducer';
 import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
@@ -28,6 +24,7 @@ const initialValues = {
 };
 
 const ActivitiesCreation = () => {
+  const history = useHistory()
   const dispatch = useDispatch();
   const { loading, error, data } = useSelector(selectActivities);
 
@@ -42,6 +39,7 @@ const ActivitiesCreation = () => {
   };
 
   const handleSubmit = async ({ image, name, description }) => {
+
     dispatch(setLoading(true));
     const base64Img = await toBase64(image);
     const body = {
@@ -58,6 +56,7 @@ const ActivitiesCreation = () => {
     }
     if (data?.success) {
       SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY);
+      history.push('/activities')
     }
   }, [error, data]);
 
