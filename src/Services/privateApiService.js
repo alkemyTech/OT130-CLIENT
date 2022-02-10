@@ -8,16 +8,12 @@ const config = {
   },
 };
 
-const getToken = () => {
-  return localStorage.getItem("Token");
-}
-
 const instance = axios.create( config ); 
 
 const Patch = async (endpoint, body) => {
   const response = {};
   try {
-      const { data } = await instance.patch(config.baseURL + endpoint, body, getToken());
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getAuthorization());
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -68,6 +64,7 @@ const Delete = async (url, body) => {
   }
   return response;
 };
+
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';
