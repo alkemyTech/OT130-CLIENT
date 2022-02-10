@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const token = localStorage.getItem('token');
+
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
-    Group: 130, //Aqui va el ID del equipo!!
-    Authorization: `${token}`,
+    //Group: 130, //Aqui va el ID del equipo!!
+    Authorization: `Beared ${token}`,
     'content-type': 'application/json',
   },
 };
@@ -28,7 +29,7 @@ const Patch = async (url, data) => await instance.patch(url, data);
 const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(`${url}/${id}`);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`);
     response.data = data;
   } catch (error) {
     response.error = error;
