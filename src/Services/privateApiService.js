@@ -35,7 +35,7 @@ const Patch = async (url, body) => {
 const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getAuthorization());
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -72,9 +72,13 @@ const getToken = () => {
 const getAuthorization = () => {
   const token = getToken();
   return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    Authorization: `Bearer ${token}`,
+  };
+};
+
+const getHeaders = () => {
+  return {
+    headers: getAuthorization(),
   };
 };
 
