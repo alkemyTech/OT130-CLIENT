@@ -46,7 +46,7 @@ const ActivitiesEdition = ({ match: { params } }) => {
     setFieldValue('description', editor.getData());
   };
 
-  const handleSubmitForm = async ({ image, name, description }) => {
+  const handleSubmitForm = async ({ image, name, description }, resetForm) => {
     setSubmitting(true);
     const base64Img = image && (await toBase64(image)).toString();
     const body = {
@@ -56,16 +56,22 @@ const ActivitiesEdition = ({ match: { params } }) => {
     };
     const { data, error } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
-    data
-      ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      : ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
+    
+    if (error) {
+      ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
+    } else if (data.success) {
+      SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
+      resetForm() 
+    }
+    
+   
   };
 
   return activityData ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        handleSubmitForm(values);
+      onSubmit={(values, {resetForm}) => {
+        handleSubmitForm(values, resetForm);
       }}
       validationSchema={validation}
     >
