@@ -1,17 +1,21 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import "./Donation.css";
-import { DONATION_BUTTON_TEXT } from "../../Helpers/messagesText";
+import InnerHTML from 'dangerously-set-html-content';
 
-const donate = () => {
-  // TODO: Completar con función de donación
-}
-
+const html = `
+<script 
+  src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+data-preference-id="356217435-beae5ff8-c30e-4132-bddd-2c0c99cfffb0" 
+data-source="button">
+</script>
+`;
 const MercadoPagoButton = () => {
   return (
-    <Button className="donation-button" onClick={donate}>
-      {DONATION_BUTTON_TEXT}
-    </Button>
+      <InnerHTML 
+        className="donation-button"
+        html={html} 
+      />
   );
 };
+
 export default MercadoPagoButton;
