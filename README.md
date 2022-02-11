@@ -5,6 +5,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Prettier Linting
 Es necesario instalar [Prettier (VSCode)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) para darle formato al codigo.
 
+## Layout Básico
++ ### Setup Alertas :
+     + Descripción: Servicio que permite mostrar alertas de confirmación, éxito, error e información, utilizando la librería Sweetalert2 ( https://sweetalert2.github.io/#download )
+     + Instalación: https://www.npmjs.com/package/sweetalert2-react ( $ npm install sweetalert2-react ) 
+     + #### Implementación (ejemplo): 
+ ```js
+     import { ErrorAlert } from '../Components/Alert'; // ES6 Modules or TypeScript
+     ErrorAlert('Ejemplo de Mensaje de Error') // CommonJS
+```
 ## Available Scripts
 
 In the project directory, you can run:
