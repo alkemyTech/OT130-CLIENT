@@ -5,23 +5,9 @@ const token = localStorage.getItem("Token");
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
-<<<<<<< HEAD
-<<<<<<< HEAD
     Authorization: `Bearer ${token}`,
     Group: 130, //Aqui va el ID del equipo!!
     "content-type": "application/json",
-=======
-    //Group: 130, //Aqui va el ID del equipo!!
-<<<<<<< HEAD
-    'content-type': 'application/json',
->>>>>>> 6ca2924b19e8ea5f22a25ed460ef53fd9926772b
-=======
-    "content-type": "application/json",
->>>>>>> d658b3c88320535cd2da47d809665c23a084bd45
-=======
-    Group: 130, //Aqui va el ID del equipo!!
-    'content-type': 'application/json',
->>>>>>> cd6cbe7c9391bc634ca829556900276e26aa68df
   },
 };
 
@@ -49,23 +35,11 @@ const Patch = async (url, body) => {
   return response;
 };
 
-<<<<<<< HEAD
-const Patch = async ( url, data ) => await instance.patch( url, data );
 
-const Delete = async ( url ) =>  await instance.delete( url);
- 
-const Get = async ( url ) => await instance.get( url );
-
-export {
-  Get,
-  Post,
-  Patch,
-  Delete
-=======
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(url);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -82,7 +56,6 @@ const Put = async (url, body) => {
     response.error = error;
   }
   return response;
->>>>>>> 6ca2924b19e8ea5f22a25ed460ef53fd9926772b
 };
 
 const Delete = async (url, body) => {
@@ -95,6 +68,7 @@ const Delete = async (url, body) => {
   }
   return response;
 };
+
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';
@@ -102,8 +76,14 @@ const getToken = () => {
 
 const getAuthorization = () => {
   const token = getToken();
+  return `Bearer ${token}`;
+};
+
+const getHeaders = () => {
   return {
-    Authorization: `Bearer ${token}`,
+    headers: {
+      Authorization: getAuthorization(),
+    },
   };
 };
 
