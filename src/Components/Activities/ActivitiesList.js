@@ -24,23 +24,21 @@ const ActivitiesList = () => {
     <div>
       <h1 className="text-center my-3">Listado Actividades</h1>
       <ul className="list-container row">
-        {!isLoading &&
-          (activities.length > 0 ? (
-            activities.map((activity) => {
-              return (
-                <li className="card-info " key={activity.id}>
-                  <h3>{activity.name}</h3>
-                  <p>{activity.description}</p>
-                </li>
-              );
-            })
-          ) : (
-            <p>{!error && 'No hay actividades'}</p>
-          ))}
-        {isLoading && (
+        {activities.length > 0 ? (
+          activities.map((activity) => {
+            return (
+              <li className="card-info " key={activity.id}>
+                <h3>{activity.name}</h3>
+                <p>{activity.description}</p>
+              </li>
+            );
+          })
+        ) : isLoading ? (
           <div className="position-absolute text-center">
             <Spinner variant="primary" animation="border" role="status" />
           </div>
+        ) : (
+          <p>{!error && 'No hay actividades'}</p>
         )}
       </ul>
     </div>

@@ -44,7 +44,6 @@ const ActivitiesCreation = () => {
     setLoading(false);
     if (data) {
       SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
-      go(0);
     } else {
       ErrorAlert(ACTIVITY_ADDED_ERROR, error.message);
     }
