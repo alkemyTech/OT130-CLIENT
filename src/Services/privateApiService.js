@@ -64,6 +64,7 @@ const Delete = async (url, body) => {
   }
   return response;
 };
+
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';

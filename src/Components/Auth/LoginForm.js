@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import { yupEmail, yupPasswordLogin } from '../../Helpers/formValidations';
-import '../FormStyles.css';
-import './loginForm.css';
-import axios from 'axios';
 import { saveToLocalStorage } from '../../utils/localStorage';
 import { LOGIN_SUCCESS } from '../../Helpers/messagesText';
 import { ErrorAlert, SuccessAlert } from '../Alert';
+import '../FormStyles.css';
+import './loginForm.css';
 import { postAuthLogin } from '../../Services/authService';
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/auth/authSlice';
 
 const LoginForm = () => {
   
+const dispatch = useDispatch();
+
+
   const validationSchema = yup.object({
     email: yupEmail(),
     password: yupPasswordLogin(),
@@ -29,14 +34,25 @@ const LoginForm = () => {
 
       const submitFunction = async (e) => {
         try {
-          // const response = await axios.post('http://ongapi.alkemy.org/api/login', values);
-          postAuthLogin(values);
-          // saveToLocalStorage({ key: 'token', value: { token } });
-          // SuccessAlert(`Bienvenid@ ${response?.data.data.user.name}`, LOGIN_SUCCESS);
+          const response = await postAuthLogin(values)
+          console.log("🚀 ~ file: LoginForm.js ~ line 38 ~ submitFunction ~ response", response)
+          if (response.data.data ) {
+            const { token } = response.data.data;
+            const userName = response.data.data.user.name
+              saveToLocalStorage({ key: 'token', value: { token } });
+              SuccessAlert(`Bienvenid@ ${userName} `, LOGIN_SUCCESS);
+              dispatch(login({
+                name: userName,
+                email : values.email,
+                password : values.password,
+                token: token,
+              }))
+            } else {
+              ErrorAlert('Datos incorrectos', '');
+          }
         } catch (error) {
           console.error(error);
           if (error.response) {
-            ErrorAlert('Datos incorrectos', '');
           } else {
             ErrorAlert('Error de conexcion', 'hubo un problema en la aplicación');
           }

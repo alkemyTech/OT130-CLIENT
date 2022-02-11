@@ -27,7 +27,8 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
-import LoginForm from './Components/Auth/LoginForm';
+import UserAuth from './Components/Auth';
+
 
 function App() {
   return (
@@ -63,7 +64,7 @@ function App() {
 
       <div className="App">
         <header className="App-header">
-          <LoginForm/>
+          <UserAuth/>
           <img src={logo} className="App-logo" alt="logo" />
           <Counter />
           <p>

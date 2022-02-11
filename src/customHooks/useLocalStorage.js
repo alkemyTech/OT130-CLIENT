@@ -10,7 +10,6 @@ export const useLocalStorage = (key, defaultValue) => {
     return getStorageValue(key, defaultValue);        
     });
     useEffect(() => {
-        // Almacena el valor en localStorage
         localStorage.setItem(key, JSON.stringify(value));
       }, [key, value]);
     
