@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { getSlides } from "../../Services/homeService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
 import { ErrorAlert } from '../Alert';
 import { Spinner } from '../Spinner/Spinner';
-import { getSlides } from '../../Services/slidesService';
 
 function CarouselHero() {
 
