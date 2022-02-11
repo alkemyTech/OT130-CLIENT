@@ -32,12 +32,10 @@ const Patch = async (url, body) => {
   return response;
 };
 
-const Delete = async (url) => await instance.delete(url);
-
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(url);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -54,6 +52,34 @@ const Put = async (url, body) => {
     response.error = error;
   }
   return response;
+};
+
+const Delete = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete(url, body);
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+const getToken = () => {
+  const token = localStorage.getItem('token');
+  return token || '';
+};
+
+const getAuthorization = () => {
+  const token = getToken();
+  return `Bearer ${token}`;
+};
+
+const getHeaders = () => {
+  return {
+    headers: {
+      Authorization: getAuthorization(),
+    },
+  };
 };
 
 export { Get, Post, Patch, Put, Delete };
