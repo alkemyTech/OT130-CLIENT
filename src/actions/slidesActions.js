@@ -8,7 +8,7 @@ import {
   getSlidesFailure,
 } from "../reducers/slidesSlice";
 
-const getSlides = createAsyncThunk("slides/getSlides", async (_, { dispatch }) => {
+const getSlides = createAsyncThunk("slides/getSlides", async (arg, { dispatch }) => {
   dispatch(getSlidesRequest());
   const { data: slides, error } = await fetchSlides();
   if (error) {
