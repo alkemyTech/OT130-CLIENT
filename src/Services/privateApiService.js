@@ -13,7 +13,7 @@ const instance = axios.create( config );
 const Patch = async (endpoint, body) => {
   const response = {};
   try {
-      const { data } = await instance.patch(config.baseURL + endpoint, body, getAuthorization());
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getAuthorization())
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -32,10 +32,10 @@ const Post = async (url, body) => {
   return response;
 };
 
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(url);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -72,8 +72,14 @@ const getToken = () => {
 
 const getAuthorization = () => {
   const token = getToken();
+  return `Bearer ${token}`;
+};
+
+const getHeaders = () => {
   return {
-    Authorization: `Bearer ${token}`,
+    headers: {
+      Authorization: getAuthorization(),
+    },
   };
 };
 
