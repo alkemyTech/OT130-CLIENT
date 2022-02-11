@@ -46,7 +46,7 @@ const Get = async (url, id = null) => {
 const Put = async (url, body) => {
   const response = {};
   try {
-    const { data } = await instance.put(config.baseURL + endpoint, body, getAuthorization());
+    const { data } = await instance.put(config.baseURL + endpoint, body, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
