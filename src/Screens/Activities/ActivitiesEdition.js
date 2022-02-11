@@ -11,6 +11,7 @@ import {
   ACTIVITY_EDITED_ERROR,
   ACTIVITY_EDITED_SUCCESSFULLY,
   ACTIVITY_FETCH_ERROR,
+  NETWORK_ERROR,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
@@ -36,7 +37,9 @@ const ActivitiesEdition = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data, error } = await getActivityDataById(params.id);
-    data ? setActivityData(data.data) : ErrorAlert(ACTIVITY_FETCH_ERROR, error.message);
+    data
+      ? setActivityData(data.data)
+      : ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_FETCH_ERROR);
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
@@ -55,7 +58,7 @@ const ActivitiesEdition = ({ match: { params } }) => {
     setSubmitting(false);
     data
       ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      : ErrorAlert(ACTIVITY_EDITED_ERROR, error.message);
+      : ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
   };
 
   return activityData ? (
