@@ -18,7 +18,6 @@ const initialValues = {
 };
 
 const ActivitiesCreation = () => {
-  const { go } = useHistory();
   const [loading, setLoading] = useState(false);
 
   const validation = Yup.object().shape({
