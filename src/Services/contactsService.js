@@ -1,6 +1,6 @@
 import { Post, Patch, Get, Delete } from './privateApiService';
 
-const  CONTACTS_ENDPOINT = process.env.REACT_APP_CONTACTS_ENDPOINT;
+const CONTACTS_ENDPOINT = process.env.REACT_APP_CONTACTS_ENDPOINT;
 
 const addContact = async (values) => {
   return await Post(`${CONTACTS_ENDPOINT}`, values);
