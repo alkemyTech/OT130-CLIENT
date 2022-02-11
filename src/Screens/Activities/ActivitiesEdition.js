@@ -37,9 +37,11 @@ const ActivitiesEdition = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data, error } = await getActivityDataById(params.id);
-    data
-      ? setActivityData(data.data)
-      : ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_FETCH_ERROR);
+    if (error) {
+      ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_FETCH_ERROR);
+    } else if (data.success) {
+      setActivityData(data.data);
+    }
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
@@ -56,21 +58,19 @@ const ActivitiesEdition = ({ match: { params } }) => {
     };
     const { data, error } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
-    
+
     if (error) {
       ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
     } else if (data.success) {
-      SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      resetForm() 
+      SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY);
+      resetForm();
     }
-    
-   
   };
 
   return activityData ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, {resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         handleSubmitForm(values, resetForm);
       }}
       validationSchema={validation}
