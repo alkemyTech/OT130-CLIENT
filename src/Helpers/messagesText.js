@@ -39,6 +39,10 @@ const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
 
+// Mensajes REGISTER-LOGIN
+const REGISTER_SUCCESS = 'Usuario registrado exitosamente';
+const LOGIN_SUCCESS = 'Inicio de sesión exitoso';
+
 // Textos de donación
 
 const DONATION_TITLE_TEXT = '¡Contribuye!';
@@ -55,12 +59,14 @@ export {
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,
+  LOGIN_SUCCESS,
   NETWORK_ERROR,
   ORGANIZATION_EDITED_SUCCESSFULLY,
   PASSWORD_INCORRECT,
   PASSWORD_SHORT,
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
+  REGISTER_SUCCESS,
   SHOULD_BE_DIGITS_ONLY,
   TITLE_LONG,
   TITLE_SHORT,
