@@ -8,6 +8,8 @@ const config = {
   },
 };
 
+const instance = axios.create(config);
+
 const Get = async (route, id) => {
   const response = { data: {}, error: null };
   const url = route + `${id ? '/' + id : ''}`;
@@ -22,9 +24,6 @@ const Get = async (route, id) => {
   return response;
 };
 
-const baseURL = 'http://ongapi.alkemy.org/api';
-const instance = axios.create(config);
-
 const Post = async (url, body) => {
   const response = {};
   try {
@@ -36,5 +35,5 @@ const Post = async (url, body) => {
   return response;
 }
 
-export {Post, getSlide, Get }
+export {Post, Get }
 
