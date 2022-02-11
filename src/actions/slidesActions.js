@@ -8,13 +8,13 @@ import {
   getSlidesFailure,
 } from "../reducers/slidesSlice";
 
-const getSlides = createAsyncThunk("slides/getSlides", async (_, thunkAPI) => {
-  thunkAPI.dispatch(getSlidesRequest());
+const getSlides = createAsyncThunk("slides/getSlides", async (_, { dispatch }) => {
+  dispatch(getSlidesRequest());
   const { data: slides, error } = await fetchSlides();
   if (error) {
-    return thunkAPI.dispatch(getSlidesFailure(error));
+    return dispatch(getSlidesFailure(error));
   }
-  thunkAPI.dispatch(getSlidesSuccess(slides));
+  dispatch(getSlidesSuccess(slides));
 });
 
 export { getSlides };
