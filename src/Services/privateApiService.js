@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const token = localStorage.getItem("Token");
-
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
@@ -35,12 +33,7 @@ const Patch = async (url, body) => {
   return response;
 };
 
-<<<<<<< HEAD
-
-const Get = async (url, id = null) => {
-=======
 const Get = async (url) => {
->>>>>>> OT130-73-Crear-método-reutilizable-que-realice-petición-DELETE-a-endpoints-privados
   const response = {};
   try {
     const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
@@ -65,7 +58,7 @@ const Put = async (url, body) => {
 const Delete = async (url, id) => {
   const response = {};
   try {
-    const { data } = await instance.delete( `${url}/${id}` );
+    const { data } = await instance.delete( `${url}/${id}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
