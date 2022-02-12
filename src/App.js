@@ -28,16 +28,17 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import { transitionsConfig } from './config/transitions';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <AnimatedSwitch
-          className="route-wrapper"
-          atLeave={{ opacity: 0 }}
-          atActive={{ opacity: 1 }}
-          atEnter={{ opacity: 0 }}
+          atLeave={transitionsConfig.atLeave}
+          atActive={transitionsConfig.atActive}
+          atEnter={transitionsConfig.atEnter}
+          mapStyles={transitionsConfig.mapStyles}
         >
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
