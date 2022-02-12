@@ -1,48 +1,28 @@
 import { Get, Post, Put, Delete } from "./privateApiService";
 
 const getActivities = async () => {
-  try {
-    const { data } = await Get("/activities");
-    return data;
-  } catch (error) {
-    return { error };
-  }
+  const { data } = await Get("/activities");
+  return data;
 };
 
 const getActivityDataById = async (id) => {
-  try {
-    const { data } = await Get(`/activities/${id}`);
-    return data;
-  } catch (error) {
-    return { error };
-  }
+  const { data } = await Get(`/activities/${id}`);
+  return data;
 };
 
 const deleteActivity = async (id) => {
-  try {
-    const { data } = await Delete(`/activities/${id}`);
-    return data;
-  } catch (error) {
-    return { error };
-  }
+  const { data } = await Delete(`/activities/${id}`);
+  return data;
 };
 
 const updateActivityDataById = async (id) => {
-  try {
-    const { data } = await Put(`/activities/${id}`);
-    return data;
-  } catch (error) {
-    return { error };
-  }
+  const { data } = await Put(`/activities/${id}`);
+  return data;
 };
 
 const saveActivityData = async () => {
-  try {
-    const { data } = await Post("/activities");
-    return data;
-  } catch (error) {
-    return { error };
-  }
+  const { data } = await Post("/activities");
+  return data;
 };
 
 export {
@@ -52,3 +32,4 @@ export {
   updateActivityDataById,
   saveActivityData,
 };
+
