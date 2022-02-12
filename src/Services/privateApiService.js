@@ -32,10 +32,10 @@ const Patch = async (url, body) => {
   return response;
 };
 
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(url);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -71,8 +71,14 @@ const getToken = () => {
 
 const getAuthorization = () => {
   const token = getToken();
+  return `Bearer ${token}`;
+};
+
+const getHeaders = () => {
   return {
-    Authorization: `Bearer ${token}`,
+    headers: {
+      Authorization: getAuthorization(),
+    },
   };
 };
 
