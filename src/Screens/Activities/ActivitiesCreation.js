@@ -46,7 +46,7 @@ const ActivitiesCreation = () => {
     if (data?.success) {
       SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY);
       resetForm();
-    } else if (error) {
+    } else {
       ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_ADDED_ERROR);
     }
     setLoading(false);

@@ -65,6 +65,7 @@ const ActivitiesEdition = ({ match: { params } }) => {
     } else {
       ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
     }
+    setSubmitting(false)
   };
 
   return activityData ? (
