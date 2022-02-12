@@ -7,7 +7,11 @@ import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
 import './styles.css';
-import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY, NETWORK_ERROR } from '../../Helpers/messagesText';
+import {
+  ACTIVITY_ADDED_ERROR,
+  ACTIVITY_ADDED_SUCCESSFULLY,
+  NETWORK_ERROR,
+} from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const initialValues = {
@@ -39,19 +43,19 @@ const ActivitiesCreation = () => {
     };
     const { data, error } = await saveActivityData(body);
 
-    if (error) {
-      ErrorAlert(error.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_ADDED_ERROR)
-    } else if (data.success) {
-      SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY)
-      resetForm()
+    if (data?.success) {
+      SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY);
+      resetForm();
+    } else if (error) {
+      ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_ADDED_ERROR);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, {resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         handleSubmit(values, resetForm);
       }}
       validationSchema={validation}
