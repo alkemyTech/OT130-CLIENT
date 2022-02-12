@@ -39,9 +39,23 @@ const ErrorAlert = (title, message) =>
     timer: ALERT_OUT_TIMER,
   });
 
+const showDeleteConfirmationAlert = (preConfirm) => 
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "Esta acción no se puede revertir",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar",
+    showLoaderOnConfirm: true,
+    preConfirm,
+  })
+
 export {
   InfoAlert,
   ConfirmAlert,
   SuccessAlert,
-  ErrorAlert
+  ErrorAlert,
+  showDeleteConfirmationAlert
 };
