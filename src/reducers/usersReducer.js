@@ -33,7 +33,6 @@ const usersReducer = createReducer(initialState, (builder) => {
       }
       state.isDeleted = false;
       state.isLoading = false;
-
     })
     .addCase(deleteUsers.rejected, (state, action) => {
       state.error = action.payload.error;
