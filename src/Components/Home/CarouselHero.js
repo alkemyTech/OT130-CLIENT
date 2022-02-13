@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-=======
 import { getSlides } from "../../Services/homeService";
->>>>>>> 430c4fec7e391152bd51f5a9cfcfe0566bbd73fb
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import { getSlideData } from '../../Services/homeService';
+import { getSlides } from '../../Services/slidesService';
 import { ErrorAlert } from '../Alert';
 
 function CarouselHero() {
@@ -14,11 +11,7 @@ function CarouselHero() {
   useEffect(() => {
     (async function () {
       try {
-<<<<<<< HEAD
-        const res = await getSlideData();
-=======
-        const res = await getSlides()
->>>>>>> 430c4fec7e391152bd51f5a9cfcfe0566bbd73fb
+        const res = await getSlides();
         setGetState(res.data.data)
       } catch (error) {
         ErrorAlert(error);       
@@ -26,32 +19,31 @@ function CarouselHero() {
     })()
   }, []);
 
-  return (
-    <>
-      <Carousel className='carousel'>
-        {getState && getState.map((res) =>
-          <Carousel.Item className='carousel-item' key={res.id}>
-            <img src={res.image} className='d-block w-100 img-carousel' alt="First slide"></img>
-          </Carousel.Item>)}
-      </Carousel>
-
-      <Container className='container-welcome-text'>
-        <Row>
-          <Col xs={12} className='welcome-text'>
-            <h2>TEXTO BIENVENIDA</h2>
-          </Col>
-          <Col xs={8} className='welcome-text'>
-            <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris."
-            </p>
-          </Col>
-        </Row>
-      </Container>
-
-    </>
-  )
-}
+    return (
+      <>
+        <Carousel className='carousel'>
+          {getState && getState.map((res) =>
+            <Carousel.Item className='carousel-item' key={res.id}>
+              <img src={res.image} className='d-block w-100 img-carousel' alt="First slide"></img>
+            </Carousel.Item>)}
+        </Carousel>
+  
+        <Container className='container-welcome-text'>
+          <Row>
+            <Col xs={12} className='welcome-text'>
+              <h2>TEXTO BIENVENIDA</h2>
+            </Col>
+            <Col xs={8} className='welcome-text'>
+              <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris."
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </>
+    )
+};
 
 export default CarouselHero;

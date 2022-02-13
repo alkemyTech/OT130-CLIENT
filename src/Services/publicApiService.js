@@ -35,4 +35,11 @@ const Post = async (url, body) => {
   return response;
 }
 
+<<<<<<< HEAD
 export {Post, Get }
+=======
+export {
+  Post, 
+  Get 
+};
+>>>>>>> OT130-101-Mostrar-errores-cuando-las-peticiones-no-se-realicen-correctamente
