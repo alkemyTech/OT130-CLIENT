@@ -7,24 +7,24 @@ import { Spinner } from '../Spinner/Spinner';
 function CarouselHero() {
 
   const [getState, setGetState] = useState();
-  const [loading, setLoading] = useState( false );
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {    
-    setLoading( true );
+  useEffect(() => {
+    setLoading(true);
     (async function () {
       try {
         const res = await getSlides();
         setGetState(res.data.data);
-      } catch ( error ) {
-        ErrorAlert( error );
+      } catch (error) {
+        ErrorAlert(error);
       }
-      setLoading( false );
+      setLoading(false);
     })();
   }, []);
 
   return (
     <>
-    {loading && <Spinner/>}
+      {loading && <Spinner/>}      
       <Carousel className='carousel'>
         {getState && getState.map((res) =>
           <Carousel.Item className='carousel-item' key={res.id}>
