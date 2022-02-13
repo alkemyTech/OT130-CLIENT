@@ -1,23 +1,20 @@
 import React from 'react';
-import axios from 'axios';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import { yupEmail, yupPasswordLogin } from '../../Helpers/formValidations';
-import { saveToLocalStorage } from '../../utils/localStorage';
-import { LOGIN_SUCCESS } from '../../Helpers/messagesText';
+import { API_ERROR, INCORRECT_DATA, LOGIN_SUCCESS, UNKNOWN_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import '../FormStyles.css';
 import './loginForm.css';
 import { postAuthLogin } from '../../Services/authService';
 import { useDispatch } from 'react-redux';
-import { login } from '../../features/auth/authSlice';
+import { getLogin } from '../../reducers/actions';
+
 
 const LoginForm = () => {
-  
-const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
 
   const validationSchema = yup.object({
     email: yupEmail(),
@@ -31,30 +28,25 @@ const dispatch = useDispatch();
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-
       const submitFunction = async (e) => {
         try {
-          const response = await postAuthLogin(values)
-          console.log("🚀 ~ file: LoginForm.js ~ line 38 ~ submitFunction ~ response", response)
-          if (response.data.data ) {
+          const response = await postAuthLogin(values);
+          if (response.data.data) {
             const { token } = response.data.data;
-            const userName = response.data.data.user.name
-              saveToLocalStorage({ key: 'token', value: { token } });
-              SuccessAlert(`Bienvenid@ ${userName} `, LOGIN_SUCCESS);
-              dispatch(login({
-                name: userName,
-                email : values.email,
-                password : values.password,
-                token: token,
-              }))
-            } else {
-              ErrorAlert('Datos incorrectos', '');
+            const { user } = response.data.data;
+            dispatch(getLogin({
+              user:user,
+              token: token
+            }));
+            SuccessAlert(`Bienvenid@ ${user.name} `, LOGIN_SUCCESS);
+          } else {
+            ErrorAlert(INCORRECT_DATA);
           }
         } catch (error) {
           console.error(error);
           if (error.response) {
           } else {
-            ErrorAlert('Error de conexcion', 'hubo un problema en la aplicación');
+            ErrorAlert(UNKNOWN_ERROR, API_ERROR );
           }
         }
       };
@@ -71,6 +63,7 @@ const dispatch = useDispatch();
           fullWidth
           id="email"
           name="email"
+          type="email"
           label="Email"
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -82,8 +75,8 @@ const dispatch = useDispatch();
           fullWidth
           id="password"
           name="password"
-          label="Password"
           type="password"
+          label="Password"
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}

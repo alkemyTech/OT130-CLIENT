@@ -1,10 +1,9 @@
 // Errores generales de request
-
 const NETWORK_ERROR = 'Error de red. Asegurate de estar conectado a internet';
 const UNKNOWN_ERROR = 'Ha ocurrido un error';
+const API_ERROR = 'Disculpe, hubo un error en la aplicación.'
 
 // Mensajes de validación de formularios
-
 const DESCRIPTION_LONG = 'Descripción demasiado larga';
 const DESCRIPTION_SHORT = 'Mínimo 10 caracteres';
 const EMAIL_TAKEN = 'El email ya ha sido registrado.';
@@ -42,20 +41,22 @@ const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
 // Mensajes REGISTER-LOGIN
 const REGISTER_SUCCESS = 'Usuario registrado exitosamente';
 const LOGIN_SUCCESS = 'Inicio de sesión exitoso';
+const INCORRECT_DATA = ' Datos incorrectos';
 
 // Textos de donación
-
 const DONATION_TITLE_TEXT = '¡Contribuye!';
 const DONATION_BUTTON_TEXT = 'Contribuir';
 const DONATION_THANKS_TEXT = '¡Muchas gracias por contribuir!';
 
 export {
+  API_ERROR,
   DESCRIPTION_LONG,
   DESCRIPTION_SHORT,
   DONATION_BUTTON_TEXT,
   DONATION_TITLE_TEXT,
   DONATION_THANKS_TEXT,
   EMAIL_TAKEN,
+  INCORRECT_DATA,
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,
   INVALID_EMAIL,

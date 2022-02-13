@@ -1,10 +1,11 @@
 import React , { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-
+import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT, REGISTER_SUCCESS } from "../../Helpers/messagesText";
+import { yupConfirmPass, yupEmail, yupFirstName, yupPassRegister } from "../../Helpers/formValidations";
+import { postAuthRegister } from '../../Services/authService';
+import { SuccessAlert } from '../Alert';
 import '../FormStyles.css';
-import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT } from "../../Helpers/messagesText";
-import { yupConfirmPass, yupEmail, yupFirstName, yupLastName, yupPassRegister } from "../../Helpers/formValidations";
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
@@ -17,51 +18,45 @@ const RegisterForm = () => {
 
     const formik = useFormik({
         initialValues:{
-            firstName: '',
-            lastName: '',
+            name: '',
             email: '',
             password: '',
             confirmPassword: ''
         },
         validationSchema: Yup.object({
-            firstName: yupFirstName(),
-            lastName: yupLastName(),
+            name: yupFirstName(),
             email: yupEmail(),
             password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
             confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
         }),
         onSubmit: values => {
+            const registerSubmit = async () => {
+                try {
+                    await postAuthRegister(values)
+                    SuccessAlert( REGISTER_SUCCESS );
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            registerSubmit();
             setSubmitForm(true);
             timerMessage(3000);
             formik.resetForm();
         },
     });
 
-
     return(
         <form className="form-container" onSubmit={formik.handleSubmit}>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="name">First Name</label>
             <input
-                id="firstName"
+                id="name"
                 type="text"
                 className="input-field"
-                {...formik.getFieldProps('firstName')}
+                {...formik.getFieldProps('name')}
             />
-            {formik.touched.firstName && formik.errors.firstName &&
-                <div className="error-message message">{formik.errors.firstName}</div>
+            {formik.touched.name && formik.errors.name &&
+                <div className="error-message message">{formik.errors.name}</div>
             }
-            
-            <label htmlFor="lastName">Last Name</label>
-            <input
-                id="lastName"
-                type="text"
-                className="input-field"
-                {...formik.getFieldProps('lastName')}
-            />
-            {formik.touched.lastName && formik.errors.lastName &&
-                <div className="error-message message">{formik.errors.lastName}</div>
-            }
-
             <label htmlFor="email">Email Address</label>
             <input
                 id="email"
