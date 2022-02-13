@@ -16,7 +16,7 @@ const instance = axios.create(config);
 const Post = async (url, body) => {
   const response = {};
   try {
-    const { data } = await instance.post(url, body);
+    const { data } = await instance.post(url, body, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
