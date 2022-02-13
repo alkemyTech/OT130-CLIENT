@@ -3,7 +3,6 @@ import axios from 'axios';
 const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
-    Authorization: `Bearer ${token}`,
     Group: 130, //Aqui va el ID del equipo!!
     "content-type": "application/json",
   },
