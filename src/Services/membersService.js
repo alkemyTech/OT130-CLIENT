@@ -1,4 +1,5 @@
 import dataMembers from '../Services/mocks/members.json'
+import { ErrorAlert } from "../Alert";
 //@TODO: Luego Cambiar Moock por request
 
 const getMembers = async () => {
@@ -9,6 +10,7 @@ const getMembers = async () => {
     
   } catch (error) {
     response.error = error.message;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };

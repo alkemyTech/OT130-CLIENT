@@ -1,4 +1,5 @@
 import { Get } from './privateApiService';
+import { ErrorAlert } from "../Alert";
 
 const getNews = async () => {
   const response = { error: null, data: {} };
@@ -7,6 +8,7 @@ const getNews = async () => {
     response.data = data;
   } catch (error) {
     response.error = error.message;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
@@ -18,6 +20,7 @@ const getTestimonials = async () => {
     response.data = data;
   } catch (error) {
     response.error = error.message;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
@@ -29,6 +32,7 @@ const getSlides = async () => {
     response.data = data;
   } catch (error) {
     response.error = error.message;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };

@@ -1,5 +1,6 @@
 import { Post, Put, Get } from './privateApiService';
 import dataActivities from '../Services/mocks/activities.json'
+import { ErrorAlert } from "../Alert";
 //@TODO: Luego Cambiar Moock por request
 
 const getActivities = async () => {
@@ -10,6 +11,7 @@ const getActivities = async () => {
     
   } catch (error) {
     response.error = error.message;
+    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
