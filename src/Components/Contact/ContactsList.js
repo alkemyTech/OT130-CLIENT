@@ -9,8 +9,7 @@ const ContactsList = () => {
 
   return (
     <div>
-      <h1 className="text-center my-3">Listado de Contactos</h1>
-      {/* <ul className="list-container row"> */}
+      <h1 className="text-center my-3">Lista de Contactos</h1>
       <Table  bordered hover className='card-info'>
         <thead>
           <tr className="text-center">
@@ -48,7 +47,6 @@ const ContactsList = () => {
           <Spinner variant="primary" animation="border" role="status" />
         </div>
       )}
-      {/* </ul> */}
     </div>
   );
 };

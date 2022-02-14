@@ -2,12 +2,10 @@ import * as Yup from 'yup';
 import React from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { ErrorAlert, SuccessAlert } from '../Alert';
-
 import { yupEmail, yupFirstName, yupShortDesc, yupPhone } from '../../Helpers/formValidations';
-
-import '../FormStyles.css';
-import { postContactData } from '../../Services/contactService';
 import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
+import { addContact } from '../../Services/contactsService';
+import '../FormStyles.css';
 
 const initialContactValues = {
   name: '',
@@ -26,7 +24,7 @@ const ContactForm = () => {
 
   const sendForm = async (val) => {
     try {
-        await postContactData(val);
+        await addContact(val);
         SuccessAlert('Exitoso', 'Formulario enviado correctamente');
     } catch (error) {
       console.error(error);
