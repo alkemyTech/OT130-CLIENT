@@ -4,7 +4,7 @@ import { Button, Table, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, deleteUsers } from '../../actions/usersActions';
 import { selectUsers } from '../../reducers/usersReducer';
-import { ConfirmAlert, SuccessAlert } from '../Alert';
+import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,8 @@ const UserList = () => {
   };
 
   const deleteData = (el) => {
-    ConfirmAlert('Eliminar', '¿Esta seguro que desea eliminar este usuario?') 
-      .then(() => { 
-        dispatch(deleteUsers(el.id))
-        SuccessAlert('Usuario eliminado correctamente');
-      });
+    dispatch(deleteUsers(el.id));
+    SuccessAlert('Listo', 'Usuario eliminado correctamente');
   };
 
   return (
