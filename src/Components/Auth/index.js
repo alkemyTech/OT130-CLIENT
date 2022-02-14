@@ -1,10 +1,8 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm'
 import Logout from './Logout';
 import { useSelector } from 'react-redux';
 import { selectAuth, selectUserAuth } from '../../reducers/auth/authReducer';
-
 
 const UserAuth = () => {
   
@@ -15,8 +13,7 @@ const UserAuth = () => {
         <>
             { isUserAuth ?
             <Logout currentUser={currentUser} /> : <LoginForm />
-            } 
-            <RegisterForm />      
+            }    
         </>
   )
   ;
