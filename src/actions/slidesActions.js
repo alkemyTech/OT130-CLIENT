@@ -5,11 +5,7 @@ import {
   deleteSlide as deleteSlideFromAPI,
 } from "../Services/slidesService";
 
-import {
-  ErrorAlert,
-  SuccessAlert,
-  showDeleteConfirmationAlert,
-} from "../Components/Alert";
+import { ErrorAlert, SuccessAlert, ConfirmAlert } from "../Components/Alert";
 
 import {
   getSlidesRequest,
@@ -38,13 +34,18 @@ const deleteSlide = createAsyncThunk(
   "slides/deleteSlide",
   async (slideId, { dispatch, getState }) => {
     dispatch(deleteSlideRequest());
-    const { isConfirmed } = await showDeleteConfirmationAlert(async () => {
-      const { error } = await deleteSlideFromAPI(slideId);
-      if (error) {
-        dispatch(deleteSlideFailure(error));
-        return ErrorAlert("Error", error.message);
-      }
-    });
+    const { isConfirmed } = await ConfirmAlert(
+      async () => {
+        const { error } = await deleteSlideFromAPI(slideId);
+        if (error) {
+          dispatch(deleteSlideFailure(error));
+          return ErrorAlert("Error", error.message);
+        }
+      },
+      "¿Estás seguro?",
+      "Esta acción no se puede revertir",
+      "Eliminar"
+    );
     const { slides } = getState();
     if (isConfirmed && !slides.error) {
       dispatch(deleteSlideSuccess(slideId));
