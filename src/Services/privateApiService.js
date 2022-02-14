@@ -35,8 +35,7 @@ const Patch = async (url, body) => {
 const Get = async (url, id = null) => {
   const response = {};
   try {
-    // const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
-    const {data} = await axios.get(`http://ongapi.alkemy.org/api${url}`)
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;

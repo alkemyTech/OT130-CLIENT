@@ -3,7 +3,6 @@ import { Container } from "react-bootstrap";
 import Title from "../Title/Title";
 import "../CardListStyles.css";
 import ContactsList from "./ContactsList";
-import ContactForm from "./ContactForm";
 
 const Contacts = () => {
 
@@ -12,7 +11,6 @@ const Contacts = () => {
       <Title text="Contactos" />
       <Container>
           <ContactsList />
-          <ContactForm />
       </Container>
     </div>
   );
