@@ -4,7 +4,7 @@ const config = {
   baseURL: 'http://ongapi.alkemy.org/api/',
   headers: {
     Group: 130, //Aqui va el ID del equipo!!
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
 };
 
@@ -13,7 +13,7 @@ const instance = axios.create(config);
 const Post = async (url, body) => {
   const response = {};
   try {
-    const { data } = await instance.post(url, body);
+    const { data } = await instance.post(url, body, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
