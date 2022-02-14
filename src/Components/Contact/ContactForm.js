@@ -6,6 +6,7 @@ import { SuccessAlert } from '../Alert';
 import { yupEmail, yupFirstName, yupShortDesc, yupPhone } from '../../Helpers/formValidations';
 
 import '../FormStyles.css';
+import { postContactData } from '../../Services/contactService';
 
 const initialContactValues = {
   name: '',
@@ -22,8 +23,13 @@ const ContactForm = () => {
     message: yupShortDesc(),
   });
 
-  const sendForm = async (form) => {
-    SuccessAlert('Exito', 'Formulario enviado correctamente');
+  const sendForm = async (val) => {
+    try {
+      await postContactData(val);
+      SuccessAlert('Exitoso', 'Formulario enviado correctamente');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

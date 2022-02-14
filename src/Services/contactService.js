@@ -1,6 +1,6 @@
 import { Post, Put, Get, Delete } from './privateApiService';
 
-export const postActivityData = async (body) => await Post('/contacts', body);
+export const postContactData = async (body) => await Post('/contacts', body);
 
 export const getContactsList = async (id) => await Get('/contacts');
 

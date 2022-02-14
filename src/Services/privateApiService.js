@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const config = {
-  baseURL: 'http://ongapi.alkemy.org/api/',
+  baseURL: 'http://ongapi.alkemy.org/api',
   headers: {
     Group: 130, //Aqui va el ID del equipo!!
     "content-type": "application/json",
@@ -35,7 +35,8 @@ const Patch = async (url, body) => {
 const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
+    // const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
+    const {data} = await axios.get(`http://ongapi.alkemy.org/api${url}`)
     response.data = data;
   } catch (error) {
     response.error = error;
