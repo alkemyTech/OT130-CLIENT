@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import {  useDispatch } from "react-redux";
-import { getLogout } from "../../reducers/actions";
+import { getLogout } from "../../reducers/auth/actions";
 
 const Logout = ({currentUser}) => {
 

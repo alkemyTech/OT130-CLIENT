@@ -1,4 +1,4 @@
-import { readFromLocalStorage, saveToLocalStorage } from '../utils/localStorage';
+import { readFromLocalStorage, saveToLocalStorage } from '../../utils/localStorage';
 import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './constants';
 
 const initialState = {

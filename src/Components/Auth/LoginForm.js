@@ -6,11 +6,11 @@ import { Button, TextField } from '@mui/material';
 import { yupEmail, yupPasswordLogin } from '../../Helpers/formValidations';
 import { API_ERROR, INCORRECT_DATA, LOGIN_SUCCESS, UNKNOWN_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert, SuccessAlert } from '../Alert';
-import '../FormStyles.css';
-import './loginForm.css';
 import { postAuthLogin } from '../../Services/authService';
 import { useDispatch } from 'react-redux';
-import { getLogin } from '../../reducers/actions';
+import { getLogin } from '../../reducers/auth/actions';
+import '../FormStyles.css';
+import './loginForm.css';
 
 
 const LoginForm = () => {

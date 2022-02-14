@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm'
 import Logout from './Logout';
 import { useSelector } from 'react-redux';
-import { selectAuth, selectUserAuth } from '../../reducers/authReducer';
+import { selectAuth, selectUserAuth } from '../../reducers/auth/authReducer';
 
 
 const UserAuth = () => {
