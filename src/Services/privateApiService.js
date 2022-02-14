@@ -32,7 +32,7 @@ const Patch = async (url, body) => {
   return response;
 };
 
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
     const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
