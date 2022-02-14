@@ -17,8 +17,9 @@ const instance = axios.create( config );
 const Patch = async (endpoint, body) => {
   const response = {};
   try {
-      const { data } = await instance.patch(config.baseURL + endpoint, body, getToken());
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getHeaders());
       response.data = data;
+
   } catch (error) {
       response.error = error;
   }
