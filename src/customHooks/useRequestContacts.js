@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ErrorAlert } from '../Components/Alert';
-import { UNKNOWN_ERROR } from '../Helpers/messagesText';
+import { NETWORK_ERROR, UNKNOWN_ERROR } from '../Helpers/messagesText';
 import { getContact, getContactById } from '../Services/contactsService';
 
 export function useRequestContactsList() {
@@ -12,7 +12,7 @@ export function useRequestContactsList() {
         setIsLoading(true);
         const { error, data } = await getContact();
         if (error) {
-          ErrorAlert(UNKNOWN_ERROR)
+          ErrorAlert(UNKNOWN_ERROR, NETWORK_ERROR)
         } else {
           setData(data.data);
         }
@@ -32,7 +32,7 @@ export function useRequestContactById() {
           setIsLoading(true);
           const { error, data } = await getContactById();
           if (error) {
-            ErrorAlert(UNKNOWN_ERROR)
+            ErrorAlert(UNKNOWN_ERROR, NETWORK_ERROR)
           } else {
             setData(data);
           }
