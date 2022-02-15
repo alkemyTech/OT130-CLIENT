@@ -6,12 +6,12 @@ const getActivities = async () => {
 };
 
 const getActivityDataById = async (id) => {
-  const { data } = await Get(`/activities/${id}`);
+  const { data } = await Get('/activities', id);
   return data;
 };
 
 const deleteActivity = async (id) => {
-  const { data } = await Delete(`/activities/${id}`);
+  const { data } = await Delete('/activities', id);
   return data;
 };
 
