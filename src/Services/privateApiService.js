@@ -8,23 +8,23 @@ const config = {
   },
 };
 
-const instance = axios.create(config);
+const instance = axios.create( config ); 
+
+const Patch = async (endpoint, body) => {
+  const response = {};
+  try {
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getHeaders())
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
 
 const Post = async (url, body) => {
   const response = {};
   try {
-    const { data } = await instance.post(url, body, getHeaders());
-    response.data = data;
-  } catch (error) {
-    response.error = error;
-  }
-  return response;
-};
-
-const Patch = async (url, body) => {
-  const response = {};
-  try {
-    const { data } = await instance.patch(url, body);
+    const { data } = await instance.post(url, body);
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -64,6 +64,7 @@ const Delete = async (url, body) => {
   }
   return response;
 };
+
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';
