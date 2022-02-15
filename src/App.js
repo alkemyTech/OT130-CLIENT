@@ -26,8 +26,7 @@ import Organization from './Screens/Organization/Organization';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginForm from './Components/Auth/LoginForm';
-import RegisterForm from './Components/Auth/RegisterForm';
+
 
 
 function App() {
@@ -61,8 +60,6 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
-      <LoginForm />
-      <RegisterForm />
     </>
   );
 }
