@@ -6,6 +6,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Es necesario instalar [Prettier (VSCode)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) para darle formato al codigo.
 
 ## Layout Básico
+  + ### Setup Progress 🔧 :
+     + Descripción: Componente que permite renderizar una barra de progresión, para mostrar un feedback al usuario mientras se esté cargando un recurso utilizando [React-bootstrap]( https://react-bootstrap.netlify.app/components/progress/#progress-bars )
+     + 🛠️ Instalación: https://react-bootstrap.netlify.app/getting-started/introduction/ ( $ npm install react-bootstrap bootstrap@5.1.3 ) 
+     + #### Implementación (ejemplo): 
+ ```js
+     import Progress  from '../../Components/Progress/Progress';
+     <Progress progressDone={30} />
+```
+
 + ### Setup Alertas :
      + Descripción: Servicio que permite mostrar alertas de confirmación, éxito, error e información, utilizando la librería Sweetalert2 ( https://sweetalert2.github.io/#download )
      + Instalación: https://www.npmjs.com/package/sweetalert2-react ( $ npm install sweetalert2-react ) 
