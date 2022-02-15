@@ -9,6 +9,8 @@ const saveNews = async (values) => {
   } catch (error) {
     response.error = error.message;
     ErrorAlert('Error', 'Error al comunicarce con el servidor')
+  } finally {
+
   }
   return response;
 };
