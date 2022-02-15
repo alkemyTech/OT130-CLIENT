@@ -27,6 +27,7 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import ProtectedRoute from './Components/Auth/ProtectedRoute';
 
 function App() {
   return (
