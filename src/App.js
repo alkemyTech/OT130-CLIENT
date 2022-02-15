@@ -36,11 +36,11 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
-          <Route path="/create-activity" component={ActivitiesCreation} />
-          <Route path="/edit-activity/:id" component={ActivitiesEdition} />
-          <Route path="/create-category" component={CategoriesForm} />
+          <ProtectedRoute path="/create-activity" component={ActivitiesCreation} />
+          <ProtectedRoute path="/edit-activity/:id" component={ActivitiesEdition} />
+          <ProtectedRoute path="/create-category" component={CategoriesForm} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
-          <Route path="/create-news" component={NewsForm} />
+          <ProtectedRoute path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/slides" component={SlidesList} />
@@ -48,9 +48,9 @@ function App() {
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
           <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/create-project" component={ProjectsForm} />
+          <ProtectedRoute path="/create-testimonials" component={TestimonialForm} />
+          <ProtectedRoute path="/create-member" component={MembersForm} />
+          <ProtectedRoute path="/create-project" component={ProjectsForm} />
           <Route path="/donate" component={Donation} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/thanks" component={Thanks} />
