@@ -10,21 +10,38 @@ const config = {
  
 const instance = axios.create( config ); 
 
+<<<<<<< HEAD
 const Patch = async (endpoint, body) => {
   const response = {};
   try {
       const { data } = await instance.patch(config.baseURL + endpoint, body, getToken());
+=======
+const instance = axios.create( config ); 
+
+const Patch = async (endpoint, body) => {
+  const response = {};
+  try {
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getHeaders())
+>>>>>>> a34caef7b818e7179ca6b1682ac961baf41b461d
       response.data = data;
   } catch (error) {
       response.error = error;
   }
   return response;
 }
+<<<<<<< HEAD
  
 const Post = async (url, body) => {
   const response = {};
   try {
     const { data } = await instance.post(url, body, getHeaders());
+=======
+
+const Post = async (url, body) => {
+  const response = {};
+  try {
+    const { data } = await instance.post(url, body);
+>>>>>>> a34caef7b818e7179ca6b1682ac961baf41b461d
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -54,16 +71,17 @@ const Put = async (url, body) => {
   return response;
 };
 
-const Delete = async (url, body) => {
+const Delete = async (url, id) => {
   const response = {};
   try {
-    const { data } = await instance.delete(url, body);
+    const { data } = await instance.delete( `${url}/${id}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
   }
   return response;
 };
+
 const getToken = () => {
   const token = localStorage.getItem('token');
   return token || '';
