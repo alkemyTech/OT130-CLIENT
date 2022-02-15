@@ -54,10 +54,10 @@ const Put = async (url, body) => {
   return response;
 };
 
-const Delete = async (url, body) => {
+const Delete = async (url, id) => {
   const response = {};
   try {
-    const { data } = await instance.delete(url, body);
+    const { data } = await instance.delete( `${url}/${id}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
