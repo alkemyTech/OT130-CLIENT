@@ -3,7 +3,6 @@ import {
   Patch, 
   Post 
 } from './privateApiService';
-import { ErrorAlert } from "../Alert";
 
 const CATEGORY_URL = "/categories";
 
@@ -14,7 +13,6 @@ const getCategories = async () => {
     response.data = data.data;
   } catch (error) {
     response.error = error.message;
-    ErrorAlert("Error", "Error al comunicarse con el servidor");
   }
   return response;
 };
@@ -26,7 +24,6 @@ const saveCategory = async (values) => {
     response.data = data.data;
   } catch (error) {
     response.error = error.message;
-    ErrorAlert("Error", "Error al comunicarse con el servidor");
   };
   return response;
 };
@@ -38,7 +35,6 @@ const updateCategory = async (id, values) => {
     response.data = data.data;
   } catch (error) {
     response.error = error.message;
-    ErrorAlert("Error", "Error al comunicarse con el servidor");
   };
   return response;
 };
