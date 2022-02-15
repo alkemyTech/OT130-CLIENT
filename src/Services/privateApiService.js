@@ -43,10 +43,10 @@ const Get = async (url, id = null) => {
   return response;
 };
 
-const Put = async (url, body) => {
+const Put = async (endpoint, body) => {
   const response = {};
   try {
-    const { data } = await instance.put(url, body);
+    const { data } = await instance.put(config.baseURL + endpoint, body, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
