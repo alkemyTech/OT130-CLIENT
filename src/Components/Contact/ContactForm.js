@@ -27,7 +27,6 @@ const ContactForm = () => {
         await addContact(val);
         SuccessAlert('Exitoso', 'Formulario enviado correctamente');
     } catch (error) {
-      console.error(error);
       ErrorAlert(UNKNOWN_ERROR, NETWORK_ERROR);
     }
   };
