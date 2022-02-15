@@ -27,6 +27,8 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import RegisterForm from './Components/Auth/RegisterForm';
+import MapContainer from './Components/Map/MapContainer';
 
 function App() {
   return (
@@ -57,8 +59,10 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
+          <Route path="/register" component={RegisterForm} />
         </Switch>
       </BrowserRouter>
+      <MapContainer />
 
       <div className="App">
         <header className="App-header">
