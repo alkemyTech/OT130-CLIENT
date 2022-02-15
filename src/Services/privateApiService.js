@@ -7,10 +7,6 @@ const config = {
     "content-type": "application/json",
   },
 };
-
-const getToken = () => {
-  return localStorage.getItem("Token");
-}
  
 const instance = axios.create( config ); 
 
