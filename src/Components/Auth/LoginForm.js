@@ -1,14 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { getLogin } from '../../reducers/auth/actions';
+import { postAuthLogin } from '../../Services/authService';
+import { ErrorAlert, SuccessAlert } from '../Alert';
 import { yupEmail, yupPasswordLogin } from '../../Helpers/formValidations';
 import { API_ERROR, INCORRECT_DATA, LOGIN_SUCCESS, UNKNOWN_ERROR } from '../../Helpers/messagesText';
-import { ErrorAlert, SuccessAlert } from '../Alert';
-import { postAuthLogin } from '../../Services/authService';
-import { useDispatch } from 'react-redux';
-import { getLogin } from '../../reducers/auth/actions';
 import '../FormStyles.css';
 import './loginForm.css';
 
@@ -35,7 +35,7 @@ const LoginForm = () => {
             const { token } = response.data.data;
             const { user } = response.data.data;
             dispatch(getLogin({
-              user:user,
+              user: user,
               token: token
             }));
             SuccessAlert(`Bienvenid@ ${user.name} `, LOGIN_SUCCESS);
@@ -43,11 +43,7 @@ const LoginForm = () => {
             ErrorAlert(INCORRECT_DATA);
           }
         } catch (error) {
-          console.error(error);
-          if (error.response) {
-          } else {
             ErrorAlert(UNKNOWN_ERROR, API_ERROR );
-          }
         }
       };
 

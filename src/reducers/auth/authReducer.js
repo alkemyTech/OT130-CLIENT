@@ -1,15 +1,15 @@
 import { readFromLocalStorage, saveToLocalStorage } from '../../utils/localStorage';
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './constants';
+import { LOGIN_SUCCESS, LOGOUT_SUCCESS, LOCAL_STORAGE_AUTH_KEY } from './constants';
 
 const initialState = {
-  isAuthenticated: readFromLocalStorage('authApp') || false,
+  isAuthenticated: readFromLocalStorage(LOCAL_STORAGE_AUTH_KEY) || false,
   user: null,
 };
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      saveToLocalStorage({ key: 'authApp', value: true });
+      saveToLocalStorage({ key: LOCAL_STORAGE_AUTH_KEY, value: true });
       return {
         ...state,
         isAuthenticated: true,
@@ -17,7 +17,7 @@ const AuthReducer = (state = initialState, action) => {
       };
 
     case LOGOUT_SUCCESS:
-      saveToLocalStorage({ key: 'authApp', value: false });
+      saveToLocalStorage({ key: LOCAL_STORAGE_AUTH_KEY, value: false });
       return {
         ...state,
         isAuthenticated: false,

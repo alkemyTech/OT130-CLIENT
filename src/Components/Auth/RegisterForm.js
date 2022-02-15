@@ -1,10 +1,10 @@
 import React , { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT, REGISTER_SUCCESS } from "../../Helpers/messagesText";
-import { yupConfirmPass, yupEmail, yupFirstName, yupPassRegister } from "../../Helpers/formValidations";
 import { postAuthRegister } from '../../Services/authService';
-import { SuccessAlert } from '../Alert';
+import { ErrorAlert, SuccessAlert } from '../Alert';
+import { yupConfirmPass, yupEmail, yupFirstName, yupPassRegister } from "../../Helpers/formValidations";
+import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT, REGISTER_SUCCESS, UNKNOWN_ERROR, API_ERROR } from "../../Helpers/messagesText";
 import '../FormStyles.css';
 
 const RegisterForm = () => {
@@ -34,8 +34,8 @@ const RegisterForm = () => {
                 try {
                     await postAuthRegister(values)
                     SuccessAlert( REGISTER_SUCCESS );
-                } catch (error) {
-                    console.error(error);
+                } catch  {
+                    ErrorAlert(UNKNOWN_ERROR, API_ERROR );
                 }
             }
             registerSubmit();

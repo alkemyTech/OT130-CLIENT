@@ -1,18 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import Logout from './Logout';
-import { useSelector } from 'react-redux';
-import { selectAuth, selectUserAuth } from '../../reducers/auth/authReducer';
+import { selectAuth } from '../../reducers/auth/authReducer';
 
 const UserAuth = () => {
   
   const isUserAuth = useSelector(selectAuth);
-  const currentUser = useSelector(selectUserAuth);
 
   return (
         <>
             { isUserAuth ?
-            <Logout currentUser={currentUser} /> : <LoginForm />
+            <Logout  /> : <LoginForm />
             }    
         </>
   )
