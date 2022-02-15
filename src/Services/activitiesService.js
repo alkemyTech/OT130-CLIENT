@@ -35,7 +35,3 @@ export {
   saveActivityData,
 };
 
-<<<<<<< HEAD
-export const saveActivityData = async (body) => await Post('activities', body);
-=======
->>>>>>> c236e8b49bc098b1ee569a7f98430853c6a40559
