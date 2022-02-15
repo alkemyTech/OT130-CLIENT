@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import { Get } from '../../Services/privateApiService';
+import { getCoors } from '../../Services/mapsService';
 
 const containerStyle = {
   width: '400px',
@@ -9,19 +8,15 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: -38.416097,
+  lng: -63.616672,
 };
 
-const geocodingApiKey = 'AIzaSyDI3UYfTLEqW_CbzGChiR-MyJUhbeBL7OE';
-const googleMapsApiKey = `AIzaSyBiZJqFwPbLFNBGwrsID7-VNsaqtkkZwcE`;
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const MapContainer = (e) => {
-  const [adress, setAdress] = useState('');
   const adressHandleChange = (e) => {
-    const res = Get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${e.target.value}&key=${geocodingApiKey}`,
-    );
+    const res = getCoors(e.target.value);
     console.log(res.data.results[0].geometry);
   };
 
@@ -33,15 +28,14 @@ const MapContainer = (e) => {
         placeholder="direccion"
         onChange={(e) => adressHandleChange(e)}
       />
-      <LoadScript googleMapsApiKey={googleMapsApiKey}>
+      <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap
           options={{ mapId: 'ae17bb4f15fc8c48' }}
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={10}
+          zoom={4}
         >
           {/* Child components, such as markers, info windows, etc. */}
-          <></>
         </GoogleMap>
       </LoadScript>
     </>
