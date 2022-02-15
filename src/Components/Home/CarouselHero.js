@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSlide } from "../../Services/publicApiService";
+import { getSlides } from "../../Services/homeService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 
@@ -10,7 +10,7 @@ function CarouselHero() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await getSlide()
+        const res = await getSlides()
         setGetState(res.data.data)
       } catch (error) {
         Swal.fire({

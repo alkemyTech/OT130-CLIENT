@@ -1,14 +1,25 @@
 import axios from 'axios';
 
 const config = {
-  baseURL: 'http://ongapi.alkemy.org/api/',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    //Group: 130, //Aqui va el ID del equipo!!
-    'content-type': 'application/json',
+    Group: 130, //Aqui va el ID del equipo!!
+    "content-type": "application/json",
   },
 };
 
-const instance = axios.create(config);
+const instance = axios.create( config ); 
+
+const Patch = async (endpoint, body) => {
+  const response = {};
+  try {
+      const { data } = await instance.patch(config.baseURL + endpoint, body, getHeaders())
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
 
 const Post = async (url, body) => {
   const response = {};
@@ -21,12 +32,10 @@ const Post = async (url, body) => {
   return response;
 };
 
-const Patch = async (url, data) => await instance.patch(url, data);
-
-const Get = async (url) => {
+const Get = async (url, id = null) => {
   const response = {};
   try {
-    const { data } = await instance.get(url);
+    const { data } = await instance.get(`${url}${id ? '/' + id : ''}`, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;
@@ -45,4 +54,33 @@ const Put = async (url, body) => {
   return response;
 };
 
-export { Get, Post, Patch, Put };
+const Delete = async (url, id) => {
+  const response = {};
+  try {
+    const { data } = await instance.delete( `${url}/${id}`, getHeaders());
+    response.data = data;
+  } catch (error) {
+    response.error = error;
+  }
+  return response;
+};
+
+const getToken = () => {
+  const token = localStorage.getItem('token');
+  return token || '';
+};
+
+const getAuthorization = () => {
+  const token = getToken();
+  return `Bearer ${token}`;
+};
+
+const getHeaders = () => {
+  return {
+    headers: {
+      Authorization: getAuthorization(),
+    },
+  };
+};
+
+export { Get, Post, Patch, Put, Delete };

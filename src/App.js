@@ -12,9 +12,11 @@ import NewsForm from './Components/News/NewsForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import SlidesForm from './Components/Slides/SlidesForm';
+import SlidesList from './Components/Slides/SlidesList';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import UserList from './Components/Users/UserList';
 import Home from './Components/Home/Index';
 import HomeForm from './Components/HomeForm/HomeForm';
 import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
@@ -24,6 +26,7 @@ import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 
 function App() {
   return (
@@ -39,9 +42,12 @@ function App() {
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route path="/backoffice/slides" component={SlidesList} />
           <Route exact path="/backoffice/organization" component={Organization} />
+          <Route exact path="/backoffice/users" component={UserList} />
+          <Route exact path="/backoffice/users/create" component={CreateEditUser} />
+          <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-user" component={CreateEditUser} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/donate" component={Donation} />
@@ -49,10 +55,11 @@ function App() {
           <Route path="/thanks" component={Thanks} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/activities/:id" component={ActivityDetail} />
+          <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
-      
+
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
