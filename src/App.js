@@ -27,8 +27,6 @@ import BackoficeActivitiesList from './Components/Activities/BackoficeActivities
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 function App() {
   return (
     <>
