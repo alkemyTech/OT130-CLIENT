@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Header = () =>{
-    return null
+const Footer = () =>{
+    return <p style={{fontSize:'40px'}}>TODO footer</p>
 // TODO footer web publica
 }
 
-export default Header
+export default Footer
