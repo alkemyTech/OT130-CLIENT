@@ -5,6 +5,7 @@ import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import Contacts from './Components/Contact';
 import Donation from './Components/Donations/Donation';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -34,6 +35,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
+          <Route path="/contacts" component={Contacts} />
           <Route path="/create-activity" component={ActivitiesCreation} />
           <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
