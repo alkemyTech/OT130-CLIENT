@@ -11,6 +11,7 @@ import {
   ACTIVITY_EDITED_ERROR,
   ACTIVITY_EDITED_SUCCESSFULLY,
   ACTIVITY_FETCH_ERROR,
+  NETWORK_ERROR,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
@@ -36,14 +37,18 @@ const ActivitiesEdition = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data, error } = await getActivityDataById(params.id);
-    data ? setActivityData(data.data) : ErrorAlert(ACTIVITY_FETCH_ERROR, error.message);
+    if (data.success) {
+      setActivityData(data.data);
+    } else {
+      ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_FETCH_ERROR);
+    }
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
     setFieldValue('description', editor.getData());
   };
 
-  const handleSubmitForm = async ({ image, name, description }) => {
+  const handleSubmitForm = async ({ image, name, description }, resetForm) => {
     setSubmitting(true);
     const base64Img = image && (await toBase64(image)).toString();
     const body = {
@@ -53,16 +58,21 @@ const ActivitiesEdition = ({ match: { params } }) => {
     };
     const { data, error } = await updateActivityDataById(params.id, body);
     setSubmitting(false);
-    data
-      ? SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY)
-      : ErrorAlert(ACTIVITY_EDITED_ERROR, error.message);
+
+    if (data?.success) {
+      SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY);
+      resetForm();
+    } else {
+      ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
+    }
+    setSubmitting(false)
   };
 
   return activityData ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        handleSubmitForm(values);
+      onSubmit={(values, { resetForm }) => {
+        handleSubmitForm(values, resetForm);
       }}
       validationSchema={validation}
     >
