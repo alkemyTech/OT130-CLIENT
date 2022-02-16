@@ -1,17 +1,12 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import "./Donation.css";
 import { DONATION_BUTTON_TEXT } from "../../Helpers/messagesText";
-
-const donate = () => {
-  // TODO: Completar con función de donación
-}
 
 const MercadoPagoButton = () => {
   return (
-    <Button className="donation-button" onClick={donate}>
+    <a className="btn btn-primary" href="https://mpago.la/2w3qx9K">
       {DONATION_BUTTON_TEXT}
-    </Button>
+    </a>
   );
 };
+
 export default MercadoPagoButton;
