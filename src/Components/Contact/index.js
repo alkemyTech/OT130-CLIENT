@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../Title/Title";
-import { MapView } from "./MapView";
+import { MapView } from "./mapView/MapView";
 
 import "../CardListStyles.css";
 
