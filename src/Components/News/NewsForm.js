@@ -3,7 +3,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ErrorMessage, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-
+import { ErrorAlert } from '../Alert/index';
 import { getCategories } from '../../Services/categoriesService';
 import { INPUT_REQUIRED } from '../../Helpers/messagesText';
 import { saveNews, updateNews } from '../../Services/newsService';
@@ -63,6 +63,7 @@ const NewsForm = ({ editNews }) => {
 
     if (error) {
       setRequestError(error);
+      ErrorAlert('Error', 'Error al comunicarce con el servidor')
     } else {
       setSuccess(true);
       setNews(initialValues);

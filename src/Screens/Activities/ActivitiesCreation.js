@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Formik } from 'formik';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
 import { saveActivityData } from '../../Services/activitiesService';
@@ -8,7 +7,11 @@ import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupLongDesc, yupTitles } from '../../Helpers/formValidations';
 import '../../Components/FormStyles.css';
 import './styles.css';
-import { ACTIVITY_ADDED_ERROR, ACTIVITY_ADDED_SUCCESSFULLY } from '../../Helpers/messagesText';
+import {
+  ACTIVITY_ADDED_ERROR,
+  ACTIVITY_ADDED_SUCCESSFULLY,
+  NETWORK_ERROR,
+} from '../../Helpers/messagesText';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const initialValues = {
@@ -18,7 +21,6 @@ const initialValues = {
 };
 
 const ActivitiesCreation = () => {
-  const { go } = useHistory();
   const [loading, setLoading] = useState(false);
 
   const validation = Yup.object().shape({
@@ -31,7 +33,7 @@ const ActivitiesCreation = () => {
     setFieldValue('description', editor.getData());
   };
 
-  const handleSubmit = async ({ image, name, description }) => {
+  const handleSubmit = async ({ image, name, description }, resetForm) => {
     setLoading(true);
     const base64Img = await toBase64(image);
     const body = {
@@ -41,20 +43,20 @@ const ActivitiesCreation = () => {
     };
     const { data, error } = await saveActivityData(body);
 
-    setLoading(false);
-    if (data) {
-      SuccessAlert(undefined, ACTIVITY_ADDED_SUCCESSFULLY);
-      go(0);
+    if (data?.success) {
+      SuccessAlert(ACTIVITY_ADDED_SUCCESSFULLY);
+      resetForm();
     } else {
-      ErrorAlert(ACTIVITY_ADDED_ERROR, error.message);
+      ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_ADDED_ERROR);
     }
+    setLoading(false);
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        handleSubmit(values);
+      onSubmit={(values, { resetForm }) => {
+        handleSubmit(values, resetForm);
       }}
       validationSchema={validation}
     >

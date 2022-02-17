@@ -8,20 +8,25 @@ import {
 
 const InfoAlert = (message) => Swal.fire(message);
 
-const ConfirmAlert = (action, confirm_message) =>
-  Swal.fire({
-    title: '¿ Esta seguro ?',
-    text: '¡No podrás revertir esto!',
+const ConfirmAlert = async (
+  preConfirm,
+  title = "",
+  text = "",
+  confirmButtonText = "Si"
+) => {
+  const result = await Swal.fire({
+    title,
+    text,
     icon: ALERT_ICON_WARNING,
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: `Si, ${action}!`,
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(confirm_message, '', ALERT_ICON_SUCCESS);
-    }
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    showLoaderOnConfirm: true,
+    confirmButtonText,
+    preConfirm,
   });
+  return result;
+};
 
 const SuccessAlert = (title, message) =>
   Swal.fire({
@@ -43,5 +48,5 @@ export {
   InfoAlert,
   ConfirmAlert,
   SuccessAlert,
-  ErrorAlert
+  ErrorAlert,
 };

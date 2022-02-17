@@ -30,6 +30,7 @@ const NO_ACTIVITIES = 'No se han encontrado actividades';
 const SEND = 'Enviar';
 const ACTIVITY_TITLE = 'Titulo de la actividad';
 const SHOULD_BE_DIGITS_ONLY = 'Deben ser solo digitos';
+const FETCH_ERROR = 'Ocurrió un error al intentar buscar informacion solicitada';
 const ORGANIZATION_EDITED_SUCCESSFULLY = 'La Organización fue editada correctamente';
 const ORGANIZATION_FETCH_ERROR = 'Ocurrió un error al intentar traer los datos de la organización';
 const ORGANIZATION_EDITED_ERROR = 'Ocurrió un error al intentar editar la organización';
@@ -81,4 +82,5 @@ export {
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
   IMAGE_NOT_AVAIBLE,
+  FETCH_ERROR
 };

@@ -5,10 +5,10 @@
 }
 .card-info{
     list-style: none;
-    padding: 10px 30px;
     background-color: #A1D4F6;
     border-radius: 5px;
     min-width: 18rem;
+    margin-bottom: 20px;
 }
 .card-info:hover{
     cursor: pointer;
