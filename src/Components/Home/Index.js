@@ -11,6 +11,6 @@ function Home() {
            <News/>
         </>
     )
-}
+} 
 
 export default Home;
