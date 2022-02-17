@@ -1,4 +1,19 @@
 .leaflet-container {
-    height: 60vh;
-    width: 80vw;
+    height: 50vh;
+    width: 60vw;
+    border: 0.3rem solid #0e7fe1;
+    border-radius: 0.3rem;
+}
+.leaflet-control-zoom  {
+    border: 1.5px solid #0e7fe1 !important;
+}
+.leaflet-tooltip {
+    width: 110px;
+    height: 70px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.logo-somos-mas-map {
+    width: 100px;
 }
