@@ -37,6 +37,7 @@ const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
+const TERMS_AND_CONDITIONS = 'Debe aceptar los terminos y condiciones';
 
 // Textos de donación
 
@@ -59,6 +60,7 @@ export {
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
   SHOULD_BE_DIGITS_ONLY,
+  TERMS_AND_CONDITIONS,
   TITLE_LONG,
   TITLE_SHORT,
   UNKNOWN_ERROR,

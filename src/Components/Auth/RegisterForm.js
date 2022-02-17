@@ -1,27 +1,27 @@
 import React , { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import TermsAndConditionModal from '../Modal/TermsAndConditionModal';
+import { useSelector } from 'react-redux';
 
-import '../FormStyles.css';
 import { PASSWORD_REGISTER_CONTAIN, PASSWORD_DONT_MATCH, PASSWORD_SHORT } from "../../Helpers/messagesText";
-import { yupConfirmPass, yupEmail, yupFirstName, yupLastName, yupPassRegister } from "../../Helpers/formValidations";
+import { yupConfirmPass, yupEmail, yupFirstName, yupLastName, yupPassRegister,yupTermsAndConditions } from "../../Helpers/formValidations";
+import { selectTerms } from '../../reducers/termsAndConditionsReducer';
+import { SuccessAlert } from '../Alert';
+import '../FormStyles.css';
 
 const RegisterForm = () => {
     const [submitForm, setSubmitForm] = useState(false);
-
-    const timerMessage = (time) => {
-        setTimeout(() => {
-            setSubmitForm(false);
-        }, time);
-    };
-
+    const {termsAndConditions} = useSelector(selectTerms);
+ 
     const formik = useFormik({
         initialValues:{
             firstName: '',
             lastName: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            termsAndConditions: false
         },
         validationSchema: Yup.object({
             firstName: yupFirstName(),
@@ -29,14 +29,18 @@ const RegisterForm = () => {
             email: yupEmail(),
             password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
             confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
+            termsAndConditions: yupTermsAndConditions()
         }),
         onSubmit: values => {
-            setSubmitForm(true);
-            timerMessage(3000);
-            formik.resetForm();
+            if(values.termsAndConditions && termsAndConditions.acept){
+                setSubmitForm(true);
+                SuccessAlert('Registro exitoso');
+                formik.resetForm();
+            }else{
+                setSubmitForm(false);
+            }
         },
     });
-
 
     return(
         <form className="form-container" onSubmit={formik.handleSubmit}>
@@ -44,6 +48,7 @@ const RegisterForm = () => {
             <input
                 id="firstName"
                 type="text"
+                autoComplete="username"
                 className="input-field"
                 {...formik.getFieldProps('firstName')}
             />
@@ -55,6 +60,7 @@ const RegisterForm = () => {
             <input
                 id="lastName"
                 type="text"
+                autoComplete="username"
                 className="input-field"
                 {...formik.getFieldProps('lastName')}
             />
@@ -66,6 +72,7 @@ const RegisterForm = () => {
             <input
                 id="email"
                 type="email"
+                autoComplete="userEmail"
                 className="input-field"
                 {...formik.getFieldProps('email')}
             />
@@ -77,6 +84,7 @@ const RegisterForm = () => {
             <input
                 id="pass"
                 type="password"
+                autoComplete="new-password"
                 className="input-field"
                 {...formik.getFieldProps('password')}
             />
@@ -88,15 +96,26 @@ const RegisterForm = () => {
             <input
                 id="confirmPassword"
                 type="password"
+                autoComplete="new-password"
                 className="input-field"
                 {...formik.getFieldProps('confirmPassword')}
             />
             {formik.touched.confirmPassword && formik.errors.confirmPassword &&
                 <div className="error-message message">{formik.errors.confirmPassword}</div>
             }
+            <div className='d-flex align-items-center'>
+                <label htmlFor='termsAndConditions' className='label'>Terminos y Condiciones</label>
+                <input
+                    id="termsAndConditions"
+                    type="checkbox"
+                    className="input-field" 
+                    {...formik.getFieldProps('termsAndConditions')}
+                />
+            </div>
 
+            <TermsAndConditionModal/>   
+            { termsAndConditions.acept || formik.errors.termsAndConditions || <div className="error-message message">{formik.errors.termsAndConditions}</div> }
             <button className="submit-btn"  type="submit" >Submit</button>
-            {submitForm && <div className="success-message message">Form submitted successfully</div>}
         </form>
     );
 

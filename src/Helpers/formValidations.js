@@ -8,6 +8,7 @@ import {
   INVALID_EMAIL,
   NUMBER_TO_SHORT_ERROR,
   PASSWORD_SHORT,
+  TERMS_AND_CONDITIONS,
   TITLE_LONG,
   TITLE_SHORT,
   SHOULD_BE_DIGITS_ONLY,
@@ -91,6 +92,10 @@ const yupLinks = () =>
     .url()
     .required(INPUT_REQUIRED)
 
+const yupTermsAndConditions = () =>
+  Yup.boolean()
+    .oneOf([true], TERMS_AND_CONDITIONS).required(TERMS_AND_CONDITIONS)
+
 
 export {
   yupCustomString,
@@ -104,6 +109,7 @@ export {
   yupPassRegister,
   yupPhone,
   yupShortDesc, 
+  yupTermsAndConditions,
   yupTitles, 
   yupUserRoles,
   yupLinks,
