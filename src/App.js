@@ -29,7 +29,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -59,7 +59,7 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
