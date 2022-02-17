@@ -4,7 +4,7 @@ import { ErrorAlert } from '../Components/Alert/index';
 const saveNews = async (values) => {
   const response = { error: null, data: {} };
   try {
-    const { data } = await Post('/news', values);
+    const { data } = await Post(process.env.REACT_APP_NEWS_ENDPOINT, values);
     response.data = data.data;
   } catch (error) {
     response.error = error.message;
@@ -18,7 +18,7 @@ const saveNews = async (values) => {
 const updateNews = async (values) => {
   const response = { error: null, data: {} };
   try {
-    const { data } = await Patch(`/news/${values.id}`, values);
+    const { data } = await Patch(`${process.env.REACT_APP_NEWS_ENDPOINT}/${values.id}`, values);
     response.data = data.data;
   } catch (error) {
     response.error = error.message;

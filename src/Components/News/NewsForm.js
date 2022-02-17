@@ -6,12 +6,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveNovedades, updateNovedades } from '../../actions/novedadesActions';
 import { selectNews } from '../../reducers/novedadesReducer';
+import { ErrorAlert } from '../Alert/index';
 import { getCategories } from '../../Services/categoriesService';
 import { INPUT_REQUIRED } from '../../Helpers/messagesText';
 import { saveNews, updateNews } from '../../Services/newsService';
 import { toBase64 } from '../../Helpers/base64';
 import { yupImages, yupTitles } from '../../Helpers/formValidations';
-
 import '../FormStyles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -67,6 +67,7 @@ const NewsForm = ({ editNews }) => {
 
     if (error) {
       setRequestError(error);
+      ErrorAlert('Error', 'Error al comunicarce con el servidor')
     } else {
       setSuccess(true);
       setNews(initialValues);

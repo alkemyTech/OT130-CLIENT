@@ -1,27 +1,23 @@
 import { Get, Post } from "./privateApiService";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+const endpoint = process.env.REACT_APP_ORGANIZATION_ENDPOINT;
+
 const getOrganizationData = async () => {
   try {
-    const { data } = await Get("organization");
+    const { data } = await Get(baseURL + endpoint);
     return data;
   } catch (error) {
     return { error: error.response?.data || error };
   }
 };
 
-const updateOrganizationData = async (values) => {
-  const response = {
-    data:{},
-    error: ''
-  }
+const updateOrganizationData = async (data) => {
   try {
-    const { data } = await Post("organization", values);
-    response.data = data;
+    return await Post(baseURL + endpoint, data);
   } catch (error) {
-    response.error = 'Error al actualizar la organización';
+    return { error: error.response?.data || error };
   }
-
-  return response;
 };
 
 export { getOrganizationData, updateOrganizationData };
