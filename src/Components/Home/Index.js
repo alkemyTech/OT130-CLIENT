@@ -5,16 +5,6 @@ import './Hero.css';
 import './News.css';
 
 function Home() {
-<<<<<<< HEAD
-
-        return (
-            <>
-               <CarouselHero/>
-               <News/>         
-            </>
-        ) 
-};
-=======
     return (
         <>
            <CarouselHero/>
@@ -22,6 +12,5 @@ function Home() {
         </>
     )
 } 
->>>>>>> 9b275dc910d35e64ce98e24f95bcd1f21e30b2a2
 
 export default Home;
