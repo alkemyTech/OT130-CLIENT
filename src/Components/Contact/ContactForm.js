@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
 import React from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
-import { SuccessAlert } from '../Alert';
-
+import { ErrorAlert, SuccessAlert } from '../Alert';
 import { yupEmail, yupFirstName, yupShortDesc, yupPhone } from '../../Helpers/formValidations';
-
+import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
+import { addContact } from '../../Services/contactsService';
 import '../FormStyles.css';
 
 const initialContactValues = {
@@ -22,8 +22,13 @@ const ContactForm = () => {
     message: yupShortDesc(),
   });
 
-  const sendForm = async (form) => {
-    SuccessAlert('Exito', 'Formulario enviado correctamente');
+  const sendForm = async (val) => {
+    try {
+        await addContact(val);
+        SuccessAlert('Exitoso', 'Formulario enviado correctamente');
+    } catch (error) {
+      ErrorAlert(UNKNOWN_ERROR, NETWORK_ERROR);
+    }
   };
 
   return (
@@ -45,7 +50,6 @@ const ContactForm = () => {
             placeholder="Nombre"
           />
           {touched.name && <ErrorMessage name="name" />}
-
           <Field
             className="select-field"
             type="email"
