@@ -3,8 +3,8 @@ import { Get, Post, Put, Delete } from "./privateApiService";
 const  ACTIVITIES_ENDPOINT = process.env.REACT_APP_ACTIVITIES_ENDPOINT
 
 const getActivities = async () => {
-  const { data } = await Get(ACTIVITIES_ENDPOINT);
-  return data;
+  const { data, error } = await Get(ACTIVITIES_ENDPOINT);
+  return { data: data.data, error };
 };
 
 const getActivityDataById = async (id) => {
