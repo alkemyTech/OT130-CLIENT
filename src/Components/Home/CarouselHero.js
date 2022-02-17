@@ -11,7 +11,7 @@ function CarouselHero() {
     (async function () {
       try {
         const res = await getSlides();
-        setGetState(res.data.data)
+        setGetState(res.data.data);
       } catch (error) {
         ErrorAlert(error);       
       }
