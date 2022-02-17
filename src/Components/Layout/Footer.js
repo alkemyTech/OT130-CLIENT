@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const Footer = () =>{
-    return <p style={{fontSize:'40px'}}>TODO footer</p>
-// TODO footer web publica
-}
+const Footer = () => {
+  return <p style={{ fontSize: '40px' }}>TODO footer</p>;
+  // TODO footer web publica
+};
 
-export default Footer
+export default Footer;

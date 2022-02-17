@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Alert, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { getSlides, deleteSlide } from "../../Services/slidesService";
-import { ErrorAlert, SuccessAlert } from "../Alert";
 
 import SlideCard from "../SlideCard/SlideCard";
 
+import { getSlides, deleteSlide } from "../../actions/slidesActions";
+
 const SlidesList = () => {
-  const [slides, setSlides] = useState([]);
+  const dispatch = useDispatch();
+  const { slides } = useSelector((state) => state.slides);
 
   useEffect(() => {
-    const getdata = async () => {
-      const { data: slides, error } = await getSlides();
-      if (error) {
-        return ErrorAlert("Error", error.message);
-      }
-      setSlides(slides);
-    };
-    getdata();
-  }, []);
+    dispatch(getSlides());
+  }, [dispatch]);
 
-  const handleDeleteSlide = async (slideId) => {
-    const { error } = await deleteSlide(slideId);
-    if (error) {
-      return ErrorAlert("Error", error.message);
-    }
-    const updatedSlides = slides.filter((slide) => slide.id !== slideId);
-    setSlides(updatedSlides);
-    SuccessAlert("Eliminado con éxito", "");
+  const handleDeleteSlide = (slideId) => {
+    dispatch(deleteSlide(slideId));
   };
 
   return (
