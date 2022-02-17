@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import Contacts from './Components/Contact';
 import Donation from './Components/Donations/Donation';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -31,8 +30,9 @@ import BackoficeActivitiesList from './Components/Activities/BackoficeActivities
 import { transitionsConfig } from './config/transitions';
 
 function App() {
+  
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
@@ -42,6 +42,7 @@ function App() {
         >
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
+          <Route path="/contacts" component={Contacts} />
           <Route path="/create-activity" component={ActivitiesCreation} />
           <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
@@ -66,7 +67,7 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </AnimatedSwitch>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
