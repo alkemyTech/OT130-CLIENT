@@ -1,0 +1,21 @@
+.progress {
+  background-color: #e4e0e0;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px 0;
+  overflow: hidden;
+  height: 20px;
+}
+
+.progress-bar {
+  background: linear-gradient(to left, #36D7B7, #5085E5, #4731DC);
+  box-shadow: 0 3px 3px -5px #6491E3, 0 2px 5px #4735C9;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  height: 100%;
+  transition: 1s ease 0.3s;
+}
