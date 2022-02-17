@@ -7,6 +7,7 @@ const config = {
     'content-type': 'application/json',
   },
 };
+const instance = axios.create(config);
 
 const instance = axios.create(config);
 
@@ -35,7 +36,5 @@ const Post = async (url, body) => {
   return response;
 }
 
-export {
-  Post, 
-  Get 
-};
+export {Post, Get }
+
