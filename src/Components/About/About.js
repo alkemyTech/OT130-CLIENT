@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ListTexts from '../ListTexts/ListTexts';
 import Title from '../Title/Title';
+import SocialMediaWidgets from '../SocialMediaWidgets/SocialMediaWidgets';
 import { getData } from '../../Services/aboutService';
 
 const About = () => {
@@ -22,6 +23,7 @@ const About = () => {
             ?  <>
                     <Title text={dataTexts[0].title}/>
                     <ListTexts itemSection={dataTexts}/>
+                    <SocialMediaWidgets/>
                 </>
             : <h1>{errorMessage}</h1>
             }
