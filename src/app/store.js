@@ -1,11 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import counterReducer from '../features/counter/counterSlice';
 import { membersReducer } from '../reducers/membersReducer';
+import slidesReducer from '../reducers/slidesSlice';
+
+const reducer = combineReducers({
+  slides: slidesReducer,
+  members: membersReducer,
+});
 
 export default configureStore({
-  reducer: {
-    counter: counterReducer,
-    members: membersReducer,
-  },
+  reducer,
 });
