@@ -16,17 +16,20 @@ import SlidesList from './Components/Slides/SlidesList';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import Thanks from './Components/Donations/Thanks';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import About from './Components/About/About';
 import UserList from './Components/Users/UserList';
 import Home from './Components/Home/Index';
 import HomeForm from './Components/HomeForm/HomeForm';
+import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+
 
 function App() {
   return (
@@ -57,6 +60,7 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
+          <Route path="/about-us" component={About} />
         </Switch>
       </BrowserRouter>
 
