@@ -30,6 +30,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 
 function App() {
+  
   return (
     <>
       <BrowserRouter>
