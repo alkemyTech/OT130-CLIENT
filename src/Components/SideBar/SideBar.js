@@ -1,10 +1,9 @@
 import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
-import "./SideBar.css"
 import { SideBarLink } from './SideBarLink'
+import "./SideBar.css"
 
 export const SideBar = ({ paths }) => {
-
   return (
     <Menu>
       {
