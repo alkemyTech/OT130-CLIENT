@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { MapView } from "./mapView/MapView";
 import ContactsList from "./ContactsList";
 import Title from "../Title/Title";
@@ -10,10 +9,8 @@ const Contacts = () => {
   return (
     <div>
       <Title text="Contactos" />
-      <Container>
           <ContactsList />
           <MapView />
-      </Container>
     </div>
   );
 };
