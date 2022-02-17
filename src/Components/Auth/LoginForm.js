@@ -28,7 +28,7 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const submitFunction = async (e) => {
+      const submitFunction = async () => {
         try {
           const response = await postAuthLogin(values);
           if (response.data.data) {
