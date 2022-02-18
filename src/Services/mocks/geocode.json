@@ -1,0 +1,63 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "3622",
+               "short_name" : "3622",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Obispo Gelabert",
+               "short_name" : "Obispo Gelabert",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Santa Fe",
+               "short_name" : "Santa Fe",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "La Capital",
+               "short_name" : "La Capital",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Santa Fe",
+               "short_name" : "Santa Fe",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "Argentina",
+               "short_name" : "AR",
+               "types" : [ "country", "political" ]
+            }
+         ],
+         "formatted_address" : "Obispo Gelabert 3622, Santa Fe, Argentina",
+         "geometry" : {
+            "location" : {
+               "lat" : -31.6335742,
+               "lng" : -60.71805919999999
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -31.6322252197085,
+                  "lng" : -60.71671021970849
+               },
+               "southwest" : {
+                  "lat" : -31.6349231802915,
+                  "lng" : -60.7194081802915
+               }
+            }
+         },
+         "place_id" : "ChIJuT5fhMuptZURxElmsxlguZ4",
+         "plus_code" : {
+            "compound_code" : "978J+HQ Santa Fe, Argentina",
+            "global_code" : "47WX978J+HQ"
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}

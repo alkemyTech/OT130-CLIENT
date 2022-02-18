@@ -15,30 +15,26 @@ const center = {
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const MapContainer = (e) => {
-  const [address, setaddress] = useState('');
+const MapContainer = ({ address }) => {
+  const [coords, setCoords] = useState();
 
   const handleSubmit = async () => {
     const res = await getCoors(address);
     //Asignar cordenadas cuando tenga la apiKey
     console.log(res);
+    setCoords(res.results[0].geometry.location);
   };
 
   return (
     <>
       <div>
-        <input
-          id="adress"
-          type="text"
-          placeholder="direccion"
-          onChange={(e) => setaddress(e.target.value)}
-        />
+        <input id="adress" type="text" placeholder="direccion" onChange={(e) => e.target.value} />
         <input type="button" value="Buscar" onClick={handleSubmit} />
       </div>
       <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap
           options={{ mapId: 'ae17bb4f15fc8c48' }}
-          mapContainerStyle={containerStyle}
+          mapContainerStyle={coords || containerStyle}
           center={center}
           zoom={4}
         >
