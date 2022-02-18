@@ -9,6 +9,7 @@ import {
   PASSWORD_SHORT,
 } from '../../Helpers/messagesText';
 import {
+  yupAddress,
   yupConfirmPass,
   yupEmail,
   yupFirstName,
@@ -42,6 +43,7 @@ const RegisterForm = () => {
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
+      address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
       setSubmitForm(true);
@@ -52,7 +54,7 @@ const RegisterForm = () => {
   });
 
   const mapSubmit = () => {
-    setSendAddress(formik.values.address);
+    if (!formik.errors.address) setSendAddress(formik.values.address);
   };
 
   return (
@@ -120,6 +122,10 @@ const RegisterForm = () => {
           Buscar
         </button>
       </div>
+
+      {formik.touched.address && formik.errors.address && (
+        <div className="error-message message">{formik.errors.address}</div>
+      )}
 
       <MapContainer address={sendAddress} />
 

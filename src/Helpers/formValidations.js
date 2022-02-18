@@ -91,8 +91,13 @@ const yupLinks = () =>
     .url()
     .required(INPUT_REQUIRED)
 
+const yupAddress = (minMsg) =>
+  Yup.string()
+    .required(INPUT_REQUIRED)
+    .min(6,minMsg )
 
 export {
+  yupAddress,
   yupCustomString,
   yupConfirmPass,
   yupEmail, 
