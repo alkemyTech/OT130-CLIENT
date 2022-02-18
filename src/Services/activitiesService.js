@@ -33,4 +33,4 @@ export {
   deleteActivity,
   updateActivityDataById,
   saveActivityData,
-};
+}
