@@ -4,7 +4,7 @@ import {
   Post 
 } from './privateApiService';
 
-const CATEGORY_URL = "/categories";
+const CATEGORY_URL = process.env.REACT_APP_CATEGORIES_ENDPOINT
 
 const getCategories = async () => {
   const response = { error: null, data: {} };
