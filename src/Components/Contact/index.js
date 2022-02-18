@@ -3,7 +3,6 @@ import { MapView } from "./mapView/MapView";
 import ContactsList from "./ContactsList";
 import Title from "../Title/Title";
 import "../CardListStyles.css";
-
 const Contacts = () => {
 
   return (

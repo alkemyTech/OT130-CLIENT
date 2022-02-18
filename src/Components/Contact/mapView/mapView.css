@@ -1,7 +1,7 @@
 .leaflet-container {
-    height: 50vh;
-    width: 60vw;
-    border: 0.3rem solid #0e7fe1;
+    height: 70vh;
+    width: 80vw;
+    border: 0.1rem solid #0e7fe1;
     border-radius: 0.3rem;
 }
 .leaflet-control-zoom  {
