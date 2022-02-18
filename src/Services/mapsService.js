@@ -19,6 +19,5 @@ const getCoors = async (address) => {
   return response;
 };
 
-const getMockCoords = async () => {};
 
 export { getCoors };

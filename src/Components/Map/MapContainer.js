@@ -1,44 +1,53 @@
-import React from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import React, { useEffect, useState } from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { getCoors } from '../../Services/mapsService';
-import { useState } from 'react';
+import res from '../../Services/mocks/geocode.json';
 
 const containerStyle = {
-  width: '400px',
+  width: 'auto',
   height: '400px',
 };
 
-const center = {
+const initialCoord = {
   lat: -38.416097,
   lng: -63.616672,
 };
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+const apiId = process.env.REACT_APP_GOOGLE_MAPS_ID;
 
 const MapContainer = ({ address }) => {
-  const [coords, setCoords] = useState();
+  const [coords, setCoords] = useState(null);
+  const [center, setCenter] = useState(initialCoord);
+  const [zoom, setZoom] = useState(4);
 
-  const handleSubmit = async () => {
-    const res = await getCoors(address);
+  const findCoords = async () => {
+    //const res = await getCoors(address);
     //Asignar cordenadas cuando tenga la apiKey
-    console.log(res);
-    setCoords(res.results[0].geometry.location);
+    if (address) {
+      setCoords(res.results[0].geometry.location);
+      setCenter(coords);
+      setZoom(15);
+    }
   };
+
+  useEffect(() => {
+    findCoords();
+  }, [address, coords]);
 
   return (
     <>
-      <div>
-        <input id="adress" type="text" placeholder="direccion" onChange={(e) => e.target.value} />
-        <input type="button" value="Buscar" onClick={handleSubmit} />
-      </div>
       <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap
-          options={{ mapId: 'ae17bb4f15fc8c48' }}
-          mapContainerStyle={coords || containerStyle}
+          options={{ mapId: apiId }}
+          mapContainerStyle={containerStyle}
           center={center}
-          zoom={4}
+          zoom={zoom}
+          onCenterChanged
+          onZoomChanged
         >
           {/* Child components, such as markers, info windows, etc. */}
+          <Marker position={coords} />
         </GoogleMap>
       </LoadScript>
     </>
