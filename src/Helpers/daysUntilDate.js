@@ -1,10 +1,11 @@
 export const daysToDate = (dueDate) => {
+  const DATE_FORMAT = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
   const dateElements = dueDate.split('-');
   const year = dateElements[0];
   const month = dateElements[1] - 1;
   const day = dateElements[2];
 
-  if (month > 12 || day > 31 || year.length < 4 || !dueDate.includes('-') || dueDate.includes('/'))  {
+  if (!DATE_FORMAT.test(dueDate))  {
     throw Error('Invalid date. Format is "yyyy-mm-dd".');
   }
 
