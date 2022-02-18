@@ -4,7 +4,7 @@ import { Button, Table, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, deleteUsers } from '../../actions/usersActions';
 import { selectUsers } from '../../reducers/usersReducer';
-import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
+import { SuccessAlert } from '../Alert';
 
 const UserList = () => {
   const dispatch = useDispatch();
