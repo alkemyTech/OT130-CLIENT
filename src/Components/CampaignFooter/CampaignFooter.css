@@ -1,0 +1,7 @@
+.footer-logo {
+    width: 200px; height: 150px; object-fit: cover
+}
+
+.footer__social-icons-container {
+    width: fit-content;
+}
