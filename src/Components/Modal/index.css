@@ -14,11 +14,11 @@
   cursor: pointer;
   padding: 0px 30px;
   display: inline-block;
-  margin: 10px 15px;
   text-transform: uppercase;
   line-height: 2em;
   letter-spacing: 1.5px;
   font-size: 1em;
+  margin: 10px 0;
   outline: none;
   position: relative;
   font-size: 14px;
@@ -47,6 +47,7 @@
 
 .cModal {
   display: block;
+  width: 100%;
   font-size: 12px;
 }
 .cModal > .header {
@@ -57,7 +58,6 @@
   padding: 5px;
 }
 .cModal > .content {
-
   padding: 10px 5px;
 }
 .cModal > .actions {
@@ -65,7 +65,6 @@
 }
 .cModal > .actions {
   width: 100%;
-  padding: 10px 5px;
   text-align: center;
 }
 .cModal > .close {

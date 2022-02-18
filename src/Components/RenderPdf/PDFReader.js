@@ -16,7 +16,7 @@ const PDFReader = () => {
   }
 
   return (
-    <div>
+    <div className='d-flex'>
       <Loader isLoading={isLoading} />
       <section
         id="pdf-section"
@@ -34,7 +34,7 @@ const PDFReader = () => {
           file="/assets/docs/test.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <Page pageNumber={pageNumber} scale={scale} />
+          <Page pageNumber={pageNumber} scale={scale}/>
         </Document>
       </section>
     </div>
