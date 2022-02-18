@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
 import CategoriesForm from './Components/Categories/CategoriesForm';
+import Contacts from './Components/Contact';
 import Donation from './Components/Donations/Donation';
 import MembersForm from './Components/Members/MembersForm';
 import NewsForm from './Components/News/NewsForm';
@@ -24,18 +23,18 @@ import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
-import RegisterForm from './Components/Auth/RegisterForm';
+import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 
 function App() {
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
+          <Route path="/contacts" component={Contacts} />
           <Route path="/create-activity" component={ActivitiesCreation} />
           <Route path="/edit-activity/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
@@ -47,7 +46,6 @@ function App() {
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
-          <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-member" component={MembersForm} />
@@ -61,8 +59,7 @@ function App() {
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
       </BrowserRouter>
-
-    </>
+    </div>
   );
 }
 
