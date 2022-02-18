@@ -24,13 +24,12 @@ import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
+import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import { transitionsConfig } from './config/transitions';
 
 function App() {
-  
   return (
     <div className="App">
       <BrowserRouter>
