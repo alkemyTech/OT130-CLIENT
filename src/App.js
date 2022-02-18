@@ -26,6 +26,7 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import ProtectedRoute from './Components/Auth/ProtectedRoute';
 
 function App() {
   
@@ -46,6 +47,7 @@ function App() {
           <Route path="/backoffice/slides" component={SlidesList} />
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route exact path="/backoffice/users" component={UserList} />
+          <ProtectedRoute path="/newsletter">NewsLetter acá</ProtectedRoute>
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
           <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
