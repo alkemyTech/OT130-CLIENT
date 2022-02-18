@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Slider from './Slider';
 import Content from './Content';
-import CampaignFooter from '../../Components/CampaignFooter/CampaignFooter';
+import CampaignFooter from '../Footer/CampaignFooter';
 
 const ToysCampaign = () => {
   return (
