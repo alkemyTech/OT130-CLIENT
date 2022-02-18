@@ -6,7 +6,7 @@ const initialState = {
   user: null,
 };
 
-const AuthReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       saveToLocalStorage({ key: LOCAL_STORAGE_AUTH_KEY, value: true });
@@ -28,7 +28,7 @@ const AuthReducer = (state = initialState, action) => {
   }
 };
 
-export default AuthReducer;
+export default authReducer;
 
-export const selectAuth = (state) => state.AuthUser.isAuthenticated;
-export const selectUserAuth = (state) => state.AuthUser.user;
+export const selectAuth = (state) => state.authUser.isAuthenticated;
+export const selectUserAuth = (state) => state.authUser.user;
