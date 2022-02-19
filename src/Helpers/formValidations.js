@@ -11,6 +11,7 @@ import {
   TITLE_LONG,
   TITLE_SHORT,
   SHOULD_BE_DIGITS_ONLY,
+  PASSWORD_INCORRECT,
 } from './messagesText';
 
 const yupTitles = () =>
@@ -60,6 +61,12 @@ const yupPassword = () =>
     .required(INPUT_REQUIRED)
     .min(8, PASSWORD_SHORT)
 
+const yupPasswordLogin = () =>
+  Yup.string()
+    .min(6, PASSWORD_INCORRECT )
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/, PASSWORD_INCORRECT)
+    .required(INPUT_REQUIRED)
+
 // RegisterForm validations 
 const yupFirstName = () =>
   Yup.string()
@@ -91,7 +98,6 @@ const yupLinks = () =>
     .url()
     .required(INPUT_REQUIRED)
 
-
 export {
   yupCustomString,
   yupConfirmPass,
@@ -100,7 +106,8 @@ export {
   yupImages, 
   yupLongDesc, 
   yupLastName,
-  yupPassword, 
+  yupPassword,
+  yupPasswordLogin, 
   yupPassRegister,
   yupPhone,
   yupShortDesc, 
