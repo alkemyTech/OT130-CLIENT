@@ -9,11 +9,12 @@ const config = {
 };
 
 const instance = axios.create(config);
+const slidesURL = process.env.REACT_APP_API_URL_SLIDES;
 
 const getSlides = async () => {
   const response = {};
   try {
-      const { data } = await instance.get(config.baseURL + 'slides');
+      const { data } = await instance.get(`${config.baseURL}${slidesURL}`);
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -24,7 +25,7 @@ const getSlides = async () => {
 const addNewSlide = async (body) => {
   const response = {};
   try {
-      const { data } = await instance.post(config.baseURL + 'slides', body);
+      const { data } = await instance.post(`${config.baseURL}${slidesURL}`, body);
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -35,7 +36,7 @@ const addNewSlide = async (body) => {
 const editSlide = async (body, id) => {
   const response = {};
   try {
-      const { data } = await instance.put(config.baseURL + 'slides' + `/${id}`, body);
+      const { data } = await instance.put(`${config.baseURL}${slidesURL}/${id}`, body);
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -45,7 +46,7 @@ const editSlide = async (body, id) => {
 
 const deleteSlide = async (slideId) => {
   try {
-    return await instance.delete(`slides/${slideId}`);
+    return await instance.delete(`${slidesURL}/${slideId}`);
   } catch (error) {
     return { error: error.response?.data || error };
   }
