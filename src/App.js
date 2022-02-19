@@ -23,9 +23,11 @@ import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import { PublicRoute } from './router/PublicRoute';
+import RegisterForm from './Components/Auth/RegisterForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   
@@ -58,6 +60,7 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
+          <PublicRoute path="/register" component={RegisterForm}/>
         </Switch>
       </BrowserRouter>
       </div>
