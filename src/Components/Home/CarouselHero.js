@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { getSlides } from "../../Services/homeService";
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import Swal from 'sweetalert2'
+import { ErrorAlert } from '../Alert';
+import { Spinner } from '../Spinner/Spinner';
 
 function CarouselHero() {
 
   const [getState, setGetState] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     (async function () {
       try {
-        const res = await getSlides()
-        setGetState(res.data.data)
+        const res = await getSlides();
+        setGetState(res.data.data);
       } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          text: 'Error: no se puede conectar con el servidor',
-          showConfirmButton: false,
-          timer: 2000
-        })
+        ErrorAlert(error);
       }
-    })()
+      setLoading(false);
+    })();
   }, []);
 
   return (
     <>
+      {loading && <Spinner/>}      
       <Carousel className='carousel'>
         {getState && getState.map((res) =>
           <Carousel.Item className='carousel-item' key={res.id}>
             <img src={res.image} className='d-block w-100 img-carousel' alt="First slide"></img>
           </Carousel.Item>)}
       </Carousel>
-
       <Container className='container-welcome-text'>
         <Row>
           <Col xs={12} className='welcome-text'>
@@ -46,7 +45,6 @@ function CarouselHero() {
           </Col>
         </Row>
       </Container>
-
     </>
   )
 }
