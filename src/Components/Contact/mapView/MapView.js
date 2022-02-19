@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { MapContainer, Marker, TileLayer, Tooltip, useMapEvents, useMapEvent, useMap } from 'react-leaflet';
+import { MapContainer , Marker, TileLayer, Tooltip, useMapEvents, useMapEvent, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './mapView.css';
@@ -18,14 +17,20 @@ function GetIcon() {
   });
 }
 
-
-
-
 export const MapView = () => {
   const positionONG = [-34.603465109247814, -58.375943679254284];
   const [userPosition, setUserPosition] = useState(null);
   const [positionMain, setPositionMain] = useState(positionONG);
-  
+  const [nameLocationMain, setNameLocationMain] = useState('ONG SOMOS MAS')
+
+  const goToUserLocation = () => {
+    setPositionMain(userPosition)
+    setNameLocationMain('Mi Ubicación')
+  } 
+  const goToONGLocation = () => {
+    setPositionMain(positionONG)
+    setNameLocationMain('ONG SOMOS MAS')
+  }
   function UserLocationMarker() {
     const map = useMapEvents({
       click() {
@@ -45,44 +50,18 @@ export const MapView = () => {
     );
   }
 
-  function ButtonLocations({ parentMap, zoom }) {
-    const minimap = useMap()
-
-    // Clicking a point on the minimap sets the parent's map center
-    const onClick = useCallback(
-      (e) => {
-        parentMap.setView(e.latlng, parentMap.getZoom())
-      },
-      [parentMap],
-    )
-    useMapEvent('click', onClick)
-  
-    // Keep track of bounds in state to trigger renders
-    const [bounds, setBounds] = useState(parentMap.getBounds())
-    const onChange = useCallback(() => {
-      setBounds(parentMap.getBounds())
-      // Update the minimap's view to match the parent map's center and zoom
-      minimap.setView(parentMap.getCenter(), zoom)
-    }, [minimap, parentMap, zoom])
-
-
-
-
-    return L.easyButton ({
-      position: 'topleft',
-        stateName: 'remove-legend',
-        icon: '<span>masquer la légende</span>',
-        title: 'masquer la légende',
-        onClick: function(map) {
-          setPositionMain(userPosition)
-          map.flyTo(positionMain, map.getZoom());
-        } 
-        })
-      }
-
   return ( 
     <div className="row map-div-container d-flex justify-content-center my-5 p-0">
-      <div className='d-flex justify-content-center aling-items-center mb-2'>
+      <div className='buttons-locations-container d-flex flex-column  mb-2'>
+        <div className='n d-flex justify-content-center '>
+          <span className='span-button-location'>
+            {`Click map to go: ${nameLocationMain}`}
+          </span>
+        </div>
+        <div className='d-flex justify-content-center aling-items-center'>
+          <button className='btn-location-style' onClick={(e) => goToUserLocation(e)}>Mi Ubicación</button>
+          <button className='btn-location-style' onClick={(e) => goToONGLocation(e)}>SOMOS MAS</button>
+        </div>
       </div>
       <MapContainer className='col-12' center={positionMain} zoom={13}  >
         <TileLayer
@@ -95,7 +74,6 @@ export const MapView = () => {
             <img className="logo-somos-mas-map" src={LOGO} alt="LOGO-SOMOS-MAS" />
           </Tooltip>
         </Marker>
-        {/* <GetButton/> */}
       </MapContainer>
     </div>
   );
