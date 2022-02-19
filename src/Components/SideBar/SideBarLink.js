@@ -12,4 +12,4 @@ export const SideBarLink = ({ route, link }) => {
       </Link>
     </>
   )
-}
+};

@@ -6,19 +6,13 @@ import "./SideBar.css"
 export const SideBar = ({ paths }) => {
   return (
     <Menu>
-      {
-        paths.map(( path, i ) => {
+      {paths.map(( path, i ) => {
           <SideBarLink
             route={path.ROUTE}
             link={path.PLACEHOLDER}
             key={i}
           />
-        })
-      }
+        })}
     </Menu>
   )
 };
-
-
-
-
