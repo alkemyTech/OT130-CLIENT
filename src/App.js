@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
@@ -26,12 +27,18 @@ import Organization from './Screens/Organization/Organization';
 import BackofficeActivitiesList from './Components/Activities/BackofficeActivitiesList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { transitionsConfig } from './config/transitions';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
+        <AnimatedSwitch
+          atLeave={transitionsConfig.atLeave}
+          atActive={transitionsConfig.atActive}
+          atEnter={transitionsConfig.atEnter}
+          mapStyles={transitionsConfig.mapStyles}
+        >
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
           <Route path="/contacts" component={Contacts} />
@@ -57,7 +64,7 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
-        </Switch>
+        </AnimatedSwitch>
       </BrowserRouter>
     </div>
   );
