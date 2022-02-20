@@ -11,41 +11,42 @@ const ActivitiesForm = ({
   setFieldValue,
   values,
   touched,
-  formikHandleOnChange,
   CKEditorHandleOnChange,
   activityData,
   submitting,
-}) => (
-  <form className="form-container" onSubmit={handleSubmit}>
-    <input
-      className="input-field"
-      type="text"
-      name="name"
-      onChange={formikHandleOnChange('name')}
-      placeholder={ACTIVITY_TITLE}
-      value={values.name}
-    />
-    {touched.name && <ErrorMessage name="name" />}
+}) => {
+  return (
+    <form className="form-container" onSubmit={handleSubmit}>
+      <input
+        className="input-field"
+        type="text"
+        name="name"
+        onChange={(e) => setFieldValue('name', e.target.value)}
+        placeholder={ACTIVITY_TITLE}
+        value={values.name}
+      />
+      {touched.name && <ErrorMessage name="name" />}
 
-    <CKEditor
-      editor={ClassicEditor}
-      data={activityData?.description}
-      onChange={(e, editor) => CKEditorHandleOnChange(editor, setFieldValue)}
-    />
-    {touched.description && <ErrorMessage name="description" />}
-    <input
-      className="submit-btn"
-      type="file"
-      max={1}
-      name="image"
-      accept={SUPPORTED_IMAGE_FORMATS}
-      onChange={(e) => setFieldValue('image', e.currentTarget.files[0])}
-    />
-    {touched.image ? <ErrorMessage name="image" /> : null}
-    <button className="submit-btn" type="submit" disabled={submitting}>
-      {submitting ? <Spinner animation="border" /> : SEND}
-    </button>
-  </form>
-);
+      <CKEditor
+        editor={ClassicEditor}
+        data={activityData?.description}
+        onChange={(e, editor) => CKEditorHandleOnChange(editor, setFieldValue)}
+      />
+      {touched.description && <ErrorMessage name="description" />}
+      <input
+        className="submit-btn"
+        type="file"
+        max={1}
+        name="image"
+        accept={SUPPORTED_IMAGE_FORMATS}
+        onChange={(e) => setFieldValue('image', e.currentTarget.files[0])}
+      />
+      {touched.image ? <ErrorMessage name="image" /> : null}
+      <button className="submit-btn" type="submit" disabled={submitting}>
+        {submitting ? <Spinner animation="border" /> : SEND}
+      </button>
+    </form>
+  );
+};
 
 export default ActivitiesForm;
