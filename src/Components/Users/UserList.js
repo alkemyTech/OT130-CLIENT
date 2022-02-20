@@ -4,17 +4,12 @@ import { Button, Table, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, deleteUsers } from '../../actions/usersActions';
 import { selectUsers } from '../../reducers/usersReducer';
-import { ConfirmAlert, ErrorAlert, SuccessAlert } from '../Alert';
-import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
+import { SuccessAlert } from '../Alert';
 
 const UserList = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isLoading, error, users } = useSelector(selectUsers);
-
-  if (error) {
-    ErrorAlert(error === 'Network Error' ? NETWORK_ERROR : UNKNOWN_ERROR);
-  }
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -25,12 +20,8 @@ const UserList = () => {
   };
 
   const deleteData = (el) => {
-    error ? ErrorAlert(error) :
-      ConfirmAlert('Eliminar', '¿Esta seguro que desea eliminar este usuario?') 
-        .then(() =>{ 
-          dispatch(deleteUsers(el.id))
-          SuccessAlert('Usuario eliminado correctamente');
-        });
+    dispatch(deleteUsers(el.id));
+    SuccessAlert('Listo', 'Usuario eliminado correctamente');
   };
 
   return (
@@ -73,7 +64,7 @@ const UserList = () => {
             </tr>
           ) : (
             <tr>
-              <td colSpan="3">{!error && 'No hay usuarios'}</td>
+              <td colSpan="3">{error && 'No hay usuarios'}</td>
             </tr>
           )}
         </tbody>
