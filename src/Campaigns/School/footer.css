@@ -5,25 +5,23 @@
     height: auto !important;
     z-index: 200;
 }
+.footer-school-style a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+    color: white !important;
+
+}
+.footer-school-style a span {
+    font-size: 20px;
+    margin-left: 0.5rem;
+}
 .logo-footer-school {
     height: 200px;
 }
-.link-somos-mas-text {
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-}
 .social-icon-container a  {
     margin: 0 0.5rem;
-    color: whitesmoke !important;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: 0.5s;
-    text-decoration: none;
-}
-.social-icon-container a span {
-    font-size: 20px;
-    margin-left: 0.3rem;
+    font-size: 32px; 
 }
 .social-icon-container a:hover  {
     color: #0e7fe1 !important ;
@@ -40,14 +38,12 @@
 }
 .campaings-links-container li a {
     font-size: 20px;
-    text-decoration: none;
     color: white;
     font-weight: 400;
     padding: 5px 1px;
     z-index: 1;
     transition: all 0.5s;
 }
-
 .campaings-links-container li::after {
     content: "";
     position: absolute;
