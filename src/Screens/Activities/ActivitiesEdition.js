@@ -61,8 +61,6 @@ const ActivitiesEdition = ({ match: { params } }) => {
       description,
     };
     const { data, error } = await updateActivityDataById(params.id, body);
-    console.log(data, error);
-
     setSubmitting(false);
 
     if (data?.success) {
@@ -74,11 +72,9 @@ const ActivitiesEdition = ({ match: { params } }) => {
     setSubmitting(false);
   };
 
-  if (fetching) {
-    return <Spinner />;
-  }
-
-  return activityData ? (
+  return fetching ? (
+    <Spinner />
+  ) : activityData ? (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { resetForm }) => {
