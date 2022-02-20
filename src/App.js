@@ -26,11 +26,12 @@ import Organization from './Screens/Organization/Organization';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import Footer from './Campaigns/School/Footer';
 
 function App() {
   
   return (
-    <div className="App">
+    <div className="App footer-fix">
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -59,6 +60,7 @@ function App() {
           <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </Switch>
+      <Footer/>
       </BrowserRouter>
       </div>
   );

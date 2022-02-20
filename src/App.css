@@ -37,3 +37,8 @@
     transform: translateY(0px)
   }
 }
+.footer-fix {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
