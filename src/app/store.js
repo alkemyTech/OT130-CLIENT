@@ -1,3 +1,4 @@
+import { membersReducer } from '../reducers/membersReducer';
 import { configureStore } from '@reduxjs/toolkit';
 import usersReducer from '../reducers/usersReducer';
 import slidesReducer from '../reducers/slidesSlice';
@@ -6,10 +7,10 @@ import authReducer from '../reducers/auth/authReducer';
 
 export default configureStore({
   reducer: {
-    slides: slidesReducer,
     activities: activitiesReducer,
     users: usersReducer,
     authUser: authReducer, 
+    members: membersReducer,
+    slides: slidesReducer,
   }
 });
-
