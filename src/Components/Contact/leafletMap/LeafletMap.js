@@ -1,24 +1,15 @@
 import React, {  useState } from 'react';
-import { MapContainer , Marker, TileLayer, Tooltip, useMapEvents } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import './mapView.css';
+import { MapContainer , Marker, TileLayer, Tooltip } from 'react-leaflet';
+import GetIconMarker from './iconMarker/GetIconMarker';
+import UserLocationMarker from './UserLocationMarker';
 import { LOGO } from '../../../assets';
+import 'leaflet/dist/leaflet.css';
+import './leafletMap.css';
 
-function GetIcon() {
-  return L.icon({
-    iconUrl: require('./iconMarker/icon_marker_location.png'),
-    iconRetinaUrl: require('./iconMarker/icon_marker_location.png'),
-    iconSize: [50, 50],
-    iconAnchor: null,
-    shadowUrl: null,
-    shadowSize: null,
-    shadowAnchor: null,
-  });
-}
 
-export const MapView = () => {
-  const positionONG = [-34.603465109247814, -58.375943679254284];
+export const LeafletMap = () => {
+
+  const positionONG = [6.465593913151558, -73.89847666374078];
   const [userPosition, setUserPosition] = useState(null);
   const [positionMain, setPositionMain] = useState(positionONG);
   const [nameLocationMain, setNameLocationMain] = useState('ONG SOMOS MAS')
@@ -27,27 +18,11 @@ export const MapView = () => {
     setPositionMain(userPosition)
     setNameLocationMain('Mi Ubicación')
   } 
+
   const goToONGLocation = () => {
     setPositionMain(positionONG)
     setNameLocationMain('ONG SOMOS MAS')
-  }
-  function UserLocationMarker() {
-    const map = useMapEvents({
-      click() {
-        map.locate();
-      },
-      locationfound(e) {
-        setUserPosition(e.latlng);
-        map.flyTo(positionMain, map.getZoom());
-      },
-    });
-    return userPosition === null ? null : (
-      <Marker position={userPosition} icon={GetIcon()}>
-        <Tooltip>
-          Tu Ubicación
-        </Tooltip>
-      </Marker>
-    );
+  
   }
 
   return ( 
@@ -68,8 +43,12 @@ export const MapView = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <UserLocationMarker />
-          <Marker position={positionONG} icon={GetIcon()}>
+        <UserLocationMarker
+           setUserPosition={setUserPosition} 
+           userPosition={userPosition}
+           positionMain={positionMain}
+        />
+          <Marker position={positionONG} icon={GetIconMarker()}>
           <Tooltip>
             <img className="logo-somos-mas-map" src={LOGO} alt="LOGO-SOMOS-MAS" />
           </Tooltip>
