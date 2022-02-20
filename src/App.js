@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
+import LoginForm from './Components/Auth/LoginForm'
+import RegisterForm from './Components/Auth/RegisterForm'
 import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
@@ -28,11 +30,14 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
+import { NavbarBootstrap } from './Components/NavbarBootstrap/NavbarBootstrap';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      {/* El componente navbarBootstrap debe ser reemplazado, modificado o borrado cuando se realice el PR DEl HEADER. */}
+      <NavbarBootstrap/>
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
           atActive={transitionsConfig.atActive}
@@ -40,6 +45,8 @@ function App() {
           mapStyles={transitionsConfig.mapStyles}
         >
           <Route path="/" exact component={Home} />
+          <Route path="/login"  component={LoginForm} />
+          <Route path="/register"  component={RegisterForm} />
           <Route path="/activities" component={Activities} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/backoffice/activities/create" component={ActivitiesCreation} />

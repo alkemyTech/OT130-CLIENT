@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { postAuthRegister } from '../../Services/authService';
@@ -21,6 +23,7 @@ import '../FormStyles.css';
 
 const RegisterForm = () => {
   const [submitForm, setSubmitForm] = useState(false);
+  const history = useHistory();
 
   const timerMessage = (time) => {
     setTimeout(() => {
@@ -45,10 +48,11 @@ const RegisterForm = () => {
       const registerSubmit = async () => {
         try {
           await postAuthRegister(values);
-          SuccessAlert(REGISTER_SUCCESS);
           setSubmitForm(true);
           timerMessage(3000);
           formik.resetForm();
+          SuccessAlert(REGISTER_SUCCESS);
+          history.push('/login');
         } catch (error) {
           ErrorAlert(UNKNOWN_ERROR, API_ERROR);
         }

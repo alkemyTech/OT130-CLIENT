@@ -1,4 +1,5 @@
 import React from 'react';
+import { Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getLogout } from '../../reducers/auth/actions';
@@ -12,11 +13,11 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      <NavLink to="/" onClick={(e) => handleLogout(e)}>
+    <>
+      <Nav.Link as={NavLink} to="/" onClick={(e) => handleLogout(e)}>
         Logout
-      </NavLink>
-    </div>
+      </Nav.Link>
+    </>
   );
 };
 export default Logout;
