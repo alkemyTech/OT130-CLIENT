@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRequestActivities } from '../../customHooks/useRequestActivities';
-import { Container, Spinner, Row, Card } from 'react-bootstrap';
+import { Container, Row, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
@@ -37,7 +37,7 @@ const ActivitiesList = () => {
           })
         ) : isLoading ? (
           <div className="text-center">
-            <Spinner/>
+<Spinner/>
           </div>
         ) : (
           <p>{!error && 'No hay actividades'}</p>
