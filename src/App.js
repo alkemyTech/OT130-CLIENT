@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import Activities from './Components/Activities';
 import ActivitiesCreation from './Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from './Screens/Activities/ActivitiesEdition';
@@ -23,22 +24,27 @@ import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
+import BackofficeActivitiesList from './Components/Activities/BackofficeActivitiesList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import RegisterForm from './Components/Auth/RegisterForm';
+import { transitionsConfig } from './config/transitions';
 
 function App() {
-  
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
+        <AnimatedSwitch
+          atLeave={transitionsConfig.atLeave}
+          atActive={transitionsConfig.atActive}
+          atEnter={transitionsConfig.atEnter}
+          mapStyles={transitionsConfig.mapStyles}
+        >
           <Route path="/" exact component={Home} />
           <Route path="/activities" component={Activities} />
           <Route path="/contacts" component={Contacts} />
-          <Route path="/create-activity" component={ActivitiesCreation} />
-          <Route path="/edit-activity/:id" component={ActivitiesEdition} />
+          <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
+          <Route path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
           <Route path="/create-news" component={NewsForm} />
@@ -57,12 +63,12 @@ function App() {
           <Route path="/thanks" component={Thanks} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/activities/:id" component={ActivityDetail} />
-          <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
+          <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
           <Route path="/register" component={RegisterForm} />
-        </Switch>
+        </AnimatedSwitch>
       </BrowserRouter>
-      </div>
+    </div>
   );
 }
 
