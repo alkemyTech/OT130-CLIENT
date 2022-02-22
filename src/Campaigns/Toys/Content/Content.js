@@ -4,7 +4,7 @@ import './Content.css'
 
 const Content = ({ eventDate, urlImage, eventDescription, Address }) => {
 
-  const CountDown = countDown( eventDate );
+  const CountDown = countDown(eventDate);
 
   return (
     <div className='content-container '>
@@ -21,7 +21,7 @@ const Content = ({ eventDate, urlImage, eventDescription, Address }) => {
         </div>
       </div>
       <p className='content-descriptin m-3'>
-       {eventDescription}
+        {eventDescription}
       </p>
       <div className='content-container-image'>
         <div className='content-image content-image-rotate-27'>
