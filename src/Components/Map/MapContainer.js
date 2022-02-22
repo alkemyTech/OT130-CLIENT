@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { getCoors } from '../../Services/mapsService';
 import { ErrorAlert } from '../Alert';
+import { UNKNOWN_ERROR } from '../../Helpers/messagesText';
 
 const containerStyle = {
   width: 'auto',
@@ -26,7 +27,7 @@ const MapContainer = ({ address }) => {
       const res = await getCoors(address);
       //Asignar cordenadas cuando tenga la apiKey
       if (res.error) {
-        ErrorAlert('OCURRIO UN ERROR', res.error);
+        ErrorAlert(UNKNOWN_ERROR, res.error);
       } else {
         setCoords(res.data.results[0].geometry.location);
         setCenter(coords);
