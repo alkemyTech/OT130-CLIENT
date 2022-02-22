@@ -31,7 +31,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
 
-
 function App() {
   return (
     <div className="App">
