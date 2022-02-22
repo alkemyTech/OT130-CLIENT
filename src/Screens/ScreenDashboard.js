@@ -1,11 +1,11 @@
 import React from 'react';
 
 export const ScreenDashboard = () => {
-  return(  
+  return (
     <>
-        <h1>
-            venido al DashboardBien
-        </h1>     
+      <h1>
+        Bienvenido al Dashboard
+      </h1>
     </>
-  ) 
+  )
 };
