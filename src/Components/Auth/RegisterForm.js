@@ -7,6 +7,9 @@ import {
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
   PASSWORD_SHORT,
+  REGISTER_SUCCESS,
+  UNKNOWN_ERROR,
+  API_ERROR,
 } from '../../Helpers/messagesText';
 import {
   yupAddress,
@@ -17,6 +20,8 @@ import {
   yupPassRegister,
 } from '../../Helpers/formValidations';
 import MapContainer from '../Map/MapContainer';
+import { ErrorAlert, SuccessAlert } from '../Alert';
+import { postAuthRegister } from '../../Services/authService';
 
 const RegisterForm = () => {
   const [submitForm, setSubmitForm] = useState(false);
@@ -46,10 +51,18 @@ const RegisterForm = () => {
       address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
-      setSubmitForm(true);
-      timerMessage(3000);
-      console.log(values);
-      formik.resetForm();
+      const registerSubmit = async () => {
+        try {
+          await postAuthRegister(values);
+          SuccessAlert(REGISTER_SUCCESS);
+          setSubmitForm(true);
+          timerMessage(3000);
+          formik.resetForm();
+        } catch (error) {
+          ErrorAlert(UNKNOWN_ERROR, API_ERROR);
+        }
+      };
+      registerSubmit();
     },
   });
 

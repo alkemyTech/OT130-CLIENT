@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { getCoors } from '../../Services/mapsService';
-import res from '../../Services/mocks/geocode.json';
+import { ErrorAlert } from '../Alert';
 
 const containerStyle = {
   width: 'auto',
@@ -22,12 +22,16 @@ const MapContainer = ({ address }) => {
   const [zoom, setZoom] = useState(4);
 
   const findCoords = async () => {
-    //const res = await getCoors(address);
-    //Asignar cordenadas cuando tenga la apiKey
     if (address) {
-      setCoords(res.results[0].geometry.location);
-      setCenter(coords);
-      setZoom(15);
+      const res = await getCoors(address);
+      //Asignar cordenadas cuando tenga la apiKey
+      if (res.error) {
+        ErrorAlert('OCURRIO UN ERROR', res.error);
+      } else {
+        setCoords(res.data.results[0].geometry.location);
+        setCenter(coords);
+        setZoom(15);
+      }
     }
   };
 
