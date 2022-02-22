@@ -14,7 +14,7 @@ const SocialMediaWidgets = () => {
       <div>
         <LinkedinFollowCompany
           companyId={68737437}
-          counter="top" // Or "right"
+          counter="top"
           lang="en_US"
         />
         {tweetsIdMock.map((tweetId) => (
