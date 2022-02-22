@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import newsReducer from '../reducers/novedadesReducer';
 import slidesReducer from '../reducers/slidesSlice';
