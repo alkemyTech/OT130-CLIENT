@@ -12,16 +12,16 @@
     align-items: center; 
 }
 .content-container-image{
- display: flex;
- justify-content: space-between;
- width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 .content-date{
     font-family: serif;
     font-size: 2.5rem;
 }
 .content-Countdown{  
-display: none;
+    display: none;
 }
 .content-descriptin{
     line-height:1.3rem;
@@ -32,8 +32,7 @@ display: none;
     height: auto;
     margin: 25px;    
 }
-.content-image img{
-  
+.content-image img{  
     display: none;
 }
 .content-image-rotate-27{
@@ -50,12 +49,10 @@ display: none;
 }
 
 @media  screen and (min-width: 426px) { 
-    
     .content-Countdown{
         font-size: 2rem;
-    font-weight: 400;
-    display: flex;
-  
+        font-weight: 400;
+        display: flex;
     }
 }
 @media  screen and (min-width: 769px) { 
@@ -64,7 +61,6 @@ display: none;
         height: auto;
         display: flex;
     }
-
 }
 @media  screen and (min-width: 1441px) {     
     .content-container{       
