@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { EmptyScreen } from '../../Components/EmptyScreen';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
+import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
+import { Spinner } from '../../Components/Spinner/Spinner';
 import { getActivityDataById, updateActivityDataById } from '../../Services/activitiesService';
 import { toBase64 } from '../../Helpers/base64';
 import { yupLongDesc, yupTitles } from '../../Helpers/formValidations';
@@ -14,9 +16,9 @@ import {
   NETWORK_ERROR,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
-import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
 
 const ActivitiesEdition = ({ match: { params } }) => {
+  const [fetching, setFetching] = useState(true);
   const [activityData, setActivityData] = useState();
   const [submitting, setSubmitting] = useState();
 
@@ -37,11 +39,13 @@ const ActivitiesEdition = ({ match: { params } }) => {
 
   const loadActivity = async () => {
     const { data, error } = await getActivityDataById(params.id);
-    if (data.success) {
-      setActivityData(data.data);
+    if (data?.success) {
+      setActivityData(data?.data);
     } else {
       ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_FETCH_ERROR);
     }
+
+    setFetching(false);
   };
 
   const handleCKEditorChange = (editor, setFieldValue) => {
@@ -65,10 +69,12 @@ const ActivitiesEdition = ({ match: { params } }) => {
     } else {
       ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
     }
-    setSubmitting(false)
+    setSubmitting(false);
   };
 
-  return activityData ? (
+  return fetching ? (
+    <Spinner />
+  ) : activityData ? (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { resetForm }) => {
