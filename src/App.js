@@ -28,6 +28,7 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
+import Footer from './Campaigns/School/Footer';
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </AnimatedSwitch>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

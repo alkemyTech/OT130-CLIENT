@@ -19,11 +19,11 @@
 .logo-footer-school {
     height: 200px;
 }
-.social-icon-container a  {
+.footer-main-container a  {
     margin: 0 0.5rem;
     font-size: 32px; 
 }
-.social-icon-container a:hover  {
+.footer-main-container a:hover  {
     color: #0e7fe1 !important ;
 }
 .link-footer-active{

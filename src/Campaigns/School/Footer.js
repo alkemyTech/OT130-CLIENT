@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Col, Container, Image, Row } from 'react-bootstrap';
-import { FaInstagramSquare, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedinIn, FaTwitter} from 'react-icons/fa';
+import {RiInstagramFill} from 'react-icons/ri'
 import { LOGO } from '../../assets/index';
 import './footer.css';
 
@@ -26,7 +27,7 @@ const Footer = () => {
           </Col>
           <hr />
         </Row>
-        <Row className="align-items-center">
+        <Row className="align-items-center footer-main-container">
           <Col
             className="d-sm-flex justify-content-between justify-content-md-center align-items-center text-center my-1 "
             xs="8"
@@ -38,18 +39,18 @@ const Footer = () => {
             </NavLink>
           </Col>
           <Col className="d-flex justify-content-center mb-3" xs="2" sm="6">
-            <div className="d-flex flex-column flex-sm-row flex-lg-column text-start social-icon-container">
+            <div className="d-flex flex-column flex-sm-row flex-lg-column text-start">
               <NavLink to="">
-                <FaInstagramSquare />
-                <span className="social-name d-none d-lg-inline">Instagram</span>
+                <FaLinkedinIn />
+                <span className="social-name d-none d-lg-inline">Linkedin/company/SomosMas</span>
               </NavLink>
               <NavLink to="">
-                <FaTwitterSquare />
-                <span className="social-name d-none d-lg-inline">Twitter</span>
+                <RiInstagramFill />
+                <span className="social-name d-none d-lg-inline">Instagram/somosMas_ONG</span>
               </NavLink>
               <NavLink to="">
-                <FaLinkedin />
-                <span className="social-name d-none d-lg-inline">Linkedin</span>
+                <FaTwitter />
+                <span className="social-name d-none d-lg-inline">Twitter/somosMas_ONG</span>
               </NavLink>
             </div>
           </Col>
