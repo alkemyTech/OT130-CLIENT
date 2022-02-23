@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Document, Page } from 'react-pdf';
+import { PDFConfig } from './PDFConfig';
 import Loader from './Loader';
-import { Document, Page, pdfjs } from 'react-pdf';
 import ControlPanel from './ControlPanel';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PDFReader = () => {
-  const [scale, setScale] = useState(1.0);
+  const [scale, setScale] = useState(0.36);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
     setIsLoading(false);
@@ -34,7 +34,7 @@ const PDFReader = () => {
           file="/assets/docs/test.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <Page pageNumber={pageNumber} scale={scale}/>
+          <Page height={1400} pageNumber={pageNumber} scale={scale}/>
         </Document>
       </section>
     </div>

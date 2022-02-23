@@ -1,5 +1,6 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Spinner } from '../Spinner/Spinner';
+
 const Loader = ({isLoading}) => {
   if(!isLoading) return null;
   return (

@@ -25,7 +25,7 @@ import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import BackofficeActivitiesList from './Components/Activities/BackofficeActivitiesList';
-import './App.css';
+import RegisterForm from './Components/Auth/RegisterForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
 
@@ -64,6 +64,7 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
+          <Route exact path="/register" component={RegisterForm} />
         </AnimatedSwitch>
       </BrowserRouter>
     </div>

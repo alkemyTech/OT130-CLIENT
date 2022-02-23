@@ -7,7 +7,17 @@
   border: 1px #cfcece dashed;
   height: 100%;
 }
-
+.popup-content{
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  top: 0;
+  left: 0;
+  scale: 1;
+  background: rgba(245, 245, 245, 0.63);
+  z-index: 9999;
+  border: 1px #cfcece93 dashed;
+}
 .button {
   font-family: "Roboto", Arial, sans-serif;
   color: #000000;
@@ -34,29 +44,12 @@
   border-color: #2980b9;
 }
 
-.card {
-  font-size: 12px;
-}
-.card > .header {
-  width: 100%;
-  display: block;
-  border-bottom: 1px solid gray;
-  font-size: 14px;
-  text-align: center;
-}
-
 .cModal {
   display: block;
   width: 100%;
   font-size: 12px;
 }
-.cModal > .header {
-  width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-}
+
 .cModal > .content {
   padding: 10px 5px;
 }

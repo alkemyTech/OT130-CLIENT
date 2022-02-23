@@ -1,18 +1,18 @@
 import React from "react";
 import Popup from "reactjs-popup";
-import './index.css';
-import 'reactjs-popup/dist/index.css';
-import PDFReader from "../RenderPdf/PDFReader";
 import { useDispatch } from "react-redux";
+import PDFReader from "../RenderPdf/PDFReader";
+import 'reactjs-popup/dist/index.css';
+import './index.css';
 
-const CustomModal = () => {
+const TermsAndConditionModal = () => {
   const dispatch = useDispatch();
-
   return(
-    <Popup
+    <Popup 
+    className="popup-content"
       trigger={ 
-        <button 
-          className="button"> Leer terminos y condiciones
+        <button  className="button" type="button"> 
+          Leer terminos y condiciones
         </button>
       }
       modal
@@ -27,7 +27,7 @@ const CustomModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch({ type: "checkTerms", payload: true });
+                dispatch({ type: "termsAndConditions/checkTerms", payload: true });
                 close();
               }}
             >
@@ -37,7 +37,7 @@ const CustomModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch({ type: "checkTerms", payload: false });
+                dispatch({ type:"termsAndConditions/checkTerms", payload: false });
                 close();
               }}
             >
@@ -53,4 +53,4 @@ const CustomModal = () => {
   )
 };
 
-export default CustomModal;
+export default TermsAndConditionModal;

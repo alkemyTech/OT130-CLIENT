@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
 import { postAuthRegister } from '../../Services/authService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
-import { useSelector } from 'react-redux';
 import { selectTerms } from '../../reducers/termsAndConditionsReducer';
 import TermsAndConditionModal from '../Modal/TermsAndConditionModal';
 import {
@@ -18,21 +18,36 @@ import {
   PASSWORD_DONT_MATCH,
   PASSWORD_SHORT,
   REGISTER_SUCCESS,
+  TERMS_AND_CONDITIONS,
   UNKNOWN_ERROR,
   API_ERROR,
 } from '../../Helpers/messagesText';
 import '../FormStyles.css';
 
 const RegisterForm = () => {
-  const [submitForm, setSubmitForm] = useState(false);
   const {termsAndConditions} = useSelector(selectTerms);
-
-  const timerMessage = (time) => {
-    setTimeout(() => {
-      setSubmitForm(false);
-    }, time);
+  const [checkCheckbox, setcheckCheckbox] = useState(false);
+  
+  const registerSubmit = async (values) => {
+    if(checkCheckbox) {
+      if(termsAndConditions.acept) {
+        try {
+          await postAuthRegister(values);
+          SuccessAlert(REGISTER_SUCCESS);
+          formik.resetForm();
+        } catch (error) {
+          ErrorAlert(UNKNOWN_ERROR, API_ERROR);
+          formik.resetForm();
+        } 
+      } else {
+        ErrorAlert(UNKNOWN_ERROR, TERMS_AND_CONDITIONS);
+        setcheckCheckbox(true);
+      }
+    } else {
+      setcheckCheckbox(false);
+    }
   };
-
+  
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -49,20 +64,7 @@ const RegisterForm = () => {
       termsAndConditions: yupTermsAndConditions()
     }),
     onSubmit: (values) => {
-      const registerSubmit = async () => {
-        try {
-          await postAuthRegister(values);
-          setSubmitForm(true);
-          timerMessage(3000);
-          if(values.termsAndConditions && termsAndConditions.acept){
-            SuccessAlert(REGISTER_SUCCESS);
-            formik.resetForm();
-        }
-        } catch (error) {
-          ErrorAlert(UNKNOWN_ERROR, API_ERROR);
-        }
-      };
-      registerSubmit()
+      registerSubmit(values);
     },
   });
 
@@ -106,13 +108,13 @@ const RegisterForm = () => {
           id="termsAndConditions"
           type="checkbox"
           className="input-field" 
+          onClick={(e)=>{setcheckCheckbox(e.target.checked)}}
           {...formik.getFieldProps('termsAndConditions')}
       />
-      <TermsAndConditionModal/> 
-      {formik.values.termsAndConditions === false ? <div className="message">Debes aceptar los terminos y condiciones</div> 
-      : formik.values.termsAndConditions === true && termsAndConditions.acept === false ? <div className="error-message message">Leer y aceptar terminos y condiciones</div>    
-      : null}
-      <button className="submit-btn" type="submit">
+     
+      <TermsAndConditionModal />
+      {!checkCheckbox && <div className="error-message message">Aceptar y leer terminos y condiciones</div>}
+      <button disabled={!checkCheckbox} className={`btn btn-success `} type="submit">
         Submit
       </button>
     </form>

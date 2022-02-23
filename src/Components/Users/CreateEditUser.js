@@ -55,7 +55,6 @@ const CreateEditUser = ({ user }) => {
   const getUserById = async () => {
     if (id && currentUser.id === undefined) {
       const { data, error } = await getUser(id);
-      console.log(data,'data');
       if (error) {
         ErrorAlert('Error', error.message);
       } else {
