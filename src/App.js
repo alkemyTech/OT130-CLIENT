@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { transitionsConfig } from './config/transitions';
-import Backoffice from './Components/Routing/Backoffice';
-import Public from './Components/Routing/Public';
+import Backoffice from './rutas/Backoffice';
+import Public from './rutas/Public';
 
 function App() {
   return (

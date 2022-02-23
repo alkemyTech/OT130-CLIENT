@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import ActivitiesCreation from '../../Screens/Activities/ActivitiesCreation';
-import ActivitiesEdition from '../../Screens/Activities/ActivitiesEdition';
-import OrganizationEdit from '../../Screens/Organization/OrganizationEdit';
-import HomeForm from '../HomeForm/HomeForm';
-import SlidesForm from '../Slides/SlidesForm';
-import SlidesList from '../Slides/SlidesList';
-import Organization from '../../Screens/Organization/Organization';
-import UserList from '../Users/UserList';
-import CreateEditUser from '../Users/CreateEditUser';
-import BackofficeActivitiesList from '../Activities/BackofficeActivitiesList';
-import { ScreenDashboard } from '../../Screens/ScreenDashboard';
+import ActivitiesCreation from '../Screens/Activities/ActivitiesCreation';
+import ActivitiesEdition from '../Screens/Activities/ActivitiesEdition';
+import OrganizationEdit from '../Screens/Organization/OrganizationEdit';
+import HomeForm from '../Components/HomeForm/HomeForm';
+import SlidesForm from '../Components/Slides/SlidesForm';
+import SlidesList from '../Components/Slides/SlidesList';
+import Organization from '../Screens/Organization/Organization';
+import UserList from '../Components/Users/UserList';
+import CreateEditUser from '../Components/Users/CreateEditUser';
+import BackofficeActivitiesList from '../Components/Activities/BackofficeActivitiesList';
+import { ScreenDashboard } from '../Screens/ScreenDashboard';
 
 function Backoffice() {
     return (
