@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
+import { Spinner } from '../Spinner/Spinner';
 import { ErrorAlert } from '../Alert';
 import '../CardListStyles.css';
-import { Spinner } from '../Spinner/Spinner';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();

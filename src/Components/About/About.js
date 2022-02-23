@@ -4,6 +4,7 @@ import Title from '../Title/Title';
 import { getData } from '../../Services/aboutService';
 import { Spinner } from '../Spinner/Spinner';
 import { ErrorAlert } from '../Alert';
+import Footer from '../Footer/Footer';
 
 const About = () => {
   const [dataTexts, setDataTexts] = useState();
@@ -33,6 +34,7 @@ const About = () => {
           <ListTexts itemSection={dataTexts} />
         </>
       }
+      <Footer/>
     </>
   )
 };

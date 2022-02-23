@@ -4,6 +4,7 @@ import usersReducer from '../reducers/usersReducer';
 import slidesReducer from '../reducers/slidesSlice';
 import activitiesReducer from '../reducers/activitiesReducer';
 import authReducer from '../reducers/auth/authReducer';
+import organizationReducer from '../reducers/organizationReducer';
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     authUser: authReducer, 
     members: membersReducer,
     slides: slidesReducer,
+    organization: organizationReducer,
   }
 });

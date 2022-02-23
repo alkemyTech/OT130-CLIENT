@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from "../Footer/Footer";
 import '../CardListStyles.css';
 
 const NewsList = () => {
@@ -25,6 +26,7 @@ const NewsList = () => {
                     <p>No hay novedades</p>
                 }
             </ul>
+            <Footer/>
         </div>
     );
 }
