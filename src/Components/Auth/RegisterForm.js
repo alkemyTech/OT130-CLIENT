@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { postAuthRegister } from '../../Services/authService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import { selectTerms } from '../../reducers/termsAndConditionsReducer';
