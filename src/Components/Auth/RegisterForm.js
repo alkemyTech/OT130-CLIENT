@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { postAuthRegister } from '../../Services/authService';
@@ -57,7 +56,7 @@ const RegisterForm = () => {
           ErrorAlert(UNKNOWN_ERROR, API_ERROR);
         }
       };
-      registerSubmit()
+      registerSubmit();
     },
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
