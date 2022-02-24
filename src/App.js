@@ -24,7 +24,8 @@ import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
-import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
+import BackoficeActivitiesList from './Components/Activities/BackofficeActivitiesList';
+import NewsLetter from './Components/Newsletter/Newsletter';
 import ProtectedRoute from './Components/Auth/ProtectedRoute';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -53,7 +54,7 @@ function App() {
           <Route path="/backoffice/slides" component={SlidesList} />
           <Route exact path="/backoffice/organization" component={Organization} />
           <Route exact path="/backoffice/users" component={UserList} />
-          <ProtectedRoute path="/newsletter">NewsLetter acá</ProtectedRoute>
+          <ProtectedRoute path="/newsletter" component={NewsLetter} />
           <Route exact path="/backoffice/users/create" component={CreateEditUser} />
           <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
           <Route path="/create-testimonials" component={TestimonialForm} />
@@ -64,7 +65,7 @@ function App() {
           <Route path="/thanks" component={Thanks} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/activities/:id" component={ActivityDetail} />
-          <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
+          <Route path="/backoffice/activities" component={BackoficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </AnimatedSwitch>
       </BrowserRouter>
