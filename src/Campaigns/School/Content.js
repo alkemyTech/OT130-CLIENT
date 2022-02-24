@@ -9,7 +9,7 @@ import {
 } from '../../Helpers/messagesText';
 
 const Content = () => {
-  const date = '2022-03-13';
+  const campaignEndDate = '2022-03-13';
   return (
     <Container className="content-container" fluid>
       <Row>
@@ -18,7 +18,7 @@ const Content = () => {
         </p>
       </Row>
       <Row className="countdown">
-        <p className="subtitle-text">Te quedan {countDown(date)} para participar.</p>
+        <p className="subtitle-text">Te quedan {countDown(campaignEndDate)} para participar.</p>
       </Row>
       <Row>
         <Col>
