@@ -4,7 +4,7 @@ export const checkTerms = createAsyncThunk(
   'termsAndConditions/checkTerms',
   () => {
     return {
-      acept: true
+      agree: true
     }
   }
 )

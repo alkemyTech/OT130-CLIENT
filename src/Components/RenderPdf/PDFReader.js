@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Document, Page } from 'react-pdf';
-import { PDFConfig } from './PDFConfig';
-import Loader from './Loader';
+import { Spinner } from '../Spinner/Spinner';
 import ControlPanel from './ControlPanel';
+import { WORKER_SRC } from './PDFConfig';
+import { PDF_TERMS_AND_CONDITIONS } from '../../rutas/config';
 
 const PDFReader = () => {
   const [scale, setScale] = useState(0.36);
@@ -17,7 +18,7 @@ const PDFReader = () => {
 
   return (
     <div className='d-flex'>
-      <Loader isLoading={isLoading} />
+      {isLoading && <Spinner/>}
       <section
         id="pdf-section"
         className="d-flex flex-column align-items-center w-100"
@@ -28,10 +29,10 @@ const PDFReader = () => {
           numPages={numPages}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
-          file="/assets/docs/test.pdf"
+          file={PDF_TERMS_AND_CONDITIONS}
         />
         <Document
-          file="/assets/docs/test.pdf"
+          file={PDF_TERMS_AND_CONDITIONS}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page height={1400} pageNumber={pageNumber} scale={scale}/>

@@ -1,18 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState = {
-    acept: null
+    agree: null
 };
 
 const termsAndConditionsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase('termsAndConditions/checkTerms', (state,action) => {
-        state.acept = null;
-        if(action.payload){
-            state.acept = true;
-        }else{
-            state.acept = false;
-        }
+        state.agree = !!action.payload;
     })
 });
 

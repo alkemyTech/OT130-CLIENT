@@ -7,6 +7,7 @@ import './index.css';
 
 const TermsAndConditionModal = () => {
   const dispatch = useDispatch();
+  
   return(
     <Popup 
     className="popup-content"
