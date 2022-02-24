@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const PublicRoute = ({
   component: Component,
@@ -11,7 +11,7 @@ export const PublicRoute = ({
 
   return (
     <Route {...rest}
-      component={(props) => (
+      component={( props ) => (
         (users?.success)
           ? (<Redirect to="/" />)
           : (<Component {...props} />)
