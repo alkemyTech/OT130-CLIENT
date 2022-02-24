@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { Container, Spinner, Row, Card } from 'react-bootstrap';
+import { useRequestActivities } from '../../customHooks/useRequestActivities';
+import { Container, Row, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../Alert';
 import '../CardListStyles.css';
+import { Spinner } from '../Spinner/Spinner';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();
@@ -22,7 +24,9 @@ const ActivitiesList = () => {
 
   return (
     <Container>
-      <Row className="text-center my-3"><h1>Listado Actividades</h1></Row>
+      <Row className="text-center my-3">
+        <h1>Listado Actividades</h1>
+      </Row>
       <Row>
         {activities.length > 0 ? (
           activities.map((activity) => {
@@ -35,7 +39,7 @@ const ActivitiesList = () => {
           })
         ) : isLoading ? (
           <div className="text-center">
-            <Spinner variant="primary" animation="border" role="status" />
+            <Spinner />
           </div>
         ) : (
           <p>{!error && 'No hay actividades'}</p>

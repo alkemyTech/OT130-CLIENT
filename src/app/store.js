@@ -1,12 +1,18 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import newsReducer from '../reducers/novedadesReducer';
 import slidesReducer from '../reducers/slidesSlice';
 import activitiesReducer from '../reducers/activitiesReducer'
-
-const reducer = combineReducers({
-  slides: slidesReducer,
-  activities: activitiesReducer
-})
+import { membersReducer } from '../reducers/membersReducer';
+import usersReducer from '../reducers/usersReducer';
+import authReducer from '../reducers/auth/authReducer';
 
 export default configureStore({
-  reducer
+  reducer: {
+    activities: activitiesReducer,
+    users: usersReducer,
+    authUser: authReducer, 
+    members: membersReducer,
+    slides: slidesReducer,
+    news: newsReducer,
+  }
 });
