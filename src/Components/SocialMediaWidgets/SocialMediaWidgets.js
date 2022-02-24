@@ -1,5 +1,9 @@
 import React from "react";
 import { TwitterTweet, LinkedinFollowCompany } from "react-social-plugins";
+import {
+  LINKEDIN_COMPANY_ID,
+  TWITTER_WIDGET_WIDTH,
+} from "../../Helpers/constants";
 
 const tweetsIdMock = [
   "1245758106392580097",
@@ -13,7 +17,7 @@ const SocialMediaWidgets = () => {
     <div className="container mt-5">
       <div>
         <LinkedinFollowCompany
-          companyId={68737437}
+          companyId={LINKEDIN_COMPANY_ID}
           counter="top"
           lang="en_US"
         />
@@ -21,7 +25,7 @@ const SocialMediaWidgets = () => {
           <TwitterTweet
             align="left"
             coversation="none"
-            width={314}
+            width={TWITTER_WIDGET_WIDTH}
             tweetId={tweetId}
             theme="light"
           />
