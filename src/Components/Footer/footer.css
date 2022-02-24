@@ -1,10 +1,10 @@
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700;800&display=swap');
  
- .footer-ong{
-     border-top: 1px solid #000000;
+ .footer-ong {
+     background-color: rgb(163, 163, 163);
  }
 
- .image-logo{
+ .image-logo {
     display: flex;
     justify-content: center;
     object-fit: contain;
@@ -13,22 +13,65 @@
     height: 100%;
 }
 
-.icon-item{
+.icon-item {
     margin: 10px;
     width: 30px;
     height: 30px;
     text-align: left;
+    color: white;
 }
 
-.link-item{
-    font-family:'Poppins', sans-serif;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+.icon-item:hover {
+    color: #0E7FE1;
+    transition: color 0.5s;
 }
-.text-rights{
+
+.link-item {
+    font-family:'Poppins', sans-serif;
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+    padding: 5px 1px;
+    text-decoration: none;
+    z-index: 1;
+    transition: all 0.5s;
+}
+
+.text-rights {
     font-family:'Poppins', sans-serif;
     text-decoration: none;
     font-size: 12px;
     font-weight: bold;
+    color: white;
+}
+
+.footer-ong li {
+    list-style: none;
+    position: relative;
+    height: fit-content;
+    display: flex;
+}
+
+.link-item:hover {
+    color: #0E7FE1;
+    transition: color 0.5s;
+}
+
+.footer-ong li::after {
+    content: "";
+    position: absolute;
+    height: 2%;
+    width: 0;
+    color: white !important;
+    background-color: #0e7fe1;
+    left: 0;
+    z-index: 0;
+    bottom: 0;
+    transition: all 0.5s;
+}
+
+.footer-ong li:hover:before,
+li:hover::after {
+    width: 100%;
+    height: 2px;
 }

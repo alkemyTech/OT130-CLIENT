@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { BsLinkedin, BsInstagram, BsTwitter } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
+import { BsLinkedin, BsInstagram, BsTwitter } from 'react-icons/bs';
 import { selectOrganization } from '../../reducers/organizationReducer';
 import { fetchOrganization } from '../../actions/organizationActions';
 import './footer.css';
-
 
 const Footer = () => {
 const dispatch = useDispatch();
@@ -19,19 +18,31 @@ useEffect(() => {
   return (
     <footer className='footer-ong mt-5'>
         <Container>
-            <Row className='border-bottom '>
+            <Row>
                 <Col className='d-flex align-items-center flex-column flex-md-row justify-content-between mt-4 mt-md-0'xs={12} md={4}>
-                    <Link className='link-item p-1' to='/news'>Noticias</Link>
-                    <Link className='link-item p-1' to='/activities'>Actividades</Link>
-                    <Link className='link-item p-1'to='/news'>Novedades</Link>
+                    <li>
+                        <Link className='link-item p-1' to='/news'>Noticias</Link>
+                    </li>
+                    <li>
+                        <Link className='link-item p-1' to='/activities'>Actividades</Link>
+                    </li>
+                    <li>                   
+                        <Link className='link-item p-1'to='/news'>Novedades</Link>
+                    </li>
                 </Col>
                 <Col>
                     <Link className='link-item p-1' to='/'><Image src={organization.logo} /></Link>
                 </Col>
                 <Col className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0' xs={12} md={4}>
-                    <Link className='link-item p-1' to='/create-testimonials'>Testimonios</Link>
-                    <Link className='link-item p-1' to='/about'>Nosotros</Link>
-                    <Link className='link-item p-1' to='/contacts'>Contacto</Link>
+                    <li>
+                        <Link className='link-item p-1' to='/create-testimonials'>Testimonios</Link>
+                    </li>
+                    <li>
+                        <Link className='link-item p-1' to='/about'>Nosotros</Link>
+                    </li>
+                    <li>
+                        <Link className='link-item p-1' to='/contacts'>Contacto</Link>
+                    </li>
                 </Col>
             </Row>
             <Row className='d-flex justify-content-center align-items-center'>
