@@ -11,6 +11,7 @@ import { selectActivities } from '../../reducers/activitiesReducer';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import '../CardListStyles.css';
 import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
+import ActivitySearchForm from './ActivitySearchForm';
 
 const BackoficeActivitiesList = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const BackoficeActivitiesList = () => {
   return (
     <Container>
       <h1 className="">Listado de actividades</h1>
+      <ActivitySearchForm activities={activities} />
       <Link to="/backoffice/activities/create" className="m-2 btn btn-primary">
         Agregar actividad
       </Link>
