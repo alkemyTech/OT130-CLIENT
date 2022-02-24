@@ -1,8 +1,8 @@
 import React from 'react';
 import { countDown } from '../../../Helpers/daysUntilDate';
-import './Content.css'
+import './Content.css';
 
-const urlImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcJF7uzhXbdY2WeZuHPo65_OAgZWfxZclNw&usqp=CAU"
+const urlImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcJF7uzhXbdY2WeZuHPo65_OAgZWfxZclNw&usqp=CAU";
 
 const Content = () => {
 
@@ -10,7 +10,7 @@ const Content = () => {
 
   return (
     <div className='content-container '>
-      <h5 className='content-date  m-3'>{eventDate} hs Calle 123, Localidad, Provincia</h5>
+      <h5 className='content-date  m-3'>2022-06-14 hs Calle 123, Localidad, Provincia</h5>
       <div className='content-container-date-image'>
         <div className='content-image content-image-rotate-27'>
           <img src={urlImage} />
