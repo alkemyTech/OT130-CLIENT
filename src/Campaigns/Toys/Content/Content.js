@@ -2,13 +2,15 @@ import React from 'react';
 import { countDown } from '../../../Helpers/daysUntilDate';
 import './Content.css'
 
-const Content = ({ eventDate, urlImage, eventDescription, Address }) => {
+const urlImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcJF7uzhXbdY2WeZuHPo65_OAgZWfxZclNw&usqp=CAU"
 
-  const CountDown = countDown(eventDate);
+const Content = () => {
+
+  const CountDown = countDown("2022-06-14");
 
   return (
     <div className='content-container '>
-      <h5 className='content-date  m-3'>{eventDate} hs {Address}</h5>
+      <h5 className='content-date  m-3'>{eventDate} hs Calle 123, Localidad, Provincia</h5>
       <div className='content-container-date-image'>
         <div className='content-image content-image-rotate-27'>
           <img src={urlImage} />
@@ -21,7 +23,9 @@ const Content = ({ eventDate, urlImage, eventDescription, Address }) => {
         </div>
       </div>
       <p className='content-descriptin m-3'>
-        {eventDescription}
+        Descripcion de la campaña lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
       <div className='content-container-image'>
         <div className='content-image content-image-rotate-27'>
