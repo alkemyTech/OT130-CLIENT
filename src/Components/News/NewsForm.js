@@ -23,12 +23,11 @@ const initialValues = {
 };
 
 const NewsForm = ({ editNews }) => {
-  const [editNew, setNews] = useState(editNews || initialValues);
+  const [news, setNews] = useState(editNews || initialValues);
   const [categories, setCategories] = useState([]);
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
   const dispatch = useDispatch();
-  const { isLoading, error, news } = useSelector(selectNews);
 
   const updateCategories = async () => {
     const { data, error } = await getCategories();
@@ -75,7 +74,7 @@ const NewsForm = ({ editNews }) => {
 
   return (
     <Formik
-      initialValues={editNew}
+      initialValues={news}
       onSubmit={(values, { resetForm }) => {
         resetForm();
         handleSubmit(values);
