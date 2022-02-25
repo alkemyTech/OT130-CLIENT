@@ -1,0 +1,39 @@
+.leaflet-container {
+    height: 70vh;
+    width: 80vw;
+    border: 0.1rem solid #0e7fe1;
+    border-radius: 0.3rem;
+}
+.leaflet-control-zoom  {
+    border: 1.5px solid #0e7fe1 !important;
+}
+.leaflet-tooltip {
+    width: 110px;
+    height: 70px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700 !important;
+}
+.logo-somos-mas-map {
+    width: 100px;
+}
+.map-div-container{
+    position: relative;
+}
+.buttons-locations-container{
+    position: absolute;
+    bottom: 0;
+    z-index: 1000;
+}
+.btn-location-style {
+    border: 1.5px solid #0e7fe1 !important;
+    border-radius: 0.3rem;
+    margin: 2px;
+}
+.span-button-location {
+    background-color: rgba(148, 157, 165, 0.726);
+    border-radius: 0.3rem;
+    padding: 0px 3px;
+}

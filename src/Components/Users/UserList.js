@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Table } from 'react-bootstrap';
-
-import { ConfirmAlert, ErrorAlert } from '../Alert';
-import { deleteUser, getUsers } from '../../Services/usersService';
+import { Button, Table, Spinner } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers, deleteUsers } from '../../actions/usersActions';
+import { selectUsers } from '../../reducers/usersReducer';
+import { SuccessAlert } from '../Alert';
 
 const UserList = () => {
-  const [userList, setUserList] = useState([]);
+  const dispatch = useDispatch();
   const history = useHistory();
-
-  const updateUserList = async () => {
-    const { data, error } = await getUsers();
-
-    if (error) {
-      ErrorAlert('Error', error.message);
-    } else {
-      setUserList(data.data);
-    }
-  };
+  const { isLoading, error, users } = useSelector(selectUsers);
 
   useEffect(() => {
-    updateUserList();
-  }, []);
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   const editData = (el) => {
     history.push(`/backoffice/users/create/${el.id}`);
   };
 
   const deleteData = (el) => {
-    ConfirmAlert(deleteUser(el.id), 'Usuario eliminado correctamente');
+    dispatch(deleteUsers(el.id));
+    SuccessAlert('Listo', 'Usuario eliminado correctamente');
   };
 
   return (
@@ -46,12 +39,8 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {userList.length === 0 ? (
-            <tr>
-              <td colSpan="3">Sin Datos</td>
-            </tr>
-          ) : (
-            userList.map((el) => (
+          {users.length > 0 ? ( 
+            users.map((el) => (
               <tr key={el.id}>
                 <td className=" p-3">{el.name}</td>
                 <td className=" p-3">{el.email}</td>
@@ -67,6 +56,16 @@ const UserList = () => {
                 </td>
               </tr>
             ))
+          ) : isLoading ? (
+            <tr>
+              <td colSpan="3">
+                <Spinner animation="border" role="status" />
+              </td>
+            </tr>
+          ) : (
+            <tr>
+              <td colSpan="3">{error && 'No hay usuarios'}</td>
+            </tr>
           )}
         </tbody>
       </Table>
