@@ -10,9 +10,8 @@ import Organization from '../Screens/Organization/Organization';
 import UserList from '../Components/Users/UserList';
 import CreateEditUser from '../Components/Users/CreateEditUser';
 import BackofficeActivitiesList from '../Components/Activities/BackofficeActivitiesList';
-import { ScreenDashboard } from '../Screens/ScreenDashboard';
 
-function Backoffice() {
+function BackofficeRoutes() {
     return (
         <Switch>
             <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
@@ -26,9 +25,8 @@ function Backoffice() {
             <Route exact path="/backoffice/users/create" component={CreateEditUser} />
             <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
             <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
-            <Route path="/" component={ScreenDashboard} />
         </Switch>
     )
 }
 
-export default Backoffice
+export default BackofficeRoutes;

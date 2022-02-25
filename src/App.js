@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { transitionsConfig } from './config/transitions';
-import Backoffice from './rutas/Backoffice';
-import Public from './rutas/Public';
+
+import Backoffice from './Backoffice';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Public from './routes/Public';
 
 function App() {
   return (

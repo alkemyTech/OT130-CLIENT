@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Container, Offcanvas } from 'react-bootstrap';
-import SidebarNav from './Sidebar';
+import SidebarNav from '../Components/Backoffice/Sidebar';
 
 const Header = () => {
   return (
