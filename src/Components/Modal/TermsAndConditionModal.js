@@ -9,9 +9,9 @@ import './index.css';
 const TermsAndConditionModal = () => {
   const dispatch = useDispatch();
 
-  const handleCheckbox =(response,fn) => {
+  const handleModalResponse =(response,cb) => {
     dispatch(checkTerms(response));
-    fn();
+    cb();
   }
   
   return(
@@ -34,7 +34,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                handleCheckbox(true,close);
+                handleModalResponse(true,close);
               }}
             >
               Aceptar
@@ -43,7 +43,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                handleCheckbox(false,close);
+                handleModalResponse(false,close);
               }}
             >
               Cancelar
