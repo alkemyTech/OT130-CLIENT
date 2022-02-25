@@ -73,7 +73,7 @@ const RegisterForm = () => {
         placeholder='Nombre' 
         {...formik.getFieldProps('name')} 
       />
-      {formik.touched.name && formik.errors.name && (
+      {formik.touched?.name && formik.errors?.name && (
         <div className="error-message message">{formik.errors.name}</div>
       )}
       
@@ -85,7 +85,7 @@ const RegisterForm = () => {
         placeholder='Correo electrónico'
         {...formik.getFieldProps('email')} 
       />
-      {formik.touched.email && formik.errors.email && (
+      {formik.touched?.email && formik.errors?.email && (
         <div className="error-message message">{formik.errors.email}</div>
       )}
 
@@ -97,7 +97,7 @@ const RegisterForm = () => {
         placeholder='Contraseña'
         {...formik.getFieldProps('password')}
       />
-      {formik.touched.password && formik.errors.password && (
+      {formik.touched?.password && formik.errors?.password && (
         <div className="error-message message">{formik.errors.password}</div>
       )}
 
@@ -109,8 +109,8 @@ const RegisterForm = () => {
         placeholder='Confirmar contraseña'
         {...formik.getFieldProps('confirmPassword')}
       />
-      {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-        <div className="error-message message">{formik.errors.confirmPassword}</div>
+      {formik.touched?.confirmPassword && formik.errors?.confirmPassword && (
+        <div className="error-message message">{formik.errors?.confirmPassword}</div>
       )}
 
       <label htmlFor='termsAndConditions' className='label'>Terminos y Condiciones</label>
@@ -122,7 +122,9 @@ const RegisterForm = () => {
           {...formik.getFieldProps('termsAndConditions')}
       />
 
-      {formik.errors.termsAndConditions && formik.touched.termsAndConditions && <div className="error-message message">{formik.errors.termsAndConditions}</div>}
+      {formik.errors?.termsAndConditions && formik.touched?.termsAndConditions && (
+        <div className="error-message message">{formik.errors.termsAndConditions}</div>
+      )}
       <TermsAndConditionModal />
       <button type="submit" className="btn btn-primary" disabled={disableStyleBtn()}>
         Registrar
