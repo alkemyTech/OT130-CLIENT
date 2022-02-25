@@ -7,12 +7,14 @@ import FooterCampaings from '../Shared/FooterCampaings';
 
 const SchoolCampaign = () => {
   return (
-    <>
+    <div className='footer-fix'>
       <Header />
-      <Slider />
-      <Content />
+      <div>
+        <Slider />
+        <Content />
+      </div>
       <FooterCampaings />
-    </>
+    </div >
   );
 }
  
