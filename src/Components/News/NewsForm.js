@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';import { ErrorAlert } from '.
 import { getCategories } from '../../Services/categoriesService';
 import { INPUT_REQUIRED } from '../../Helpers/messagesText';
 import { toBase64 } from '../../Helpers/base64';
+import { saveNews, updateNews } from '../../Services/newsService';
 import { yupImages, yupTitles } from '../../Helpers/formValidations';
 import '../FormStyles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
