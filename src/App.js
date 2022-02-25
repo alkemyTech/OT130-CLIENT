@@ -21,7 +21,7 @@ import HomeForm from './Components/HomeForm/HomeForm';
 import ActivityDetail from './Components/Activities/Detail/ActivityDetail';
 import CreateEditUser from './Components/Users/CreateEditUser';
 import OrganizationEdit from './Screens/Organization/OrganizationEdit';
-import { ScreenDashboard } from './Screens/ScreenDashboard';
+import ScreenDashboard  from './Backoffice/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import BackoficeActivitiesList from './Components/Activities/BackoficeActivitiesList';
 import './App.css';
