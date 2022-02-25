@@ -2,11 +2,7 @@ import * as Yup from 'yup';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ErrorMessage, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { saveNovedades, updateNovedades } from '../../actions/novedadesActions';
-import { selectNews } from '../../reducers/novedadesReducer';
-import { ErrorAlert } from '../Alert/index';
+import React, { useEffect, useState } from 'react';import { ErrorAlert } from '../Alert/index';
 import { getCategories } from '../../Services/categoriesService';
 import { INPUT_REQUIRED } from '../../Helpers/messagesText';
 import { toBase64 } from '../../Helpers/base64';
@@ -27,9 +23,6 @@ const NewsForm = ({ editNews }) => {
   const [categories, setCategories] = useState([]);
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
-  const dispatch = useDispatch();
-  const { isLoading, error, news } = useSelector(selectNews);
-
   const updateCategories = async () => {
     const { data, error } = await getCategories();
 
@@ -61,8 +54,8 @@ const NewsForm = ({ editNews }) => {
     values.image = base64Image;
 
     const { data, error } = news.id
-      ? await dispatch(updateNovedades(values))
-      : await dispatch(saveNovedades(values));
+      ? await updateNews(values)
+      : await saveNews(values);
 
     if (error) {
       setRequestError(error);
