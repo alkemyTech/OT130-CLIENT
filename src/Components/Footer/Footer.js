@@ -10,9 +10,7 @@ import './footer.css';
 const Footer = () => {
   const dispatch = useDispatch();
   const { organization } = useSelector(selectOrganization);
-  let { created_at } = organization;
-
-  
+  const rightsYear = organization.created_at.split('-')[0];
 
   useEffect(() => {
     dispatch(fetchOrganization());
@@ -69,7 +67,7 @@ const Footer = () => {
         </Row>
         <Row className='d-flex justify-content-center align-items-center'>
           <Col className='d-flex justify-content-center align-items-center mt-4 mb-4' xs={12} md={4}>
-            <span className='text-rights'>{organization.created_at} by Alkemy. All Rights Reserved.</span>
+            <span className='text-rights'>{rightsYear} by Alkemy. All Rights Reserved.</span>
           </Col>
         </Row>
       </Container>
