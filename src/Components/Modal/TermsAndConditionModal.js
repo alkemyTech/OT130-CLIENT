@@ -8,6 +8,11 @@ import './index.css';
 
 const TermsAndConditionModal = () => {
   const dispatch = useDispatch();
+
+  const handleCheckbox =(response,fn) => {
+    dispatch(checkTerms(response));
+    fn();
+  }
   
   return(
     <Popup 
@@ -29,8 +34,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch(checkTerms(true));
-                close();
+                handleCheckbox(true,close);
               }}
             >
               Aceptar
@@ -39,8 +43,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch(checkTerms(false));
-                close();
+                handleCheckbox(false,close);
               }}
             >
               Cancelar
