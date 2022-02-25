@@ -67,7 +67,7 @@ const RegisterForm = () => {
   });
 
   const mapSubmit = () => {
-    if (!formik.errors.address) setSendAddress(formik.values.address);
+    if (!formik.errors?.address) setSendAddress(formik.values?.address);
   };
 
   return (

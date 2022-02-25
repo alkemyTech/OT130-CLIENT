@@ -17,10 +17,13 @@ const initialCoord = {
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const apiId = process.env.REACT_APP_GOOGLE_MAPS_ID;
 
+const zoomOut = 4;
+const zoomIn = 15;
+
 const MapContainer = ({ address }) => {
   const [coords, setCoords] = useState(null);
   const [center, setCenter] = useState(initialCoord);
-  const [zoom, setZoom] = useState(4);
+  const [zoom, setZoom] = useState(zoomOut);
 
   const findCoords = async () => {
     if (address) {
@@ -29,9 +32,9 @@ const MapContainer = ({ address }) => {
       if (res.error) {
         ErrorAlert(UNKNOWN_ERROR, res.error);
       } else {
-        setCoords(res.data.results[0].geometry.location);
+        setCoords(res.data.results[0].geometry?.location);
         setCenter(coords);
-        setZoom(15);
+        setZoom(zoomIn);
       }
     }
   };
