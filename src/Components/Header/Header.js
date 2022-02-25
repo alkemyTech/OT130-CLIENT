@@ -1,13 +1,14 @@
 import { React } from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
-import DonationButton from '../Donations/DonationButton'
 import { selectUserAuth } from '../../reducers/auth/authReducer'
 import { useSelector } from 'react-redux';
+import DonationButton from '../Donations/DonationButton'
+
 function Header() {
 
     const currentUser = useSelector(selectUserAuth);
-    const role = currentUser ? currentUser.user.role_id : null;
-
+    const role = currentUser?.user?.role_id;
+    const standartUserRole = 2;
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -17,10 +18,10 @@ function Header() {
                     <Nav className="me-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
                         {
-                            role === 2 ?
+                            role === standartUserRole ?
                                 <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
                                 :
-                                <></>
+                                null
                         }
                     </Nav>
                 </Navbar.Collapse>
