@@ -1,23 +1,25 @@
-import { Post, Put, Get } from './privateApiService';
-import dataActivities from '../Services/mocks/activities.json'
-//@TODO: Luego Cambiar Moock por request
+import { Get, Post, Put, Delete } from './privateApiService';
+
+const ACTIVITIES_ENDPOINT = process.env.REACT_APP_ACTIVITIES_ENDPOINT;
 
 const getActivities = async () => {
-  const response = { error: null, data: {} };
-
-  try {
-    response.data = dataActivities;
-    
-  } catch (error) {
-    response.error = error.message;
-  }
-  return response;
+  const { data, error } = await Get(ACTIVITIES_ENDPOINT);
+  return { data: data?.data, error };
 };
 
-export { getActivities };
+const getActivityDataById = async (id) => await Get(ACTIVITIES_ENDPOINT, id);
 
-export const getActivityDataById = async (id) => await Get(`activities/${id}`);
+const deleteActivity = async (id) => await Delete(ACTIVITIES_ENDPOINT, id);
 
-export const updateActivityDataById = async (id, body) => await Put(`activities/${id}`, body);
+const updateActivityDataById = async (id, body) => await Put(`${ACTIVITIES_ENDPOINT}/${id}`, body);
 
-export const saveActivityData = async (body) => await Post('activities', body);
+const saveActivityData = async (body) => await Post(ACTIVITIES_ENDPOINT, body);
+
+export {
+  getActivities,
+  getActivityDataById,
+  deleteActivity,
+  updateActivityDataById,
+  saveActivityData,
+};
+

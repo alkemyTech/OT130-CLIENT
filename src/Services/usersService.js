@@ -13,7 +13,8 @@ const getUser = async (id) => {
 };
 
 const getUsers = async () => {
-  return await Get(`/users`);
+  const { data, error } = await Get(`/users`);
+  return { data: data.data, error };
 };
 
 const deleteUser = async (id) => {
