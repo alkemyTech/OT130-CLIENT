@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import Activities from './Components/Activities';
@@ -28,7 +29,15 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterForm from './Components/Auth/RegisterForm';
+=======
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
+>>>>>>> d6ec5cdf38aa3a17993926b385cac83bf0f0cf11
 import { transitionsConfig } from './config/transitions';
+import Backoffice from './rutas/Backoffice';
+import Public from './rutas/Public';
 
 function App() {
   return (
@@ -40,32 +49,8 @@ function App() {
           atEnter={transitionsConfig.atEnter}
           mapStyles={transitionsConfig.mapStyles}
         >
-          <Route path="/" exact component={Home} />
-          <Route path="/activities" component={Activities} />
-          <Route path="/contacts" component={Contacts} />
-          <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
-          <Route path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
-          <Route path="/create-category" component={CategoriesForm} />
-          <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
-          <Route path="/create-news" component={NewsForm} />
-          <Route path="/backoffice/home" component={HomeForm} />
-          <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/backoffice/slides" component={SlidesList} />
-          <Route exact path="/backoffice/organization" component={Organization} />
-          <Route exact path="/backoffice/users" component={UserList} />
-          <Route exact path="/backoffice/users/create" component={CreateEditUser} />
-          <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/create-project" component={ProjectsForm} />
-          <Route path="/donate" component={Donation} />
-          <Route path="/school-campaign" component={SchoolCampaign} />
-          <Route path="/thanks" component={Thanks} />
-          <Route path="/toys-campaign" component={ToysCampaign} />
-          <Route path="/activities/:id" component={ActivityDetail} />
-          <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
-          <Route path="/backoffice" component={ScreenDashboard} />
-          <Route path="/register" component={RegisterForm} />
+          <Route path="/backoffice" render={() => <Backoffice />} />
+          <Route path="/" render={() => <Public />} />
         </AnimatedSwitch>
       </BrowserRouter>
     </div>

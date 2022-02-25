@@ -52,6 +52,11 @@ const DONATION_THANKS_TEXT = '¡Muchas gracias por contribuir!';
 //Maps
 const ZERO_RESULTS = 'No hay ningun resultado con esa direccion';
 
+//Textos de campañas
+const SCHOOL_CAMPAIGN_DESCRIPTION = 'Con el inicio de un nuevo ciclo lectivo, iniciamos nuevamente nuestra campaña escolar. Tenemos el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad.'
+const SCHOOL_CAMPAIGN_LOCATION = 'Guatemala 4691, Buenos Aires'
+const SCHOOL_CAMPAIGN_DATE = '13 de Marzo de 2022'
+
 export {
   API_ERROR,
   DESCRIPTION_LONG,
@@ -73,6 +78,9 @@ export {
   PASSWORD_DONT_MATCH,
   REGISTER_SUCCESS,
   SHOULD_BE_DIGITS_ONLY,
+  SCHOOL_CAMPAIGN_DATE,
+  SCHOOL_CAMPAIGN_DESCRIPTION,
+  SCHOOL_CAMPAIGN_LOCATION,
   TITLE_LONG,
   TITLE_SHORT,
   UNKNOWN_ERROR,
