@@ -25,10 +25,9 @@ import OrganizationEdit from './Screens/Organization/OrganizationEdit';
 import { ScreenDashboard } from './Screens/ScreenDashboard';
 import Organization from './Screens/Organization/Organization';
 import BackofficeActivitiesList from './Components/Activities/BackofficeActivitiesList';
+import { transitionsConfig } from './config/transitions';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { transitionsConfig } from './config/transitions';
-import Footer from './Campaigns/School/Footer';
 
 function App() {
   return (
@@ -66,7 +65,6 @@ function App() {
           <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
         </AnimatedSwitch>
-        <Footer/>
       </BrowserRouter>
     </div>
   );

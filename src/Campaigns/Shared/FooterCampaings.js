@@ -1,26 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Col, Container, Image, Row } from 'react-bootstrap';
-import { FaLinkedinIn, FaTwitter} from 'react-icons/fa';
-import {RiInstagramFill} from 'react-icons/ri'
+import { FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { RiInstagramFill } from 'react-icons/ri';
 import { LOGO } from '../../assets/index';
-import './footer.css';
+import './footerCampaings.css';
 
-const Footer = () => {
+const FooterCampaings = () => {
   return (
     <footer className="footer-school-style mt-5">
       <Container>
         <Row className="d-none d-xxl-flex py-3 campaings-links-container " xs="12">
           <Col className="d-flex justify-content-center mb-2" sm="6">
             <li>
-              <NavLink to="" activeclassname="link-footer-active">
+              <NavLink to="" activeClassName="link-footer-active">
                 Escuelas
               </NavLink>
             </li>
           </Col>
           <Col className="d-flex justify-content-center mb-2" sm="6">
             <li>
-              <NavLink to="" activeclassname="link-footer-active">
+              <NavLink to="" activeClassName="link-footer-active">
                 Juguetes
               </NavLink>
             </li>
@@ -63,4 +63,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterCampaings;

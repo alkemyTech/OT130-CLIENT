@@ -1,6 +1,6 @@
 .footer-school-style {
     margin-top: 2rem;
-    background-color: rgb(95, 98, 100) !important;
+    background-color: rgb(163, 163, 163) !important;
     color: rgb(255, 255, 255) !important;
     height: auto !important;
     z-index: 200;
@@ -9,7 +9,7 @@
     text-decoration: none;
     cursor: pointer;
     transition: 0.5s;
-    color: white !important;
+    color:  white !important;
 
 }
 .footer-school-style a span {
