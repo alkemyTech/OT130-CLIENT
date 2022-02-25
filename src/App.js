@@ -31,6 +31,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
 import { NavbarBootstrap } from './Components/NavbarBootstrap/NavbarBootstrap';
+import ProtectedRoute from './Components/Auth/protectedRoute';
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
           <Route path="/register"  component={RegisterForm} />
           <Route path="/activities" component={Activities} />
           <Route path="/contacts" component={Contacts} />
-          <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
+          <ProtectedRoute path="/backoffice/activities/create" component={ActivitiesCreation} />
           <Route path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
