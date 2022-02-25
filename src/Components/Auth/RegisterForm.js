@@ -31,15 +31,13 @@ const RegisterForm = () => {
     try {
       await postAuthRegister(values);
       SuccessAlert(REGISTER_SUCCESS);
-      formik.resetForm();
     } catch (error) {
       ErrorAlert(UNKNOWN_ERROR, API_ERROR);
-      formik.resetForm();
     } 
   };
 
-  const showBtnRegister = () => {
-    return (checkCheckbox && termsAndConditions.agree) ? false : true;
+  const disableStyleBtn = () => {
+    return !(checkCheckbox && termsAndConditions.agree);
   }
 
   const formik = useFormik({
@@ -59,6 +57,7 @@ const RegisterForm = () => {
     }),
     onSubmit: (values) => {
       registerSubmit(values);
+      formik.resetForm();
     },
   });
 
@@ -123,9 +122,9 @@ const RegisterForm = () => {
           {...formik.getFieldProps('termsAndConditions')}
       />
 
-      {!checkCheckbox && formik.touched.termsAndConditions && <div className="error-message message">{formik.errors.termsAndConditions}</div>}
+      {formik.errors.termsAndConditions && formik.touched.termsAndConditions && <div className="error-message message">{formik.errors.termsAndConditions}</div>}
       <TermsAndConditionModal />
-      <button type="submit" className="btn btn-primary" disabled={showBtnRegister()}>
+      <button type="submit" className="btn btn-primary" disabled={disableStyleBtn()}>
         Registrar
       </button>
     </form>

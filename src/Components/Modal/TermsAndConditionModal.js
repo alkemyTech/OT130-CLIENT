@@ -1,6 +1,7 @@
 import React from "react";
 import Popup from "reactjs-popup";
 import { useDispatch } from "react-redux";
+import { checkTerms } from "../../actions/termsAndConditionsActions";
 import PDFReader from "../RenderPdf/PDFReader";
 import 'reactjs-popup/dist/index.css';
 import './index.css';
@@ -28,7 +29,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch({ type: "termsAndConditions/checkTerms", payload: true });
+                dispatch(checkTerms(true));
                 close();
               }}
             >
@@ -38,7 +39,7 @@ const TermsAndConditionModal = () => {
               className="button"
               type="button"
               onClick={() => {
-                dispatch({ type:"termsAndConditions/checkTerms", payload: false });
+                dispatch(checkTerms(false));
                 close();
               }}
             >

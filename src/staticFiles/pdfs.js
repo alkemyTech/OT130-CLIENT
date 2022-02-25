@@ -1,0 +1,1 @@
+export const PDF_TERMS_AND_CONDITIONS = "/assets/docs/test.pdf"

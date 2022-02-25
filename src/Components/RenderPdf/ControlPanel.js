@@ -1,11 +1,11 @@
 import React from 'react';
 
 const ControlPanel = (props) => {
-  const { pageNumber, numPages, setPageNumber } = props;
+  const { currentPage, numPages, setCurrentPage } = props;
 
   const onPageChange = (e) => {
     const { value } = e.target;
-    setPageNumber(Number(value));
+    setCurrentPage(Number(value));
   };
 
   return (
@@ -14,11 +14,11 @@ const ControlPanel = (props) => {
         <span>
           Page{' '}
           <input
-            name="pageNumber"
+            name="currentPage"
             type="number"
             min={1}
             max={numPages || 1}
-            value={pageNumber}
+            value={currentPage}
             onChange={onPageChange}
           />{' '}
           of {numPages}
