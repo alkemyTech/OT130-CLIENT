@@ -28,6 +28,7 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
+import RegisterForm from './Components/Auth/RegisterForm';
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           <Route path="/activities/:id" component={ActivityDetail} />
           <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
           <Route path="/backoffice" component={ScreenDashboard} />
+          <Route path="/register" component={RegisterForm} />
         </AnimatedSwitch>
       </BrowserRouter>
     </div>
