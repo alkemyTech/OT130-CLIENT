@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Slider from './Slider';
 import Content from './Content';
-import Footer from './Footer';
+import CampaignFooter from '../Footer/CampaignFooter';
 
 const ToysCampaign = () => {
   return (
@@ -10,7 +10,7 @@ const ToysCampaign = () => {
       <Header />
       <Slider />
       <Content />
-      <Footer />
+      <CampaignFooter />
     </>
   );
 }
