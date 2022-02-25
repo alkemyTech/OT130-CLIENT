@@ -14,12 +14,19 @@ const getCoors = async (address) => {
         key: apiKey,
       },
     });
-    if (data.status === 'OK') response.data = data.data;
-    if (data.status === 'REQUEST_DENIED') {
-      response.data = mockData;
-    }
-    if (data.status === 'ZERO_RESULTS') {
-      response.error = ZERO_RESULTS;
+
+    switch (data.status) {
+      case 'REQUEST_DENIED':
+        response.data = mockData;
+        break;
+
+      case 'ZERO_RESULTS':
+        response.error = ZERO_RESULTS;
+        break;
+
+      default:
+        response.data = data.data;
+        break;
     }
   } catch (error) {
     response.error = error.message;
