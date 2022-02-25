@@ -9,14 +9,22 @@
   font-size: 20px;
 }
 
-@media screen and (max-width: 600px) {
+.countdown {
+  display: none;
+}
+
+.content-image {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
   .countdown {
-    display: none;
+    display: inline;
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1200px) {
   .content-image {
-    display: none;
+    display: inline;
   }
 }
 
@@ -29,6 +37,6 @@
     font-size: 40px;
   }
   .content-container {
-    background-color: #FAFA88;
+    background-color: #fafa88;
   }
 }
