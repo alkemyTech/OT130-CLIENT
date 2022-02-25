@@ -6,14 +6,14 @@ import { Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
+import { BsSearch } from 'react-icons/bs';
 import { ActivityItem } from './ActivityItem';
+import { useDispatch } from 'react-redux';
+import './ActivitySearchForm.css'
 import { deleteActivity } from '../../Services/activitiesService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
 import { fetchActivities } from '../../actions/activitiesActions';
-import { useDispatch } from 'react-redux';
-import './ActivitySearchForm.css'
-import { BsSearch } from 'react-icons/bs';
 
 function ActivitySearchForm({ activities }) {
 
