@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Container, Offcanvas } from 'react-bootstrap';
-import SidebarNav from './Sidebar';
+import SidebarNav from './SideBar/Sidebar';
+import { BACKOFFICE_PATHS } from '../../rutas/config';
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
             <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <SidebarNav />
+            <SidebarNav paths={BACKOFFICE_PATHS} />
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

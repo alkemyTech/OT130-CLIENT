@@ -1,18 +1,22 @@
-import React from 'react'
-import { slide as Menu } from 'react-burger-menu'
-import { SideBarLink } from './SideBarLink'
-import "./SideBar.css"
+import React from 'react';
+import { Nav } from 'react-bootstrap'
+import { SideBarLink } from './SideBarLink';
+import './SideBar.css'
 
-export const SideBar = ({ paths }) => {
+const Sidebar = ({ paths }) => {
   return (
-    <Menu>
-      {paths.map(( path, i ) => {
+    <Nav className="justify-content-end flex-grow-1 pe-3">
+      {paths.map((path, i) => {
+        return (
           <SideBarLink
             route={path.ROUTE}
             link={path.PLACEHOLDER}
             key={i}
           />
-        })}
-    </Menu>
-  )
+        )
+      })}
+    </Nav>
+  );
 };
+
+export default Sidebar;
