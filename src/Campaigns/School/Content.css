@@ -1,0 +1,42 @@
+.content-image {
+  width: 100%;
+}
+.subtitle-text {
+  font-size: 35px;
+}
+
+.campaign-description {
+  font-size: 20px;
+}
+
+.countdown {
+  display: none;
+}
+
+.content-image {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .countdown {
+    display: inline;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .content-image {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .subtitle-text {
+    font-size: 65px;
+  }
+
+  .campaign-description {
+    font-size: 40px;
+  }
+  .content-container {
+    background-color: #fafa88;
+  }
+}
