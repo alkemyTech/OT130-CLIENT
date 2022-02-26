@@ -15,6 +15,7 @@ import {
   yupFirstName,
   yupLastName,
   yupPassRegister,
+  yupTermsAndConditions
 } from '../../Helpers/formValidations';
 import {
   PASSWORD_REGISTER_CONTAIN,
@@ -59,6 +60,7 @@ const RegisterForm = () => {
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
+      termsAndConditions: yupTermsAndConditions(),
       address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
@@ -78,6 +80,7 @@ const RegisterForm = () => {
       <label htmlFor="firstName">First Name</label>
       <input
         id="firstName"
+        placeholder="Nombre"
         type="text"
         className="input-field"
         {...formik.getFieldProps('firstName')}
@@ -89,6 +92,7 @@ const RegisterForm = () => {
       <label htmlFor="lastName">Last Name</label>
       <input
         id="lastName"
+        placeholder="Apellido"
         type="text"
         className="input-field"
         {...formik.getFieldProps('lastName')}
