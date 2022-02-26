@@ -6,12 +6,15 @@ import { postAuthRegister } from '../../Services/authService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import { selectTerms } from '../../reducers/termsAndConditionsReducer';
 import TermsAndConditionModal from '../Modal/TermsAndConditionModal';
+import MapContainer from '../Map/MapContainer';
+import '../FormStyles.css';
 import {
+  yupAddress,
   yupConfirmPass,
   yupEmail,
   yupFirstName,
+  yupLastName,
   yupPassRegister,
-  yupTermsAndConditions
 } from '../../Helpers/formValidations';
 import {
   PASSWORD_REGISTER_CONTAIN,
@@ -21,12 +24,12 @@ import {
   UNKNOWN_ERROR,
   API_ERROR,
 } from '../../Helpers/messagesText';
-import '../FormStyles.css';
 
 const RegisterForm = () => {
   const { termsAndConditions } = useSelector(selectTerms);
   const [checkCheckbox, setcheckCheckbox] = useState(false);
-  
+  const [sendAddress, setSendAddress] = useState('');
+
   const registerSubmit = async (values) => {
     try {
       await postAuthRegister(values);
@@ -35,25 +38,28 @@ const RegisterForm = () => {
       ErrorAlert(UNKNOWN_ERROR, API_ERROR);
     } 
   };
-
+  
   const disableStyleBtn = () => {
     return !(checkCheckbox && termsAndConditions.agree);
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
       termsAndConditions: false,
+      address: '',
     },
     validationSchema: Yup.object({
-      name: yupFirstName(),
+      firstName: yupFirstName(),
+      lastName: yupLastName(),
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
-      termsAndConditions: yupTermsAndConditions()
+      address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
       registerSubmit(values);
@@ -61,22 +67,36 @@ const RegisterForm = () => {
     },
   });
 
+  const mapSubmit = () => {
+    if (!formik?.errors.address) setSendAddress(formik?.values.address);
+  };
+
   return (
     <form className="form-container" onSubmit={formik.handleSubmit}>
       <h1>Registrate</h1>
       
-      <label htmlFor="name">First Name</label>
-      <input 
-        id="name" 
-        type="text" 
-        className="input-field" 
-        placeholder='Nombre' 
-        {...formik.getFieldProps('name')} 
+      <label htmlFor="firstName">First Name</label>
+      <input
+        id="firstName"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('firstName')}
       />
-      {formik.touched?.name && formik.errors?.name && (
-        <div className="error-message message">{formik.errors.name}</div>
+      {formik.touched?.firstName && formik.errors?.firstName && (
+        <div className="error-message message">{formik.errors.firstName}</div>
       )}
-      
+
+      <label htmlFor="lastName">Last Name</label>
+      <input
+        id="lastName"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('lastName')}
+      />
+      {formik.touched?.lastName && formik.errors?.lastName && (
+        <div className="error-message message">{formik.errors.lastName}</div>
+      )}
+
       <label htmlFor="email">Email Address</label>
       <input 
         id="email" 
@@ -113,6 +133,25 @@ const RegisterForm = () => {
         <div className="error-message message">{formik.errors?.confirmPassword}</div>
       )}
 
+      <label htmlFor="address">Direccion</label>
+      <div className=" d-flex">
+        <input
+          id="address"
+          type="text"
+          className="input-field"
+          style={{ width: '100%' }}
+          {...formik.getFieldProps('address')}
+        />
+        <button type="button" className="submit-btn" style={{ width: 'auto' }} onClick={mapSubmit}>
+          Buscar
+        </button>
+      </div>
+
+      {formik.touched?.address && formik.errors?.address && (
+        <div className="error-message message">{formik.errors.address}</div>
+      )}
+      <MapContainer address={sendAddress} />
+
       <label htmlFor='termsAndConditions' className='label'>Terminos y Condiciones</label>
       <input
           id="termsAndConditions"
@@ -126,6 +165,7 @@ const RegisterForm = () => {
         <div className="error-message message">{formik.errors.termsAndConditions}</div>
       )}
       <TermsAndConditionModal />
+
       <button type="submit" className="btn btn-primary" disabled={disableStyleBtn()}>
         Registrar
       </button>

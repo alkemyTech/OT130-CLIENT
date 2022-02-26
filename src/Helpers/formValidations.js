@@ -103,8 +103,13 @@ const yupTermsAndConditions = () =>
   Yup.boolean()
     .oneOf([true], TERMS_AND_CONDITIONS).required(TERMS_AND_CONDITIONS)
 
+const yupAddress = (minMsg) =>
+  Yup.string()
+    .required(INPUT_REQUIRED)
+    .min(6,minMsg )
 
 export {
+  yupAddress,
   yupCustomString,
   yupConfirmPass,
   yupEmail, 
