@@ -1,16 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { selectAuth } from '../../reducers/auth/authReducer';
 
-const ProtectedRoute = ({ path, component }) => {
-  const auth = true; // TODO: Conectar con estado global
-  return (
-    <Route
-      path={path}
-      render={() => {
-        return auth ? component : <Redirect to="/login" />;
-      }}
-    />
-  );
+const RequireAuth = ({ children }) => {
+  const {auth} = useSelector(selectAuth)
+  
+  return auth ? children : <Redirect to="/login" />;
 };
 
-export default ProtectedRoute;
+
+export { RequireAuth };
