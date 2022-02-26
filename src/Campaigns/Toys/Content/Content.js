@@ -1,25 +1,24 @@
 import React from 'react';
+import { CAMPAING_END_DATE, IMAGE_TOY_URL } from '../../../Helpers/constants';
 import { countDown } from '../../../Helpers/daysUntilDate';
 import './Content.css';
 
-const urlImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcJF7uzhXbdY2WeZuHPo65_OAgZWfxZclNw&usqp=CAU";
-
 const Content = () => {
 
-  const CountDown = countDown("2022-06-14");
+  const countDownResult = countDown( CAMPAING_END_DATE );
 
   return (
     <div className='content-container '>
-      <h5 className='content-date  m-3'>2022-06-14 hs Calle 123, Localidad, Provincia</h5>
+      <h5 className='content-date  m-3'>{CAMPAING_END_DATE} hs Calle 123, Localidad, Provincia</h5>
       <div className='content-container-date-image'>
         <div className='content-image content-image-rotate-27'>
-          <img src={urlImage} />
+          <img src={IMAGE_TOY_URL} />
         </div>
         <div>
-          <h4 className='content-Countdown m-3 m-3'>Te quedan: {CountDown} para participar</h4>
+          <h4 className='content-Countdown m-3 m-3'>Te quedan: {countDownResult} para participar</h4>
         </div>
         <div className='content-image content-image-rotate-reverse-27'>
-          <img src={urlImage} />
+          <img src={IMAGE_TOY_URL} />
         </div>
       </div>
       <p className='content-descriptin m-3'>
@@ -29,13 +28,13 @@ const Content = () => {
       </p>
       <div className='content-container-image'>
         <div className='content-image content-image-rotate-27'>
-          <img src={urlImage} />
+          <img src={IMAGE_TOY_URL} />
         </div>
         <div className='content-image'>
-          <img src={urlImage} />
+          <img src={IMAGE_TOY_URL} />
         </div>
         <div className='content-image content-image-rotate-reverse-27'>
-          <img src={urlImage} />
+          <img src={IMAGE_TOY_URL} />
         </div>
       </div>
     </div>
