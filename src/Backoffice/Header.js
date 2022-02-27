@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Container, Offcanvas } from 'react-bootstrap';
-import SidebarNav from '../Components/Backoffice/Sidebar';
+import { BACKOFFICE_PATHS } from '../routes/config';
+import Sidebar from './SideBar';
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
             <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <SidebarNav />
+            <Sidebar paths={BACKOFFICE_PATHS} />
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

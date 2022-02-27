@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
-import Sidebar from '../Components/Backoffice/Sidebar'
-import BackofficeRoutes from '../rutas/BackofficeRoutes'
+import Sidebar from './SideBar'
+import BackofficeRoutes from '../routes/BackofficeRoutes'
 
 const Backoffice = () => {
   
