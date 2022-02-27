@@ -14,7 +14,6 @@ const RequireAuthBackOffice = ({ children }) => {
   return (
     <>
       {
-        !isBackOfficePath && currentAuth === false ? children : // Si no está en la ruta backoffice y no está autenticado puede ver rutas publicas
         isAdmin ? children : // si es admin puede ver todas las rutas
         isUser && !isBackOfficePath ? children : // ver rutas publicas si es usuario
         currentAuth ? <Redirect to="/" /> : <Redirect to="/login" /> //si no esta autenticado
