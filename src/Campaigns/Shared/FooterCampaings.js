@@ -8,8 +8,8 @@ import './footerCampaings.css';
 
 const FooterCampaings = () => {
   
-  var currentDate = new Date();
-  var currentYear = currentDate.getFullYear();
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
 
   return (
     <footer className="footer-school-style mt-5">
