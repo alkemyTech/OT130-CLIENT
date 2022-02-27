@@ -10,7 +10,7 @@ import './footer.css';
 const Footer = () => {
   const dispatch = useDispatch();
   const { organization } = useSelector(selectOrganization);
-  const rightsYear = organization.created_at.split('-')[0];
+  const rightsYear = new Date().getFullYear();
 
   useEffect(() => {
     dispatch(fetchOrganization());
