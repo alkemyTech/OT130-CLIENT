@@ -3,10 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import { FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
-import { LOGO } from '../../assets/index';
+import { LOGO } from '../../assets';
 import './footerCampaings.css';
 
 const FooterCampaings = () => {
+  
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+
   return (
     <footer className="footer-school-style mt-5">
       <Container>
@@ -56,7 +60,7 @@ const FooterCampaings = () => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center align-items-center " xs="12">
-          <span className="text-white mb-2">2022 by Alkemy. All Rights Reserved</span>
+          <span className="text-white mb-2">{`${currentYear} by Alkemy. All Rights Reserved`}</span>
         </Row>
       </Container>
     </footer>
