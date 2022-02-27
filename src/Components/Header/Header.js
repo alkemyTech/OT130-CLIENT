@@ -5,22 +5,27 @@ const links = [
   {
     name: 'Inicio',
     url: '/',
+    status: 'ALL-USERS',
   },
   {
     name: 'Nosotros',
     url: '/',
+    status: 'ALL-USERS',
   },
   {
     name: 'Contacto',
     url: '/contacts',
+    status: 'ALL-USERS',
   },
   {
     name: 'Campaña Escuelas',
     url: '/school-campaign',
+    status: 'ALL-USERS',
   },
   {
     name: 'Campaña juguetes',
     url: '/toys-campaign',
+    status: 'ALL-USERS',
   },
 ];
 
