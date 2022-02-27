@@ -28,10 +28,12 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
+import Header from './Components/Header/Header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <BrowserRouter>
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
