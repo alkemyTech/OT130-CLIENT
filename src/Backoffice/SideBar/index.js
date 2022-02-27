@@ -3,6 +3,7 @@ import { Nav } from 'react-bootstrap'
 import { SideBarLink } from './SideBarLink';
 import './SideBar.css'
 
+
 const Sidebar = ({ paths }) => {
   return (
     <Nav className="justify-content-end flex-grow-1 pe-3">

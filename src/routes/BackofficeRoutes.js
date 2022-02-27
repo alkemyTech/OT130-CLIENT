@@ -10,10 +10,13 @@ import Organization from '../Screens/Organization/Organization';
 import UserList from '../Components/Users/UserList';
 import CreateEditUser from '../Components/Users/CreateEditUser';
 import BackofficeActivitiesList from '../Components/Activities/BackofficeActivitiesList';
+import CardsBackoffice from '../Backoffice/dashboard/CardsBackoffice';
 
 function BackofficeRoutes() {
     return (
+        
         <Switch>
+            <Route path="/backoffice" component={CardsBackoffice} />
             <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
             <Route path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
             <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
