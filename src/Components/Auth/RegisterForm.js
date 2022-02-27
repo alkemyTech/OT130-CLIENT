@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { postAuthRegister } from '../../Services/authService';
-import { ErrorAlert, SuccessAlert } from '../Alert';
-import {
-  yupConfirmPass,
-  yupEmail,
-  yupFirstName,
-  yupPassRegister,
-} from '../../Helpers/formValidations';
+
+import '../FormStyles.css';
 import {
   PASSWORD_REGISTER_CONTAIN,
   PASSWORD_DONT_MATCH,
@@ -18,10 +12,21 @@ import {
   UNKNOWN_ERROR,
   API_ERROR,
 } from '../../Helpers/messagesText';
-import '../FormStyles.css';
+import {
+  yupAddress,
+  yupConfirmPass,
+  yupEmail,
+  yupFirstName,
+  yupLastName,
+  yupPassRegister,
+} from '../../Helpers/formValidations';
+import MapContainer from '../Map/MapContainer';
+import { ErrorAlert, SuccessAlert } from '../Alert';
+import { postAuthRegister } from '../../Services/authService';
 
 const RegisterForm = () => {
   const [submitForm, setSubmitForm] = useState(false);
+  const [sendAddress, setSendAddress] = useState('');
   const history = useHistory();
 
   const timerMessage = (time) => {
@@ -32,16 +37,20 @@ const RegisterForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
+      address: '',
     },
     validationSchema: Yup.object({
-      name: yupFirstName(),
+      firstName: yupFirstName(),
+      lastName: yupLastName(),
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
+      address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
       const registerSubmit = async () => {
@@ -60,13 +69,34 @@ const RegisterForm = () => {
     },
   });
 
+  const mapSubmit = () => {
+    if (!formik?.errors.address) setSendAddress(formik?.values.address);
+  };
+
   return (
     <form className="form-container" onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">First Name</label>
-      <input id="name" type="text" className="input-field" {...formik.getFieldProps('name')} />
-      {formik.touched.name && formik.errors.name && (
-        <div className="error-message message">{formik.errors.name}</div>
+      <label htmlFor="firstName">First Name</label>
+      <input
+        id="firstName"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('firstName')}
+      />
+      {formik.touched.firstName && formik.errors.firstName && (
+        <div className="error-message message">{formik.errors.firstName}</div>
       )}
+
+      <label htmlFor="lastName">Last Name</label>
+      <input
+        id="lastName"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('lastName')}
+      />
+      {formik.touched.lastName && formik.errors.lastName && (
+        <div className="error-message message">{formik.errors.lastName}</div>
+      )}
+
       <label htmlFor="email">Email Address</label>
       <input id="email" type="email" className="input-field" {...formik.getFieldProps('email')} />
       {formik.touched.email && formik.errors.email && (
@@ -94,6 +124,26 @@ const RegisterForm = () => {
       {formik.touched.confirmPassword && formik.errors.confirmPassword && (
         <div className="error-message message">{formik.errors.confirmPassword}</div>
       )}
+
+      <label htmlFor="address">Direccion</label>
+      <div className=" d-flex">
+        <input
+          id="address"
+          type="text"
+          className="input-field"
+          style={{ width: '100%' }}
+          {...formik.getFieldProps('address')}
+        />
+        <button type="button" className="submit-btn" style={{ width: 'auto' }} onClick={mapSubmit}>
+          Buscar
+        </button>
+      </div>
+
+      {formik.touched.address && formik.errors.address && (
+        <div className="error-message message">{formik.errors.address}</div>
+      )}
+
+      <MapContainer address={sendAddress} />
 
       <button className="submit-btn" type="submit">
         Submit
