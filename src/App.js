@@ -11,8 +11,8 @@ import Public from './rutas/Public';
 function App() {
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
+        <Header />
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
           atActive={transitionsConfig.atActive}
