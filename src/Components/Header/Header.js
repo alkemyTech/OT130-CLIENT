@@ -1,8 +1,9 @@
 import { React } from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
-import DonationButton from '../Donations/DonationButton'
-import { selectUserAuth } from '../../reducers/auth/authReducer'
 import { useSelector } from 'react-redux';
+import { selectUserAuth } from '../../reducers/auth/authReducer'
+import DonationButton from '../Donations/DonationButton'
+
 function Header() {
 
     const currentUser = useSelector(selectUserAuth);
@@ -17,10 +18,9 @@ function Header() {
                     <Nav className="me-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
                         {
-                            role === 2 ?
-                                <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
-                                :
-                                <></>
+                            role &&
+                            <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
+
                         }
                     </Nav>
                 </Navbar.Collapse>

@@ -84,14 +84,12 @@ function ActivitySearchForm({ activities }) {
                 </Button>
             </form>
             {
-                resultadoBusqueda !== null ?
-                    <ActivityItem
-                        key={resultadoBusqueda.id}
-                        activity={resultadoBusqueda}
-                        handleDeleteActivity={handleDeleteActivity}
-                    />
-                    :
-                    null
+                resultadoBusqueda &&
+                <ActivityItem
+                    key={resultadoBusqueda.id}
+                    activity={resultadoBusqueda}
+                    handleDeleteActivity={handleDeleteActivity}
+                />
             }
         </Row>
     );

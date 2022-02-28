@@ -1,15 +1,15 @@
-.row-container-form{
+.row-container-form {
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-form{
+form {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-form .btn-activity-search-form{
+form .btn-activity-search-form {
     width: 60px;
     background-color: #0d6efd;
     text-transform: capitalize;
@@ -17,6 +17,6 @@ form .btn-activity-search-form{
     margin-left: 5px;
 }
 
-form .btn-activity-search-form .search{
-font-size: 20px;
+form .btn-activity-search-form .search {
+    font-size: 20px;
 }
