@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Nav, Navbar } from 'react-bootstrap';
-import { BrowserRouter, Link, NavLink } from 'react-router-dom';
+import { Button, Image, Nav, Navbar } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import './header.css';
 
 const links = [
   {
@@ -30,20 +32,23 @@ const links = [
   },
 ];
 
+const linkColor = '#18A0FB';
+const activeColort = '';
+
 const Header = () => {
   return (
     <header>
-      <Navbar className=" d-flex justify-content-between">
+      <Navbar className=" d-flex justify-content-between header">
         <Nav>
           <div className=" d-flex">
-            <img src="/src/assets/logo.webp" alt="Img Logo" />
+            <Image className="image-logo" src={logo} alt="Img Logo" />
 
             {links.map((link, index) => (
               <NavLink
-                className=" mx-2 text-decoration-none"
+                className=" d-flex mx-2 text-decoration-none align-items-center link-item"
                 key={index}
                 style={(isActive) => ({
-                  color: isActive ? 'darkblue' : 'blue',
+                  color: isActive ? 'blue' : linkColor,
                 })}
                 exact={true}
                 to={link.url}
@@ -53,8 +58,7 @@ const Header = () => {
             ))}
           </div>
         </Nav>
-
-        <div className=" d-flex">
+        <div>
           <Button className=" mx-2" variant="outline-primary">
             Login
           </Button>
