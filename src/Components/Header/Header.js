@@ -3,7 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { selectUserAuth } from '../../reducers/auth/authReducer';
 import { useSelector } from 'react-redux';
 import DonationButton from '../Donations/DonationButton';
-import usuarioStandard from '../../Helpers/userTypes';
+import ID_USUARIOS from '../../Helpers/userTypes';
 
 function Header() {
 
@@ -19,7 +19,7 @@ function Header() {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             {
-              (role === usuarioStandard) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
+              (role === ID_USUARIOS.ID_USUARIOS.usuarioStandar) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
             }
           </Nav>
         </Navbar.Collapse>
