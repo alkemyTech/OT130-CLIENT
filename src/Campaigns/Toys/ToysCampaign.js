@@ -7,7 +7,7 @@ import Footer from './Footer';
 const ToysCampaign = () => {
   return (
     <>
-      <HeaderCampaings />
+      <HeaderCampaings campaing={"toys"} />
       <Slider />
       <Content />
       <Footer />
