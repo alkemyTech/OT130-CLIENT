@@ -25,7 +25,7 @@ const HomeForm = () => {
   }, []);
 
   const getSlidesData = async () => {
-    const { data: slides, error } = await getSlides();  
+    const { data: slides, error } = await getSlides();
     if (error) {
       return ErrorAlert("Error", error.message);
     }
