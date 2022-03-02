@@ -38,6 +38,7 @@ const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
+const TERMS_AND_CONDITIONS = 'Debe aceptar los terminos y condiciones';
 
 // Mensajes REGISTER-LOGIN
 const REGISTER_SUCCESS = 'Usuario registrado exitosamente';
@@ -78,6 +79,7 @@ export {
   PASSWORD_DONT_MATCH,
   REGISTER_SUCCESS,
   SHOULD_BE_DIGITS_ONLY,
+  TERMS_AND_CONDITIONS,
   SCHOOL_CAMPAIGN_DATE,
   SCHOOL_CAMPAIGN_DESCRIPTION,
   SCHOOL_CAMPAIGN_LOCATION,
