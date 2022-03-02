@@ -7,18 +7,18 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import { BsSearch } from 'react-icons/bs';
-import { ActivityItem } from './ActivityItem';
 import { useDispatch } from 'react-redux';
-import './ActivitySearchForm.css'
-import { deleteActivity } from '../../Services/activitiesService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
+import './ActivitySearchForm.css'
+import { ActivityItem } from './ActivityItem';
+import { deleteActivity } from '../../Services/activitiesService';
 import { fetchActivities } from '../../actions/activitiesActions';
 
 function ActivitySearchForm({ activities }) {
 
     const dispatch = useDispatch();
-    const [resultadoBusqueda, setResultadoBusqueda] = useState(null);
+    const [searchResult, setSearchResult] = useState(null);
     const validationSchema = yup.object({
         buscador: yup
             .string('Enter your email')
@@ -32,10 +32,10 @@ function ActivitySearchForm({ activities }) {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            const actividad = activities.find(actividad => actividad.name === values);
+            const result = activities.find(activity => activity.name === values);
 
-            if (actividad !== undefined) {
-                setResultadoBusqueda(actividad);
+            if (result) {
+                setSearchResult(result);
             }
         },
     });
@@ -84,10 +84,10 @@ function ActivitySearchForm({ activities }) {
                 </Button>
             </form>
             {
-                resultadoBusqueda &&
+                searchResult &&
                 <ActivityItem
-                    key={resultadoBusqueda.id}
-                    activity={resultadoBusqueda}
+                    key={searchResult.id}
+                    activity={searchResult}
                     handleDeleteActivity={handleDeleteActivity}
                 />
             }
