@@ -34,6 +34,7 @@ function Public() {
             <Route path="/thanks" component={Thanks} />
             <Route path="/toys-campaign" component={ToysCampaign} />
             <Route path="/activities/:id" component={ActivityDetail} />
+            <Route path="/register" component={RegisterForm} />
         </Switch>
     )
 }
