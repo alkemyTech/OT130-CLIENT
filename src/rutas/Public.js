@@ -11,7 +11,7 @@ import SchoolCampaign from '../Campaigns/School/SchoolCampaign';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import Thanks from '../Components/Donations/Thanks';
 import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
-import Home from '../Components/Home/Index';
+import Home from '../Components/Home';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
 
