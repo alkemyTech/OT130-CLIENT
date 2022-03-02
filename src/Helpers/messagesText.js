@@ -1,7 +1,7 @@
 // Errores generales de request
 const NETWORK_ERROR = 'Error de red. Asegurate de estar conectado a internet';
 const UNKNOWN_ERROR = 'Ha ocurrido un error';
-const API_ERROR = 'Disculpe, hubo un error en la aplicación.'
+const API_ERROR = 'Disculpe, hubo un error en la aplicación.';
 
 // Mensajes de validación de formularios
 const DESCRIPTION_LONG = 'Descripción demasiado larga';
@@ -13,11 +13,11 @@ const INVALID_IMAGE_EXT = 'Extensión inválida. Solo archivos jpg o png';
 const NUMBER_TO_SHORT_ERROR = 'El numero debe tener minimo 8 caracteres';
 const TITLE_LONG = 'Nombre muy largo';
 const TITLE_SHORT = 'Mínimo 4 caracteres';
-const PASSWORD_INCORRECT = "La contraseña que ingresaste es incorrecta"
+const PASSWORD_INCORRECT = 'La contraseña que ingresaste es incorrecta';
 const PASSWORD_SHORT = 'Mínimo 6 caracteres';
 const PASSWORD_REGISTER_CONTAIN =
   'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).';
-  const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
+const PASSWORD_DONT_MATCH = 'Las contraseñas no coinciden';
 const ALERT_ICON_SUCCESS = 'success';
 const ALERT_ICON_ERROR = 'error';
 const ALERT_ICON_WARNING = 'warning';
@@ -38,6 +38,7 @@ const ORGANIZATION_LOGO = 'Logo de la organización';
 const ORGANIZATION_NAME = 'Nombre de la organización';
 const ORGANIZATION_DESCRIPTION = 'Descripcion de la organización';
 const IMAGE_NOT_AVAIBLE = 'Imagen no disponible';
+const TERMS_AND_CONDITIONS = 'Debe aceptar los terminos y condiciones';
 
 // Mensajes REGISTER-LOGIN
 const REGISTER_SUCCESS = 'Usuario registrado exitosamente';
@@ -48,6 +49,14 @@ const INCORRECT_DATA = ' Datos incorrectos';
 const DONATION_TITLE_TEXT = '¡Contribuye!';
 const DONATION_BUTTON_TEXT = 'Contribuir';
 const DONATION_THANKS_TEXT = '¡Muchas gracias por contribuir!';
+
+//Maps
+const ZERO_RESULTS = 'No hay ningun resultado con esa direccion';
+
+//Textos de campañas
+const SCHOOL_CAMPAIGN_DESCRIPTION = 'Con el inicio de un nuevo ciclo lectivo, iniciamos nuevamente nuestra campaña escolar. Tenemos el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad.'
+const SCHOOL_CAMPAIGN_LOCATION = 'Guatemala 4691, Buenos Aires'
+const SCHOOL_CAMPAIGN_DATE = '13 de Marzo de 2022'
 
 export {
   API_ERROR,
@@ -70,6 +79,10 @@ export {
   PASSWORD_DONT_MATCH,
   REGISTER_SUCCESS,
   SHOULD_BE_DIGITS_ONLY,
+  TERMS_AND_CONDITIONS,
+  SCHOOL_CAMPAIGN_DATE,
+  SCHOOL_CAMPAIGN_DESCRIPTION,
+  SCHOOL_CAMPAIGN_LOCATION,
   TITLE_LONG,
   TITLE_SHORT,
   UNKNOWN_ERROR,
@@ -91,5 +104,6 @@ export {
   ORGANIZATION_NAME,
   ORGANIZATION_DESCRIPTION,
   IMAGE_NOT_AVAIBLE,
-  FETCH_ERROR
+  FETCH_ERROR,
+  ZERO_RESULTS,
 };
