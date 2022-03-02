@@ -50,7 +50,6 @@ const OrganizationEdit = () => {
       id,
     );
     if (data) {
-      console.log(data)
       setOrganizationData(data);
       SuccessAlert(undefined, ORGANIZATION_EDITED_SUCCESSFULLY);
       push(BACKOFFICE_ORGANIZATION);
