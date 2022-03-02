@@ -14,7 +14,7 @@ const slidesURL = process.env.REACT_APP_API_URL_SLIDES;
 const getSlides = async () => {
   const response = {};
   try {
-      const { data } = await instance.get(`${config.baseURL}${slidesURL}`);
+      const { data } = await instance.get(slidesURL);
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -25,7 +25,7 @@ const getSlides = async () => {
 const addNewSlide = async (body) => {
   const response = {};
   try {
-      const { data } = await instance.post(`${config.baseURL}${slidesURL}`, body);
+      const { data } = await instance.post(slidesURL, body);
       response.data = data;
   } catch (error) {
       response.error = error;
@@ -36,7 +36,7 @@ const addNewSlide = async (body) => {
 const editSlide = async (body, id) => {
   const response = {};
   try {
-      const { data } = await instance.put(`${config.baseURL}${slidesURL}/${id}`, body);
+      const { data } = await instance.put(slidesURL+`/${id}`, body);
       response.data = data;
   } catch (error) {
       response.error = error;

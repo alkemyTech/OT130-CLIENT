@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Spinner } from 'react-bootstrap';
 import * as organizationService from '../../Services/organizationService';
-import './styles.css';
-import { EDIT_ORGANIZATION } from '../../rutas/config';
+import { EDIT_ORGANIZATION } from '../../routes/config';
 import {
   ORGANIZATION_FETCH_ERROR,
   ORGANIZATION_LOGO,
@@ -11,6 +10,7 @@ import {
   ORGANIZATION_DESCRIPTION,
 } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../../Components/Alert';
+import './styles.css';
 
 const Organization = () => {
   const { push } = useHistory();

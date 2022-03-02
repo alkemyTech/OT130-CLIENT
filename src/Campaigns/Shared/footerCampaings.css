@@ -1,0 +1,71 @@
+.footer-school-style {
+    margin-top: 2rem;
+    background-color: rgb(163, 163, 163) !important;
+    color: rgb(255, 255, 255) !important;
+    height: auto !important;
+    z-index: 200;
+}
+
+.footer-school-style a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+    color: white !important;
+}
+
+.footer-school-style a span {
+    font-size: 20px;
+    margin-left: 0.5rem;
+}
+
+.logo-footer-school {
+    height: 200px;
+}
+
+.footer-main-container a {
+    margin: 0 0.5rem;
+    font-size: 32px;
+}
+
+.footer-main-container a:hover {
+    color: #0e7fe1 !important ;
+}
+
+.link-footer-active {
+    color: #0e7fe1;
+}
+
+.campaings-links-container li {
+    list-style: none;
+    position: relative;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+}
+
+.campaings-links-container li a {
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    padding: 5px 1px;
+    z-index: 1;
+    transition: all 0.5s;
+}
+
+.campaings-links-container li::after {
+    content: "";
+    position: absolute;
+    height: 5%;
+    width: 0;
+    color: white !important;
+    background-color: #0e7fe1;
+    left: 0;
+    z-index: 0;
+    bottom: 0;
+    transition: all 0.5s;
+}
+
+.campaings-links-container li:hover:before,
+li:hover::after {
+    width: 100%;
+}
