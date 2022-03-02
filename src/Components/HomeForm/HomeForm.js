@@ -29,15 +29,15 @@ const HomeForm = () => {
     if (error) {
       return ErrorAlert("Error", error.message);
     }
-    setSlides(slides);
+    setSlides(slides.data);
   };
 
   const getOrganization = async () => {
-    const { data: organizationData, error } = await getOrganizationData();
+    const { data, error } = await getOrganizationData();
     if (error) {
       return ErrorAlert("Error", error.message);
     }
-    setWelcomeText(organizationData?.welcome_text);
+    setWelcomeText(data?.organizationData?.welcome_text);
   };
 
   const addSlide = () => {
