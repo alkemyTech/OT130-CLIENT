@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
-import Content from './Content';
+import Content from './Content/Content';
 import Footer from './Footer';
 
 const ToysCampaign = () => {
