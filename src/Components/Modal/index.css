@@ -1,0 +1,102 @@
+.example-warper {
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border: 1px #cfcece dashed;
+  height: 100%;
+}
+.popup-content{
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  top: 0;
+  left: 0;
+  scale: 1;
+  background: rgba(245, 245, 245, 0.63);
+  z-index: 9999;
+  border: 1px #cfcece93 dashed;
+}
+.button {
+  font-family: "Roboto", Arial, sans-serif;
+  color: #000000;
+  cursor: pointer;
+  padding: 0px 30px;
+  display: inline-block;
+  text-transform: uppercase;
+  line-height: 2em;
+  letter-spacing: 1.5px;
+  font-size: 1em;
+  margin: 10px 0;
+  outline: none;
+  position: relative;
+  font-size: 14px;
+  border: 3px solid #cfcece;
+  background-color: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.button:hover,
+.button.hover {
+  border-color: #2980b9;
+}
+
+.cModal {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+}
+
+.cModal > .content {
+  padding: 10px 5px;
+}
+.cModal > .actions {
+  margin: auto;
+}
+.cModal > .actions {
+  width: 100%;
+  text-align: center;
+}
+.cModal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px 9px 5px;
+  line-height: 20px;
+  right: -10px;
+  text-align: center;
+  top: -10px;
+  margin-bottom: 2px;
+  text-decoration: none;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 50px;
+  border: 1px solid #cfcece;
+}
+
+.example-warper-start {
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px #cfcece dashed;
+}
+
+.menu {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+.menu-item {
+  cursor: pointer;
+  padding: 5px;
+  height: 28px;
+  border-top: 1px solid rgb(187, 187, 187);
+}
+.menu-item:hover {
+  color: #2980b9;
+}
