@@ -3,6 +3,8 @@ const CAROUSEL_INTERVAL = 5000;
 const ALERT_OUT_TIMER = 4000;
 const LINKEDIN_COMPANY_ID = 68737437;
 const TWITTER_WIDGET_WIDTH = 314;
+const CAMPAING_END_DATE = "2022-06-14";
+const IMAGE_TOY_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcJF7uzhXbdY2WeZuHPo65_OAgZWfxZclNw&usqp=CAU";
 
 export {
   SLIDES_LIMIT,
@@ -10,4 +12,6 @@ export {
   ALERT_OUT_TIMER,
   LINKEDIN_COMPANY_ID,
   TWITTER_WIDGET_WIDTH,
+  CAMPAING_END_DATE,
+  IMAGE_TOY_URL
 };
