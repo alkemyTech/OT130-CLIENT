@@ -14,7 +14,7 @@ const slidesURL = process.env.REACT_APP_API_URL_SLIDES;
 const getSlides = async () => {
   const response = {};
   try {
-      const { data } = await instance.get(`${config.baseURL}${slidesURL}`);
+      const { data } = await instance.get(slidesURL);
       response.data = data;
   } catch (error) {
       response.error = error;
