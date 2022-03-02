@@ -28,6 +28,7 @@ import BackofficeActivitiesList from './Components/Activities/BackofficeActiviti
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { transitionsConfig } from './config/transitions';
+import News from './Components/News/News';
 
 function App() {
   return (
@@ -47,7 +48,9 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
           <Route path="/create-news" component={NewsForm} />
+          <Route path="/news" component={NewsForm} />
           <Route path="/backoffice/home" component={HomeForm} />
+          <Route path="/backoffice/news" component={News} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/slides" component={SlidesList} />
           <Route exact path="/backoffice/organization" component={Organization} />
