@@ -6,13 +6,12 @@ export const PublicRoute = ({
   component: Component,
   ...rest
 }) => {
-
-  const { users } = useSelector(state => state.usersReducer)
-
+  const { isAuthenticated } = useSelector(state => state.authUser)
+  
   return (
     <Route {...rest}
       component={( props ) => (
-        (users?.success)
+        (isAuthenticated)
           ? (<Redirect to="/" />)
           : (<Component {...props} />)
       )}
