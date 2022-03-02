@@ -1,4 +1,4 @@
-import { Patch, Post } from './privateApiService';
+import { Patch, Post, Get } from './privateApiService';
 
 const saveNews = async (values) => {
   const response = { error: null, data: {} };
@@ -22,7 +22,31 @@ const updateNews = async (values) => {
   return response;
 };
 
+const getNews = async () => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Get(process.env.REACT_APP_NEWS_ENDPOINT);
+    response.data = data.data;
+  } catch (error) {
+    response.error = error.message;
+  }
+  return response;
+};
+
+const getNewsByParams = async (searchParam) => {
+  const response = { error: null, data: {} };
+  try {
+    const { data } = await Get(`${process.env.REACT_APP_NEWS_ENDPOINT}?search=${searchParam}`);
+    response.data = data.data;
+  } catch (error) {
+    response.error = error.message;
+  }
+  return response;
+};
+
 export {
   saveNews,
-  updateNews
+  updateNews,
+  getNews,
+  getNewsByParams
 };
