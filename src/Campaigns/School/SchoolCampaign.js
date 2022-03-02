@@ -7,12 +7,11 @@ import Footer from './Footer';
 const SchoolCampaign = () => {
   return (
     <>
-      <Header />
       <Slider />
       <Content />
       <Footer />
     </>
   );
-}
- 
+};
+
 export default SchoolCampaign;

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Button, Image, Nav, Navbar } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 import { HEADER_LINK_COLOR } from '../../config/colorConfig';
 import { PUBLIC_PATHS } from '../../rutas/config';
 
 import './header.css';
-
-const links = [];
 
 const Header = () => {
   return (
@@ -34,10 +32,14 @@ const Header = () => {
           </div>
         </Nav>
         <div className=" d-flex">
-          <Button className=" mx-2" variant="outline-primary">
-            Login
-          </Button>
-          <Button className=" mx-2">Registrarse</Button>
+          <Link to="/login">
+            <Button className=" mx-2" variant="outline-primary">
+              Login
+            </Button>
+          </Link>
+          <Link to="/register">
+            <Button className=" mx-2">Registrarse</Button>
+          </Link>
         </div>
       </Navbar>
     </header>

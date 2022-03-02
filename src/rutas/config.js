@@ -30,26 +30,21 @@ export const PUBLIC_PATHS = [
   {
     PLACEHOLDER: 'Inicio',
     ROUTE: '/',
-    USER_ACCESED: false,
   },
   {
     PLACEHOLDER: 'Nosotros',
     ROUTE: '/us',
-    USER_ACCESED: false,
   },
   {
     PLACEHOLDER: 'Contacto',
     ROUTE: '/contacts',
-    USER_ACCESED: false,
   },
   {
     PLACEHOLDER: 'Campaña Escuelas',
     ROUTE: '/school-campaign',
-    USER_ACCESED: false,
   },
   {
     PLACEHOLDER: 'Campaña juguetes',
     ROUTE: '/toys-campaign',
-    USER_ACCESED: false,
   },
 ];
