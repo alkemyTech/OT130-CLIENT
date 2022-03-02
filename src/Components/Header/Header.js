@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 import { HEADER_LINK_COLOR } from '../../config/colorConfig';
-import { PUBLIC_PATHS } from '../../rutas/config';
+import { PUBLIC_PATHS } from '../../routes/config';
 
 import './header.css';
 
