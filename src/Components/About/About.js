@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ListTexts from '../ListTexts/ListTexts';
 import Title from '../Title/Title';
+import SocialMediaWidgets from '../SocialMediaWidgets/SocialMediaWidgets';
 import { getData } from '../../Services/aboutService';
 import { Spinner } from '../Spinner/Spinner';
 import { ErrorAlert } from '../Alert';
@@ -31,6 +32,7 @@ const About = () => {
         <>
           <Title text={dataTexts[0].title} />
           <ListTexts itemSection={dataTexts} />
+          <SocialMediaWidgets />
         </>
       }
     </>
