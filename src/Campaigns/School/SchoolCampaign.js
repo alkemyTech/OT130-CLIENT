@@ -16,6 +16,6 @@ const SchoolCampaign = () => {
       <FooterCampaings />
     </div >
   );
-}
- 
+};
+
 export default SchoolCampaign;
