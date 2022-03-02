@@ -15,6 +15,7 @@ import Home from '../Components/Home';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
 import Header from '../Components/Header/Header';
+import { PublicRoute } from '../router/PublicRoute';
 
 function Public() {
   return (
@@ -34,7 +35,7 @@ function Public() {
         <Route path="/thanks" component={Thanks} />
         <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/activities/:id" component={ActivityDetail} />
-        <Route path="/register" component={RegisterForm} />
+        <PublicRoute path="/register" component={RegisterForm} />
       </Switch>
     </>
   );
