@@ -49,6 +49,7 @@ const BackoficeActivitiesList = () => {
           activities.map((activity) => {
             return (
               <ActivityItem
+              backoffice
                 key={activity.id}
                 activity={activity}
                 handleDeleteActivity={handleDeleteActivity}

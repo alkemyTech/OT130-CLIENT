@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
-import { Spinner } from '../Spinner/Spinner';
 import { ErrorAlert } from '../Alert';
+import { Spinner } from '../Spinner/Spinner';
+import { ActivityItem } from './ActivityItem';
 import '../CardListStyles.css';
 
 const ActivitiesList = () => {
@@ -27,14 +28,11 @@ const ActivitiesList = () => {
       <Row className="text-center my-3">
         <h1>Listado Actividades</h1>
       </Row>
-      <Row>
+      <Row className='justify-content-center'>
         {activities.length > 0 ? (
           activities.map((activity) => {
             return (
-              <div className="p-2 card-info" key={activity.id}>
-                <Card.Title>{activity.name}</Card.Title>
-                <p>{activity.description}</p>
-              </div>
+             <ActivityItem activity={activity}/>
             );
           })
         ) : isLoading ? (
