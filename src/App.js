@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { transitionsConfig } from './config/transitions';
-import Header from './Components/Header/Header';
 import Backoffice from './rutas/Backoffice';
 import Public from './rutas/Public';
 
@@ -12,7 +11,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
           atActive={transitionsConfig.atActive}

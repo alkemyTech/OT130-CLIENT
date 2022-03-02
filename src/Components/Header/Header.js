@@ -1,38 +1,14 @@
 import React from 'react';
 import { Button, Image, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+
 import logo from '../../assets/logo.png';
+import { HEADER_LINK_COLOR } from '../../config/colorConfig';
+import { PUBLIC_PATHS } from '../../rutas/config';
+
 import './header.css';
 
-const links = [
-  {
-    name: 'Inicio',
-    url: '/',
-    status: 'ALL-USERS',
-  },
-  {
-    name: 'Nosotros',
-    url: '/us',
-    status: 'ALL-USERS',
-  },
-  {
-    name: 'Contacto',
-    url: '/contacts',
-    status: 'ALL-USERS',
-  },
-  {
-    name: 'Campaña Escuelas',
-    url: '/school-campaign',
-    status: 'ALL-USERS',
-  },
-  {
-    name: 'Campaña juguetes',
-    url: '/toys-campaign',
-    status: 'ALL-USERS',
-  },
-];
-
-const linkColor = '#18A0FB';
+const links = [];
 
 const Header = () => {
   return (
@@ -42,17 +18,17 @@ const Header = () => {
           <div className=" d-flex justify-content-center align-items-center flex-column flex-sm-row ">
             <Image className="image-logo" src={logo} alt="Img Logo" />
 
-            {links.map((link, index) => (
+            {PUBLIC_PATHS.map((path, index) => (
               <NavLink
                 className="mx-2 text-decoration-none align-items-center link-item"
                 key={index}
                 style={(isActive) => ({
-                  color: isActive ? 'blue' : linkColor,
+                  color: isActive ? 'blue' : HEADER_LINK_COLOR,
                 })}
                 exact={true}
-                to={link.url}
+                to={path.ROUTE}
               >
-                {link.name}
+                {path.PLACEHOLDER}
               </NavLink>
             ))}
           </div>

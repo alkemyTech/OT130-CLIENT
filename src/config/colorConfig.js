@@ -1,6 +1,7 @@
 const GREEN_BLUE_COLOR = "#36D7B7";
-
+const HEADER_LINK_COLOR = '#18A0FB';
 export {
-    GREEN_BLUE_COLOR
+    GREEN_BLUE_COLOR,
+    HEADER_LINK_COLOR 
 };
 
