@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
@@ -31,8 +30,7 @@ const RegisterForm = () => {
   const { termsAndConditions } = useSelector(selectTerms);
   const [checkCheckbox, setcheckCheckbox] = useState(false);
   const [sendAddress, setSendAddress] = useState('');
-  const history = useHistory();
-
+ 
   const registerSubmit = async (values) => {
     try {
       await postAuthRegister(values);
@@ -66,24 +64,8 @@ const RegisterForm = () => {
       address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
-<<<<<<< HEAD
-      const registerSubmit = async () => {
-        try {
-          await postAuthRegister(values);
-          setSubmitForm(true);
-          timerMessage(3000);
-          formik.resetForm();
-          SuccessAlert(REGISTER_SUCCESS);
-          history.push('/login');
-        } catch (error) {
-          ErrorAlert(UNKNOWN_ERROR, API_ERROR);
-        }
-      };
-      registerSubmit();
-=======
       registerSubmit(values);
       formik.resetForm();
->>>>>>> 70c0b31273d1d0e0241ef885efd48ea76c0ede8e
     },
   });
 
