@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-export const newsReducer = createReducer(initialState, (builder) => {
+const newsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(saveNovedades.pending, (state) => {
       state.isLoading = true;
@@ -58,6 +58,6 @@ export const newsReducer = createReducer(initialState, (builder) => {
     })
 });
 
-export const selectNews = (state) => state.news;
+export default newsReducer
 
-export default newsReducer;
+export const selectNews = (state) => state.news;
