@@ -14,6 +14,8 @@ import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
 import Home from '../Components/Home/Index';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
+import NewsLetter from '../Components/Newsletter/Newsletter';
+import ProtectedRoute from '../Components/Auth/ProtectedRoute';
 
 function Public() {
     return (
@@ -27,6 +29,7 @@ function Public() {
             <Route path="/create-member" component={MembersForm} />
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/donate" component={Donation} />
+            <ProtectedRoute path="/newsletter" component={NewsLetter} />
             <Route path="/school-campaign" component={SchoolCampaign} />
             <Route path="/thanks" component={Thanks} />
             <Route path="/toys-campaign" component={ToysCampaign} />
