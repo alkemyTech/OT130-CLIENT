@@ -28,7 +28,7 @@ const NewsForm = ({ editNews }) => {
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
   const dispatch = useDispatch();
-  const { isLoading, error, news } = useSelector(selectNews);
+  const { isLoading, error } = useSelector(selectNews);
 
   const updateCategories = async () => {
     const { data, error } = await getCategories();
