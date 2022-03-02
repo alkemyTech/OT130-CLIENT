@@ -1,6 +1,5 @@
 import { Get, Post } from "./privateApiService";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
 const endpoint = process.env.REACT_APP_ORGANIZATION_ENDPOINT;
 
 const getOrganizationData = async () => {
