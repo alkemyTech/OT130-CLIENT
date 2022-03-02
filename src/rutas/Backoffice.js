@@ -7,6 +7,7 @@ import HomeForm from '../Components/HomeForm/HomeForm';
 import SlidesForm from '../Components/Slides/SlidesForm';
 import SlidesList from '../Components/Slides/SlidesList';
 import Organization from '../Screens/Organization/Organization';
+import NewsCard from '../Components/News/News';
 import UserList from '../Components/Users/UserList';
 import CreateEditUser from '../Components/Users/CreateEditUser';
 import BackofficeActivitiesList from '../Components/Activities/BackofficeActivitiesList';
@@ -25,6 +26,7 @@ function Backoffice() {
                 <Route path="/backoffice/slides" component={SlidesList} />
                 <Route exact path="/backoffice/organization" component={Organization} />
                 <Route exact path="/backoffice/users" component={UserList} />
+                <Route exact path="/backoffice/news" component={NewsCard} />
                 <Route exact path="/backoffice/users/create" component={CreateEditUser} />
                 <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
                 <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
