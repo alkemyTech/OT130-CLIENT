@@ -1,15 +1,15 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-const ROLES_DE_USUARIOS = {
+const USER_ROLES = {
    2: "Usuario Standard",
    1: "Usuario Adminisrador"
 };
 
-const ID_USUARIOS = {
+const ID_USERS = {
    usuarioAdministrador: 1,
    usuarioStandar: 2,
 }
 
 export default {
-   ROLES_DE_USUARIOS,
-   ID_USUARIOS
+   USER_ROLES,
+   ID_USERS
 };
