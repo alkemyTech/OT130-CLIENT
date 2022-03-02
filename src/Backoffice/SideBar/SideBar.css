@@ -11,6 +11,6 @@
   text-transform: capitalize;
 }
 .bm-item:hover{
-  border-left: 2px solid #1133f3;
+  border-left: 2px solid #0e7fe1;
   color: rgb(73, 73, 73);
 }

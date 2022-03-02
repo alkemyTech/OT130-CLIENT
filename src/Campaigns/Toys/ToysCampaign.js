@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './Header';
+import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
-import Content from './Content';
+import Content from './Content/Content';
 import Footer from './Footer';
 
 const ToysCampaign = () => {
   return (
     <>
-      <Header />
+      <HeaderCampaings campaign={"toys"} />
       <Slider />
       <Content />
       <Footer />
