@@ -7,5 +7,10 @@ export const ScreenDashboard = () => {
         Bienvenido al Dashboard
       </h1>
     </>
+<<<<<<< HEAD
   )
 };
+=======
+  ) 
+};
+>>>>>>> main

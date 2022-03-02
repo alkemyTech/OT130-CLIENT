@@ -12,3 +12,5 @@ const deleteUsers = createAsyncThunk('users/deleteUsers', async (id) => {
 });
 
 export { fetchUsers, deleteUsers };
+
+
