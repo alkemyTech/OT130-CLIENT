@@ -5,7 +5,7 @@ const endpoint = process.env.REACT_APP_ORGANIZATION_ENDPOINT;
 
 const getOrganizationData = async () => {
   try {
-    const { data } = await Get(baseURL + endpoint);
+    const { data } = await Get(endpoint);
     return data;
   } catch (error) {
     return { error: error.response?.data || error };

@@ -8,6 +8,7 @@ import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../Alert';
 import '../CardListStyles.css';
 import { Spinner } from '../Spinner/Spinner';
+import { ActivityItem } from './ActivityItem';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,11 @@ const ActivitiesList = () => {
       <Row className="text-center my-3">
         <h1>Listado Actividades</h1>
       </Row>
-      <Row>
+      <Row className='justify-content-center'>
         {activities.length > 0 ? (
           activities.map((activity) => {
             return (
-              <div className="p-2 card-info" key={activity.id}>
-                <Card.Title>{activity.name}</Card.Title>
-                <p>{activity.description}</p>
-              </div>
+             <ActivityItem activity={activity}/>
             );
           })
         ) : isLoading ? (
