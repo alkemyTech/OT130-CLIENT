@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { RequireAuth } from '../Components/Auth/ProtectedRoute';
+import { AdminRoute, AuthRoute } from '../Components/Auth/ProtectedRoute';
 import ActivitiesCreation from '../Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from '../Screens/Activities/ActivitiesEdition';
 import OrganizationEdit from '../Screens/Organization/OrganizationEdit';
@@ -21,27 +21,26 @@ import { ScreenDashboard } from '../Screens/ScreenDashboard';
 function Backoffice() {
   return (
     <Switch>
-      <RequireAuth>
-        <Route path="/backoffice/activities/create" component={ActivitiesCreation} />
-        <Route path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
-        <Route path="/backoffice/organization/edit" component={OrganizationEdit} />
-        <Route path="/backoffice/home" component={HomeForm} />
-        <Route path="/backoffice/create-slide" component={SlidesForm} />
-        <Route path="/backoffice/slides" component={SlidesList} />
-        <Route exact path="/backoffice/organization" component={Organization} />
-        <Route exact path="/backoffice/users" component={UserList} />
-        <Route exact path="/backoffice/users/create" component={CreateEditUser} />
-        <Route exact path="/backoffice/users/create/:id" component={CreateEditUser} />
-        <Route path="/backoffice/activities" component={BackofficeActivitiesList} />
-        <Route path="/create-category" component={CategoriesForm} />
-        <Route path="/create-news" component={NewsForm} />
-        <Route path="/create-testimonials" component={TestimonialForm} />
-        <Route path="/create-member" component={MembersForm} />
-        <Route path="/create-project" component={ProjectsForm} />
-        <Route path="/" component={ScreenDashboard} />
-      </RequireAuth>
+        <AuthRoute exact path="/backoffice" component={ScreenDashboard} />
+        <AuthRoute exact path="/backoffice/activities" component={BackofficeActivitiesList} />
+        <AuthRoute exact path="/backoffice/slides" component={SlidesList} />
+        <AuthRoute exact path="/backoffice/organization" component={Organization} />
+        <AuthRoute exact path="/backoffice/users" component={UserList} />
+        <AdminRoute exact path="/backoffice/categories/create" component={CategoriesForm} />
+        <AdminRoute exact path="/backoffice/news/create" component={NewsForm} />
+        <AdminRoute exact path="/backoffice/testimonials/create" component={TestimonialForm} />
+        <AdminRoute exact path="/backoffice/members/create" component={MembersForm} />
+        <AdminRoute exact path="/backoffice/projects/create" component={ProjectsForm} />
+        <AdminRoute exact path="/backoffice/activities/create" component={ActivitiesCreation} />
+        <AdminRoute exact path="/backoffice/activities/edit/:id" component={ActivitiesEdition} />
+        <AdminRoute exact path="/backoffice/organization/edit" component={OrganizationEdit} />
+        <AdminRoute exact path="/backoffice/home" component={HomeForm} />
+        <AdminRoute exact path="/backoffice/create-slide" component={SlidesForm} />
+        <AdminRoute exact path="/backoffice/users/create" component={CreateEditUser} />
+        <AdminRoute exact path="/backoffice/users/create/:id" component={CreateEditUser} />
     </Switch>
   );
 }
 
 export default Backoffice;
+    
