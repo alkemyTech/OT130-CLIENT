@@ -2,15 +2,19 @@ import React from 'react';
 import Header from './Header';
 import Slider from './Slider';
 import Content from './Content';
-import Footer from './Footer';
+import FooterCampaings from '../Shared/FooterCampaings';
+
 
 const SchoolCampaign = () => {
   return (
-    <>
-      <Slider />
-      <Content />
-      <Footer />
-    </>
+    <div className='footer-fix'>
+      <Header />
+      <div>
+        <Slider />
+        <Content />
+      </div>
+      <FooterCampaings />
+    </div >
   );
 };
 
