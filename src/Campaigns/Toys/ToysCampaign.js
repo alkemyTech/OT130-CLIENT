@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderCampaings from '../Shared/HeaderCampaings';
+import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
 import Content from './Content';
 import Footer from './Footer';
@@ -7,7 +7,7 @@ import Footer from './Footer';
 const ToysCampaign = () => {
   return (
     <>
-      <HeaderCampaings />
+      <HeaderCampaings campaign={"school"} />
       <Slider />
       <Content />
       <Footer />
