@@ -32,7 +32,7 @@ const Footer = () => {
             </li>
           </Col>
           <Col>
-            <Link className='link-item p-1' to='/'><Image src={organization.logo} /></Link>
+            <Link className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0 link-item p-1' to='/'><Image className='img-fluids m-auto d-flex justify-content-center' src={organization.logo}  alt="logo"/></Link>
           </Col>
           <Col className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0' xs={12} md={4}>
             <li>

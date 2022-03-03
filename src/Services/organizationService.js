@@ -3,9 +3,16 @@ import { Get, Post } from "./privateApiService";
 const endpoint = process.env.REACT_APP_ORGANIZATION_ENDPOINT;
 
 const getOrganizationData = async () => {
-  const { data , error } = await Get(endpoint);
-  return { data: data?.data, error };
-};
+
+    const response = {};
+    try {
+        const { data } = await Get(endpoint);
+        response.data = data;
+    } catch (error) {
+        response.error = error;
+    }
+    return response;
+  }
 
 const updateOrganizationData = async (data) => {
   try {
