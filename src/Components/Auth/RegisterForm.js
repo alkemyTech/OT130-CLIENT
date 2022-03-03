@@ -83,7 +83,7 @@ const RegisterForm = () => {
     <form className="form-container" onSubmit={formik.handleSubmit}>
       <h1>Registrate</h1>
 
-      <label htmlFor="firstName">Full name</label>
+      <label htmlFor="name">Full name</label>
       <input
         id="name"
         placeholder="Nombre completo"
