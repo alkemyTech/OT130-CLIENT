@@ -14,6 +14,7 @@ import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
 import Home from '../Components/Home';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
+import LoginForm from '../Components/Auth/LoginForm';
 import Layout from '../Components/Layout/Layout'
 import { PublicRoute } from '../router/PublicRoute';
 
@@ -34,6 +35,7 @@ function Public() {
         <Route path="/thanks" component={Thanks} />
         <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/activities/:id" component={ActivityDetail} />
+        <Route path="/login" component={LoginForm} />
         <PublicRoute path="/register" component={RegisterForm} />
       </Switch>
     </Layout>
