@@ -10,8 +10,6 @@ const config = {
 
 const instance = axios.create(config);
 
-const instance = axios.create(config);
-
 const Get = async (route, id) => {
   const response = { data: {}, error: null };
   const url = route + `${id ? '/' + id : ''}`;

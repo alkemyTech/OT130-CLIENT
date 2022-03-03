@@ -35,7 +35,7 @@ const Organization = () => {
         {organizationData ? (
           <>
             <p>
-              {`${ORGANIZATION_LOGO}:`} <img src={organizationData.logo} alt="logo" />
+              {`${ORGANIZATION_LOGO}:`} <img  className="img-fluid" src={organizationData.logo} alt="logo" />
             </p>
             <p>
               {`${ORGANIZATION_NAME}:`} {organizationData.name}
