@@ -1,24 +1,41 @@
 import React from 'react';
-import { Button, Image, Nav, Navbar } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
-
-import logo from '../../assets/logo.png';
+import { Button, Container, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectAuth } from '../../reducers/auth/authReducer';
 import { HEADER_LINK_COLOR } from '../../config/colorConfig';
 import { PUBLIC_PATHS } from '../../routes/config';
-
+import logo from '../../assets/logo.png';
+import Logout from '../Auth/Logout';
+import Sidebar from '../SideBar';
 import './header.css';
 
 const Header = () => {
-  return (
-    <header>
-      <Navbar className=" d-flex flex-column flex-sm-row d-sm-flex justify-content-sm-between header  ">
-        <Nav className=" navbar ">
-          <div className=" d-flex justify-content-center align-items-center flex-column flex-sm-row ">
-            <Image className="image-logo" src={logo} alt="Img Logo" />
+  const isAuthenticated = useSelector(selectAuth);
 
+  return (
+     <Navbar collapseOnSelect expand="lg" className="header">
+      <Container>
+        <Navbar.Brand href="#home">
+          <Image className="image-logo" src={logo} alt="Img Logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel">
+          <Image className="image-logo" src={logo} alt="Img Logo" />
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Sidebar paths={PUBLIC_PATHS} />
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+        <Navbar.Collapse className='d-none d-lg-inline'>
+          <Nav className="me-auto  text-center text-lg-inline">
             {PUBLIC_PATHS.map((path, index) => (
               <NavLink
-                className="mx-2 text-decoration-none align-items-center link-item"
+                className="mx-2 align-items-center link-item-navbar"
+                activeClassName="active-link"
                 key={index}
                 style={(isActive) => ({
                   color: isActive ? 'blue' : HEADER_LINK_COLOR,
@@ -29,20 +46,29 @@ const Header = () => {
                 {path.PLACEHOLDER}
               </NavLink>
             ))}
-          </div>
-        </Nav>
-        <div className=" d-flex">
-          <Link to="/login">
-            <Button className=" mx-2" variant="outline-primary">
-              Login
-            </Button>
-          </Link>
-          <Link to="/register">
-            <Button className=" mx-2">Registrarse</Button>
-          </Link>
-        </div>
-      </Navbar>
-    </header>
+          </Nav>
+          <Nav>
+            {isAuthenticated ? (
+              <Logout />
+            ) : (
+              <div className="d-flex justify-content-center align-items-center">
+                <Button as={NavLink} to="/login" className="btn-somos-mas">
+                  Log in
+                </Button>
+                <Button
+                  as={NavLink}
+                  to="/register"
+                  className="btn-somos-mas"
+                  variant="outline-primary"
+                >
+                  Registrarse
+                </Button>
+              </div>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
