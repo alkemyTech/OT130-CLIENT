@@ -53,7 +53,7 @@ const Header = () => {
               </NavLink>
             ))}
               {
-              (role === ID_USERS.ID_USERS.usuarioStandar) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
+              (role === ID_USERS.usuarioStandar) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
             }
           </Nav>
           <Nav>
