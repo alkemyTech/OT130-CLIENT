@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Container, Offcanvas } from 'react-bootstrap';
+import Sidebar from '../Components/SideBar';
 import { BACKOFFICE_PATHS } from '../routes/config';
-import Sidebar from './SideBar';
 
 const Header = () => {
   return (

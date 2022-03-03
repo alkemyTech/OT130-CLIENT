@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
@@ -15,7 +16,8 @@ import './loginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
+  
   const validationSchema = yup.object({
     email: yupEmail(),
     password: yupPasswordLogin(),
@@ -39,6 +41,7 @@ const LoginForm = () => {
               token: token
             }));
             SuccessAlert(`Bienvenid@ ${user.name} `, LOGIN_SUCCESS);
+            history.push('/');
           } else {
             ErrorAlert(INCORRECT_DATA);
           }

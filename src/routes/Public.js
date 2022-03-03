@@ -1,42 +1,35 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Activities from '../Components/Activities';
-import CategoriesForm from '../Components/Categories/CategoriesForm';
+import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import Contacts from '../Components/Contact';
 import Donation from '../Components/Donations/Donation';
-import MembersForm from '../Components/Members/MembersForm';
-import NewsForm from '../Components/News/NewsForm';
-import ProjectsForm from '../Components/Projects/ProjectsForm';
+import Home from '../Components/Home';
+import RegisterForm from '../Components/Auth/RegisterForm';
+import LoginForm from '../Components/Auth/LoginForm';
 import SchoolCampaign from '../Campaigns/School/SchoolCampaign';
-import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import Thanks from '../Components/Donations/Thanks';
 import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
-import Home from '../Components/Home';
-import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
-import RegisterForm from '../Components/Auth/RegisterForm';
-import Header from '../Components/Header/Header';
+import { AuthRoute } from '../Components/Auth/ProtectedRoute';
+import { PublicRoute } from '../router/PublicRoute';
+import Layout from '../Components/Layout/Layout';
 
 function Public() {
   return (
-    <>
-      <Header />
+    <Layout>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/activities" component={Activities} />
-        <Route path="/contacts" component={Contacts} />
-        <Route path="/create-category" component={CategoriesForm} />
-        <Route path="/create-news" component={NewsForm} />
-        <Route path="/create-testimonials" component={TestimonialForm} />
-        <Route path="/create-member" component={MembersForm} />
-        <Route path="/create-project" component={ProjectsForm} />
-        <Route path="/donate" component={Donation} />
-        <Route path="/school-campaign" component={SchoolCampaign} />
-        <Route path="/thanks" component={Thanks} />
-        <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/activities/:id" component={ActivityDetail} />
-        <Route path="/register" component={RegisterForm} />
+        <Route path="/contacts" component={Contacts} />
+        <Route path="/school-campaign" component={SchoolCampaign} />
+        <Route path="/toys-campaign" component={ToysCampaign} />
+        <Route path="/thanks" component={Thanks} />
+        <PublicRoute path="/login" component={LoginForm} />
+        <PublicRoute path="/register" component={RegisterForm} />
+        <AuthRoute path="/donate" component={Donation} />
       </Switch>
-    </>
+    </Layout>
   );
 }
 
