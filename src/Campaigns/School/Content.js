@@ -7,6 +7,7 @@ import {
   SCHOOL_CAMPAIGN_DESCRIPTION,
   SCHOOL_CAMPAIGN_LOCATION,
 } from '../../Helpers/messagesText';
+import Countdown from '../../Components/Countdown/Countdown';
 
 const Content = () => {
   const campaignEndDate = '2022-03-13';
@@ -18,7 +19,7 @@ const Content = () => {
         </p>
       </Row>
       <Row className="countdown">
-        <p className="subtitle-text">Te quedan {countDown(campaignEndDate)} para participar.</p>
+        <p className="subtitle-text">Te quedan <Countdown endDate={campaignEndDate}/> para participar.</p>
       </Row>
       <Row>
         <Col>
