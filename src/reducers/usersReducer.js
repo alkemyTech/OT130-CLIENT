@@ -25,6 +25,7 @@ const usersReducer = createReducer(initialState, (builder) => {
       state.isLoading = true;
     })
     .addCase(deleteUsers.fulfilled, (state, action) => {
+      state.isDeleting = false;
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
