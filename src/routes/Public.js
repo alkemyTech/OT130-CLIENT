@@ -12,23 +12,24 @@ import Thanks from '../Components/Donations/Thanks';
 import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
 import { AuthRoute } from '../Components/Auth/ProtectedRoute';
 import { PublicRoute } from '../router/PublicRoute';
-
+import Layout from '../Components/Layout/Layout';
 
 function Public() {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/activities" component={Activities} />
-      <Route path="/activities/:id" component={ActivityDetail} />
-      <Route path="/contacts" component={Contacts} />
-      <Route path="/school-campaign" component={SchoolCampaign} />
-      <Route path="/toys-campaign" component={ToysCampaign} />
-      <Route path="/thanks" component={Thanks} />
-      <PublicRoute path="/login" component={LoginForm} />
-      <PublicRoute path="/register" component={RegisterForm} />
-
-      <AuthRoute path="/donate" component={Donation} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/activities" component={Activities} />
+        <Route path="/activities/:id" component={ActivityDetail} />
+        <Route path="/contacts" component={Contacts} />
+        <Route path="/school-campaign" component={SchoolCampaign} />
+        <Route path="/toys-campaign" component={ToysCampaign} />
+        <Route path="/thanks" component={Thanks} />
+        <PublicRoute path="/login" component={LoginForm} />
+        <PublicRoute path="/register" component={RegisterForm} />
+        <AuthRoute path="/donate" component={Donation} />
+      </Switch>
+    </Layout>
   );
 }
 

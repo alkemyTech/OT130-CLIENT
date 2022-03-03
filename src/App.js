@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
       <BrowserRouter>
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
@@ -21,7 +20,6 @@ function App() {
           <Route path="/" render={() => <Public />} />
         </AnimatedSwitch>
       </BrowserRouter>
-    </div>
   );
 }
 
