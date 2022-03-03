@@ -17,14 +17,14 @@ const FooterCampaings = () => {
         <Row className="d-none d-xxl-flex py-3 campaings-links-container " xs="12">
           <Col className="d-flex justify-content-center mb-2" sm="6">
             <li>
-              <NavLink to="" activeClassName="link-footer-active">
+              <NavLink to="school-campaign" activeClassName="link-footer-active">
                 Escuelas
               </NavLink>
             </li>
           </Col>
           <Col className="d-flex justify-content-center mb-2" sm="6">
             <li>
-              <NavLink to="" activeClassName="link-footer-active">
+              <NavLink to="/toys-campaign" activeClassName="link-footer-active">
                 Juguetes
               </NavLink>
             </li>
@@ -38,7 +38,7 @@ const FooterCampaings = () => {
             sm="6"
           >
             <Image src={LOGO} alt="logo-somos-mas" className="logo-footer-school" />
-            <NavLink to="" className="d-none d-sm-inline">
+            <NavLink to="/" className="d-none d-sm-inline">
               <span>Somos Mas</span>
             </NavLink>
           </Col>

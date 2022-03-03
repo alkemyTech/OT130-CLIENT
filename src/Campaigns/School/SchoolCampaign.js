@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from './Header';
+import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
 import Content from './Content';
 
 const SchoolCampaign = () => {
 
-
   return (
     <div className='footer-fix'>
-      <Header />
+      <HeaderCampaings campaign={"school"} />
       <div>
         <Slider />
         <Content />
