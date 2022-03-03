@@ -26,7 +26,7 @@ const AuthRoute = ({ component: Component, ...props }) => {
     <Route
       {...props}
       render={() => {
-        return false ? <Component/> : <Redirect to="/login" />;
+        return auth ? <Component/> : <Redirect to="/login" />;
       }}
     />
   );
