@@ -8,10 +8,8 @@ const AdminRoute = ({ component: Component, ...props }) => {
   const auth = useSelector(selectAuth);
   const currentUser = useSelector(selectUserAuth);
   const isUserAuth = currentUser.user.user.role_id;
-
   const isAdmin = isUserAuth === 2;
 
-  console.log(isUserAuth)
   return (
     <Route
       {...props}
