@@ -7,6 +7,10 @@ const config = {
     'content-type': 'application/json',
   },
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 081eb7cd0aebe1d4984103319cc0b5fbb764cbfc
 const instance = axios.create(config);
 
 const Get = async (route, id) => {

@@ -11,11 +11,11 @@ import SchoolCampaign from '../Campaigns/School/SchoolCampaign';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import Thanks from '../Components/Donations/Thanks';
 import ToysCampaign from '../Campaigns/Toys/ToysCampaign';
-import Home from '../Components/Home';
+import Home from '../Components/Home/Index';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
-import LoginForm from '../Components/Auth/LoginForm';
 import Header from '../Components/Header/Header';
+import { PublicRoute } from '../router/PublicRoute';
 
 function Public() {
   return (
@@ -35,8 +35,7 @@ function Public() {
         <Route path="/thanks" component={Thanks} />
         <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/activities/:id" component={ActivityDetail} />
-        <Route path="/register" component={RegisterForm} />
-        <Route path="/login" component={LoginForm} />
+        <PublicRoute path="/register" component={RegisterForm} />
       </Switch>
     </>
   );
