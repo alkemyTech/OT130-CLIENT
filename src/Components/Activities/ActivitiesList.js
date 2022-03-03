@@ -9,6 +9,7 @@ import { ErrorAlert } from '../Alert';
 import '../CardListStyles.css';
 import { Spinner } from '../Spinner/Spinner';
 import { ActivityItem } from './ActivityItem';
+import ActivitySearchForm from './ActivitySearchForm';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,12 @@ const ActivitiesList = () => {
   return (
     <Container>
       <Row className="text-center my-3">
+   
         <h1>Listado Actividades</h1>
+    
+
+        <ActivitySearchForm activities={activities}/>
+
       </Row>
       <Row className='justify-content-center'>
         {activities.length > 0 ? (
