@@ -1,20 +1,24 @@
 .header {
-  width: auto;
-  height: 60px;
+  height: 10vh;
 }
-.link-item {
-  font-family: Montserrat;
+.link-item-navbar {
+  color: #57a8ff !important;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  text-decoration: none;
 }
-@media (min-width: 768px) {
-  .image-logo {
-    width: 5rem;
-    height: 5rem;
+.link-item-navbar:hover {
+  color: #9AC9FB !important; 
+}
+.active-link{
+  color: #9AC9FB !important; 
+}
+.image-logo {
+  width: 8rem;
+}
+@media (max-width: 768px) {
+  .header {
+    height: auto;
   }
-  .link-item {
-    font-family: Montserrat;
-    font-weight: 500;
-    font-size: 1rem;
-  }
+
 }

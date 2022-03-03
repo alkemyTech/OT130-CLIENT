@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 const config = {
-  baseURL: 'http://ongapi.alkemy.org/api',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     Group: 130, //Aqui va el ID del equipo!!
     'content-type': 'application/json',
   },
 };
-
 const instance = axios.create(config);
 
 const Get = async (route, id) => {
