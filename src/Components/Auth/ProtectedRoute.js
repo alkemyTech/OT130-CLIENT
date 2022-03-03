@@ -5,28 +5,31 @@ import { selectUserAuth } from '../../reducers/auth/authReducer';
 import { selectAuth } from '../../reducers/auth/authReducer';
 
 const AdminRoute = ({ component: Component, ...props }) => {
-  const { auth } = useSelector(selectAuth);
+  const auth = useSelector(selectAuth);
   const currentUser = useSelector(selectUserAuth);
-  const isUserAuth = currentUser?.user?.role_id;
-  const isAdmin = isUserAuth === 1;
+  const isUserAuth = currentUser.user.user.role_id;
 
+  const isAdmin = isUserAuth === 2;
+
+  console.log(isUserAuth)
   return (
     <Route
       {...props}
       render={() => {
-        return auth ? isAdmin ? <Component/> : <Redirect to='/'/> : <Redirect to="/login" />;
+        return auth ? isAdmin ? <Component /> : <Redirect to="/" /> : <Redirect to="/login" />;
       }}
     />
   );
 };
 
 const AuthRoute = ({ component: Component, ...props }) => {
-  const { auth } = useSelector(selectAuth);
+  const auth = useSelector(selectAuth);
+
   return (
     <Route
       {...props}
       render={() => {
-        return auth ? <Component/> : <Redirect to="/login" />;
+        return auth ? <Component /> : <Redirect to="/login" />;
       }}
     />
   );

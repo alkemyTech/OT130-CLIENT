@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postAuthRegister } from '../../Services/authService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
 import { selectTerms } from '../../reducers/termsAndConditionsReducer';
@@ -12,10 +12,9 @@ import {
   yupAddress,
   yupConfirmPass,
   yupEmail,
-  yupFirstName,
-  yupLastName,
   yupPassRegister,
-  yupTermsAndConditions
+  yupTermsAndConditions,
+  yupTitles,
 } from '../../Helpers/formValidations';
 import {
   PASSWORD_REGISTER_CONTAIN,
@@ -25,29 +24,37 @@ import {
   UNKNOWN_ERROR,
   API_ERROR,
 } from '../../Helpers/messagesText';
+import { getLogin } from '../../reducers/auth/actions';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const { termsAndConditions } = useSelector(selectTerms);
   const [checkCheckbox, setcheckCheckbox] = useState(false);
   const [sendAddress, setSendAddress] = useState('');
- 
+
   const registerSubmit = async (values) => {
-    try {
-      await postAuthRegister(values);
+    const { data } = await postAuthRegister(values);
+
+    if (data?.success) {
       SuccessAlert(REGISTER_SUCCESS);
-    } catch (error) {
+      dispatch(
+        getLogin({
+          user: data.user,
+          token: data.token,
+        }),
+      );
+    } else {
       ErrorAlert(UNKNOWN_ERROR, API_ERROR);
-    } 
+    }
   };
-  
+
   const disableStyleBtn = () => {
     return !(checkCheckbox && termsAndConditions.agree);
   };
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -55,8 +62,7 @@ const RegisterForm = () => {
       address: '',
     },
     validationSchema: Yup.object({
-      firstName: yupFirstName(),
-      lastName: yupLastName(),
+      name: yupTitles(),
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
@@ -76,38 +82,26 @@ const RegisterForm = () => {
   return (
     <form className="form-container" onSubmit={formik.handleSubmit}>
       <h1>Registrate</h1>
-      
-      <label htmlFor="firstName">First Name</label>
-      <input
-        id="firstName"
-        placeholder="Nombre"
-        type="text"
-        className="input-field"
-        {...formik.getFieldProps('firstName')}
-      />
-      {formik.touched?.firstName && formik.errors?.firstName && (
-        <div className="error-message message">{formik.errors.firstName}</div>
-      )}
 
-      <label htmlFor="lastName">Last Name</label>
+      <label htmlFor="firstName">Full name</label>
       <input
-        id="lastName"
-        placeholder="Apellido"
+        id="name"
+        placeholder="Nombre completo"
         type="text"
         className="input-field"
-        {...formik.getFieldProps('lastName')}
+        {...formik.getFieldProps('name')}
       />
-      {formik.touched?.lastName && formik.errors?.lastName && (
-        <div className="error-message message">{formik.errors.lastName}</div>
+      {formik.touched?.name && formik.errors?.name && (
+        <div className="error-message message">{formik.errors.name}</div>
       )}
 
       <label htmlFor="email">Email Address</label>
-      <input 
-        id="email" 
-        type="email" 
-        className="input-field" 
-        placeholder='Correo electrónico'
-        {...formik.getFieldProps('email')} 
+      <input
+        id="email"
+        type="email"
+        className="input-field"
+        placeholder="Correo electrónico"
+        {...formik.getFieldProps('email')}
       />
       {formik.touched?.email && formik.errors?.email && (
         <div className="error-message message">{formik.errors.email}</div>
@@ -118,7 +112,7 @@ const RegisterForm = () => {
         id="pass"
         type="password"
         className="input-field"
-        placeholder='Contraseña'
+        placeholder="Contraseña"
         {...formik.getFieldProps('password')}
       />
       {formik.touched?.password && formik.errors?.password && (
@@ -130,7 +124,7 @@ const RegisterForm = () => {
         id="confirmPassword"
         type="password"
         className="input-field"
-        placeholder='Confirmar contraseña'
+        placeholder="Confirmar contraseña"
         {...formik.getFieldProps('confirmPassword')}
       />
       {formik.touched?.confirmPassword && formik.errors?.confirmPassword && (
@@ -156,13 +150,17 @@ const RegisterForm = () => {
       )}
       <MapContainer address={sendAddress} />
 
-      <label htmlFor='termsAndConditions' className='label'>Terminos y Condiciones</label>
+      <label htmlFor="termsAndConditions" className="label">
+        Terminos y Condiciones
+      </label>
       <input
-          id="termsAndConditions"
-          type="checkbox"
-          className="input-field" 
-          onClick={(e)=>{setcheckCheckbox(e.target.checked)}}
-          {...formik.getFieldProps('termsAndConditions')}
+        id="termsAndConditions"
+        type="checkbox"
+        className="input-field"
+        onClick={(e) => {
+          setcheckCheckbox(e.target.checked);
+        }}
+        {...formik.getFieldProps('termsAndConditions')}
       />
 
       {formik.errors?.termsAndConditions && formik.touched?.termsAndConditions && (

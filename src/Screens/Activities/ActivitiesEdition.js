@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { EmptyScreen } from '../../Components/EmptyScreen';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
 import { SuccessAlert, ErrorAlert } from '../../Components/Alert';
@@ -17,7 +18,8 @@ import {
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
 
-const ActivitiesEdition = ({ match: { params } }) => {
+const ActivitiesEdition = () => {
+  const  {id}  = useParams()
   const [fetching, setFetching] = useState(true);
   const [activityData, setActivityData] = useState();
   const [submitting, setSubmitting] = useState();
@@ -38,7 +40,7 @@ const ActivitiesEdition = ({ match: { params } }) => {
   });
 
   const loadActivity = async () => {
-    const { data, error } = await getActivityDataById(params.id);
+    const { data, error } = await getActivityDataById(id);
     if (data?.success) {
       setActivityData(data?.data);
     } else {
@@ -60,7 +62,7 @@ const ActivitiesEdition = ({ match: { params } }) => {
       ...(base64Img && { image: base64Img }),
       description,
     };
-    const { data, error } = await updateActivityDataById(params.id, body);
+    const { data, error } = await updateActivityDataById(id, body);
     setSubmitting(false);
 
     if (data?.success) {

@@ -13,7 +13,6 @@ const Activities = () => {
       <Container>
           <ActivitiesList/>
       </Container>
-      <Footer/>
     </div>
   );
 };
