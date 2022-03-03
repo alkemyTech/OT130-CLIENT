@@ -1,13 +1,13 @@
 .header {
   height: 10vh;
 }
-.link-item {
+.link-item-navbar {
   color: #57a8ff !important;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
 }
-.link-item:hover {
+.link-item-navbar:hover {
   color: #9AC9FB !important; 
 }
 .active-link{

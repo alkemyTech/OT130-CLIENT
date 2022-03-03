@@ -34,7 +34,7 @@ const Header = () => {
           <Nav className="me-auto  text-center text-lg-inline">
             {PUBLIC_PATHS.map((path, index) => (
               <NavLink
-                className="mx-2 align-items-center link-item"
+                className="mx-2 align-items-center link-item-navbar"
                 activeClassName="active-link"
                 key={index}
                 style={(isActive) => ({
