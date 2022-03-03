@@ -1,39 +1,25 @@
-.App {
-  text-align: center;
+.btn-somos-mas {
+    padding: 1px 6px;
+    width: 6rem;
+    margin: 0 5px;
+    padding: 2px 5px;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: #9ac9fb !important;
+    background: white !important;
+    border: 2px solid #9ac9fb !important;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-somos-mas:hover {
+    background-color: #57a8ff !important;
+    border: 2px solid #57a8ff !important;
+    color: white !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.btn-somos-mas:active {
+    border: 2px solid #57a8ff !important;
 }
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px)
-  }
-  100% {
-    transform: translateY(0px)
-  }
+.btn-somos-mas:focus {
+    outline: 0;
+    color:#57a8ff;
+    border: 2px solid #57a8ff !important;
+    box-shadow: 0 0 0 0.1rem #57a8ff !important;
 }
