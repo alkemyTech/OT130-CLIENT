@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderCampaings from '../Shared/HeaderCampaings';
+import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
 import Content from './Content/Content';
 import Footer from './Footer';
