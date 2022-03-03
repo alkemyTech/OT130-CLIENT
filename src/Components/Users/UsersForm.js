@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Spinner } from 'react-bootstrap';
 import { ErrorMessage, Field, Form } from 'formik';
 import '../FormStyles.css';
-import userTypes from '../../Helpers/userTypes';
+import { USER_ROLES } from '../../Helpers/userTypes';
 
 const FormComponent = ({
   touched,
@@ -39,8 +39,8 @@ const FormComponent = ({
       {touched.password && <ErrorMessage name="password" />}
 
       <Field className="select-field" as="select" name="role_id">
-        {Object.keys(userTypes).map((key) => {
-          return <option value={key}>{userTypes[key]}</option>;
+        {Object.keys(USER_ROLES).map((key) => {
+          return <option value={key}>{USER_ROLES[key]}</option>;
         })}
       </Field>
       <div>

@@ -11,7 +11,7 @@ import Logout from '../Auth/Logout';
 import { selectAuth } from '../../reducers/auth/authReducer';
 import { selectUserAuth } from '../../reducers/auth/authReducer';
 import DonationButton from '../Donations/DonationButton';
-import ID_USERS from '../../Helpers/userTypes';
+import { ID_USERS } from '../../Helpers/userTypes';
 
 const Header = () => {
 

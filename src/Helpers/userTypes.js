@@ -9,7 +9,7 @@ const ID_USERS = {
    usuarioStandar: 2,
 }
 
-export default {
+export {
    USER_ROLES,
    ID_USERS
 };
