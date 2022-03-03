@@ -2,16 +2,22 @@ import React from 'react';
 import { Button, Container, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAuth } from '../../reducers/auth/authReducer';
+import './header.css';
+import logo from '../../assets/logo.png';
 import { HEADER_LINK_COLOR } from '../../config/colorConfig';
 import { PUBLIC_PATHS } from '../../routes/config';
-import logo from '../../assets/logo.png';
-import Logout from '../Auth/Logout';
 import Sidebar from '../SideBar';
-import './header.css';
+import Logout from '../Auth/Logout';
+import { selectAuth } from '../../reducers/auth/authReducer';
+import { selectUserAuth } from '../../reducers/auth/authReducer';
+import DonationButton from '../Donations/DonationButton';
+import { ID_USERS } from '../../Helpers/userTypes';
 
 const Header = () => {
+
   const isAuthenticated = useSelector(selectAuth);
+  const currentUser = useSelector(selectUserAuth);
+  const role = currentUser?.user?.role_id;
 
   return (
      <Navbar collapseOnSelect expand="lg" className="header">
@@ -46,6 +52,9 @@ const Header = () => {
                 {path.PLACEHOLDER}
               </NavLink>
             ))}
+              {
+              (role === ID_USERS.usuarioStandar) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
+            }
           </Nav>
           <Nav>
             {isAuthenticated ? (
@@ -69,7 +78,7 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
