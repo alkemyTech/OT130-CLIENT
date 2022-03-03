@@ -6,9 +6,9 @@ import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../Alert';
-import '../CardListStyles.css';
 import { Spinner } from '../Spinner/Spinner';
 import { ActivityItem } from './ActivityItem';
+import '../CardListStyles.css';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();
