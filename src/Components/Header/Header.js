@@ -7,8 +7,8 @@ import { HEADER_LINK_COLOR } from '../../config/colorConfig';
 import { PUBLIC_PATHS } from '../../routes/config';
 import logo from '../../assets/logo.png';
 import Logout from '../Auth/Logout';
+import Sidebar from '../SideBar';
 import './header.css';
-import Sidebar from '../../Backoffice/SideBar';
 
 const Header = () => {
   const isAuthenticated = useSelector(selectAuth);
