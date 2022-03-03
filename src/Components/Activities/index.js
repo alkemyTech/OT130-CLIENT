@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import Title from "../Title/Title";
 import ActivitiesList from "./ActivitiesList";
+import Footer from "../Footer/Footer";
 import "../CardListStyles.css";
 
 const Activities = () => {
@@ -12,6 +13,7 @@ const Activities = () => {
       <Container>
           <ActivitiesList/>
       </Container>
+      <Footer/>
     </div>
   );
 };

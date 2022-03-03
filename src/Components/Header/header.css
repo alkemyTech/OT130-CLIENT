@@ -1,0 +1,24 @@
+.header {
+  height: 10vh;
+}
+.link-item-navbar {
+  color: #57a8ff !important;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+}
+.link-item-navbar:hover {
+  color: #9AC9FB !important; 
+}
+.active-link{
+  color: #9AC9FB !important; 
+}
+.image-logo {
+  width: 8rem;
+}
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+  }
+
+}

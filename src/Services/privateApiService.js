@@ -7,7 +7,7 @@ const config = {
     "content-type": "application/json",
   },
 };
- 
+
 const instance = axios.create( config ); 
 
 const Patch = async (endpoint, body) => {
@@ -25,7 +25,7 @@ const Patch = async (endpoint, body) => {
 const Post = async (url, body) => {
   const response = {};
   try {
-    const { data } = await instance.post(url, body);
+    const { data } = await instance.post(url, body, getHeaders());
     response.data = data;
   } catch (error) {
     response.error = error;

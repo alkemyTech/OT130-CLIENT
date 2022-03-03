@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getLogout } from '../../reducers/auth/actions';
@@ -12,10 +13,10 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      <NavLink to="/" onClick={(e) => handleLogout(e)}>
+    <div className='d-flex justify-content-center align-items-center'>
+      <Button as={NavLink} to="/" onClick={(e) => handleLogout(e)} className="btn-somos-mas">
         Logout
-      </NavLink>
+      </Button>
     </div>
   );
 };

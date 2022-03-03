@@ -49,14 +49,17 @@
 
 .img-member {
     width: 150px;
-}
+} 
+
 .message {
     font-size: 12px;
     margin-top: 5px;
 }
+
 .error-message {
     color: red;
 }
+
 .success-message {
     color: green;
 }
