@@ -16,6 +16,7 @@ import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import RegisterForm from '../Components/Auth/RegisterForm';
 import Header from '../Components/Header/Header';
 import { PublicRoute } from '../router/PublicRoute';
+import LoginForm from '../Components/Auth/LoginForm';
 
 function Public() {
   return (
@@ -23,6 +24,7 @@ function Public() {
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
+
         <Route path="/activities" component={Activities} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/create-category" component={CategoriesForm} />
@@ -36,6 +38,7 @@ function Public() {
         <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/activities/:id" component={ActivityDetail} />
         <PublicRoute path="/register" component={RegisterForm} />
+        <PublicRoute path="/login" component={LoginForm} />
       </Switch>
     </>
   );
