@@ -2,21 +2,20 @@ import { React, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { ErrorAlert, SuccessAlert } from '../Alert';
-import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
-import './ActivitySearchForm.css'
 import { ActivityItem } from './ActivityItem';
 import { deleteActivity } from '../../Services/activitiesService';
 import { fetchActivities } from '../../actions/activitiesActions';
+import './ActivitySearchForm.css';
+import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
 
 function ActivitySearchForm({ activities }) {
-
     const dispatch = useDispatch();
     const [searchResult, setSearchResult] = useState(null);
     const validationSchema = yup.object({
@@ -32,9 +31,7 @@ function ActivitySearchForm({ activities }) {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values.buscador);
             const result = activities.find(activity => activity.name === values.buscador);
-
             if (result) {
                 setSearchResult(result);
             }
@@ -64,7 +61,7 @@ function ActivitySearchForm({ activities }) {
                         renderInput={(params) => (
                             <TextField
                                 {...params}
-                                label="Buscar Actividades"
+                                label ="Buscar Actividades"
                                 InputProps={{
                                     ...params.InputProps,
                                     type: 'search',
@@ -72,7 +69,6 @@ function ActivitySearchForm({ activities }) {
                                 fullWidth
                                 id="buscador"
                                 name="buscador"
-                                label="Buscar Actividades"
                                 value={formik.values.buscador}
                                 onChange={formik.handleChange}
                                 error={formik.touched.buscador && Boolean(formik.errors.buscador)}

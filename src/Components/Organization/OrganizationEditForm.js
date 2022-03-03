@@ -12,10 +12,10 @@ const OrganizationEditForm = ({
   organizationData,
   CKEditorHandleOnChange,
 }) => (
-  <form className="container" onSubmit={handleSubmit}>
+  <form className="container d-flex justify-content-center" onSubmit={handleSubmit}>
     <div className="organization-fields-container">
-      <h2>Editar Organización</h2>  
-      <label htmlFor="name  mt-3 mb-3">Nombre de la Organización:</label>
+      <h2 className="text-md-start text-center">Editar Organización</h2>  
+      <label className="text-md-start text-center mt-3 mb-3" htmlFor="name">Nombre de la Organización:</label>
       <input
         className="input-field mb-3"
         type="text"
@@ -26,7 +26,7 @@ const OrganizationEditForm = ({
       />
       {touched.name && <ErrorMessage name="name" />}
       
-      <label className="mt-3 mb-3" htmlFor="description">Descripción Corta:</label>
+      <label className="mt-3 mb-3 text-md-start text-center" htmlFor="description">Descripción Corta:</label>
       <CKEditor
         editor={ClassicEditor}
         data={organizationData?.description}
@@ -34,7 +34,7 @@ const OrganizationEditForm = ({
       />
      {touched.description && <ErrorMessage name="description" />}
      
-     <label className="mt-3 mb-3" htmlFor="logo">Descripción Larga:</label>
+     <label className="mt-3 mb-3 text-md-start text-center" htmlFor="logo">Descripción Larga:</label>
      <input
         className="input-field mb-3"
         type="text"
@@ -45,7 +45,7 @@ const OrganizationEditForm = ({
       />
       {touched.description && <ErrorMessage name="long"/>}
 
-      <label className="mt-3 mb-3">Redes sociales:</label>
+      <label className="mt-3 mb-3 text-md-start text-center">Redes sociales:</label>
       <input
         className="input-field mb-3"
         type="text"
@@ -86,7 +86,7 @@ const OrganizationEditForm = ({
       />
       {touched.instagram_url && <ErrorMessage name="instagram_url"/>}
 
-      <label className="mt-3 mb-3" htmlFor="logo">Logo:</label>
+      <label className="mt-3 mb-3 text-md-start text-center" htmlFor="logo">Logo:</label>
       <input
         className="form-control mb-3"
         type="file"

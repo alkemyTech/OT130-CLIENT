@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useRequestActivities } from '../../customHooks/useRequestActivities';
-import { Container, Row, Card } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { UNKNOWN_ERROR, NETWORK_ERROR } from '../../Helpers/messagesText';
 import { ErrorAlert } from '../Alert';
-import '../CardListStyles.css';
 import { Spinner } from '../Spinner/Spinner';
 import { ActivityItem } from './ActivityItem';
 import ActivitySearchForm from './ActivitySearchForm';
+import '../CardListStyles.css';
 
 const ActivitiesList = () => {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ const ActivitiesList = () => {
 
   useEffect(() => {
     dispatch(fetchActivities());
-  }, [fetchActivities, dispatch]);
+  }, [dispatch]);
 
   if (error) {
     ErrorAlert(error === 'Network Error' ? NETWORK_ERROR : UNKNOWN_ERROR);
@@ -27,12 +26,8 @@ const ActivitiesList = () => {
   return (
     <Container>
       <Row className="text-center my-3">
-   
         <h1>Listado Actividades</h1>
-    
-
         <ActivitySearchForm activities={activities}/>
-
       </Row>
       <Row className='justify-content-center'>
         {activities.length > 0 ? (
