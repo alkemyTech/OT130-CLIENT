@@ -16,20 +16,20 @@ import Layout from '../Components/Layout/Layout';
 
 function Public() {
   return (
-    <Layout>
-      <Switch>
+    <Switch>
+      <Layout>
         <Route path="/" exact component={Home} />
         <Route path="/activities" component={Activities} />
         <Route path="/activities/:id" component={ActivityDetail} />
         <Route path="/contacts" component={Contacts} />
-        <Route path="/school-campaign" component={SchoolCampaign} />
-        <Route path="/toys-campaign" component={ToysCampaign} />
         <Route path="/thanks" component={Thanks} />
         <PublicRoute path="/login" component={LoginForm} />
         <PublicRoute path="/register" component={RegisterForm} />
         <AuthRoute path="/donate" component={Donation} />
-      </Switch>
-    </Layout>
+        <Route path="/school-campaign" component={SchoolCampaign} />
+        <Route path="/toys-campaign" component={ToysCampaign} />
+      </Layout>
+    </Switch>
   );
 }
 

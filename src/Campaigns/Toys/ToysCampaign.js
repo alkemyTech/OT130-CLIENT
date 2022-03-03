@@ -2,15 +2,17 @@ import React from 'react';
 import HeaderCampaings  from '../Shared/HeaderCampaigns';
 import Slider from './Slider';
 import Content from './Content/Content';
-import Footer from './Footer';
+import FooterCampaings from '../Shared/FooterCampaings';
 
 const ToysCampaign = () => {
   return (
     <>
       <HeaderCampaings campaign={"toys"} />
-      <Slider />
-      <Content />
-      <Footer />
+      <div>
+        <Slider />
+        <Content />
+      </div>
+      <FooterCampaings />
     </>
   );
 }

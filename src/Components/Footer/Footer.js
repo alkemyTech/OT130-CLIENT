@@ -9,7 +9,7 @@ import './footer.css';
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const organization  = useSelector(selectOrganization);
+  const { organization }  = useSelector(selectOrganization);
   const rightsYear = new Date().getFullYear();
 
   useEffect(() => {
