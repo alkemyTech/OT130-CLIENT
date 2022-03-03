@@ -1,0 +1,123 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "8301-8349",
+          "short_name": "8301-8349",
+          "types": ["street_number"]
+        },
+        {
+          "long_name": "Avenida Blas Parera",
+          "short_name": "Av. Blas Parera",
+          "types": ["route"]
+        },
+        {
+          "long_name": "Santa Fe",
+          "short_name": "Santa Fe",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "La Capital",
+          "short_name": "La Capital",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Santa Fe",
+          "short_name": "Santa Fe",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Argentina",
+          "short_name": "AR",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Av. Blas Parera 8301-8349, Santa Fe, Argentina",
+      "geometry": {
+        "location": {
+          "lat": -31.5836638,
+          "lng": -60.72815680000001
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": -31.5821764197085,
+            "lng": -60.72592636970849
+          },
+          "southwest": {
+            "lat": -31.5848743802915,
+            "lng": -60.7286243302915
+          }
+        }
+      },
+      "partial_match": true,
+      "place_id": "ChIJyR1xUqkHtZURC1xZv_V8vME",
+      "plus_code": {
+        "compound_code": "C78C+GP Santa Fe, Argentina",
+        "global_code": "47WXC78C+GP"
+      },
+      "types": ["establishment", "health", "hospital", "point_of_interest"]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "450, 2400",
+          "short_name": "450, 2400",
+          "types": ["street_number"]
+        },
+        {
+          "long_name": "Dominga Cullen",
+          "short_name": "Dominga Cullen",
+          "types": ["route"]
+        },
+        {
+          "long_name": "San Francisco",
+          "short_name": "San Francisco",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "San Justo",
+          "short_name": "San Justo",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "Córdoba",
+          "short_name": "Córdoba",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Argentina",
+          "short_name": "AR",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Dominga Cullen 450, 2400, San Francisco, Córdoba, Argentina",
+      "geometry": {
+        "location": {
+          "lat": -31.4278777,
+          "lng": -62.0682925
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": -31.4266441197085,
+            "lng": -62.06632661970849
+          },
+          "southwest": {
+            "lat": -31.4293420802915,
+            "lng": -62.0690245802915
+          }
+        }
+      },
+      "partial_match": true,
+      "place_id": "ChIJDfqJGeTXypURlpd8J9ekPQk",
+      "plus_code": {
+        "compound_code": "HWCJ+RM San Francisco, Córdoba, Argentina",
+        "global_code": "47WVHWCJ+RM"
+      },
+      "types": ["establishment", "health", "hospital", "point_of_interest"]
+    }
+  ],
+  "status": "OK"
+}

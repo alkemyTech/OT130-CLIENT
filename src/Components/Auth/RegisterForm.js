@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
 import { postAuthRegister } from '../../Services/authService';
 import { ErrorAlert, SuccessAlert } from '../Alert';
+import { selectTerms } from '../../reducers/termsAndConditionsReducer';
+import TermsAndConditionModal from '../Modal/TermsAndConditionModal';
+import MapContainer from '../Map/MapContainer';
+import '../FormStyles.css';
 import {
+  yupAddress,
   yupConfirmPass,
   yupEmail,
   yupFirstName,
+  yupLastName,
   yupPassRegister,
+  yupTermsAndConditions
 } from '../../Helpers/formValidations';
 import {
   PASSWORD_REGISTER_CONTAIN,
@@ -17,56 +25,91 @@ import {
   UNKNOWN_ERROR,
   API_ERROR,
 } from '../../Helpers/messagesText';
-import '../FormStyles.css';
 
 const RegisterForm = () => {
-  const [submitForm, setSubmitForm] = useState(false);
+  const { termsAndConditions } = useSelector(selectTerms);
+  const [checkCheckbox, setcheckCheckbox] = useState(false);
+  const [sendAddress, setSendAddress] = useState('');
 
-  const timerMessage = (time) => {
-    setTimeout(() => {
-      setSubmitForm(false);
-    }, time);
+  const registerSubmit = async (values) => {
+    try {
+      await postAuthRegister(values);
+      SuccessAlert(REGISTER_SUCCESS);
+    } catch (error) {
+      ErrorAlert(UNKNOWN_ERROR, API_ERROR);
+    } 
+  };
+  
+  const disableStyleBtn = () => {
+    return !(checkCheckbox && termsAndConditions.agree);
   };
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
+      termsAndConditions: false,
+      address: '',
     },
     validationSchema: Yup.object({
-      name: yupFirstName(),
+      firstName: yupFirstName(),
+      lastName: yupLastName(),
       email: yupEmail(),
       password: yupPassRegister(PASSWORD_SHORT, PASSWORD_REGISTER_CONTAIN),
       confirmPassword: yupConfirmPass('password', PASSWORD_DONT_MATCH),
+      termsAndConditions: yupTermsAndConditions(),
+      address: yupAddress('Minimo 6 caracteres, sea preciso.'),
     }),
     onSubmit: (values) => {
-      const registerSubmit = async () => {
-        try {
-          await postAuthRegister(values);
-          SuccessAlert(REGISTER_SUCCESS);
-          setSubmitForm(true);
-          timerMessage(3000);
-          formik.resetForm();
-        } catch (error) {
-          ErrorAlert(UNKNOWN_ERROR, API_ERROR);
-        }
-      };
-      registerSubmit()
+      registerSubmit(values);
+      formik.resetForm();
     },
   });
 
+  const mapSubmit = () => {
+    if (!formik?.errors.address) setSendAddress(formik?.values.address);
+  };
+
   return (
     <form className="form-container" onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">First Name</label>
-      <input id="name" type="text" className="input-field" {...formik.getFieldProps('name')} />
-      {formik.touched.name && formik.errors.name && (
-        <div className="error-message message">{formik.errors.name}</div>
+      <h1>Registrate</h1>
+      
+      <label htmlFor="firstName">First Name</label>
+      <input
+        id="firstName"
+        placeholder="Nombre"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('firstName')}
+      />
+      {formik.touched?.firstName && formik.errors?.firstName && (
+        <div className="error-message message">{formik.errors.firstName}</div>
       )}
+
+      <label htmlFor="lastName">Last Name</label>
+      <input
+        id="lastName"
+        placeholder="Apellido"
+        type="text"
+        className="input-field"
+        {...formik.getFieldProps('lastName')}
+      />
+      {formik.touched?.lastName && formik.errors?.lastName && (
+        <div className="error-message message">{formik.errors.lastName}</div>
+      )}
+
       <label htmlFor="email">Email Address</label>
-      <input id="email" type="email" className="input-field" {...formik.getFieldProps('email')} />
-      {formik.touched.email && formik.errors.email && (
+      <input 
+        id="email" 
+        type="email" 
+        className="input-field" 
+        placeholder='Correo electrónico'
+        {...formik.getFieldProps('email')} 
+      />
+      {formik.touched?.email && formik.errors?.email && (
         <div className="error-message message">{formik.errors.email}</div>
       )}
 
@@ -75,9 +118,10 @@ const RegisterForm = () => {
         id="pass"
         type="password"
         className="input-field"
+        placeholder='Contraseña'
         {...formik.getFieldProps('password')}
       />
-      {formik.touched.password && formik.errors.password && (
+      {formik.touched?.password && formik.errors?.password && (
         <div className="error-message message">{formik.errors.password}</div>
       )}
 
@@ -86,16 +130,49 @@ const RegisterForm = () => {
         id="confirmPassword"
         type="password"
         className="input-field"
+        placeholder='Confirmar contraseña'
         {...formik.getFieldProps('confirmPassword')}
       />
-      {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-        <div className="error-message message">{formik.errors.confirmPassword}</div>
+      {formik.touched?.confirmPassword && formik.errors?.confirmPassword && (
+        <div className="error-message message">{formik.errors?.confirmPassword}</div>
       )}
 
-      <button className="submit-btn" type="submit">
-        Submit
+      <label htmlFor="address">Direccion</label>
+      <div className=" d-flex">
+        <input
+          id="address"
+          type="text"
+          className="input-field"
+          style={{ width: '100%' }}
+          {...formik.getFieldProps('address')}
+        />
+        <button type="button" className="submit-btn" style={{ width: 'auto' }} onClick={mapSubmit}>
+          Buscar
+        </button>
+      </div>
+
+      {formik.touched?.address && formik.errors?.address && (
+        <div className="error-message message">{formik.errors.address}</div>
+      )}
+      <MapContainer address={sendAddress} />
+
+      <label htmlFor='termsAndConditions' className='label'>Terminos y Condiciones</label>
+      <input
+          id="termsAndConditions"
+          type="checkbox"
+          className="input-field" 
+          onClick={(e)=>{setcheckCheckbox(e.target.checked)}}
+          {...formik.getFieldProps('termsAndConditions')}
+      />
+
+      {formik.errors?.termsAndConditions && formik.touched?.termsAndConditions && (
+        <div className="error-message message">{formik.errors.termsAndConditions}</div>
+      )}
+      <TermsAndConditionModal />
+
+      <button type="submit" className="btn btn-primary" disabled={disableStyleBtn()}>
+        Registrar
       </button>
-      {submitForm && <div className="success-message message">Form submitted successfully</div>}
     </form>
   );
 };

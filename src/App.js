@@ -1,16 +1,14 @@
 import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Layout from './Components/Layout/Layout';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { transitionsConfig } from './config/transitions';
-import Backoffice from './rutas/Backoffice';
-import Public from './rutas/Public';
+import Backoffice from './Backoffice';
+import Public from './routes/Public';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Layout>
       <BrowserRouter>
         <AnimatedSwitch
           atLeave={transitionsConfig.atLeave}
@@ -22,7 +20,6 @@ function App() {
           <Route path="/" render={() => <Public />} />
         </AnimatedSwitch>
       </BrowserRouter>
-    </Layout>
   );
 }
 
