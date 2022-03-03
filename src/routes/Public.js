@@ -4,7 +4,7 @@ import Activities from '../Components/Activities';
 import ActivityDetail from '../Components/Activities/Detail/ActivityDetail';
 import Contacts from '../Components/Contact';
 import Donation from '../Components/Donations/Donation';
-import Home from '../Components/Home';
+import Home from '../Components/Home/Index';
 import RegisterForm from '../Components/Auth/RegisterForm';
 import LoginForm from '../Components/Auth/LoginForm';
 import SchoolCampaign from '../Campaigns/School/SchoolCampaign';
