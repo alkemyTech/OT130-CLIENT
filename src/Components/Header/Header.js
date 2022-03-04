@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Container, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './header.css';
 import logo from '../../assets/logo.png';
 import { HEADER_LINK_COLOR } from '../../config/colorConfig';
 import { PUBLIC_PATHS } from '../../routes/config';
@@ -12,6 +11,7 @@ import { selectAuth } from '../../reducers/auth/authReducer';
 import { selectUserAuth } from '../../reducers/auth/authReducer';
 import DonationButton from '../Donations/DonationButton';
 import { ID_USERS } from '../../Helpers/userTypes';
+import './header.css';
 
 const Header = () => {
 

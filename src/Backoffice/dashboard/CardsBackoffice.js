@@ -11,9 +11,9 @@ const CardsBackoffice = () => {
     const cardsBackoffice = [
         {
             id: 1,
-            title: 'Novedades',
+            title: 'Home',
             icon: <BiNews />,
-            path: '/backoffice/news'
+            path: '/backoffice/home'
         },
         {
             id: 2,
@@ -37,26 +37,26 @@ const CardsBackoffice = () => {
             id: 5,
             title: 'Organización',
             icon: <GiOrganigram />,
-            path: '/backoffice/create-testimonials'
+            path: '/backoffice/organization'
 
         },
         {
             id: 6,
             title: 'Slides',
             icon: <BiSlideshow />,
-            path: '/backoffice/create-testimonials'
+            path: '/backoffice/slides'
         },
         {
             id: 7,
             title: 'Usuarios',
             icon: <FaUsers />,
-            path: '/backoffice/create-testimonials'
+            path: '/backoffice/users'
         },
         {
             id: 8,
             title: 'Miembros',
             icon: <ImUsers />,
-            path: '/backoffice/create-testimonials'
+            path: '/backoffice/members/create'
         },
     ]
 
