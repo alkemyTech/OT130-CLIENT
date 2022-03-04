@@ -7,16 +7,13 @@ import FooterCampaings from '../../Campaigns/Shared/FooterCampaings';
 const Layout = ({ children }) => {
   const location = useLocation();
   const { pathname } = location;
-  const splitLocation = pathname.split("/");
+  const splitLocation = pathname.split('/');
 
   return (
     <>
       <Header />
       {children}
-      {(splitLocation[1] === 'school-campaign' || splitLocation[1] === 'toys-campaign')
-        ? <FooterCampaings /> 
-        : <Footer />
-      }
+      <Footer />
     </>
   );
 };

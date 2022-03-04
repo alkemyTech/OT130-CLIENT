@@ -12,8 +12,8 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/school-campaign" component={SchoolCampaign} />
-      <Route path="/toys-campaign" component={ToysCampaign} />
+      <Route exact path="/school-campaign" component={SchoolCampaign} />
+      <Route exact path="/toys-campaign" component={ToysCampaign} />
       <AnimatedSwitch
         atLeave={transitionsConfig.atLeave}
         atActive={transitionsConfig.atActive}
