@@ -1,21 +1,35 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { ErrorAlert } from "../Alert";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import { selectUserAuth } from '../../reducers/auth/authReducer';
+import { selectAuth } from '../../reducers/auth/authReducer';
 
-const ProtectedRoute = ({ path, component }) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    ErrorAlert("Error", "Debe estar registrado para poder suscribirse");
-  }
+const AdminRoute = ({ component: Component, ...props }) => {
+  const { auth } = useSelector(selectAuth);
+  const currentUser = useSelector(selectUserAuth);
+  const isUserAuth = currentUser?.user?.role_id;
+  const isAdmin = isUserAuth === 1;
 
   return (
     <Route
-      path={path}
+      {...props}
       render={() => {
-        return token ? component : <Redirect to="/" />;
+        return auth ? isAdmin ? <Component/> : <Redirect to='/'/> : <Redirect to="/login" />;
       }}
     />
   );
 };
 
-export default ProtectedRoute;
+const AuthRoute = ({ component: Component, ...props }) => {
+  const { auth } = useSelector(selectAuth);
+  return (
+    <Route
+      {...props}
+      render={() => {
+        return auth ? <Component/> : <Redirect to="/login" />;
+      }}
+    />
+  );
+};
+
+export { AdminRoute, AuthRoute };

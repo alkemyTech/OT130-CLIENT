@@ -30,7 +30,7 @@ const RegisterForm = () => {
   const { termsAndConditions } = useSelector(selectTerms);
   const [checkCheckbox, setcheckCheckbox] = useState(false);
   const [sendAddress, setSendAddress] = useState('');
-
+ 
   const registerSubmit = async (values) => {
     try {
       await postAuthRegister(values);

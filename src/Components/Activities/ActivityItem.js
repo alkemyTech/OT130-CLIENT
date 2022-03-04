@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
+import ActivitiesContent from './ActivitiesContent'
 
 import { NavLink } from 'react-router-dom';
 
-export const ActivityItem = ({ activity, handleDeleteActivity }) => {
+export const ActivityItem = ({ activity, handleDeleteActivity, backoffice }) => {
   const { id, name, image, updated_at } = activity;
 
   return (
@@ -19,14 +20,14 @@ export const ActivityItem = ({ activity, handleDeleteActivity }) => {
                 Última actualización: {updated_at.substring(0, 10)}
               </small>
             </p>
-            <div className="d-flex justify-content-between">
+           {backoffice ? <div className="d-flex justify-content-between">
               <NavLink to={`/backoffice/activities/edit/${id}`} className="btn btn-secondary">
                 Editar
               </NavLink>
               <button className="btn btn-danger" onClick={() => handleDeleteActivity(id)}>
                 Eliminar
               </button>
-            </div>
+            </div>: <ActivitiesContent contentHtml={activity.description}/>}
           </div>
         </div>
       </div>
