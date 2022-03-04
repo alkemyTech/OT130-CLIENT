@@ -4,7 +4,12 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { toBase64 } from '../../Helpers/base64';
 import FormComponent from './UsersForm';
-import { NETWORK_ERROR, UNKNOWN_ERROR, EMAIL_TAKEN } from '../../Helpers/messagesText';
+import {
+  NETWORK_ERROR,
+  UNKNOWN_ERROR,
+  EMAIL_TAKEN,
+  ERROR_UPDATING_USER,
+} from '../../Helpers/messagesText';
 import {
   yupTitles,
   yupEmail,
@@ -21,7 +26,7 @@ const validation = Yup.object().shape({
   name: yupTitles(),
   email: yupEmail(),
   description: yupShortDesc(),
-  image_file: yupImages().notRequired(),
+  image_file: yupImages(),
   role_id: yupUserRoles(),
   password: yupPassword(),
 });
@@ -38,15 +43,14 @@ const initialValues = {
 const CreateEditUser = ({ user }) => {
   const [success, setSuccess] = useState(false);
   const [requestError, setRequestError] = useState();
-  const [currentUser, setCurrentUser] = useState(user || initialValues);
-  let { id } = useParams();
-
+  const [currentUser, setCurrentUser] = useState(initialValues);
+  const { id } = useParams();
   const fileInputRef = useRef();
 
   const getErrorMessage = (error) => {
-    if (error.message === 'Network Error') {
+    if (error?.message === 'Network Error') {
       return NETWORK_ERROR;
-    } else if (error.response?.data?.errors?.email) {
+    } else if (error?.response?.data?.errors?.email) {
       return EMAIL_TAKEN;
     }
     return UNKNOWN_ERROR;
@@ -58,6 +62,8 @@ const CreateEditUser = ({ user }) => {
       if (error) {
         ErrorAlert('Error', error.message);
       } else {
+        data.data.description = '';
+        data.data.image_file = '';
         setCurrentUser(data.data);
       }
     }
@@ -79,16 +85,26 @@ const CreateEditUser = ({ user }) => {
     if (values.image_file) {
       values.profile_image = await toBase64(values.image_file);
     }
-
+    console.log(id);
     delete values.image_file;
-    const { error, data } = values.id ? await updateUser(values, values) : await addUser(values);
-    if (error) {
-      const errorMessage = getErrorMessage(error);
-      setRequestError(errorMessage);
-    } else if (data.success) {
+
+    const updateData = {
+      name: values.name,
+      password: values.password,
+      email: values.email,
+      profile_image: values.profile_image,
+      description: values.description,
+    };
+
+    const { error, data } = id ? await updateUser(updateData, id) : await addUser(values);
+    console.log(data, error.response);
+    fileInputRef.current.value = null;
+
+    if (data?.success) {
       setSuccess(true);
       resetForm();
-      fileInputRef.current.value = null;
+    } else {
+      ErrorAlert(ERROR_UPDATING_USER, getErrorMessage(error));
     }
 
     setSubmitting(false);
@@ -111,7 +127,7 @@ const CreateEditUser = ({ user }) => {
         })
       }
     >
-      {({ handleSubmit, setFieldValue, touched, isSubmitting }) => {
+      {({ handleSubmit, setFieldValue, touched, isSubmitting, values }) => {
         return (
           <FormComponent
             touched={touched}
@@ -122,6 +138,7 @@ const CreateEditUser = ({ user }) => {
             isSubmitting={isSubmitting}
             fileInputRef={fileInputRef}
             imageMax={INPUT_IMAGE_MAX_IMAGE_QUANTITY}
+            values={values}
           />
         );
       }}
