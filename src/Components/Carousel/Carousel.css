@@ -6,12 +6,10 @@
 .slide-name {
   display: block;
   text-align: center;
-  color: black;
 }
 
 .slide-description {
   display: none;
-  color: black;
 }
 @media (min-width: 768px) {
   .slide-name {
