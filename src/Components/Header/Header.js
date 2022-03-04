@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { Button, Container, Image, Nav, Navbar, NavbarBrand, Offcanvas } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/logo.png';
@@ -14,13 +14,12 @@ import { ID_USERS } from '../../Helpers/userTypes';
 import './header.css';
 
 const Header = () => {
-
   const isAuthenticated = useSelector(selectAuth);
   const currentUser = useSelector(selectUserAuth);
   const role = currentUser?.user?.role_id;
 
   return (
-     <Navbar collapseOnSelect expand="lg" className="header">
+    <Navbar collapseOnSelect expand="lg" className="header">
       <Container>
         <Navbar.Brand href="#home">
           <Image className="image-logo" src={logo} alt="Img Logo" />
@@ -29,14 +28,14 @@ const Header = () => {
         <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel">
-          <Image className="image-logo" src={logo} alt="Img Logo" />
+              <Image className="image-logo" src={logo} alt="Img Logo" />
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Sidebar paths={PUBLIC_PATHS} />
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Collapse className='d-none d-lg-inline'>
+        <Navbar.Collapse className="d-none d-lg-inline">
           <Nav className="me-auto  text-center text-lg-inline">
             {PUBLIC_PATHS.map((path, index) => (
               <NavLink
@@ -52,13 +51,20 @@ const Header = () => {
                 {path.PLACEHOLDER}
               </NavLink>
             ))}
-              {
-              (role === ID_USERS.usuarioStandar) && <Nav.Link href="#donation"> <DonationButton /> </Nav.Link>
-            }
+            {role === ID_USERS.usuarioStandar && (
+              <Nav.Link href="#donation">
+                <DonationButton />
+              </Nav.Link>
+            )}
           </Nav>
           <Nav>
             {isAuthenticated ? (
-              <Logout />
+              <>
+                <NavbarBrand href="/backoffice">
+                  <Button className="btn-somos-mas">BackOffice</Button>
+                </NavbarBrand>
+                <Logout />
+              </>
             ) : (
               <div className="d-flex justify-content-center align-items-center">
                 <Button as={NavLink} to="/login" className="btn-somos-mas">
@@ -78,7 +84,7 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
