@@ -22,7 +22,7 @@ const Organization = () => {
 
   const getOrganization = async () => {
     const { data, error } = await organizationService.getOrganizationData();
-    data ? setOrganizationData(data) : ErrorAlert(ORGANIZATION_FETCH_ERROR, error.message);
+    data ? setOrganizationData(data.data) : ErrorAlert(ORGANIZATION_FETCH_ERROR, error.message);
   };
 
   const goToEdit = (e) => {
