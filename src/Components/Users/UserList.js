@@ -21,6 +21,7 @@ const UserList = () => {
 
   const deleteData = (el) => {
     dispatch(deleteUsers(el.id));
+    dispatch(fetchUsers());
     SuccessAlert('Listo', 'Usuario eliminado correctamente');
   };
 
