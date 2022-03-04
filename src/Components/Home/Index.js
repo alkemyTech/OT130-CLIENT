@@ -6,13 +6,12 @@ import './News.css';
 import Header from '../Header/Header';
 
 function Home() {
-    return (
-        <>
-            <Header />
-            <CarouselHero />
-            <News />
-        </>
-    )
+  return (
+    <>
+      <CarouselHero />
+      <News />
+    </>
+  );
 }
 
 export default Home;
