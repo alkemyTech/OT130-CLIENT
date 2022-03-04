@@ -1,18 +1,20 @@
 import React from 'react';
-import HeaderCampaings  from '../Shared/HeaderCampaigns';
-import Slider from './Slider';
 import Content from './Content';
+import FooterCampaings from '../Shared/FooterCampaings';
+import Carousel from '../../Components/Carousel/Carousel';
+
+import slides from '../../Services/mocks/schoolSliders';
 
 const SchoolCampaign = () => {
 
   return (
-    <div className='footer-fix'>
-      <HeaderCampaings campaign={"school"} />
+    <div className="footer-fix d-flex row">
       <div>
-        <Slider />
+        <Carousel slides={slides} />
         <Content />
       </div>
-    </div >
+      <FooterCampaings />
+    </div>
   );
 };
 

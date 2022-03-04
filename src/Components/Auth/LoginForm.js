@@ -20,7 +20,6 @@ const LoginForm = () => {
   
   const validationSchema = yup.object({
     email: yupEmail(),
-    password: yupPasswordLogin(),
   });
 
   const formik = useFormik({
@@ -36,6 +35,14 @@ const LoginForm = () => {
           if (response.data.data) {
             const { token } = response.data.data;
             const { user } = response.data.data;
+            // Hardcoded admin user
+
+            if (user.email === 'Prueba123!@gmail.com') {
+              user.role_id = 2
+            }
+
+            // Hardcoded admin user
+
             dispatch(getLogin({
               user: user,
               token: token
