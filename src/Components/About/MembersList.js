@@ -9,8 +9,8 @@ const MembersList = () => {
 
   return (
     <div>
-      <h1 className="my-4">Listado De Miembros</h1>
-      <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around">
+      <h1 className="my-4 text-center">Listado De Miembros</h1>
+      <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-around text-center">
         {!isLoading &&
           (allMembers.length > 0 ? (
             allMembers.map((member) => {
@@ -23,7 +23,7 @@ const MembersList = () => {
                   />
                   <Card.Body className="p-0">
                     <Card.Title className="text-center my-3">{member.name}</Card.Title>
-                    <Card.Text className="description-text">{member.description}</Card.Text>
+                    <Card.Text className="text-center description-text">{member.description}</Card.Text>
                     <div className="d-flex justify-content-around">
                       <a href={member.facebookUrl} className="icon-social-media mx-2">
                         <FaFacebook />
