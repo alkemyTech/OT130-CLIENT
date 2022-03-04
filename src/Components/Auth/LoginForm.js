@@ -37,7 +37,7 @@ const LoginForm = () => {
             const { user } = response.data.data;
             // Hardcoded admin user
 
-            if (user.email === 'Prueba123!@gmail.com') {
+            if (user.email === 'rodrigo@gmail.com') {
               user.role_id = 2
             }
 
