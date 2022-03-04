@@ -4,7 +4,7 @@ import FooterCampaings from './Shared/FooterCampaings';
 
 const Campaigns = () => {
   return (
-    <div className="footer-fix d-flex row">
+    <div className="">
       <CampaignsRoutes />
       <FooterCampaings />
     </div>
