@@ -30,3 +30,8 @@ h2,
 p {
   font-family: 'Roboto', sans-serif;
 }
+.schema-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
