@@ -1,11 +1,11 @@
-import { Post, Patch, Get, Delete } from './privateApiService';
+import { Post, Put, Patch, Get, Delete } from './privateApiService';
 
 const addUser = async (values) => {
   return await Post('/users', values);
 };
 
-const updateUser = async (values, user) => {
-  return await Patch(`/users/${user.id}`, values);
+const updateUser = async (values, id) => {
+  return await Put(`/users/${id}`, values);
 };
 
 const getUser = async (id) => {
@@ -18,7 +18,7 @@ const getUsers = async () => {
 };
 
 const deleteUser = async (id) => {
-  return await Delete(`/users/${id}`);
+  return await Delete('/users',id);
 };
 
 export { addUser, deleteUser, getUser, getUsers, updateUser };
