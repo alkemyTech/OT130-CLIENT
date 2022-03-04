@@ -1,11 +1,11 @@
 import React from 'react';
+import Countdown from '../../../Components/Countdown/Countdown';
 import { CAMPAING_END_DATE, IMAGE_TOY_URL } from '../../../Helpers/constants';
 import { countDown } from '../../../Helpers/daysUntilDate';
 import './Content.css';
 
 const Content = () => {
 
-  const countDownResult = countDown( CAMPAING_END_DATE );
 
   return (
     <div className='content-container '>
@@ -15,7 +15,7 @@ const Content = () => {
           <img src={IMAGE_TOY_URL} />
         </div>
         <div>
-          <h4 className='content-Countdown m-3 m-3'>Te quedan: {countDownResult} para participar</h4>
+          <h4 className='content-Countdown m-3 m-3'>Te quedan: <Countdown endDate={CAMPAING_END_DATE}/> para participar</h4>
         </div>
         <div className='content-image content-image-rotate-reverse-27'>
           <img src={IMAGE_TOY_URL} />
