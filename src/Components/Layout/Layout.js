@@ -5,11 +5,11 @@ import Footer from '../Footer/Footer';
 const Layout = ({ children }) => {
 
   return (
-    <>
+    <div className='schema-page'>
       <Header />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 

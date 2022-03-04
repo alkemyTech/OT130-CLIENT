@@ -29,11 +29,13 @@ const About = () => {
     <>
       {loading && <Spinner />}
       {dataTexts &&
-        <>
+        <div>
           <Title text={dataTexts[0].title} />
           <ListTexts itemSection={dataTexts} />
+          <div >
           <SocialMediaWidgets />
-        </>
+          </div>
+        </div>
       }
     </>
   )

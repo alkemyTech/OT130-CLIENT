@@ -11,6 +11,7 @@ import Thanks from '../Components/Donations/Thanks';
 import { AuthRoute } from '../Components/Auth/ProtectedRoute';
 import { PublicRoute } from '../router/PublicRoute';
 import Layout from '../Components/Layout/Layout';
+import About from '../Components/About';
 
 function Public() {
   return (
@@ -20,6 +21,7 @@ function Public() {
         <Route path="/activities" component={Activities} />
         <Route path="/activities/:id" component={ActivityDetail} />
         <Route path="/contacts" component={Contacts} />
+        <Route path="/us" component={About} />
         <Route path="/thanks" component={Thanks} />
         <AuthRoute path="/donate" component={Donation} />
         <PublicRoute path="/login" component={LoginForm} />

@@ -37,7 +37,7 @@ const MembersList = () => {
               );
             })
           ) : (
-            <p>No hay actividades</p>
+            <p>No hay miembros</p>
           ))}
         {isLoading && (
           <div className="position-absolute text-center">
