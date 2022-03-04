@@ -4,13 +4,15 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { ErrorAlert, SuccessAlert } from '../Alert';
-import { addNewSlide, editSlide, getSlides } from "../../Services/slidesService";
+import { addNewSlide, editSlide, getSlide, getSlides } from '../../Services/slidesService';
 import '../FormStyles.css';
+import { useParams } from 'react-router-dom';
+import { UNKNOWN_ERROR } from '../../Helpers/messagesText';
 
 const SlidesForm = ({ slide }) => {
-
+  const { id } = useParams();
   const [getState, setGetState] = useState([]);
-  const [order, setOrder] = useState("Este campo es obligatorio");
+  const [order, setOrder] = useState('Este campo es obligatorio');
   const [requiredName, setRequiredName] = useState(false);
   const [requiredDescription, setRequiredDescription] = useState(false);
   const [requiredImage, setRequiredImage] = useState(false);
@@ -20,23 +22,31 @@ const SlidesForm = ({ slide }) => {
     name: '',
     description: '',
     image: '',
-    order: ''
-  }
+    order: '',
+  };
   const [initialValues, setInitialValues] = useState(defaultInitialValues);
 
   const isOrderAlreadyUsed = () => {
-    return getState.some(state => state.order === parseInt(initialValues.order));
-  }
+    if (!id) {
+      return getState.some((state) => state.order === parseInt(initialValues.order));
+    }
+  };
 
-  const setInitialValuesToUpdateSlide = () => {
-    const { name, description, image } = slide;
-    setInitialValues({
-      ...initialValues,
-      name,
-      description,
-      image
-    });
-  }
+  const setInitialValuesToUpdateSlide = async () => {
+    const { error, data } = await getSlide(id);
+    if (data?.success) {
+      const { name, description, image, order } = data.data;
+      console.log(data.data);
+      setInitialValues({
+        ...initialValues,
+        name,
+        description,
+        order,
+      });
+    } else {
+      ErrorAlert(error || UNKNOWN_ERROR);
+    }
+  };
 
   useEffect(() => {
     (async function () {
@@ -44,16 +54,14 @@ const SlidesForm = ({ slide }) => {
       setGetState(response.data.data);
     })();
 
-    if (slide) {
+    if (id) {
       setInitialValuesToUpdateSlide();
-    };
+    }
   }, []);
 
   const handleChange = (e) => {
-
     if (e.target.name === 'name') {
-      setInitialValues({ ...initialValues, name: e.target.value })
-
+      setInitialValues({ ...initialValues, name: e.target.value });
     } else if (e.target.name === 'image') {
       let file = e.target.files[0];
       let reader = new FileReader();
@@ -61,11 +69,10 @@ const SlidesForm = ({ slide }) => {
       reader.readAsDataURL(file);
       reader.onload = () => {
         let base64 = reader.result;
-        setInitialValues({ ...initialValues, image: base64 })
-      }
-
+        setInitialValues({ ...initialValues, image: base64 });
+      };
     } else if (e.target.name === 'order') {
-      setInitialValues({ ...initialValues, order: e.target.value })
+      setInitialValues({ ...initialValues, order: e.target.value });
     }
   };
 
@@ -84,9 +91,9 @@ const SlidesForm = ({ slide }) => {
     };
 
     const response = await addNewSlide(body);
-    SuccessAlert("", response.data.message);
+    SuccessAlert('', response.data.message);
     setLoading(false);
-  }
+  };
 
   const updateSlide = async (id) => {
     const body = {
@@ -94,12 +101,12 @@ const SlidesForm = ({ slide }) => {
       description: initialValues.description,
       image: initialValues.image,
       order: initialValues.order,
-      updated_at: "2022-01-21T12:31:52.129Z",
+      updated_at: '2022-01-21T12:31:52.129Z',
     };
 
     const response = await editSlide(body, id);
-    SuccessAlert("", response.data.message);
-    setLoading(false)
+    SuccessAlert('', response.data.message);
+    setLoading(false);
   };
 
   const isFormValid = () => {
@@ -107,26 +114,24 @@ const SlidesForm = ({ slide }) => {
     setAsRequiredInput();
     validationInputOrder(initialValues.order);
 
-    return ![name, description, image, order].includes("") && !isOrderAlreadyUsed();
-  }
+    return ![name, description, image, order].includes('') && !isOrderAlreadyUsed();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
     if (isFormValid()) {
-
-      if (!slide) {
-        addSlide()
-      } else if (slide && slide.id) {
-        updateSlide(slide.id)
-      };
+      if (!id) {
+        addSlide();
+      } else if (id) {
+        updateSlide(id);
+      }
 
       clearForm();
       e.target.reset();
-
     } else {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -136,10 +141,10 @@ const SlidesForm = ({ slide }) => {
     setRequiredName(!name);
     setRequiredDescription(!description);
     setRequiredImage(!image);
-  }
+  };
 
   const validationInputOrder = (order) => {
-    if (order === "") {
+    if (order === '') {
       setRequiredOrder(true);
     } else if (isOrderAlreadyUsed()) {
       setRequiredOrder(true);
@@ -147,27 +152,24 @@ const SlidesForm = ({ slide }) => {
     } else {
       setRequiredOrder(false);
     }
-  }
+  };
 
   const clearForm = () => {
     setInitialValues(defaultInitialValues);
-  }
+  };
 
   return (
-
     <form className="form-container" onSubmit={handleSubmit}>
-
       <input
-        className={requiredName ? "input-field input-required" : "input-field "}
-        type="text" minLength="4"
-        name="name" value={initialValues.name}
+        className={requiredName ? 'input-field input-required' : 'input-field '}
+        type="text"
+        minLength="4"
+        name="name"
+        value={initialValues.name}
         onChange={handleChange}
-        placeholder="Slide Title">
-      </input>
-      {requiredName ?
-        <span className='span-required'>Este campo es obligatorio</span>
-        :
-        ""}
+        placeholder="Slide Title"
+      ></input>
+      {requiredName ? <span className="span-required">Este campo es obligatorio</span> : ''}
 
       <div className={requiredDescription ? 'input-required' : ''}>
         <CKEditor
@@ -177,53 +179,48 @@ const SlidesForm = ({ slide }) => {
           value={initialValues.description}
           editor={ClassicEditor}
           onChange={handleChangeDescription}
-          placeholder="Write the description" />
+          placeholder="Write the description"
+        />
       </div>
-      {requiredDescription ?
-        <span className='span-required'>Este campo es obligatorio</span>
-        :
-        ""}
+      {requiredDescription ? <span className="span-required">Este campo es obligatorio</span> : ''}
 
       <input
-        className={requiredImage ? "input-field input-required" : "input-field"}
+        className={requiredImage ? 'input-field input-required' : 'input-field'}
         type="file"
-        name='image'
+        name="image"
         files={[initialValues.image]}
-        id='file'
+        id="file"
         accept="image/png, image/jpeg"
-        placeholder='Add image'
-        onChange={handleChange}>
-      </input>
-      {requiredImage ?
-        <span className='span-required'>Este campo es obligatorio</span>
-        :
-        ""}
+        placeholder="Add image"
+        onChange={handleChange}
+      ></input>
+      {requiredImage ? <span className="span-required">Este campo es obligatorio</span> : ''}
 
       <input
-        className={requiredOrder ?
-          'input-field input-required'
-          :
-          'input-field'}
+        className={requiredOrder ? 'input-field input-required' : 'input-field'}
         type="number"
-        name='order'
+        name="order"
         value={initialValues.order}
-        placeholder='Slide order number'
-        onChange={handleChange}></input>
-      {requiredOrder ?
-        <span className='span-required' id='order'>{order}</span>
-        :
-        ""}
+        placeholder="Slide order number"
+        onChange={handleChange}
+      ></input>
+      {requiredOrder ? (
+        <span className="span-required" id="order">
+          {order}
+        </span>
+      ) : (
+        ''
+      )}
 
       <button className="submit-btn" type="submit">
-        {loading ?
-          <Spinner animation="border" style={{ width: "30px", height: "30px" }} />
-          :
-          "SEND"}
+        {loading ? (
+          <Spinner animation="border" style={{ width: '30px', height: '30px' }} />
+        ) : (
+          'SEND'
+        )}
       </button>
-
     </form>
-
   );
-}
+};
 
 export default SlidesForm;

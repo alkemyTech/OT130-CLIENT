@@ -22,6 +22,17 @@ const getSlides = async () => {
   return response;
 }
 
+const getSlide = async (id) => {
+  const response = {};
+  try {
+      const { data } = await instance.get(slidesURL+`/${id}`);
+      response.data = data;
+  } catch (error) {
+      response.error = error;
+  }
+  return response;
+}
+
 const addNewSlide = async (body) => {
   const response = {};
   try {
@@ -55,6 +66,7 @@ const deleteSlide = async (slideId) => {
 export {
   addNewSlide,
   editSlide,
+  getSlide,
   getSlides,
   deleteSlide
 };
