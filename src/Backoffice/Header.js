@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Offcanvas } from 'react-bootstrap';
+import { Navbar, Container, Offcanvas, NavLink, Button } from 'react-bootstrap';
 import Sidebar from '../Components/SideBar';
 import { BACKOFFICE_PATHS } from '../routes/config';
 
@@ -8,10 +8,15 @@ const Header = () => {
     <Navbar bg="light" expand={false}>
       <Container fluid>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        <Navbar.Brand href="/">Admin Backoffice</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <Button className="btn-somos-mas">WebPublica</Button>
+        </Navbar.Brand>
+        <Navbar.Brand href="/backoffice"><Button className="btn-somos-mas">BackOffice</Button></Navbar.Brand>
         <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">Menú</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel">
+              MENÚ
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Sidebar paths={BACKOFFICE_PATHS} />
