@@ -35,7 +35,7 @@ function CarouselHero() {
       <Container className="container-welcome-text">
         <Row>
           <Col xs={12} className="welcome-text">
-            <h2>Somos Mas</h2>
+            <h2>Somos Más</h2>
           </Col>
           <Col xs={8} className="welcome-text">
             <p>

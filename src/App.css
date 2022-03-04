@@ -1,25 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 .btn-somos-mas {
-    padding: 1px 6px;
-    width: 6rem;
-    margin: 0 5px;
-    padding: 2px 5px;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    color: #9ac9fb !important;
-    background: white !important;
-    border: 2px solid #9ac9fb !important;
+  padding: 1px 6px;
+  width: 6rem;
+  margin: 0 5px;
+  padding: 2px 5px;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: #9ac9fb !important;
+  background: white !important;
+  border: 2px solid #9ac9fb !important;
 }
 .btn-somos-mas:hover {
-    background-color: #57a8ff !important;
-    border: 2px solid #57a8ff !important;
-    color: white !important;
+  background-color: #57a8ff !important;
+  border: 2px solid #57a8ff !important;
+  color: white !important;
 }
 .btn-somos-mas:active {
-    border: 2px solid #57a8ff !important;
+  border: 2px solid #57a8ff !important;
 }
 .btn-somos-mas:focus {
-    outline: 0;
-    color:#57a8ff;
-    border: 2px solid #57a8ff !important;
-    box-shadow: 0 0 0 0.1rem #57a8ff !important;
+  outline: 0;
+  color: #57a8ff;
+  border: 2px solid #57a8ff !important;
+  box-shadow: 0 0 0 0.1rem #57a8ff !important;
+}
+
+h2,
+p {
+  font-family: 'Roboto', sans-serif;
 }
