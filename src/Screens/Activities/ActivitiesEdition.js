@@ -17,6 +17,9 @@ import {
   NETWORK_ERROR,
   NO_ACTIVITIES,
 } from '../../Helpers/messagesText';
+import { Link } from '@mui/material';
+import { Button } from 'bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const ActivitiesEdition = () => {
   const  {id}  = useParams()
@@ -67,6 +70,7 @@ const ActivitiesEdition = () => {
 
     if (data?.success) {
       SuccessAlert(undefined, ACTIVITY_EDITED_SUCCESSFULLY);
+
       resetForm();
     } else {
       ErrorAlert(error?.message === 'Network Error' ? NETWORK_ERROR : ACTIVITY_EDITED_ERROR);
@@ -86,16 +90,29 @@ const ActivitiesEdition = () => {
     >
       {({ values, handleChange, handleSubmit, touched, setFieldValue }) => {
         return (
-          <ActivitiesForm
-            handleSubmit={handleSubmit}
-            setFieldValue={setFieldValue}
-            values={values}
-            touched={touched}
-            formikHandleOnChange={handleChange}
-            CKEditorHandleOnChange={handleCKEditorChange}
-            activityData={activityData}
-            submitting={submitting}
-          />
+          <Container>
+            <Row>
+              <Col >
+                <Link href="/backoffice/activities" className='btn btn-primary text-white  ' variant="body2">
+                  Volver a backoffice
+                </Link>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ActivitiesForm
+                handleSubmit={handleSubmit}
+                setFieldValue={setFieldValue}
+                values={values}
+                touched={touched}
+                formikHandleOnChange={handleChange}
+                CKEditorHandleOnChange={handleCKEditorChange}
+                activityData={activityData}
+                submitting={submitting}
+              />
+              </Col>
+            </Row>
+          </Container>
         );
       }}
     </Formik>
