@@ -7,6 +7,7 @@ const API_ERROR = 'Disculpe, hubo un error en la aplicación.';
 const DESCRIPTION_LONG = 'Descripción demasiado larga';
 const DESCRIPTION_SHORT = 'Mínimo 10 caracteres';
 const EMAIL_TAKEN = 'El email ya ha sido registrado.';
+const ERROR_UPDATING_USER = 'Ocurrió un error al editar el usuario.'
 const INPUT_REQUIRED = 'Campo obligatorio';
 const INVALID_EMAIL = 'Email inválido';
 const INVALID_IMAGE_EXT = 'Extensión inválida. Solo archivos jpg o png';
@@ -66,6 +67,7 @@ export {
   DONATION_TITLE_TEXT,
   DONATION_THANKS_TEXT,
   EMAIL_TAKEN,
+  ERROR_UPDATING_USER,
   INCORRECT_DATA,
   INPUT_REQUIRED,
   INVALID_IMAGE_EXT,

@@ -14,35 +14,61 @@ const FormComponent = ({
   isSubmitting,
   fileInputRef,
   imageMax,
+  values,
 }) => {
   return (
-    <Form onSubmit={handleSubmit} className="form-container">
-      <Field className="input-field" type="text" name="name" placeholder="Nombre"></Field>
+    <Form className="form-container">
+      <input
+        onChange={(e) => setFieldValue('name', e.target.value)}
+        value={values.name}
+        className="input-field"
+        type="text"
+        name="name"
+        placeholder="Nombre"
+      />
 
       {touched.name && <ErrorMessage name="name" />}
 
-      <Field className="input-field" type="text" name="email" placeholder="Email"></Field>
+      <input
+        onChange={(e) => setFieldValue('email', e.target.value)}
+        value={values.email}
+        className="input-field"
+        type="text"
+        name="email"
+        placeholder="Email"
+      />
 
       {touched.email && <ErrorMessage name="email" />}
 
-      <Field
+      <input
+        onChange={(e) => setFieldValue('description', e.target.value)}
+        value={values.description}
         className="input-field"
         type="text"
         name="description"
         placeholder="Descripción"
-      ></Field>
+      />
 
       {touched.description && <ErrorMessage name="description" />}
 
-      <Field className="input-field" type="password" name="password" placeholder="Password"></Field>
+      <input
+        onChange={(e) => setFieldValue('password', e.target.value)}
+        value={values.password}
+        className="input-field"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
 
       {touched.password && <ErrorMessage name="password" />}
 
-      <Field className="select-field" as="select" name="role_id">
-        {Object.keys(USER_ROLES).map((key) => {
-          return <option value={key}>{USER_ROLES[key]}</option>;
-        })}
-      </Field>
+      <select className="select-field" as="select" name="role_id">
+        {Object.keys(USER_ROLES).map((key) => (
+          <option key={key} value={key}>
+            {USER_ROLES[key]}
+          </option>
+        ))}
+      </select>
       <div>
         <label style={{ paddingRight: '10px' }}>Subir imagen de usuario</label>
         <input
@@ -59,7 +85,7 @@ const FormComponent = ({
           <ErrorMessage name="image_file" />
         </div>
       </div>
-      <button type="submit" className="submit-btn">
+      <button type="button" onClick={handleSubmit} className="submit-btn">
         Enviar
       </button>
       <Row className="justify-content-center">
