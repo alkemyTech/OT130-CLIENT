@@ -6,12 +6,12 @@ import './News.css';
 
 
 function Home() {
-  return (
-    <>
-      <CarouselHero />
-      <News />
-    </>
-  );
+    return (
+        <>
+            <CarouselHero />
+            <News />
+        </>
+    )
 }
 
 export default Home;
