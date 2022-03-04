@@ -6,20 +6,22 @@ import Backoffice from './Backoffice';
 import Public from './routes/Public';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Campaigns from './Campaigns';
 
 function App() {
   return (
-      <BrowserRouter>
-        <AnimatedSwitch
-          atLeave={transitionsConfig.atLeave}
-          atActive={transitionsConfig.atActive}
-          atEnter={transitionsConfig.atEnter}
-          mapStyles={transitionsConfig.mapStyles}
-        >
-          <Route path="/backoffice" render={() => <Backoffice />} />
-          <Route path="/" render={() => <Public />} />
-        </AnimatedSwitch>
-      </BrowserRouter>
+    <BrowserRouter>
+      <AnimatedSwitch
+        atLeave={transitionsConfig.atLeave}
+        atActive={transitionsConfig.atActive}
+        atEnter={transitionsConfig.atEnter}
+        mapStyles={transitionsConfig.mapStyles}
+      >
+        <Route path="/campaing" render={() => <Campaigns />} />
+        <Route path="/backoffice" render={() => <Backoffice />} />
+        <Route path="/" render={() => <Public />} />
+      </AnimatedSwitch>
+    </BrowserRouter>
   );
 }
 

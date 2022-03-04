@@ -6,6 +6,7 @@ import { CAMPAIGNS_DATA } from '../config/campaignConfig';
 import './headerCampaign.css';
 
 const HeaderCampaigns = ({ campaign }) => {
+
   return (
     <header className="bkg-header">
       <Container >

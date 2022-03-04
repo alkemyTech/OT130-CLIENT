@@ -41,10 +41,10 @@ export const PUBLIC_PATHS = [
   },
   {
     PLACEHOLDER: 'Campaña Escuelas',
-    ROUTE: '/school-campaign',
+    ROUTE: '/campaing/school',
   },
   {
     PLACEHOLDER: 'Campaña juguetes',
-    ROUTE: '/toys-campaign',
+    ROUTE: '/campaing/toys',
   },
 ];

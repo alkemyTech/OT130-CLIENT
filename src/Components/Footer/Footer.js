@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BsLinkedin, BsInstagram, BsTwitter } from 'react-icons/bs';
 import { selectOrganization } from '../../reducers/organizationReducer';
 import { fetchOrganization } from '../../actions/organizationActions';
+import { LOGO } from '../../assets';
 import './footer.css';
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const organization  = useSelector(selectOrganization);
+  const { organization }  = useSelector(selectOrganization);
+  
   const rightsYear = new Date().getFullYear();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Footer = () => {
             </li>
           </Col>
           <Col>
-            <Link className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0 link-item p-1' to='/'><Image className='img-fluids m-auto d-flex justify-content-center' src={organization.logo}  alt="logo"/></Link>
+            <Link className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0 link-item p-1' to='/'><Image className='img-fluids m-auto d-flex justify-content-center' src={LOGO}  alt="logo"/></Link>
           </Col>
           <Col className='d-flex align-items-center flex-column flex-md-row justify-content-between mb-4 mb-md-0' xs={12} md={4}>
             <li>
