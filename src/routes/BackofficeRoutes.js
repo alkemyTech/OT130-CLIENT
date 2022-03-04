@@ -36,6 +36,7 @@ function Backoffice() {
         <AdminRoute exact path="/backoffice/organization/edit" component={OrganizationEdit} />
         <AdminRoute exact path="/backoffice/home" component={HomeForm} />
         <AdminRoute exact path="/backoffice/create-slide" component={SlidesForm} />
+        <AdminRoute exact path="/backoffice/create-slide/:id" component={SlidesForm} />
         <AdminRoute exact path="/backoffice/users/create" component={CreateEditUser} />
         <AdminRoute exact path="/backoffice/users/create/:id" component={CreateEditUser} />
     </Switch>
