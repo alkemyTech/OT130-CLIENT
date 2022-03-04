@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ActivitiesContent from '../../Components/Activities/ActivitiesContent';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Spinner } from 'react-bootstrap';
 import * as organizationService from '../../Services/organizationService';
@@ -35,13 +36,15 @@ const Organization = () => {
         {organizationData ? (
           <>
             <p>
-              {`${ORGANIZATION_LOGO}:`} <img  className="img-fluid" src={organizationData.logo} alt="logo" />
+              {`${ORGANIZATION_LOGO}:`}{' '}
+              <img className="img-fluid" src={organizationData.logo} alt="logo" />
             </p>
             <p>
               {`${ORGANIZATION_NAME}:`} {organizationData.name}
             </p>
             <p>
-              {`${ORGANIZATION_DESCRIPTION}:`} {organizationData.short_description}
+              {`${ORGANIZATION_DESCRIPTION}:`}
+              <ActivitiesContent contentHtml={organizationData.short_description} />
             </p>
             <button className="submit-btn" type="submit" onClick={goToEdit}>
               Editar
