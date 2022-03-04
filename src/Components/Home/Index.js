@@ -8,7 +8,6 @@ import Header from '../Header/Header';
 function Home() {
     return (
         <>
-            <Header />
             <CarouselHero />
             <News />
         </>
