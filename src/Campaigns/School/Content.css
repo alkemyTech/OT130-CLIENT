@@ -1,3 +1,6 @@
+.content-container {
+  margin-top: 25vh;
+}
 .content-image {
   width: 100%;
 }
@@ -32,7 +35,6 @@
   .subtitle-text {
     font-size: 65px;
   }
-
   .campaign-description {
     font-size: 40px;
   }

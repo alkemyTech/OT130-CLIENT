@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import './Content.css';
-import { countDown } from '../../Helpers/daysUntilDate';
 import {
   SCHOOL_CAMPAIGN_DATE,
   SCHOOL_CAMPAIGN_DESCRIPTION,
