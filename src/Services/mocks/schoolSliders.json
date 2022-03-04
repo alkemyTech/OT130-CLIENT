@@ -1,17 +1,22 @@
 [
   {
-    "name": "imagen 1",
-    "image": "http://drive.google.com/uc?export=view&id=1N5x1Fw7IVcbHtw7AJF0-weg-HhXTekoF",
-    "description": "texto de descripcion 1"
+    "name": "Tutorias",
+    "image": "http://drive.google.com/uc?export=view&id=1tBkFZIYz2Y1Tc1WIqKXS_H3YpZOSYDQJ",
+    "description": "Es un programa destinado a jóvenes a partir del tercer año de secundaria, cuyo objetivo es garantizar su permanencia en la escuela y construir un proyecto de vida que da sentido al colegio."
   },
   {
-    "name": "imagen 2",
-    "image": "http://drive.google.com/uc?export=view&id=1qEqvRfz1jifFZlAySvPcto7ajvpcMwlC",
-    "description": "texto de descripcion 2"
+    "name": "Paseos recreativos y educativos",
+    "image": "http://drive.google.com/uc?export=view&id=10zBKAJOJLjMKXWMXDad_SUg8yL5znm91",
+    "description": "Estos paseos están pensados para promover la participación y sentido de pertenencia de los niños, niñas y adolescentes al área educativa."
   },
   {
-    "name": "imagen 3",
-    "image": "http://drive.google.com/uc?export=view&id=1F-W0RKJTuQMdTuK2QTu8kMZJBBqVlNz3",
-    "description": "texto de descripcion 3"
+    "name": "Taller Arte y Cuentos",
+    "image": "http://drive.google.com/uc?export=view&id=1ileZuq6dMphx9i-aFtz95iSDRsRVZgLj",
+    "description": "Taller literario y de manualidades que se realiza semanalmente."
+  },
+  {
+    "name": "Apoyo Escolar",
+    "image": "http://drive.google.com/uc?export=view&id=1EfWmYnA2R49ZW8anbMT9Hg2J02pVT5D9",
+    "description": "El espacio de apoyo escolar es el corazón del área educativa. Se realizan talleres con horarios flexibles para nivel primario y secundario."
   }
 ]
