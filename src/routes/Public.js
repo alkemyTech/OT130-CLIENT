@@ -21,9 +21,9 @@ function Public() {
         <Route path="/activities/:id" component={ActivityDetail} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/thanks" component={Thanks} />
+        <AuthRoute path="/donate" component={Donation} />
         <PublicRoute path="/login" component={LoginForm} />
         <PublicRoute path="/register" component={RegisterForm} />
-        <AuthRoute path="/donate" component={Donation} />
       </Layout>
     </Switch>
   );
