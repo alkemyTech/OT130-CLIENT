@@ -1,11 +1,9 @@
 import React from 'react';
 import Countdown from '../../../Components/Countdown/Countdown';
 import { CAMPAING_END_DATE, IMAGE_TOY_URL } from '../../../Helpers/constants';
-import { countDown } from '../../../Helpers/daysUntilDate';
 import './Content.css';
 
 const Content = () => {
-
 
   return (
     <div className='content-container '>
