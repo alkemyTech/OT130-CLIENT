@@ -17,9 +17,9 @@ function App() {
         atEnter={transitionsConfig.atEnter}
         mapStyles={transitionsConfig.mapStyles}
       >
-        <Route path="/" render={() => <Public />} />
+        <Route path="/campaing" render={() => <Campaigns />} />
         <Route path="/backoffice" render={() => <Backoffice />} />
-        <Route exact path="/campaing" render={() => <Campaigns />} />
+        <Route path="/" render={() => <Public />} />
       </AnimatedSwitch>
     </BrowserRouter>
   );
