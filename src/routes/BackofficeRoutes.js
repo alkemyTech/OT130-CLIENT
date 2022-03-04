@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { AdminRoute, AuthRoute } from '../Components/Auth/ProtectedRoute';
 import ActivitiesCreation from '../Screens/Activities/ActivitiesCreation';
 import ActivitiesEdition from '../Screens/Activities/ActivitiesEdition';
@@ -16,7 +16,7 @@ import NewsForm from '../Components/News/NewsForm';
 import ProjectsForm from '../Components/Projects/ProjectsForm';
 import CategoriesForm from '../Components/Categories/CategoriesForm';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
-import { ScreenDashboard } from '../Screens/ScreenDashboard';
+import { ScreenDashboard } from '../Backoffice/dashboard/ScreenDashboard';
 
 function Backoffice() {
   return (

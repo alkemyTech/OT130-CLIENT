@@ -39,8 +39,7 @@ const MembersForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // Quitar el siguiente console.log cuando se realice la petición a API 
-      console.log(values);
+
     },
   });
 
