@@ -52,17 +52,17 @@ const Footer = () => {
           <Col className='d-flex justify-content-around align-items-center  mt-4 mb-4' xs={12} md={4}>
             <Row>
               <Col>
-                <a className="link-item" href={organization.linkedin_url}><span><BsLinkedin className='icon-item'/></span></a>
+                <a className="link-item" href={organization?.linkedin_url}><span><BsLinkedin className='icon-item'/></span></a>
               </Col>
             </Row>
             <Row>
               <Col>
-                <a className="link-item" href={organization.instagram_url}><span><BsInstagram className='icon-item'/></span></a>
+                <a className="link-item" href={organization?.instagram_url}><span><BsInstagram className='icon-item'/></span></a>
               </Col>
             </Row>
             <Row>
               <Col>   
-                <a className="link-item" href={organization.twitter_url}><span><BsTwitter className='icon-item'/></span></a>
+                <a className="link-item" href={organization?.twitter_url}><span><BsTwitter className='icon-item'/></span></a>
               </Col>
             </Row>
           </Col>
