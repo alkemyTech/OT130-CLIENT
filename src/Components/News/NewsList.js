@@ -1,32 +1,21 @@
-import React from 'react';
-import '../CardListStyles.css';
+import React from "react";
 
-const NewsList = () => {
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+import { Alert } from "react-bootstrap";
+import NewsCard from "./NewsCard";
 
-    return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
-                }
-            </ul>
+const NewsList = ({ news, isLoading }) =>
+  news.length > 0 ? (
+    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      {news.map((element, index) => (
+        <div className="col" key={index}>
+          <NewsCard novedad={element} isLoading={isLoading} />
         </div>
-    );
-}
- 
+      ))}
+    </div>
+  ) : (
+    <Alert variant="primary" className="text-center">
+      Esta lista está vacía
+    </Alert>
+  );
+
 export default NewsList;
