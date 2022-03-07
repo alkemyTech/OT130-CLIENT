@@ -9,12 +9,12 @@ import { deleteActivity } from '../../Services/activitiesService';
 import { fetchActivities } from '../../actions/activitiesActions';
 import { selectActivities } from '../../reducers/activitiesReducer';
 import { ErrorAlert, SuccessAlert } from '../Alert';
+import ActivitySearchForm from './ActivitySearchForm';
 import '../CardListStyles.css';
 import { NETWORK_ERROR, UNKNOWN_ERROR } from '../../Helpers/messagesText';
 
 const BackoficeActivitiesList = () => {
   const dispatch = useDispatch();
-
   const { activities, error, isLoading } = useSelector(selectActivities);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const BackoficeActivitiesList = () => {
   return (
     <Container>
       <h1 className="">Listado de actividades</h1>
+      <ActivitySearchForm activities={activities} />
       <Link to="/backoffice/activities/create" className="m-2 btn btn-primary">
         Agregar actividad
       </Link>
